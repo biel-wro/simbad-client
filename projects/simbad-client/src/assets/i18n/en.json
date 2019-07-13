@@ -40,13 +40,7 @@
     "simbad.settings.animations.elements": "Navigation page elements slide up",
     "simbad.settings.animations.page": "Navigation whole page transition",
     "simbad.settings.animations.title": "Animations",
-    "simbad.settings.general.language.de": "German",
     "simbad.settings.general.language.en": "English",
-    "simbad.settings.general.language.es": "Spanish",
-    "simbad.settings.general.language.fr": "French",
-    "simbad.settings.general.language.pt-br": "Portuguese",
-    "simbad.settings.general.language.sk": "Slovak",
-    "simbad.settings.general.language.zh-cn": "Simple Chinese",
     "simbad.settings.general.placeholder": "Language",
     "simbad.settings.general.title": "General",
     "simbad.settings.themes.blue": "Blue",
@@ -59,6 +53,6 @@
     "simbad.settings.themes.sticky-header": "Sticky header",
     "simbad.settings.themes.title": "Themes",
     "simbad.settings.title": "Settings",
-    "simbad.title.long": "Angular NgRx Material Starter",
-    "simbad.title.short": "Angular Starter"
+    "simbad.title.long": "Simulation Birth And Death Client",
+    "simbad.title.short": "SimBaD Client"
 }

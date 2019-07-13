@@ -3,13 +3,13 @@ import { SettingsActions, SettingsActionTypes } from './settings.actions';
 
 export const initialState: SettingsState = {
     language: 'en',
-    theme: 'DEFAULT-THEME',
+    theme: 'DARK-THEME',
     autoNightMode: false,
     nightTheme: NIGHT_MODE_THEME,
     stickyHeader: true,
-    pageAnimations: true,
+    pageAnimations: false,
     pageAnimationsDisabled: false,
-    elementsAnimations: true,
+    elementsAnimations: false,
     hour: 0
 };
 

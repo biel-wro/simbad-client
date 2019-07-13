@@ -20,7 +20,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'todos',
+                redirectTo: 'form',
                 pathMatch: 'full'
             },
             {

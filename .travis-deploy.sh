@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 echo Deploy to GitHub Pages
-if [${TRAVIS_BRANCH} == "master"]; then
-    echo Not on master, skipping deployment
+if [ "$TRAVIS_BRANCH" == "master"]; then
+    echo Not on master, skipping deployment;
 else
     echo Deploy to GitHub Pages - Start
     # go to the directory which contains build artifacts and create a *new* Git repo
