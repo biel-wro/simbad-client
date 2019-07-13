@@ -1,0 +1,9 @@
+$simbad-black-primary: mat-palette($mat-grey, 700, 300, 900);
+$simbad-black-accent: mat-palette($mat-blue-grey, 400);
+$simbad-black-warn: mat-palette($mat-red, 500);
+
+$simbad-black-theme: mat-dark-theme(
+  $simbad-black-primary,
+  $simbad-black-accent,
+  $simbad-black-warn
+);

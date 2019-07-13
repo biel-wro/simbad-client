@@ -1,0 +1,5 @@
+$simbad-primary: mat-palette($mat-indigo, 800, 300, 900);
+$simbad-accent: mat-palette($mat-light-blue);
+$simbad-warn: mat-palette($mat-pink, 600);
+
+$simbad-theme: mat-light-theme($simbad-primary, $simbad-accent, $simbad-warn);
