@@ -23,6 +23,7 @@ import { Form } from '../form.model';
 })
 export class FormComponent implements OnInit {
     routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+    panelOpenState: boolean;
 
     form = this.fb.group({
         autosave: false,

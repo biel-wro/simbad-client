@@ -9,7 +9,7 @@ describe('About Page', () => {
     it('should display main heading', () => {
         page.navigateTo();
         expect(page.getParagraphText()).toEqual(
-            'ANGULAR NGRX MATERIAL STARTER'
+            'SIMULATION BIRTH AND DEATH CLIENT'
         );
     });
 
