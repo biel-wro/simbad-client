@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'simbad-child',
-  templateUrl: './child.component.html',
-  styleUrls: ['./child.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'simbad-child',
+    templateUrl: './child.component.html',
+    styleUrls: ['./child.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChildComponent implements OnInit {
-  constructor() {}
+    constructor() {}
 
-  ngOnInit() {}
+    ngOnInit() {}
 }

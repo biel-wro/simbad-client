@@ -9,29 +9,29 @@ import { SharedModule } from '../shared/shared.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        RouterTestingModule,
-        NoopAnimationsModule,
-        TranslateModule.forRoot()
-      ],
-      providers: [
-        provideMockStore({
-          initialState: {
-            settings: {},
-            auth: {}
-          }
-        })
-      ],
-      declarations: [AppComponent]
-    }).compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                SharedModule,
+                RouterTestingModule,
+                NoopAnimationsModule,
+                TranslateModule.forRoot()
+            ],
+            providers: [
+                provideMockStore({
+                    initialState: {
+                        settings: {},
+                        auth: {}
+                    }
+                })
+            ],
+            declarations: [AppComponent]
+        }).compileComponents();
+    }));
 
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+    it('should create the app', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+        expect(app).toBeTruthy();
+    }));
 });

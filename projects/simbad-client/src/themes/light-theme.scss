@@ -3,7 +3,7 @@ $simbad-light-accent: mat-palette($mat-brown, 200);
 $simbad-light-warn: mat-palette($mat-deep-orange, 200);
 
 $simbad-light-theme: mat-light-theme(
-  $simbad-light-primary,
-  $simbad-light-accent,
-  $simbad-light-warn
+    $simbad-light-primary,
+    $simbad-light-accent,
+    $simbad-light-warn
 );

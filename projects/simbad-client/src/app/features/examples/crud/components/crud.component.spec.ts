@@ -11,38 +11,38 @@ import { State } from '../../examples.state';
 import { CrudComponent } from './crud.component';
 
 describe('CrudComponent', () => {
-  let component: CrudComponent;
-  let fixture: ComponentFixture<CrudComponent>;
-  let store: MockStore<State>;
+    let component: CrudComponent;
+    let fixture: ComponentFixture<CrudComponent>;
+    let store: MockStore<State>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        SharedModule,
-        NoopAnimationsModule,
-        RouterTestingModule,
-        TranslateModule.forRoot()
-      ],
-      providers: [
-        provideMockStore({
-          initialState: {
-            examples: {
-              books: {
-                ids: [],
-                entities: {}
-              }
-            }
-          }
-        })
-      ],
-      declarations: [CrudComponent]
-    }).compileComponents();
-    store = TestBed.get(Store);
-    fixture = TestBed.createComponent(CrudComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }));
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            imports: [
+                SharedModule,
+                NoopAnimationsModule,
+                RouterTestingModule,
+                TranslateModule.forRoot()
+            ],
+            providers: [
+                provideMockStore({
+                    initialState: {
+                        examples: {
+                            books: {
+                                ids: [],
+                                entities: {}
+                            }
+                        }
+                    }
+                })
+            ],
+            declarations: [CrudComponent]
+        }).compileComponents();
+        store = TestBed.get(Store);
+        fixture = TestBed.createComponent(CrudComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    }));
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

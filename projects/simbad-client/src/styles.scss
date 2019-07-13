@@ -25,34 +25,34 @@
 @import './app/features/examples/examples/examples.component.scss-theme';
 
 @mixin custom-components-theme($theme) {
-  @include simbad-styles-reset-theme($theme);
-  @include simbad-app-component-theme($theme);
-  @include simbad-about-component-theme($theme);
-  @include simbad-big-input-component-theme($theme);
-  @include simbad-notifications-component-theme($theme);
-  @include simbad-todos-container-component-theme($theme);
-  @include simbad-stock-market-container-component-theme($theme);
-  @include simbad-parent-component-theme($theme);
-  @include simbad-child-component-theme($theme);
-  @include simbad-examples-component-theme($theme);
+    @include simbad-styles-reset-theme($theme);
+    @include simbad-app-component-theme($theme);
+    @include simbad-about-component-theme($theme);
+    @include simbad-big-input-component-theme($theme);
+    @include simbad-notifications-component-theme($theme);
+    @include simbad-todos-container-component-theme($theme);
+    @include simbad-stock-market-container-component-theme($theme);
+    @include simbad-parent-component-theme($theme);
+    @include simbad-child-component-theme($theme);
+    @include simbad-examples-component-theme($theme);
 }
 
 .default-theme {
-  @include angular-material-theme($simbad-theme);
-  @include custom-components-theme($simbad-theme);
+    @include angular-material-theme($simbad-theme);
+    @include custom-components-theme($simbad-theme);
 }
 
 .light-theme {
-  @include angular-material-theme($simbad-light-theme);
-  @include custom-components-theme($simbad-light-theme);
+    @include angular-material-theme($simbad-light-theme);
+    @include custom-components-theme($simbad-light-theme);
 }
 
 .black-theme {
-  @include angular-material-theme($simbad-black-theme);
-  @include custom-components-theme($simbad-black-theme);
+    @include angular-material-theme($simbad-black-theme);
+    @include custom-components-theme($simbad-black-theme);
 }
 
 .nature-theme {
-  @include angular-material-theme($simbad-nature-theme);
-  @include custom-components-theme($simbad-nature-theme);
+    @include angular-material-theme($simbad-nature-theme);
+    @include custom-components-theme($simbad-nature-theme);
 }

@@ -3,7 +3,7 @@ $simbad-black-accent: mat-palette($mat-blue-grey, 400);
 $simbad-black-warn: mat-palette($mat-red, 500);
 
 $simbad-black-theme: mat-dark-theme(
-  $simbad-black-primary,
-  $simbad-black-accent,
-  $simbad-black-warn
+    $simbad-black-primary,
+    $simbad-black-accent,
+    $simbad-black-warn
 );

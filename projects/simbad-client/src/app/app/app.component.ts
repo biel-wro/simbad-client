@@ -6,81 +6,83 @@ import { Observable } from 'rxjs';
 import { environment as env } from '../../environments/environment';
 
 import {
-  authLogin,
-  authLogout,
-  routeAnimations,
-  AppState,
-  LocalStorageService,
-  selectIsAuthenticated,
-  ActionSettingsChangeAnimationsPageDisabled,
-  selectSettingsStickyHeader,
-  selectSettingsLanguage,
-  selectEffectiveTheme,
-  ActionSettingsChangeLanguage
+    authLogin,
+    authLogout,
+    routeAnimations,
+    AppState,
+    LocalStorageService,
+    selectIsAuthenticated,
+    ActionSettingsChangeAnimationsPageDisabled,
+    selectSettingsStickyHeader,
+    selectSettingsLanguage,
+    selectEffectiveTheme,
+    ActionSettingsChangeLanguage
 } from '../core/core.module';
 
 @Component({
-  selector: 'simbad-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  animations: [routeAnimations]
+    selector: 'simbad-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    animations: [routeAnimations]
 })
 export class AppComponent implements OnInit {
-  isProd = env.production;
-  envName = env.envName;
-  version = env.versions.app;
-  year = new Date().getFullYear();
-  logo = require('../../assets/logo.png');
-  languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
-  navigation = [
-    { link: 'about', label: 'simbad.menu.about' },
-    { link: 'feature-list', label: 'simbad.menu.features' },
-    { link: 'examples', label: 'simbad.menu.examples' }
-  ];
-  navigationSideMenu = [
-    ...this.navigation,
-    { link: 'settings', label: 'simbad.menu.settings' }
-  ];
+    isProd = env.production;
+    envName = env.envName;
+    version = env.versions.app;
+    year = new Date().getFullYear();
+    logo = require('../../assets/logo.png');
+    languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
+    navigation = [
+        { link: 'about', label: 'simbad.menu.about' },
+        { link: 'feature-list', label: 'simbad.menu.features' },
+        { link: 'examples', label: 'simbad.menu.examples' }
+    ];
+    navigationSideMenu = [
+        ...this.navigation,
+        { link: 'settings', label: 'simbad.menu.settings' }
+    ];
 
-  isAuthenticated$: Observable<boolean>;
-  stickyHeader$: Observable<boolean>;
-  language$: Observable<string>;
-  theme$: Observable<string>;
+    isAuthenticated$: Observable<boolean>;
+    stickyHeader$: Observable<boolean>;
+    language$: Observable<string>;
+    theme$: Observable<string>;
 
-  constructor(
-    private store: Store<AppState>,
-    private storageService: LocalStorageService
-  ) {}
+    constructor(
+        private store: Store<AppState>,
+        private storageService: LocalStorageService
+    ) {}
 
-  private static isIEorEdgeOrSafari() {
-    return ['ie', 'edge', 'safari'].includes(browser().name);
-  }
-
-  ngOnInit(): void {
-    this.storageService.testLocalStorage();
-    if (AppComponent.isIEorEdgeOrSafari()) {
-      this.store.dispatch(
-        new ActionSettingsChangeAnimationsPageDisabled({
-          pageAnimationsDisabled: true
-        })
-      );
+    private static isIEorEdgeOrSafari() {
+        return ['ie', 'edge', 'safari'].includes(browser().name);
     }
 
-    this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-    this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
-    this.language$ = this.store.pipe(select(selectSettingsLanguage));
-    this.theme$ = this.store.pipe(select(selectEffectiveTheme));
-  }
+    ngOnInit(): void {
+        this.storageService.testLocalStorage();
+        if (AppComponent.isIEorEdgeOrSafari()) {
+            this.store.dispatch(
+                new ActionSettingsChangeAnimationsPageDisabled({
+                    pageAnimationsDisabled: true
+                })
+            );
+        }
 
-  onLoginClick() {
-    this.store.dispatch(authLogin());
-  }
+        this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
+        this.stickyHeader$ = this.store.pipe(
+            select(selectSettingsStickyHeader)
+        );
+        this.language$ = this.store.pipe(select(selectSettingsLanguage));
+        this.theme$ = this.store.pipe(select(selectEffectiveTheme));
+    }
 
-  onLogoutClick() {
-    this.store.dispatch(authLogout());
-  }
+    onLoginClick() {
+        this.store.dispatch(authLogin());
+    }
 
-  onLanguageSelect({ value: language }) {
-    this.store.dispatch(new ActionSettingsChangeLanguage({ language }));
-  }
+    onLogoutClick() {
+        this.store.dispatch(authLogout());
+    }
+
+    onLanguageSelect({ value: language }) {
+        this.store.dispatch(new ActionSettingsChangeLanguage({ language }));
+    }
 }

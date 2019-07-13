@@ -14,67 +14,67 @@ import { NotificationsComponent } from './notifications/components/notifications
 import { UserComponent } from './simple-state-management/components/user.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ExamplesComponent,
-    children: [
-      {
+    {
         path: '',
-        redirectTo: 'todos',
-        pathMatch: 'full'
-      },
-      {
-        path: 'todos',
-        component: TodosContainerComponent,
-        data: { title: 'simbad.examples.menu.todos' }
-      },
-      {
-        path: 'stock-market',
-        component: StockMarketContainerComponent,
-        data: { title: 'simbad.examples.menu.stocks' }
-      },
-      {
-        path: 'theming',
-        component: ParentComponent,
-        data: { title: 'simbad.examples.menu.theming' }
-      },
-      {
-        path: 'crud',
-        redirectTo: 'crud/',
-        pathMatch: 'full'
-      },
-      {
-        path: 'crud/:id',
-        component: CrudComponent,
-        data: { title: 'simbad.examples.menu.crud' }
-      },
-      {
-        path: 'simple-state-management',
-        component: UserComponent,
-        data: { title: 'simbad.examples.menu.simple-state-management' }
-      },
-      {
-        path: 'form',
-        component: FormComponent,
-        data: { title: 'simbad.examples.menu.form' }
-      },
-      {
-        path: 'notifications',
-        component: NotificationsComponent,
-        data: { title: 'simbad.examples.menu.notifications' }
-      },
-      {
-        path: 'authenticated',
-        component: AuthenticatedComponent,
-        canActivate: [AuthGuardService],
-        data: { title: 'simbad.examples.menu.auth' }
-      }
-    ]
-  }
+        component: ExamplesComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'todos',
+                pathMatch: 'full'
+            },
+            {
+                path: 'todos',
+                component: TodosContainerComponent,
+                data: { title: 'simbad.examples.menu.todos' }
+            },
+            {
+                path: 'stock-market',
+                component: StockMarketContainerComponent,
+                data: { title: 'simbad.examples.menu.stocks' }
+            },
+            {
+                path: 'theming',
+                component: ParentComponent,
+                data: { title: 'simbad.examples.menu.theming' }
+            },
+            {
+                path: 'crud',
+                redirectTo: 'crud/',
+                pathMatch: 'full'
+            },
+            {
+                path: 'crud/:id',
+                component: CrudComponent,
+                data: { title: 'simbad.examples.menu.crud' }
+            },
+            {
+                path: 'simple-state-management',
+                component: UserComponent,
+                data: { title: 'simbad.examples.menu.simple-state-management' }
+            },
+            {
+                path: 'form',
+                component: FormComponent,
+                data: { title: 'simbad.examples.menu.form' }
+            },
+            {
+                path: 'notifications',
+                component: NotificationsComponent,
+                data: { title: 'simbad.examples.menu.notifications' }
+            },
+            {
+                path: 'authenticated',
+                component: AuthenticatedComponent,
+                canActivate: [AuthGuardService],
+                data: { title: 'simbad.examples.menu.auth' }
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class ExamplesRoutingModule {}
