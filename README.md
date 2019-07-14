@@ -9,4 +9,9 @@
 - edge 17-18
 - firefox 60, 65, 66
 - ios_saf 11.3-11.4 12.0-12.2
+## Docker
+Latest master build
+```
+docker pull jsokolowski/simbad-client
+```
 
