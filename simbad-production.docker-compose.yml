@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+    web:
+        image: simbad-client
+        container_name: simbad-client
+        build:
+            context: .
+            dockerfile: simbad-production.Dockerfile
+            target: production
+        environment:
+            - CONTEXT=
+            - PORT=150
+        ports:
+            - '150:150'
