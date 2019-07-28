@@ -27,6 +27,13 @@ import { NotificationsComponent } from './notifications/components/notifications
 import { ExamplesEffects } from './examples.effects';
 import { UserComponent } from './simple-state-management/components/user.component';
 import { UserService } from './simple-state-management/user.service';
+import { ConfigurationStepComponent } from './form/components/configuration-step/configuration-step.component';
+import { ComplexParameterComponent } from './form/components/complex-parameter/complex-parameter.component';
+import { SimpleParameterComponent } from './form/components/simple-parameter/simple-parameter.component';
+import { FormsService } from './form/forms-service';
+import { CreateConfigurationDialogComponent } from './form/components/create-configuration-dialog/create-configuration-dialog.component';
+import { FormToolbarComponent } from './form/components/form-toolbar/form-toolbar.component';
+import { MatDialogModule } from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(
@@ -55,7 +62,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             StockMarketEffects,
             BooksEffects,
             FormEffects
-        ])
+        ]),
+        MatDialogModule
     ],
     declarations: [
         ExamplesComponent,
@@ -67,9 +75,15 @@ export function HttpLoaderFactory(http: HttpClient) {
         CrudComponent,
         FormComponent,
         NotificationsComponent,
-        UserComponent
+        UserComponent,
+        ConfigurationStepComponent,
+        ComplexParameterComponent,
+        SimpleParameterComponent,
+        CreateConfigurationDialogComponent,
+        FormToolbarComponent
     ],
-    providers: [StockMarketService, UserService]
+    providers: [StockMarketService, UserService, FormsService],
+    entryComponents: [CreateConfigurationDialogComponent]
 })
 export class ExamplesModule {
     constructor() {}
