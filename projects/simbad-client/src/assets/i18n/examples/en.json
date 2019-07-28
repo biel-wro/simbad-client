@@ -128,5 +128,8 @@
     "simbad.examples.todos.toggle.notification": "Toggled {{name}} to",
     "simbad.examples.todos.tooltip.add": "Add new todo",
     "simbad.examples.todos.tooltip.remove": "Remove done todos",
-    "simbad.examples.todos.undo": "Undo"
+    "simbad.examples.todos.undo": "Undo",
+    "simbad.configuration.forms.tooltip.create": "Create new configuration file",
+    "simbad.configuration.forms.tooltip.load": "Upload configuration file from computer",
+    "simbad.configuration.forms.tooltip.download": "Download current configuration file"
 }

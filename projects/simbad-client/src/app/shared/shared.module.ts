@@ -29,36 +29,41 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faBars,
-    faUserCircle,
-    faPowerOff,
-    faCog,
-    faPlayCircle,
-    faRocket,
-    faPlus,
-    faEdit,
-    faTrash,
-    faTimes,
-    faCaretUp,
+    faBook,
     faCaretDown,
-    faExclamationTriangle,
-    faFilter,
-    faTasks,
+    faCaretUp,
     faCheck,
-    faSquare,
+    faCog,
+    faDownload,
+    faEdit,
+    faExclamationTriangle,
+    faFile,
+    faFilter,
     faLanguage,
-    faPaintBrush,
     faLightbulb,
-    faWindowMaximize,
+    faPaintBrush,
+    faPlayCircle,
+    faPlus,
+    faPowerOff,
+    faRocket,
+    faSquare,
     faStream,
-    faBook
+    faTasks,
+    faTimes,
+    faTrash,
+    faUserCircle,
+    faWindowMaximize
 } from '@fortawesome/free-solid-svg-icons';
 import {
     faGithub,
+    faInstagram,
     faMediumM,
     faTwitter,
-    faInstagram,
     faYoutube
 } from '@fortawesome/free-brands-svg-icons';
+import { BigInputComponent } from './big-input/big-input/big-input.component';
+import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
+import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
 
 library.add(
     faBars,
@@ -88,12 +93,10 @@ library.add(
     faLightbulb,
     faWindowMaximize,
     faStream,
-    faBook
+    faBook,
+    faFile,
+    faDownload
 );
-
-import { BigInputComponent } from './big-input/big-input/big-input.component';
-import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
-import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
 
 @NgModule({
     imports: [

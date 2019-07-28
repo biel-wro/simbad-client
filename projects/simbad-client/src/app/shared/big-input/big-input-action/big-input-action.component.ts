@@ -23,7 +23,7 @@ export class BigInputActionComponent {
     faIcon = '';
     @Input()
     label = '';
-    @Input()
+    @Input() angul;
     color = '';
 
     @Output()
