@@ -14,7 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import { ConfigurationSchemaProviderService } from './configuration-management/configuration-schema-provider.service';
+import { ObjectsDefinitionsService } from './configuration-management/objects-definitions.service';
 import { environment } from '../../environments/environment';
 
 import {
@@ -72,7 +73,9 @@ export {
     ActionSettingsChangeAnimationsPageDisabled,
     selectEffectiveTheme,
     selectSettingsLanguage,
-    selectSettingsStickyHeader
+    selectSettingsStickyHeader,
+    ConfigurationSchemaProviderService,
+    ObjectsDefinitionsService
 };
 
 export function HttpLoaderFactory(http: HttpClient) {
