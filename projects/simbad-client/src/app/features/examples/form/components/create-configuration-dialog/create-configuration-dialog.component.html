@@ -1,0 +1,17 @@
+<h3>Choose root objects for configuration</h3>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="container">
+        <mat-label class="row" formArrayName="rootObjects"
+                   *ngFor="let object of form.controls.rootObjects.controls; let i = index">
+            <mat-checkbox [formControlName]="i">
+                {{rootObjects[i].name}}
+            </mat-checkbox>
+        </mat-label>
+        <div *ngIf="!form.valid">At least one order must be selected</div>
+        <div class="row action-button-wrapper" align="end">
+            <button class="dialog-action-button" mat-raised-button color="primary" (click)="submit()">Cancel</button>
+            <button class="dialog-action-button" mat-raised-button color="accent" (click)=" cancel()">Submit</button>
+        </div>
+    </div>
+</form>
+
