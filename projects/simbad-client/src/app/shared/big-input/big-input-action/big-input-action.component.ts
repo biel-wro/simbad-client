@@ -1,10 +1,4 @@
-import {
-    Component,
-    Input,
-    Output,
-    EventEmitter,
-    ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'simbad-big-input-action',
@@ -23,7 +17,7 @@ export class BigInputActionComponent {
     faIcon = '';
     @Input()
     label = '';
-    @Input()
+    @Input() angul;
     color = '';
 
     @Output()

@@ -17,12 +17,7 @@ describe('CrudComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                NoopAnimationsModule,
-                RouterTestingModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, NoopAnimationsModule, RouterTestingModule, TranslateModule.forRoot()],
             providers: [
                 provideMockStore({
                     initialState: {

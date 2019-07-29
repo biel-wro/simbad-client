@@ -26,9 +26,7 @@ describe('Settings Actions', () => {
             elementsAnimations: true
         });
 
-        expect(action.type).toEqual(
-            SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS
-        );
+        expect(action.type).toEqual(SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS);
         expect(action.payload.elementsAnimations).toEqual(true);
     });
 
@@ -46,9 +44,7 @@ describe('Settings Actions', () => {
             pageAnimationsDisabled: true
         });
 
-        expect(action.type).toEqual(
-            SettingsActionTypes.CHANGE_ANIMATIONS_PAGE_DISABLED
-        );
+        expect(action.type).toEqual(SettingsActionTypes.CHANGE_ANIMATIONS_PAGE_DISABLED);
         expect(action.payload.pageAnimationsDisabled).toEqual(true);
     });
 
@@ -57,9 +53,7 @@ describe('Settings Actions', () => {
             autoNightMode: true
         });
 
-        expect(action.type).toEqual(
-            SettingsActionTypes.CHANGE_AUTO_NIGHT_AUTO_MODE
-        );
+        expect(action.type).toEqual(SettingsActionTypes.CHANGE_AUTO_NIGHT_AUTO_MODE);
         expect(action.payload.autoNightMode).toEqual(true);
     });
 

@@ -24,9 +24,7 @@ export class StockMarketContainerComponent implements OnInit {
 
     ngOnInit() {
         this.stocks$ = this.store.pipe(select(selectStockMarket));
-        this.stocks$
-            .pipe(take(1))
-            .subscribe(stocks => this.onSymbolChange(stocks.symbol));
+        this.stocks$.pipe(take(1)).subscribe(stocks => this.onSymbolChange(stocks.symbol));
     }
 
     onSymbolChange(symbol: string) {

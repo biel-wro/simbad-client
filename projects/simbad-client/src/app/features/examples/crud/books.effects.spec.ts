@@ -10,9 +10,7 @@ import { Actions, getEffectsMetadata } from '@ngrx/effects';
 import { BooksEffects, BOOKS_KEY } from './books.effects';
 import { actionBooksDeleteOne, actionBooksUpsertOne } from './books.actions';
 
-const scheduler = new TestScheduler((actual, expected) =>
-    assert.deepStrictEqual(actual, expected)
-);
+const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('BooksEffects', () => {
     describe('persistBooks', () => {
@@ -56,10 +54,7 @@ describe('BooksEffects', () => {
                 const effects = new BooksEffects(actions, store, localStorage);
 
                 effects.persistBooks.subscribe(() => {
-                    expect(localStorage.setItem).toHaveBeenCalledWith(
-                        BOOKS_KEY,
-                        booksState
-                    );
+                    expect(localStorage.setItem).toHaveBeenCalledWith(BOOKS_KEY, booksState);
                 });
             });
         });
@@ -73,10 +68,7 @@ describe('BooksEffects', () => {
                 const effects = new BooksEffects(actions, store, localStorage);
 
                 effects.persistBooks.subscribe(() => {
-                    expect(localStorage.setItem).toHaveBeenCalledWith(
-                        BOOKS_KEY,
-                        booksState
-                    );
+                    expect(localStorage.setItem).toHaveBeenCalledWith(BOOKS_KEY, booksState);
                 });
             });
         });

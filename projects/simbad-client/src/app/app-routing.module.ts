@@ -9,29 +9,19 @@ const routes: Routes = [
     },
     {
         path: 'about',
-        loadChildren: () =>
-            import('./features/about/about.module').then(m => m.AboutModule)
+        loadChildren: () => import('./features/about/about.module').then(m => m.AboutModule)
     },
     {
         path: 'feature-list',
-        loadChildren: () =>
-            import('./features/feature-list/feature-list.module').then(
-                m => m.FeatureListModule
-            )
+        loadChildren: () => import('./features/feature-list/feature-list.module').then(m => m.FeatureListModule)
     },
     {
         path: 'settings',
-        loadChildren: () =>
-            import('./features/settings/settings.module').then(
-                m => m.SettingsModule
-            )
+        loadChildren: () => import('./features/settings/settings.module').then(m => m.SettingsModule)
     },
     {
         path: 'examples',
-        loadChildren: () =>
-            import('./features/examples/examples.module').then(
-                m => m.ExamplesModule
-            )
+        loadChildren: () => import('./features/examples/examples.module').then(m => m.ExamplesModule)
     },
     {
         path: '**',
@@ -40,7 +30,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    // useHash supports github.io demo page, remove in your app
     imports: [
         RouterModule.forRoot(routes, {
             useHash: true,

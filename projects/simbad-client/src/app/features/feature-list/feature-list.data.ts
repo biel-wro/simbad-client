@@ -37,8 +37,7 @@ export const features: Feature[] = [
         description: 'simbad.features.ngrx',
         github: 'https://github.com/ngrx/platform',
         documentation: 'http://ngrx.github.io/',
-        medium:
-            'https://medium.com/@tomastrajan/object-assign-vs-object-spread-in-angular-ngrx-reducers-3d62ecb4a4b0'
+        medium: 'https://medium.com/@tomastrajan/object-assign-vs-object-spread-in-angular-ngrx-reducers-3d62ecb4a4b0'
     },
     {
         name: 'RxJS',
@@ -90,13 +89,11 @@ export const features: Feature[] = [
         name: 'simbad.features.themes.title',
         description: 'simbad.features.themes.description',
         documentation: 'https://material.angular.io/guide/theming',
-        medium:
-            'https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1'
+        medium: 'https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1'
     },
     {
         name: 'simbad.features.lazyloading.title',
         description: 'simbad.features.lazyloading.description',
-        documentation:
-            'https://angular.io/guide/router#lazy-loading-route-configuration'
+        documentation: 'https://angular.io/guide/router#lazy-loading-route-configuration'
     }
 ];

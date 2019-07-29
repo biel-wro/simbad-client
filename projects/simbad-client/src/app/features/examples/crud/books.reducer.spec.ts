@@ -10,8 +10,7 @@ describe('BookReducer', () => {
                 id: '123',
                 title: 'Reactive Programming with Angular and ngrx',
                 author: 'Oren Farhi',
-                description:
-                    'Learn to Harness the Power of Reactive Programming with RxJS and ngrx Extensions'
+                description: 'Learn to Harness the Power of Reactive Programming with RxJS and ngrx Extensions'
             }
         }
     };

@@ -1,12 +1,4 @@
-import {
-    animate,
-    query,
-    style,
-    transition,
-    trigger,
-    stagger,
-    sequence
-} from '@angular/animations';
+import { animate, query, style, transition, trigger, stagger, sequence } from '@angular/animations';
 import { AnimationsService } from './animations.service';
 
 export const ROUTE_ANIMATIONS_ELEMENTS = 'route-animations-elements';
@@ -23,10 +15,7 @@ const STEPS_ALL: any[] = [
             ':leave > *',
             [
                 style({ transform: 'translateY(0%)', opacity: 1 }),
-                animate(
-                    '0.2s ease-in-out',
-                    style({ transform: 'translateY(-3%)', opacity: 0 })
-                ),
+                animate('0.2s ease-in-out', style({ transform: 'translateY(-3%)', opacity: 0 })),
                 style({ position: 'fixed' })
             ],
             { optional: true }
@@ -39,10 +28,7 @@ const STEPS_ALL: any[] = [
                     opacity: 0,
                     position: 'static'
                 }),
-                animate(
-                    '0.5s ease-in-out',
-                    style({ transform: 'translateY(0%)', opacity: 1 })
-                )
+                animate('0.5s ease-in-out', style({ transform: 'translateY(0%)', opacity: 1 }))
             ],
             { optional: true }
         )
@@ -51,10 +37,7 @@ const STEPS_ALL: any[] = [
         ':enter .' + ROUTE_ANIMATIONS_ELEMENTS,
         stagger(75, [
             style({ transform: 'translateY(10%)', opacity: 0 }),
-            animate(
-                '0.5s ease-in-out',
-                style({ transform: 'translateY(0%)', opacity: 1 })
-            )
+            animate('0.5s ease-in-out', style({ transform: 'translateY(0%)', opacity: 1 }))
         ]),
         { optional: true }
     )

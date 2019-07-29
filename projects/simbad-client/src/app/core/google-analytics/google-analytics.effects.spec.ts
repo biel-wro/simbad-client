@@ -5,9 +5,7 @@ import { TestScheduler } from 'rxjs/testing';
 
 import { GoogleAnalyticsEffects } from './google-analytics.effects';
 
-const scheduler = new TestScheduler((actual, expected) =>
-    assert.deepStrictEqual(actual, expected)
-);
+const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('GoogleAnalyticsEffects', () => {
     let router: any;
@@ -47,15 +45,8 @@ describe('GoogleAnalyticsEffects', () => {
 
             effect.pageView.subscribe(() => {
                 expect((<any>window).ga).toHaveBeenCalled();
-                expect((<any>window).ga).toHaveBeenCalledWith(
-                    'set',
-                    'page',
-                    routerEvent.urlAfterRedirects
-                );
-                expect((<any>window).ga).toHaveBeenCalledWith(
-                    'send',
-                    'pageview'
-                );
+                expect((<any>window).ga).toHaveBeenCalledWith('set', 'page', routerEvent.urlAfterRedirects);
+                expect((<any>window).ga).toHaveBeenCalledWith('send', 'pageview');
             });
         });
     });

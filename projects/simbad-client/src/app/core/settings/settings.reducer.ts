@@ -13,10 +13,7 @@ export const initialState: SettingsState = {
     hour: 0
 };
 
-export function settingsReducer(
-    state: SettingsState = initialState,
-    action: SettingsActions
-): SettingsState {
+export function settingsReducer(state: SettingsState = initialState, action: SettingsActions): SettingsState {
     switch (action.type) {
         case SettingsActionTypes.CHANGE_LANGUAGE:
         case SettingsActionTypes.CHANGE_THEME:

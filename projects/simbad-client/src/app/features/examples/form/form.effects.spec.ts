@@ -9,17 +9,13 @@ import { FormEffects, FORM_KEY } from './form.effects';
 import { Form } from './form.model';
 import { actionFormUpdate } from './form.actions';
 
-const scheduler = new TestScheduler((actual, expected) =>
-    assert.deepStrictEqual(actual, expected)
-);
+const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('FormEffects', () => {
     let localStorageService: LocalStorageService;
 
     beforeEach(() => {
-        localStorageService = jasmine.createSpyObj('LocalStorageService', [
-            'setItem'
-        ]);
+        localStorageService = jasmine.createSpyObj('LocalStorageService', ['setItem']);
     });
 
     describe('persistForm', () => {
@@ -50,12 +46,9 @@ describe('FormEffects', () => {
                 const effect = new FormEffects(actions, localStorageService);
 
                 effect.persistForm.subscribe(() => {
-                    expect(localStorageService.setItem).toHaveBeenCalledWith(
-                        FORM_KEY,
-                        {
-                            form
-                        }
-                    );
+                    expect(localStorageService.setItem).toHaveBeenCalledWith(FORM_KEY, {
+                        form
+                    });
                 });
             });
         });

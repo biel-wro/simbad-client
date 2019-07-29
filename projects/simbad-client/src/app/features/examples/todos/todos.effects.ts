@@ -29,9 +29,7 @@ export class TodosEffects {
                     todoAction.actionTodosToggle
                 ),
                 withLatestFrom(this.store.pipe(select(selectTodosState))),
-                tap(([action, todos]) =>
-                    this.localStorageService.setItem(TODOS_KEY, todos)
-                )
+                tap(([action, todos]) => this.localStorageService.setItem(TODOS_KEY, todos))
             ),
         { dispatch: false }
     );

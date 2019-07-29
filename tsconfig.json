@@ -12,6 +12,17 @@
         "module": "esnext",
         "target": "es2015",
         "typeRoots": ["node_modules/@types"],
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
         "lib": ["es2018", "dom"]
+    },
+    "typedocOptions": {
+        "name": "simbad-client",
+        "mode": "modules",
+        "theme": "markdown",
+        "exclude": "**/*+(index|.spec|.e2e|.module|index.d).ts",
+        "excludeExternals": true,
+        "hideGenerator": true,
+        "ignoreCompilerErrors": false
     }
 }

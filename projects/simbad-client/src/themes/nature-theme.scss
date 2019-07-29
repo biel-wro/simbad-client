@@ -2,8 +2,4 @@ $simbad-nature-primary: mat-palette($mat-brown, 700, 300, 900);
 $simbad-nature-accent: mat-palette($mat-deep-purple, 300);
 $simbad-nature-warn: mat-palette($mat-red, 600);
 
-$simbad-nature-theme: mat-light-theme(
-    $simbad-nature-primary,
-    $simbad-nature-accent,
-    $simbad-nature-warn
-);
+$simbad-nature-theme: mat-light-theme($simbad-nature-primary, $simbad-nature-accent, $simbad-nature-warn);

@@ -6,20 +6,13 @@ import { TestScheduler } from 'rxjs/testing';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 
-import {
-    AnimationsService,
-    AppState,
-    LocalStorageService,
-    TitleService
-} from '../core.module';
+import { AnimationsService, AppState, LocalStorageService, TitleService } from '../core.module';
 
 import { SettingsEffects, SETTINGS_KEY } from './settings.effects';
 import { SettingsState } from './settings.model';
 import { ActionSettingsChangeTheme, SettingsActions } from './settings.actions';
 
-const scheduler = new TestScheduler((actual, expected) =>
-    assert.deepStrictEqual(actual, expected)
-);
+const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('SettingsEffects', () => {
     let router: any;
@@ -39,16 +32,10 @@ describe('SettingsEffects', () => {
                 pipe() {}
             }
         };
-        localStorageService = jasmine.createSpyObj('LocalStorageService', [
-            'setItem'
-        ]);
-        overlayContainer = jasmine.createSpyObj('OverlayContainer', [
-            'getContainerElement'
-        ]);
+        localStorageService = jasmine.createSpyObj('LocalStorageService', ['setItem']);
+        overlayContainer = jasmine.createSpyObj('OverlayContainer', ['getContainerElement']);
         titleService = jasmine.createSpyObj('TitleService', ['setTitle']);
-        animationsService = jasmine.createSpyObj('AnimationsService', [
-            'updateRouteAnimationType'
-        ]);
+        animationsService = jasmine.createSpyObj('AnimationsService', ['updateRouteAnimationType']);
         translateService = jasmine.createSpyObj('TranslateService', ['use']);
         store = jasmine.createSpyObj('store', ['pipe']);
     });
@@ -105,10 +92,7 @@ describe('SettingsEffects', () => {
             );
 
             effect.persistSettings.subscribe(() => {
-                expect(localStorageService.setItem).toHaveBeenCalledWith(
-                    SETTINGS_KEY,
-                    settings
-                );
+                expect(localStorageService.setItem).toHaveBeenCalledWith(SETTINGS_KEY, settings);
             });
         });
     });

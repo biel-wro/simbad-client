@@ -34,9 +34,6 @@ const reducer = createReducer(
     }))
 );
 
-export function stockMarketReducer(
-    state: StockMarketState | undefined,
-    action: Action
-) {
+export function stockMarketReducer(state: StockMarketState | undefined, action: Action) {
     return reducer(state, action);
 }

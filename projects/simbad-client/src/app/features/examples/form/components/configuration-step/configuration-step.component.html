@@ -1,0 +1,25 @@
+<mat-expansion-panel class="configuration-step-panel" [expanded]="node.definition.className==='model'">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+           {{node.definition.className}}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="container">
+        <mat-divider></mat-divider>
+        <simbad-complex-parameter
+            *ngIf="node.definition.possibleClasses"
+            [node]="node"
+            [level]="1"
+            [parentPath]="node.path"
+            [form]="form"
+        ></simbad-complex-parameter>
+        <simbad-complex-parameter
+            *ngFor="let childNode of node.complexChildren"
+            [node]="childNode"
+            [level]="1"
+            [parentPath]="node.path"
+            [form]="form">
+        </simbad-complex-parameter>
+    </div>
+</mat-expansion-panel>
+

@@ -19,20 +19,15 @@ export const initialState: BookState = bookAdapter.getInitialState({
             id: '123',
             title: 'Reactive Programming with Angular and ngrx',
             author: 'Oren Farhi',
-            description:
-                'Learn to Harness the Power of Reactive Programming with RxJS and ngrx Extensions'
+            description: 'Learn to Harness the Power of Reactive Programming with RxJS and ngrx Extensions'
         }
     }
 });
 
 const reducer = createReducer(
     initialState,
-    on(actionBooksUpsertOne, (state, { book }) =>
-        bookAdapter.upsertOne(book, state)
-    ),
-    on(actionBooksDeleteOne, (state, { id }) =>
-        bookAdapter.removeOne(id, state)
-    )
+    on(actionBooksUpsertOne, (state, { book }) => bookAdapter.upsertOne(book, state)),
+    on(actionBooksDeleteOne, (state, { id }) => bookAdapter.removeOne(id, state))
 );
 
 export function bookReducer(state: BookState | undefined, action: Action) {

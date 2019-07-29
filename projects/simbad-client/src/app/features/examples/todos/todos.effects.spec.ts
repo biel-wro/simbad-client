@@ -11,9 +11,7 @@ import { actionTodosToggle } from './todos.actions';
 import { TodosEffects, TODOS_KEY } from './todos.effects';
 import { TodosState } from './todos.model';
 
-const scheduler = new TestScheduler((actual, expected) =>
-    assert.deepStrictEqual(actual, expected)
-);
+const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('TodosEffects', () => {
     let localStorage: jasmine.SpyObj<LocalStorageService>;
@@ -48,10 +46,7 @@ describe('TodosEffects', () => {
                 const effect = new TodosEffects(actions, store, localStorage);
 
                 effect.persistTodos.subscribe(() => {
-                    expect(localStorage.setItem).toHaveBeenCalledWith(
-                        TODOS_KEY,
-                        todosState
-                    );
+                    expect(localStorage.setItem).toHaveBeenCalledWith(TODOS_KEY, todosState);
                 });
             });
         });

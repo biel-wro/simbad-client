@@ -12,11 +12,7 @@ describe('UserComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                NoopAnimationsModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
             providers: [UserService],
             declarations: [UserComponent]
         }).compileComponents();

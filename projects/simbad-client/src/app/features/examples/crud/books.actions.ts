@@ -6,12 +6,6 @@ export enum BookActionTypes {
     DELETE_ONE = '[Books] Delete One'
 }
 
-export const actionBooksUpsertOne = createAction(
-    BookActionTypes.UPSERT_ONE,
-    props<{ book: Book }>()
-);
+export const actionBooksUpsertOne = createAction(BookActionTypes.UPSERT_ONE, props<{ book: Book }>());
 
-export const actionBooksDeleteOne = createAction(
-    BookActionTypes.DELETE_ONE,
-    props<{ id: string }>()
-);
+export const actionBooksDeleteOne = createAction(BookActionTypes.DELETE_ONE, props<{ id: string }>());

@@ -11,12 +11,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                RouterTestingModule,
-                NoopAnimationsModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, RouterTestingModule, NoopAnimationsModule, TranslateModule.forRoot()],
             providers: [
                 provideMockStore({
                     initialState: {
