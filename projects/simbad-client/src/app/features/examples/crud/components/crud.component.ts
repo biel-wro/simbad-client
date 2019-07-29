@@ -23,9 +23,7 @@ export class CrudComponent {
 
     bookFormGroup = this.fb.group(CrudComponent.createBook());
     books$: Observable<Book[]> = this.store.pipe(select(selectAllBooks));
-    selectedBook$: Observable<Book> = this.store.pipe(
-        select(selectSelectedBook)
-    );
+    selectedBook$: Observable<Book> = this.store.pipe(select(selectSelectedBook));
 
     isEditing: boolean;
 
@@ -38,11 +36,7 @@ export class CrudComponent {
         };
     }
 
-    constructor(
-        public store: Store<State>,
-        public fb: FormBuilder,
-        private router: Router
-    ) {}
+    constructor(public store: Store<State>, public fb: FormBuilder, private router: Router) {}
 
     select(book: Book) {
         this.isEditing = false;

@@ -24,9 +24,7 @@ export class BooksEffects {
             this.actions$.pipe(
                 ofType(actionBooksUpsertOne, actionBooksDeleteOne),
                 withLatestFrom(this.store.pipe(select(selectBooks))),
-                tap(([actions, booksState]) =>
-                    this.localStorageService.setItem(BOOKS_KEY, booksState)
-                )
+                tap(([actions, booksState]) => this.localStorageService.setItem(BOOKS_KEY, booksState))
             ),
         { dispatch: false }
     );

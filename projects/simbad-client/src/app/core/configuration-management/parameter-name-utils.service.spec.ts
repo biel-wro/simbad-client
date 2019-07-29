@@ -5,18 +5,14 @@ describe('ParameterNameUtilsService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: ParameterNameUtilsService = TestBed.get(
-            ParameterNameUtilsService
-        );
+        const service: ParameterNameUtilsService = TestBed.get(ParameterNameUtilsService);
         expect(service).toBeTruthy();
     });
 
     describe('snakeCaseToCamelCase', () => {
         it('should convert snake_case to camelCase', () => {
             // given
-            const service: ParameterNameUtilsService = TestBed.get(
-                ParameterNameUtilsService
-            );
+            const service: ParameterNameUtilsService = TestBed.get(ParameterNameUtilsService);
             const input = 'snake_case';
             const expected = 'snakeCase';
 
@@ -31,9 +27,7 @@ describe('ParameterNameUtilsService', () => {
     describe('camelCaseToSnakeCase', () => {
         it('should convert snake_case to camelCase', () => {
             // given
-            const service: ParameterNameUtilsService = TestBed.get(
-                ParameterNameUtilsService
-            );
+            const service: ParameterNameUtilsService = TestBed.get(ParameterNameUtilsService);
             const input = 'snakeCase';
             const expected = 'snake_case';
 

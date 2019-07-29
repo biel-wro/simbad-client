@@ -10,6 +10,10 @@ export class ConfigurationSchemaProviderService {
         this.schema = configurationSchema;
     }
 
+    /**
+     * Returns current parameter schema defined in configurationSchema.json file
+     * @returns object containing parameter definitions in format { className: definition}
+     */
     public getSchema(): any {
         return this.schema.default;
     }

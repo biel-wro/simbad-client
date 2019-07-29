@@ -26,30 +26,20 @@ describe('StockMarketContainerComponent', () => {
 
     const getError = () => fixture.debugElement.query(By.css('.error-state'));
 
-    const getStocks = () =>
-        fixture.debugElement.query(By.css('mat-card mat-card-title'));
+    const getStocks = () => fixture.debugElement.query(By.css('mat-card mat-card-title'));
 
     const getInput = () => fixture.debugElement.query(By.css('input'));
 
-    const getExchange = () =>
-        fixture.debugElement.query(By.css('mat-card mat-card-content'));
+    const getExchange = () => fixture.debugElement.query(By.css('mat-card mat-card-content'));
 
-    const getChange = () =>
-        fixture.debugElement.query(By.css('mat-card mat-card-subtitle'));
+    const getChange = () => fixture.debugElement.query(By.css('mat-card mat-card-subtitle'));
 
-    const getCaretUpDownItem = () =>
-        fixture.debugElement.query(
-            By.css('mat-card fa-icon[icon="caret-down"]')
-        );
+    const getCaretUpDownItem = () => fixture.debugElement.query(By.css('mat-card fa-icon[icon="caret-down"]'));
 
     describe('given component booted', () => {
         beforeEach(async(() => {
             TestBed.configureTestingModule({
-                imports: [
-                    SharedModule,
-                    NoopAnimationsModule,
-                    TranslateModule.forRoot()
-                ],
+                imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
                 providers: [
                     StockMarketService,
                     provideMockStore({
@@ -60,10 +50,7 @@ describe('StockMarketContainerComponent', () => {
             }).compileComponents();
 
             const stockMarketService = TestBed.get(StockMarketService);
-            retrieveStockSpy = spyOn(
-                stockMarketService,
-                'retrieveStock'
-            ).and.returnValue(EMPTY);
+            retrieveStockSpy = spyOn(stockMarketService, 'retrieveStock').and.returnValue(EMPTY);
 
             store = TestBed.get(Store);
             fixture = TestBed.createComponent(StockMarketContainerComponent);
@@ -88,9 +75,7 @@ describe('StockMarketContainerComponent', () => {
 
             it('should trigger dispatch with correct input', () => {
                 expect(dispatchSpy).toHaveBeenCalledTimes(1);
-                expect(dispatchSpy).toHaveBeenCalledWith(
-                    actionStockMarketRetrieve({ symbol: 'A' })
-                );
+                expect(dispatchSpy).toHaveBeenCalledWith(actionStockMarketRetrieve({ symbol: 'A' }));
                 expect(true).toBeTruthy();
             });
         });
@@ -168,21 +153,15 @@ describe('StockMarketContainerComponent', () => {
             });
 
             it('should display correct stock name, price, currency', () => {
-                expect(getStocks().nativeElement.textContent.trim()).toEqual(
-                    `${symbol} ${last} ${ccy}`
-                );
+                expect(getStocks().nativeElement.textContent.trim()).toEqual(`${symbol} ${last} ${ccy}`);
             });
 
             it('should display correct exchange', () => {
-                expect(getExchange().nativeElement.textContent.trim()).toEqual(
-                    exchange
-                );
+                expect(getExchange().nativeElement.textContent.trim()).toEqual(exchange);
             });
 
             it('should display correct change', () => {
-                expect(getChange().nativeElement.textContent.trim()).toEqual(
-                    `${change} (${changePercent}%)`
-                );
+                expect(getChange().nativeElement.textContent.trim()).toEqual(`${change} (${changePercent}%)`);
             });
         });
     });

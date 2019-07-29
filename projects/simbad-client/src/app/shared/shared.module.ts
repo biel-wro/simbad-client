@@ -54,13 +54,7 @@ import {
     faUserCircle,
     faWindowMaximize
 } from '@fortawesome/free-solid-svg-icons';
-import {
-    faGithub,
-    faInstagram,
-    faMediumM,
-    faTwitter,
-    faYoutube
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faInstagram, faMediumM, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { BigInputComponent } from './big-input/big-input/big-input.component';
 import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
 import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
@@ -126,11 +120,7 @@ library.add(
 
         FontAwesomeModule
     ],
-    declarations: [
-        BigInputComponent,
-        BigInputActionComponent,
-        RtlSupportDirective
-    ],
+    declarations: [BigInputComponent, BigInputActionComponent, RtlSupportDirective],
     exports: [
         CommonModule,
         FormsModule,

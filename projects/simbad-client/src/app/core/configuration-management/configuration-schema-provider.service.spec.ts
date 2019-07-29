@@ -6,17 +6,13 @@ describe('ConfigurationSchemaProviderService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: ConfigurationSchemaProviderService = TestBed.get(
-            ConfigurationSchemaProviderService
-        );
+        const service: ConfigurationSchemaProviderService = TestBed.get(ConfigurationSchemaProviderService);
         expect(service).toBeTruthy();
     });
 
     it('should return current configurationSchema', () => {
         // given
-        const service: ConfigurationSchemaProviderService = TestBed.get(
-            ConfigurationSchemaProviderService
-        );
+        const service: ConfigurationSchemaProviderService = TestBed.get(ConfigurationSchemaProviderService);
 
         // when
         const schema = service.getSchema();

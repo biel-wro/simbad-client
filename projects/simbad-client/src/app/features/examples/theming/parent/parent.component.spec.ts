@@ -13,11 +13,7 @@ describe('ParentComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                NoopAnimationsModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
             declarations: [ParentComponent, ChildComponent]
         }).compileComponents();
     }));

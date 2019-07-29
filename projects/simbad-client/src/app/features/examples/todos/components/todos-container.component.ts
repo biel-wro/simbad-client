@@ -5,10 +5,7 @@ import { select, Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import {
-    ROUTE_ANIMATIONS_ELEMENTS,
-    NotificationService
-} from '../../../../core/core.module';
+import { ROUTE_ANIMATIONS_ELEMENTS, NotificationService } from '../../../../core/core.module';
 
 import * as todoActions from '../todos.actions';
 import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
@@ -36,9 +33,7 @@ export class TodosContainerComponent implements OnInit {
 
     ngOnInit() {
         this.todos$ = this.store.pipe(select(selectTodos));
-        this.removeDoneDisabled$ = this.store.pipe(
-            select(selectRemoveDoneTodosDisabled)
-        );
+        this.removeDoneDisabled$ = this.store.pipe(select(selectRemoveDoneTodosDisabled));
     }
 
     get isAddTodoDisabled() {
@@ -55,10 +50,9 @@ export class TodosContainerComponent implements OnInit {
 
     onAddTodo() {
         this.store.dispatch(todoActions.actionTodosAdd(this.newTodo));
-        const addedMessage = this.translateService.instant(
-            'simbad.examples.todos.added.notification',
-            { name: this.newTodo }
-        );
+        const addedMessage = this.translateService.instant('simbad.examples.todos.added.notification', {
+            name: this.newTodo
+        });
         this.notificationService.info(addedMessage);
         this.newTodo = '';
     }
@@ -68,13 +62,10 @@ export class TodosContainerComponent implements OnInit {
         const newStatus = this.translateService.instant(
             `simbad.examples.todos.filter.${todo.done ? 'active' : 'done'}`
         );
-        const undo = this.translateService.instant(
-            'simbad.examples.todos.undo'
-        );
-        const toggledMessage = this.translateService.instant(
-            'simbad.examples.todos.toggle.notification',
-            { name: todo.name }
-        );
+        const undo = this.translateService.instant('simbad.examples.todos.undo');
+        const toggledMessage = this.translateService.instant('simbad.examples.todos.toggle.notification', {
+            name: todo.name
+        });
 
         this.snackBar
             .open(`${toggledMessage} ${newStatus}`, undo, {
@@ -88,20 +79,14 @@ export class TodosContainerComponent implements OnInit {
 
     onRemoveDoneTodos() {
         this.store.dispatch(todoActions.actionTodosRemoveDone());
-        const removedMessage = this.translateService.instant(
-            'simbad.examples.todos.remove.notification'
-        );
+        const removedMessage = this.translateService.instant('simbad.examples.todos.remove.notification');
         this.notificationService.info(removedMessage);
     }
 
     onFilterTodos(filter: TodosFilter) {
         this.store.dispatch(todoActions.actionTodosFilter({ filter }));
-        const filterToMessage = this.translateService.instant(
-            'simbad.examples.todos.filter.notification'
-        );
-        const filterMessage = this.translateService.instant(
-            `simbad.examples.todos.filter.${filter.toLowerCase()}`
-        );
+        const filterToMessage = this.translateService.instant('simbad.examples.todos.filter.notification');
+        const filterMessage = this.translateService.instant(`simbad.examples.todos.filter.${filter.toLowerCase()}`);
         this.notificationService.info(`${filterToMessage} ${filterMessage}`);
     }
 }

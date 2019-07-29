@@ -6,9 +6,6 @@ export enum FormActionTypes {
     RESET = '[Form] Reset'
 }
 
-export const actionFormUpdate = createAction(
-    FormActionTypes.UPDATE,
-    props<{ form: Form }>()
-);
+export const actionFormUpdate = createAction(FormActionTypes.UPDATE, props<{ form: Form }>());
 
 export const actionFormReset = createAction(FormActionTypes.RESET);

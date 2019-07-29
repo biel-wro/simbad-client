@@ -37,10 +37,7 @@ export class ExamplesEffects {
         this.router.events.pipe(filter(event => event instanceof ActivationEnd))
     ).pipe(
         tap(() => {
-            this.titleService.setTitle(
-                this.router.routerState.snapshot.root,
-                this.translateService
-            );
+            this.titleService.setTitle(this.router.routerState.snapshot.root, this.translateService);
         })
     );
 }

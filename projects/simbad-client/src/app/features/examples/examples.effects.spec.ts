@@ -5,18 +5,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { TestScheduler } from 'rxjs/testing';
 
-import {
-    TitleService,
-    SettingsActions,
-    ActionSettingsChangeLanguage
-} from '../../core/core.module';
+import { TitleService, SettingsActions, ActionSettingsChangeLanguage } from '../../core/core.module';
 
 import { ExamplesEffects } from './examples.effects';
 import { State } from './examples.state';
 
-const scheduler = new TestScheduler((actual, expected) =>
-    assert.deepStrictEqual(actual, expected)
-);
+const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('SettingsEffects', () => {
     let router: any;
@@ -44,31 +38,17 @@ describe('SettingsEffects', () => {
     describe('setTranslateServiceLanguage', () => {
         it('should not dispatch action', function() {
             const actions = new Actions<SettingsActions>();
-            const effect = new ExamplesEffects(
-                actions,
-                store,
-                translateService,
-                router,
-                titleService
-            );
+            const effect = new ExamplesEffects(actions, store, translateService, router, titleService);
             const metadata = getEffectsMetadata(effect);
 
-            expect(metadata.setTranslateServiceLanguage.dispatch).toEqual(
-                false
-            );
+            expect(metadata.setTranslateServiceLanguage.dispatch).toEqual(false);
         });
     });
 
     describe('setTitle', () => {
         it('should not dispatch action', function() {
             const actions = new Actions<SettingsActions>();
-            const effect = new ExamplesEffects(
-                actions,
-                store,
-                translateService,
-                router,
-                titleService
-            );
+            const effect = new ExamplesEffects(actions, store, translateService, router, titleService);
             const metadata = getEffectsMetadata(effect);
 
             expect(metadata.setTitle.dispatch).toEqual(false);
@@ -82,18 +62,10 @@ describe('SettingsEffects', () => {
                 });
                 const actions = hot('-a', { a: action });
 
-                const routerEvent = new ActivationEnd(
-                    router.routerState.snapshot
-                );
+                const routerEvent = new ActivationEnd(router.routerState.snapshot);
                 router.events = cold('a', { a: routerEvent });
 
-                const effect = new ExamplesEffects(
-                    actions,
-                    store,
-                    translateService,
-                    router,
-                    titleService
-                );
+                const effect = new ExamplesEffects(actions, store, translateService, router, titleService);
 
                 effect.setTitle.subscribe(() => {
                     expect(titleService.setTitle).toHaveBeenCalled();

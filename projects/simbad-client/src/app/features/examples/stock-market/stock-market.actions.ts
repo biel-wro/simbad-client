@@ -9,10 +9,7 @@ export enum StockMarketActionTypes {
     RETRIEVE_ERROR = '[Stock] Retrieve Error'
 }
 
-export const actionStockMarketRetrieve = createAction(
-    StockMarketActionTypes.RETRIEVE,
-    props<{ symbol: string }>()
-);
+export const actionStockMarketRetrieve = createAction(StockMarketActionTypes.RETRIEVE, props<{ symbol: string }>());
 
 export const actionStockMarketRetrieveSuccess = createAction(
     StockMarketActionTypes.RETRIEVE_SUCCESS,

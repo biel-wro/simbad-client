@@ -1,10 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {
-    FormBuilder,
-    FormGroup,
-    FormGroupDirective,
-    Validators
-} from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 

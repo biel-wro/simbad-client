@@ -37,20 +37,14 @@ export class AppComponent implements OnInit {
         { link: 'feature-list', label: 'simbad.menu.features' },
         { link: 'examples', label: 'simbad.menu.examples' }
     ];
-    navigationSideMenu = [
-        ...this.navigation,
-        { link: 'settings', label: 'simbad.menu.settings' }
-    ];
+    navigationSideMenu = [...this.navigation, { link: 'settings', label: 'simbad.menu.settings' }];
 
     isAuthenticated$: Observable<boolean>;
     stickyHeader$: Observable<boolean>;
     language$: Observable<string>;
     theme$: Observable<string>;
 
-    constructor(
-        private store: Store<AppState>,
-        private storageService: LocalStorageService
-    ) {}
+    constructor(private store: Store<AppState>, private storageService: LocalStorageService) {}
 
     private static isIEorEdgeOrSafari() {
         return ['ie', 'edge', 'safari'].includes(browser().name);
@@ -67,9 +61,7 @@ export class AppComponent implements OnInit {
         }
 
         this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
-        this.stickyHeader$ = this.store.pipe(
-            select(selectSettingsStickyHeader)
-        );
+        this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
         this.language$ = this.store.pipe(select(selectSettingsLanguage));
         this.theme$ = this.store.pipe(select(selectEffectiveTheme));
     }

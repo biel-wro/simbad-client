@@ -8,9 +8,7 @@ describe('About Page', () => {
 
     it('should display main heading', () => {
         page.navigateTo();
-        expect(page.getParagraphText()).toEqual(
-            'SIMULATION BIRTH AND DEATH CLIENT'
-        );
+        expect(page.getParagraphText()).toEqual('SIMULATION BIRTH AND DEATH CLIENT');
     });
 
     it('should display "Geting Started" section', () => {

@@ -17,8 +17,7 @@ export class FormToolbarComponent implements OnInit {
     selectedRootObjectsChange = new EventEmitter<string[]>();
     downloadJsonHref: any;
 
-    constructor(private sanitizer: DomSanitizer, private dialog: MatDialog) {
-    }
+    constructor(private sanitizer: DomSanitizer, private dialog: MatDialog) {}
 
     ngOnInit() {
         this.configurationModel$.subscribe(configuration => {

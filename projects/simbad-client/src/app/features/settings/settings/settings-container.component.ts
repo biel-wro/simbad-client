@@ -49,26 +49,18 @@ export class SettingsContainerComponent implements OnInit {
     }
 
     onAutoNightModeToggle({ checked: autoNightMode }) {
-        this.store.dispatch(
-            new ActionSettingsChangeAutoNightMode({ autoNightMode })
-        );
+        this.store.dispatch(new ActionSettingsChangeAutoNightMode({ autoNightMode }));
     }
 
     onStickyHeaderToggle({ checked: stickyHeader }) {
-        this.store.dispatch(
-            new ActionSettingsChangeStickyHeader({ stickyHeader })
-        );
+        this.store.dispatch(new ActionSettingsChangeStickyHeader({ stickyHeader }));
     }
 
     onPageAnimationsToggle({ checked: pageAnimations }) {
-        this.store.dispatch(
-            new ActionSettingsChangeAnimationsPage({ pageAnimations })
-        );
+        this.store.dispatch(new ActionSettingsChangeAnimationsPage({ pageAnimations }));
     }
 
     onElementsAnimationsToggle({ checked: elementsAnimations }) {
-        this.store.dispatch(
-            new ActionSettingsChangeAnimationsElements({ elementsAnimations })
-        );
+        this.store.dispatch(new ActionSettingsChangeAnimationsElements({ elementsAnimations }));
     }
 }

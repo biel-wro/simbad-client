@@ -1,9 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import {
-    ROUTE_ANIMATIONS_ELEMENTS,
-    NotificationService
-} from '../../../../core/core.module';
+import { ROUTE_ANIMATIONS_ELEMENTS, NotificationService } from '../../../../core/core.module';
 
 @Component({
     selector: 'simbad-notifications',

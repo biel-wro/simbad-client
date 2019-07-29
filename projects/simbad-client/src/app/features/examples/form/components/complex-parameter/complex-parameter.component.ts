@@ -1,9 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ParameterTreeNode } from '../../../../../core/configuration-management/models/parameter-tree-node';
 import { ObjectsDefinitionsService } from '../../../../../core/configuration-management/objects-definitions.service';
 import { FormGroup } from '@angular/forms';
@@ -28,10 +23,7 @@ export class ComplexParameterComponent implements OnInit {
     chosenOption: any;
     chosenEnumParameter: ParameterTreeNode;
 
-    constructor(
-        private ods: ObjectsDefinitionsService,
-        private fs: FormsService
-    ) {}
+    constructor(private ods: ObjectsDefinitionsService, private fs: FormsService) {}
 
     ngOnInit() {
         if (this.node.definition.possibleClasses) {
@@ -47,15 +39,9 @@ export class ComplexParameterComponent implements OnInit {
         const oldParameter = this.chosenEnumParameter;
         this.fs.buildFormForNode(
             this.form,
-            this.ods.toParameterTreeNode(
-                this.ods.getByClassName($event.value),
-                this.node.path
-            )
+            this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path)
         );
-        this.chosenEnumParameter = this.ods.toParameterTreeNode(
-            this.ods.getByClassName($event.value),
-            this.node.path
-        );
+        this.chosenEnumParameter = this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path);
         this.fs.removeControls(this.form, oldParameter);
     }
 }

@@ -18,38 +18,25 @@ describe('TodosComponent', () => {
     let fixture: ComponentFixture<TodosContainerComponent>;
     let dispatchSpy: jasmine.Spy;
 
-    const getOpenFilterButton = () =>
-        fixture.debugElement.query(By.css('.todos-filter'));
+    const getOpenFilterButton = () => fixture.debugElement.query(By.css('.todos-filter'));
 
-    const getFilterActiveButton = () =>
-        fixture.debugElement.queryAll(
-            By.css('.todos-filter-menu-overlay button')
-        )[2];
+    const getFilterActiveButton = () => fixture.debugElement.queryAll(By.css('.todos-filter-menu-overlay button'))[2];
 
-    const getTodoInput = () =>
-        fixture.debugElement.query(By.css('simbad-big-input input'));
+    const getTodoInput = () => fixture.debugElement.query(By.css('simbad-big-input input'));
 
     const getTodoItems = () => fixture.debugElement.queryAll(By.css('.todo'));
 
     const getTodoItem = () => fixture.debugElement.query(By.css('.todo-label'));
 
     const getAddTodoButton = () =>
-        fixture.debugElement
-            .queryAll(By.css('simbad-big-input-action'))[0]
-            .query(By.css('button'));
+        fixture.debugElement.queryAll(By.css('simbad-big-input-action'))[0].query(By.css('button'));
 
     const getRemoveDoneTodosButton = () =>
-        fixture.debugElement
-            .queryAll(By.css('simbad-big-input-action'))[1]
-            .query(By.css('button'));
+        fixture.debugElement.queryAll(By.css('simbad-big-input-action'))[1].query(By.css('button'));
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                NoopAnimationsModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
             declarations: [TodosContainerComponent],
             providers: [
                 provideMockStore({
@@ -92,10 +79,7 @@ describe('TodosComponent', () => {
     it('should dispatch remove "DONE" todos action', () => {
         store.setState(
             createState({
-                items: [
-                    { id: '1', name: 'test 1', done: true },
-                    { id: '2', name: 'test 2', done: false }
-                ],
+                items: [{ id: '1', name: 'test 1', done: true }, { id: '2', name: 'test 2', done: false }],
                 filter: 'DONE'
             })
         );
@@ -105,9 +89,7 @@ describe('TodosComponent', () => {
         getRemoveDoneTodosButton().nativeElement.click();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            todoActions.actionTodosRemoveDone()
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(todoActions.actionTodosRemoveDone());
     });
 
     it('should dispatch add todo action', () => {
@@ -147,9 +129,7 @@ describe('TodosComponent', () => {
         fixture.detectChanges();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            todoActions.actionTodosFilter({ filter: 'ACTIVE' })
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(todoActions.actionTodosFilter({ filter: 'ACTIVE' }));
     });
 
     it('should dispatch toggle todo action', () => {
@@ -166,9 +146,7 @@ describe('TodosComponent', () => {
         fixture.detectChanges();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            todoActions.actionTodosToggle({ id: '1' })
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(todoActions.actionTodosToggle({ id: '1' }));
     });
 
     it('should disable remove done todos button if no todo is done', () => {

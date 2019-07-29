@@ -19,12 +19,9 @@ describe('BigInputActionComponent', () => {
 
     const getButton = () => fixture.debugElement.query(By.css('button'));
     const getIcon = () => fixture.debugElement.query(By.css('mat-icon'));
-    const getLabel = () =>
-        fixture.debugElement.query(By.css('.mat-button-wrapper > span'));
+    const getLabel = () => fixture.debugElement.query(By.css('.mat-button-wrapper > span'));
 
-    function createHostComponent(
-        template: string
-    ): ComponentFixture<HostComponent> {
+    function createHostComponent(template: string): ComponentFixture<HostComponent> {
         TestBed.overrideComponent(HostComponent, {
             set: { template: template }
         });
@@ -56,8 +53,7 @@ describe('BigInputActionComponent', () => {
     });
 
     it('should disable button if disabled property is set', () => {
-        const template =
-            '<simbad-big-input-action [disabled]="true"></simbad-big-input-action>';
+        const template = '<simbad-big-input-action [disabled]="true"></simbad-big-input-action>';
         fixture = createHostComponent(template);
         expect(getButton().nativeElement.disabled).toBeTruthy();
     });
@@ -66,9 +62,7 @@ describe('BigInputActionComponent', () => {
         const template = `<simbad-big-input-action fontSet="fas" fontIcon="fa-trash"></simbad-big-input-action>`;
         fixture = createHostComponent(template);
         expect(getIcon()).toBeTruthy();
-        expect(
-            getIcon().nativeElement.classList.contains('fa-trash')
-        ).toBeTruthy();
+        expect(getIcon().nativeElement.classList.contains('fa-trash')).toBeTruthy();
         expect(getIcon().nativeElement.classList.contains('fas')).toBeTruthy();
     });
 

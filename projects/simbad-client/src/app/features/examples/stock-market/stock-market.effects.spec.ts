@@ -23,12 +23,8 @@ describe('StockMarketEffects', () => {
 
     beforeEach(() => {
         localStorage = jasmine.createSpyObj('localStorageService', ['setItem']);
-        stockMarket = jasmine.createSpyObj('stockMarketService', [
-            'retrieveStock'
-        ]);
-        scheduler = new TestScheduler((actual, expected) =>
-            assert.deepStrictEqual(actual, expected)
-        );
+        stockMarket = jasmine.createSpyObj('stockMarketService', ['retrieveStock']);
+        scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
     });
 
     it('should emit ActionStockMarketRetrieveSuccess on success', done => {
@@ -68,25 +64,15 @@ describe('StockMarketEffects', () => {
 
             stockMarket.retrieveStock.and.returnValue(of(stock));
 
-            const effects = new StockMarketEffects(
-                actions,
-                localStorage,
-                stockMarket
-            );
+            const effects = new StockMarketEffects(actions, localStorage, stockMarket);
 
-            expectObservable(effects.retrieveStock({ debounce: 2 })).toBe(
-                expected,
-                values
-            );
+            expectObservable(effects.retrieveStock({ debounce: 2 })).toBe(expected, values);
 
             setTimeout(() => {
                 expect(localStorage.setItem).toHaveBeenCalledTimes(3);
-                expect(localStorage.setItem).toHaveBeenCalledWith(
-                    STOCK_MARKET_KEY,
-                    {
-                        symbol
-                    }
-                );
+                expect(localStorage.setItem).toHaveBeenCalledWith(STOCK_MARKET_KEY, {
+                    symbol
+                });
                 done();
             });
         });
@@ -112,16 +98,9 @@ describe('StockMarketEffects', () => {
 
             stockMarket.retrieveStock.and.returnValue(throwError(error));
 
-            const effects = new StockMarketEffects(
-                actions,
-                localStorage,
-                stockMarket
-            );
+            const effects = new StockMarketEffects(actions, localStorage, stockMarket);
 
-            expectObservable(effects.retrieveStock({ debounce: 0 })).toBe(
-                expected,
-                values
-            );
+            expectObservable(effects.retrieveStock({ debounce: 0 })).toBe(expected, values);
         });
     });
 });

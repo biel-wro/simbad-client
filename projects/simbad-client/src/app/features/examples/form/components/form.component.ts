@@ -5,10 +5,7 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import {
-    NotificationService,
-    ObjectsDefinitionsService
-} from '../../../../core/core.module';
+import { NotificationService, ObjectsDefinitionsService } from '../../../../core/core.module';
 
 import { State } from '../../examples.state';
 import { ParameterTree } from '../../../../core/configuration-management/models/parameter-tree';
@@ -39,9 +36,7 @@ export class FormComponent implements OnInit {
     ngOnInit() {
         this.configurationModel$ = this.treeForm.valueChanges.pipe(
             map(value => {
-                return this.fs.treeValueToConfigurationObject(
-                    this.fs.formValueToTree(value)
-                );
+                return this.fs.treeValueToConfigurationObject(this.fs.formValueToTree(value));
             })
         );
     }

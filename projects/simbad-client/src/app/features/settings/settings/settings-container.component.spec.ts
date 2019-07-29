@@ -23,18 +23,12 @@ describe('SettingsComponent', () => {
     let store: MockStore<any>;
     let dispatchSpy;
 
-    const getThemeSelectArrow = () =>
-        fixture.debugElement.queryAll(By.css('.mat-select-trigger'))[1];
-    const getSelectOptions = () =>
-        fixture.debugElement.queryAll(By.css('mat-option'));
+    const getThemeSelectArrow = () => fixture.debugElement.queryAll(By.css('.mat-select-trigger'))[1];
+    const getSelectOptions = () => fixture.debugElement.queryAll(By.css('mat-option'));
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                NoopAnimationsModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
             providers: [
                 provideMockStore({
                     initialState: {
@@ -60,9 +54,7 @@ describe('SettingsComponent', () => {
         fixture.detectChanges();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            new ActionSettingsChangeStickyHeader({ stickyHeader: false })
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(new ActionSettingsChangeStickyHeader({ stickyHeader: false }));
     });
 
     it('should dispatch change theme action on theme selection', () => {
@@ -76,9 +68,7 @@ describe('SettingsComponent', () => {
         fixture.detectChanges();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            new ActionSettingsChangeTheme({ theme: 'LIGHT-THEME' })
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(new ActionSettingsChangeTheme({ theme: 'LIGHT-THEME' }));
     });
 
     it('should dispatch change auto night mode on night mode toggle', () => {
@@ -90,9 +80,7 @@ describe('SettingsComponent', () => {
         fixture.detectChanges();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            new ActionSettingsChangeAutoNightMode({ autoNightMode: false })
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(new ActionSettingsChangeAutoNightMode({ autoNightMode: false }));
     });
 
     it('should dispatch change animations page', () => {
@@ -104,9 +92,7 @@ describe('SettingsComponent', () => {
         fixture.detectChanges();
 
         expect(dispatchSpy).toHaveBeenCalledTimes(1);
-        expect(dispatchSpy).toHaveBeenCalledWith(
-            new ActionSettingsChangeAnimationsPage({ pageAnimations: false })
-        );
+        expect(dispatchSpy).toHaveBeenCalledWith(new ActionSettingsChangeAnimationsPage({ pageAnimations: false }));
     });
 
     it('should dispatch change animations elements', () => {

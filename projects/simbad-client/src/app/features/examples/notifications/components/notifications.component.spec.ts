@@ -13,11 +13,7 @@ describe('NotificationsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [
-                SharedModule,
-                NoopAnimationsModule,
-                TranslateModule.forRoot()
-            ],
+            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
             providers: [NotificationService],
             declarations: [NotificationsComponent]
         }).compileComponents();

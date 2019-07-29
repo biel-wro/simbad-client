@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConfigurationSchemaProviderService } from './configuration-schema-provider.service';
-import { ParameterDefinition } from './models/parameter-definition';
-import { ParameterTreeNode } from './models/parameter-tree-node';
-import { ParameterTree } from './models';
+import { ParameterDefinition, ParameterTreeNode } from './models';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +12,6 @@ export class ObjectsDefinitionsService {
         this.configurationSchema = schemaProvider.getSchema();
     }
 
-    // test
     public getByClassName(className: string): ParameterDefinition | undefined {
         const val = this.configurationSchema.classMap[className];
         if (!val) return undefined;
@@ -58,54 +55,29 @@ export class ObjectsDefinitionsService {
         return children;
     }
 
-    public isSchemaValid(): boolean {
-        return this.areAllNecessaryParametersDefined();
-    }
-
-    public toParameterTreeNode(
-        parameter: ParameterDefinition,
-        parentPath?: string
-    ): ParameterTreeNode {
+    public toParameterTreeNode(parameter: ParameterDefinition, parentPath?: string): ParameterTreeNode {
         if (!parameter) return;
-        const children: ParameterDefinition[] = this.getAllChildren(
-            parameter.className
-        );
-        const simpleChildren: ParameterDefinition[] = children.filter(
-            child => child.type === 'simple'
-        );
-        const complexChildren: ParameterDefinition[] = children.filter(
-            child => child.type !== 'simple'
-        );
+        const children: ParameterDefinition[] = this.getAllChildren(parameter.className);
+        const simpleChildren: ParameterDefinition[] = children.filter(child => child.type === 'simple');
+        const complexChildren: ParameterDefinition[] = children.filter(child => child.type !== 'simple');
         const path = this.getPath(parameter.className, parentPath);
         return {
             path: path,
             definition: parameter,
             simpleChildren: simpleChildren.length
-                ? simpleChildren.map(child =>
-                    this.toParameterTreeNode(child, path)
-                )
+                ? simpleChildren.map(child => this.toParameterTreeNode(child, path))
                 : [],
             complexChildren: complexChildren.length
-                ? complexChildren.map(child =>
-                    this.toParameterTreeNode(child, path)
-                )
+                ? complexChildren.map(child => this.toParameterTreeNode(child, path))
                 : []
         };
     }
 
-    public getDefaultTree(): ParameterTree {
-        return {
-            rootParameters: [
-                this.toParameterTreeNode(this.getByClassName('model')),
-                this.toParameterTreeNode(this.getByClassName('stream')),
-                this.toParameterTreeNode(
-                    this.getByClassName('initial_configuration')
-                )
-            ]
-        };
+    public isSchemaValid(): boolean {
+        return this.areAllNecessaryParametersDefined();
     }
 
-    public getPath(className: string, parentPath?: string) {
+    private getPath(className: string, parentPath?: string) {
         return parentPath ? `${parentPath}.${className}` : `${className}`;
     }
 

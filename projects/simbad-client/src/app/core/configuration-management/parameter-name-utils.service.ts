@@ -5,15 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class ParameterNameUtilsService {
     constructor() {}
+
     /**
-     * Performs a very special operation
-     *
-     * @example
-     * Simply call it with 2 numbers:
-     * getResult(2, 3)
-     *
-     * @param {string} str String to change
-     * @returns The sum of a and b
+     * Converts snake_case string to camelCase
+     * @param {string} str snake_case string
+     * @returns str converted to camelCase
      */
     public snakeCaseToCamelCase(str: string): string {
         if (!str) return '';
@@ -23,6 +19,11 @@ export class ParameterNameUtilsService {
         return split.join('');
     }
 
+    /**
+     * Converts camelCase string to snake_case
+     * @param {string} str camelCase string
+     * @returns str converted to snake_case
+     */
     public camelCaseToSnakeCase(str: string): string {
         return str
             .split(/(?=[A-Z])/)

@@ -31,9 +31,7 @@ const reducer = createReducer(
     })),
     on(todoAction.actionTodosToggle, (state, todo) => ({
         ...state,
-        items: state.items.map((item: Todo) =>
-            item.id === todo.id ? { ...item, done: !item.done } : item
-        )
+        items: state.items.map((item: Todo) => (item.id === todo.id ? { ...item, done: !item.done } : item))
     })),
     on(todoAction.actionTodosRemoveDone, (state, todo) => ({
         ...state,

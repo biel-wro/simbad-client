@@ -1,9 +1,5 @@
 import { Form } from './form.model';
-import {
-    FormActionTypes,
-    actionFormUpdate,
-    actionFormReset
-} from './form.actions';
+import { FormActionTypes, actionFormUpdate, actionFormReset } from './form.actions';
 
 describe('Form Actions', () => {
     it('should create ActionFormUpdate action', () => {

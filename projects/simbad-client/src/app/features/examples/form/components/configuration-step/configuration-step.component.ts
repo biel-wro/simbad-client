@@ -1,9 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    Input,
-    OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ParameterTreeNode } from '../../../../../core/configuration-management/models/parameter-tree-node';
 import { FormGroup } from '@angular/forms';
 import { FormsService } from '../../forms-service';

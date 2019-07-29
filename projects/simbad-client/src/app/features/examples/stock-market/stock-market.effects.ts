@@ -34,9 +34,7 @@ export class StockMarketEffects {
             switchMap(action =>
                 this.service.retrieveStock(action.symbol).pipe(
                     map(stock => actionStockMarketRetrieveSuccess({ stock })),
-                    catchError(error =>
-                        of(actionStockMarketRetrieveError({ error }))
-                    )
+                    catchError(error => of(actionStockMarketRetrieveError({ error })))
                 )
             )
         )

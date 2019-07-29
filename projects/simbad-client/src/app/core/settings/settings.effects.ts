@@ -5,25 +5,14 @@ import { select, Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
 import { combineLatest, interval, merge, of } from 'rxjs';
-import {
-    tap,
-    withLatestFrom,
-    map,
-    distinctUntilChanged,
-    mapTo,
-    filter
-} from 'rxjs/operators';
+import { tap, withLatestFrom, map, distinctUntilChanged, mapTo, filter } from 'rxjs/operators';
 
 import { selectSettingsState } from '../core.state';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { AnimationsService } from '../animations/animations.service';
 import { TitleService } from '../title/title.service';
 
-import {
-    SettingsActionTypes,
-    SettingsActions,
-    ActionSettingsChangeHour
-} from './settings.actions';
+import { SettingsActionTypes, SettingsActions, ActionSettingsChangeHour } from './settings.actions';
 import {
     selectEffectiveTheme,
     selectSettingsLanguage,
@@ -68,19 +57,14 @@ export class SettingsEffects {
             SettingsActionTypes.CHANGE_THEME
         ),
         withLatestFrom(this.store.pipe(select(selectSettingsState))),
-        tap(([action, settings]) =>
-            this.localStorageService.setItem(SETTINGS_KEY, settings)
-        )
+        tap(([action, settings]) => this.localStorageService.setItem(SETTINGS_KEY, settings))
     );
 
     @Effect({ dispatch: false })
     updateRouteAnimationType = merge(
         INIT,
         this.actions$.pipe(
-            ofType(
-                SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS,
-                SettingsActionTypes.CHANGE_ANIMATIONS_PAGE
-            )
+            ofType(SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS, SettingsActionTypes.CHANGE_ANIMATIONS_PAGE)
         )
     ).pipe(
         withLatestFrom(
@@ -99,17 +83,11 @@ export class SettingsEffects {
     );
 
     @Effect({ dispatch: false })
-    updateTheme = merge(
-        INIT,
-        this.actions$.pipe(ofType(SettingsActionTypes.CHANGE_THEME))
-    ).pipe(
+    updateTheme = merge(INIT, this.actions$.pipe(ofType(SettingsActionTypes.CHANGE_THEME))).pipe(
         withLatestFrom(this.store.pipe(select(selectEffectiveTheme))),
         tap(([action, effectiveTheme]) => {
-            const classList = this.overlayContainer.getContainerElement()
-                .classList;
-            const toRemove = Array.from(classList).filter((item: string) =>
-                item.includes('-theme')
-            );
+            const classList = this.overlayContainer.getContainerElement().classList;
+            const toRemove = Array.from(classList).filter((item: string) => item.includes('-theme'));
             if (toRemove.length) {
                 classList.remove(...toRemove);
             }
@@ -130,10 +108,7 @@ export class SettingsEffects {
         this.router.events.pipe(filter(event => event instanceof ActivationEnd))
     ).pipe(
         tap(() => {
-            this.titleService.setTitle(
-                this.router.routerState.snapshot.root,
-                this.translateService
-            );
+            this.titleService.setTitle(this.router.routerState.snapshot.root, this.translateService);
         })
     );
 }

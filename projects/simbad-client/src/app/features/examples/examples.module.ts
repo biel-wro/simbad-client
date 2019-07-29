@@ -36,11 +36,7 @@ import { FormToolbarComponent } from './form/components/form-toolbar/form-toolba
 import { MatDialogModule } from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(
-        http,
-        `${environment.i18nPrefix}/assets/i18n/examples/`,
-        '.json'
-    );
+    return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
 }
 
 @NgModule({
@@ -56,13 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
             },
             isolate: true
         }),
-        EffectsModule.forFeature([
-            ExamplesEffects,
-            TodosEffects,
-            StockMarketEffects,
-            BooksEffects,
-            FormEffects
-        ]),
+        EffectsModule.forFeature([ExamplesEffects, TodosEffects, StockMarketEffects, BooksEffects, FormEffects]),
         MatDialogModule
     ],
     declarations: [

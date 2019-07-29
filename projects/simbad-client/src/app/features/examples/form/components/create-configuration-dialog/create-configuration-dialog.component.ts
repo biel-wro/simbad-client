@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 
 @Component({
@@ -10,28 +10,18 @@ import { MatDialogRef } from '@angular/material';
 })
 export class CreateConfigurationDialogComponent implements OnInit {
     form: FormGroup;
-    rootObjects = [
-        { name: 'model' },
-        { name: 'stream' },
-        { name: 'initial_configuration' }
-    ];
+    rootObjects = [{ name: 'model' }, { name: 'stream' }, { name: 'initial_configuration' }];
 
-    constructor(
-        public dialogRef: MatDialogRef<CreateConfigurationDialogComponent>,
-        private formBuilder: FormBuilder
-    ) {
-        this.form = this.formBuilder.group({
-            rootObjects: new FormArray([])
+    constructor(public dialogRef: MatDialogRef<CreateConfigurationDialogComponent>) {
+        this.form = new FormGroup({
+            model: new FormControl(),
+            stream: new FormControl(),
+            initial_configuration: new FormControl()
         });
-
-        this.addCheckboxes();
     }
 
     submit() {
-        const selectedOrderIds = this.form.value.rootObjects
-            .map((v, i) => (v ? this.rootObjects[i].name : null))
-            .filter(v => v !== null);
-        console.log(selectedOrderIds);
+        const selectedOrderIds = Object.keys(this.form.value).filter(key => this.form.value[key]);
         this.dialogRef.close(selectedOrderIds);
     }
 
@@ -40,11 +30,4 @@ export class CreateConfigurationDialogComponent implements OnInit {
     }
 
     ngOnInit() {}
-
-    private addCheckboxes() {
-        this.rootObjects.forEach(() => {
-            const control = new FormControl();
-            (this.form.controls.rootObjects as FormArray).push(control);
-        });
-    }
 }

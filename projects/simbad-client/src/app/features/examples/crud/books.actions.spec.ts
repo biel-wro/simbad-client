@@ -1,8 +1,4 @@
-import {
-    actionBooksDeleteOne,
-    actionBooksUpsertOne,
-    BookActionTypes
-} from './books.actions';
+import { actionBooksDeleteOne, actionBooksUpsertOne, BookActionTypes } from './books.actions';
 
 describe('Books Actions', () => {
     it('should create ActionBooksUpsertOne action', () => {

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateConfigurationDialogComponent } from './create-configuration-dialog.component';
+import { SharedModule } from '../../../../../shared/shared.module';
+import { MatDialogModule, MatDialogRef } from '@angular/material';
 
 describe('CreateConfigurationDialogComponent', () => {
     let component: CreateConfigurationDialogComponent;
@@ -8,7 +10,9 @@ describe('CreateConfigurationDialogComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [CreateConfigurationDialogComponent]
+            imports: [SharedModule, MatDialogModule],
+            declarations: [CreateConfigurationDialogComponent],
+            providers: [{ provide: MatDialogRef, useValue: {} }]
         }).compileComponents();
     }));
 
