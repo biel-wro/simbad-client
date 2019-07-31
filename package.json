@@ -19,9 +19,9 @@
     "release": "standard-version && git push --follow-tags origin master",
     "analyze": "npm run build:prod -- --stats-json && webpack-bundle-analyzer ./dist/simbad-client/stats-es2015.json",
     "server": "node ./projects/server/server.js",
-    "compodoc": "npx compodoc -p projects/simbad-client/tsconfig.app.json -d docs",
-    "build:doc": "./node_modules/.bin/compodoc -p projects/simbad-client/tsconfig.app.json -d dist/apps/documentation/compodoc",
-    "serve:doc": "./node_modules/.bin/compodoc -p projects/simbad-client/tsconfig.app.json -d dist/apps/documentation/compodoc -s"
+    "compodoc": "compodoc -p projects/simbad-client/tsconfig.app.json --includes ./usage-docs -d docs",
+    "build:doc": "compodoc -p projects/simbad-client/tsconfig.app.json --includes usage-docs -d docs",
+    "serve:doc": "compodoc -p projects/simbad-client/tsconfig.app.json --includes usage-docs -d docs -s"
   },
   "husky": {
     "hooks": {
