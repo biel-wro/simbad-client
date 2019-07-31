@@ -94,6 +94,7 @@ describe('ObjectsDefinitionsService', () => {
                     valueType: 'int',
                     minValue: 0,
                     maxValue: 9999999,
+                    defaultValue: 100000,
                     isRoot: false
                 }
             ];
