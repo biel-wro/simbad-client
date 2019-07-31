@@ -6,6 +6,7 @@ export interface ParameterDefinition {
     valueType?: 'int' | 'float';
     minValue?: number;
     maxValue?: number;
+    defaultValue?: number | string;
     possibleClasses?: string[];
     childClasses?: string[];
 }

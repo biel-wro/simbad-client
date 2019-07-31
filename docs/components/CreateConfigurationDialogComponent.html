@@ -1,0 +1,618 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>simbad-client documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">simbad-client documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>CreateConfigurationDialogComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>simbad-create-configuration-dialog</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./create-configuration-dialog.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./create-configuration-dialog.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#dialogRef">dialogRef</a>
+                            </li>
+                            <li>
+                                <a href="#form">form</a>
+                            </li>
+                            <li>
+                                <a href="#rootObjects">rootObjects</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancel">cancel</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#submit">submit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(dialogRef: <a href="../components/CreateConfigurationDialogComponent.html">MatDialogRef<CreateConfigurationDialogComponent></a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>dialogRef</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../components/CreateConfigurationDialogComponent.html" target="_self" >MatDialogRef&lt;CreateConfigurationDialogComponent&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancel"></a>
+                    <span class="name">
+                        <b>
+                            cancel
+                        </b>
+                        <a href="#cancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:29</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:33</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submit"></a>
+                    <span class="name">
+                        <b>
+                            submit
+                        </b>
+                        <a href="#submit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dialogRef"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            dialogRef</b>
+                            <a href="#dialogRef"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../components/CreateConfigurationDialogComponent.html" target="_self" >MatDialogRef&lt;CreateConfigurationDialogComponent&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:15</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="form"></a>
+                        <span class="name">
+                            <b>
+                            form</b>
+                            <a href="#form"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:12</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rootObjects"></a>
+                        <span class="name">
+                            <b>
+                            rootObjects</b>
+                            <a href="#rootObjects"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[{ name: &#x27;model&#x27; }, { name: &#x27;stream&#x27; }, { name: &#x27;initial_configuration&#x27; }]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">projects/simbad-client/src/app/features/examples/form/components/create-configuration-dialog/create-configuration-dialog.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+import { FormControl, FormGroup } from &#x27;@angular/forms&#x27;;
+import { MatDialogRef } from &#x27;@angular/material&#x27;;
+
+@Component({
+    selector: &#x27;simbad-create-configuration-dialog&#x27;,
+    templateUrl: &#x27;./create-configuration-dialog.component.html&#x27;,
+    styleUrls: [&#x27;./create-configuration-dialog.component.scss&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class CreateConfigurationDialogComponent implements OnInit {
+    form: FormGroup;
+    rootObjects &#x3D; [{ name: &#x27;model&#x27; }, { name: &#x27;stream&#x27; }, { name: &#x27;initial_configuration&#x27; }];
+
+    constructor(public dialogRef: MatDialogRef&lt;CreateConfigurationDialogComponent&gt;) {
+        this.form &#x3D; new FormGroup({
+            model: new FormControl(),
+            stream: new FormControl(),
+            initial_configuration: new FormControl()
+        });
+    }
+
+    submit() {
+        let selectedOrderIds &#x3D; Object.keys(this.form.value).filter(key &#x3D;&gt; this.form.value[key]);
+        if (!selectedOrderIds) selectedOrderIds &#x3D; [];
+        this.dialogRef.close(selectedOrderIds);
+    }
+
+    cancel() {
+        this.dialogRef.close([]);
+    }
+
+    ngOnInit() {}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;h3&gt;Choose root objects for configuration&lt;/h3&gt;
+&lt;form [formGroup]&#x3D;&quot;form&quot; (ngSubmit)&#x3D;&quot;submit()&quot;&gt;
+    &lt;div class&#x3D;&quot;container&quot;&gt;
+        &lt;mat-label class&#x3D;&quot;row&quot;
+                   *ngFor&#x3D;&quot;let object of rootObjects&quot;&gt;
+            &lt;mat-checkbox [formControlName]&#x3D;&quot;object.name&quot;&gt;
+                {{object.name}}
+            &lt;/mat-checkbox&gt;
+        &lt;/mat-label&gt;
+        &lt;div *ngIf&#x3D;&quot;!form.valid&quot;&gt;At least one object must be selected&lt;/div&gt;
+        &lt;div class&#x3D;&quot;row action-button-wrapper&quot; align&#x3D;&quot;end&quot;&gt;
+            &lt;button class&#x3D;&quot;dialog-action-button&quot; mat-raised-button color&#x3D;&quot;primary&quot; (click)&#x3D;&quot;submit()&quot;&gt;Cancel&lt;/button&gt;
+            &lt;button class&#x3D;&quot;dialog-action-button&quot; mat-raised-button color&#x3D;&quot;accent&quot; (click)&#x3D;&quot; cancel()&quot;&gt;Submit&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./create-configuration-dialog.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.dialog-action-button {
+    margin-right: 10px;
+}
+.action-button-wrapper {
+    margin-top: 15px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><h3>Choose root objects for configuration</h3><form [formGroup]="form" (ngSubmit)="submit()">    <div class="container">        <mat-label class="row"                   *ngFor="let object of rootObjects">            <mat-checkbox [formControlName]="object.name">                {{object.name}}            </mat-checkbox>        </mat-label>        <div *ngIf="!form.valid">At least one object must be selected</div>        <div class="row action-button-wrapper" align="end">            <button class="dialog-action-button" mat-raised-button color="primary" (click)="submit()">Cancel</button>            <button class="dialog-action-button" mat-raised-button color="accent" (click)=" cancel()">Submit</button>        </div>    </div></form></div>'
+    var COMPONENTS = [{'name': 'AboutComponent', 'selector': 'simbad-about'},{'name': 'AppComponent', 'selector': 'simbad-root'},{'name': 'AuthenticatedComponent', 'selector': 'simbad-authenticated'},{'name': 'BigInputActionComponent', 'selector': 'simbad-big-input-action'},{'name': 'BigInputComponent', 'selector': 'simbad-big-input'},{'name': 'ChildComponent', 'selector': 'simbad-child'},{'name': 'ComplexParameterComponent', 'selector': 'simbad-complex-parameter'},{'name': 'ConfigurationStepComponent', 'selector': 'simbad-configuration-step'},{'name': 'CreateConfigurationDialogComponent', 'selector': 'simbad-create-configuration-dialog'},{'name': 'CrudComponent', 'selector': 'simbad-crud'},{'name': 'ExamplesComponent', 'selector': 'simbad-examples'},{'name': 'FeatureListComponent', 'selector': 'simbad-feature-list'},{'name': 'FormComponent', 'selector': 'simbad-form'},{'name': 'FormToolbarComponent', 'selector': 'simbad-form-toolbar'},{'name': 'NotificationsComponent', 'selector': 'simbad-notifications'},{'name': 'ParentComponent', 'selector': 'simbad-parent'},{'name': 'SettingsContainerComponent', 'selector': 'simbad-settings'},{'name': 'SimpleParameterComponent', 'selector': 'simbad-simple-parameter'},{'name': 'StockMarketContainerComponent', 'selector': 'simbad-stock-market'},{'name': 'TodosContainerComponent', 'selector': 'simbad-todos'},{'name': 'UserComponent', 'selector': 'simbad-user'}];
+    var DIRECTIVES = [{'name': 'RtlSupportDirective', 'selector': '[rtl]'}];
+    var ACTUAL_COMPONENT = {'name': 'CreateConfigurationDialogComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CreateConfigurationDialogComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -8,842 +8,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	    <link rel="stylesheet" href="../styles/style.css">
+	      <link rel="stylesheet" href="../styles/style.css">
     </head>
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
             <a href="../" class="navbar-brand">simbad-client documentation</a>
-            <button type="button" class="btn btn-default btn-menu fa fa-bars" id="btn-menu"></button>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
         <div class="xs-menu menu" id="mobile-menu">
-            <div id="book-search-input" role="search">
-                <input type="text" placeholder="Type to search">
-            </div>
-            <nav>
-            
-                <ul class="list">
-            
-                    <li class="title">
-                        <a href="../">simbad-client documentation</a>
-                    </li>
-            
-                    <li class="divider"></li>
-            
-            
-                    <li class="chapter">
-                        <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
-                        <ul class="links">
-                                <li class="link">
-                                    <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
-                                </li>
-                                <li class="link">
-                                    <a 
-                                        
-                                         href="../overview.html" 
-                                         href="../overview.html" 
-                                        >
-                                        <span class="fa fa-th"></span>Overview
-                                    </a>
-                                </li>
-                        </ul>
-                    </li>
-            
-                    <li class="chapter">
-                        <a data-type="chapter-link" href="./modules.html" >
-                            <span class="fa fa-archive"></span>
-                            <span>Modules</span>
-                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                    data-target="#xs-modules-links"
-                            ></span>
-                        </a>
-                        <ul class="links collapse in"
-                                id="xs-modules-links"
-                            >
-                                <li class="link">
-                                    <a href="../modules/AboutModule.html" >AboutModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/AboutRoutingModule.html" >AboutRoutingModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/AppModule.html" >AppModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/CoreModule.html" >CoreModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/ExamplesModule.html" >ExamplesModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/ExamplesRoutingModule.html" >ExamplesRoutingModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/FeatureListModule.html" >FeatureListModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/FeatureListRoutingModule.html" >FeatureListRoutingModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/SettingsModule.html" >SettingsModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/SettingsRoutingModule.html" >SettingsRoutingModule</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../modules/SharedModule.html" >SharedModule</a>
-                                </li>
-                        </ul>
-                    </li>
-            
-                    <li class="chapter">
-                        <div class="simple">
-                            <span class="fa fa-cogs"></span>
-                            <span>Components</span>
-                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                    data-target="#xs-components-links"
-                                ></span>
-                        </div>
-                        <ul class="links collapse in"
-                                id="xs-components-links"
-                            >
-                                <li class="link">
-                                    <a href="../components/AboutComponent.html" >AboutComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AppComponent.html" >AppComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/AuthenticatedComponent.html" >AuthenticatedComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/BigInputActionComponent.html" >BigInputActionComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/BigInputComponent.html" >BigInputComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/ChildComponent.html" >ChildComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/ComplexParameterComponent.html" >ComplexParameterComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/ConfigurationStepComponent.html" >ConfigurationStepComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/CrudComponent.html" >CrudComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/ExamplesComponent.html" >ExamplesComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/FeatureListComponent.html" >FeatureListComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/FormComponent.html" >FormComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/NotificationsComponent.html" >NotificationsComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/ParentComponent.html" >ParentComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/SettingsContainerComponent.html" >SettingsContainerComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/SimpleParameterComponent.html" >SimpleParameterComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/StockMarketContainerComponent.html" >StockMarketContainerComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/TodosContainerComponent.html" >TodosContainerComponent</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../components/UserComponent.html" >UserComponent</a>
-                                </li>
-                        </ul>
-                    </li>
-            
-                    <li class="chapter">
-                        <div class="simple">
-                            <span class="fa fa-code"></span>
-                            <span>Directives</span>
-                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                    data-target="#xs-directives-links"
-                                ></span>
-                        </div>
-                        <ul class="links collapse in"
-                                id="xs-directives-links"
-                            >
-                                <li class="link">
-                                    <a href="../directives/RtlSupportDirective.html" >RtlSupportDirective</a>
-                                </li>
-                        </ul>
-                    </li>
-            
-                    <li class="chapter">
-                        <div class="simple">
-                            <span class="fa fa-file-code-o"></span>
-                            <span>Classes</span>
-                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                    data-target="#xs-classes-links"
-                                ></span>
-                        </div>
-                        <ul class="links collapse in"
-                                id="xs-classes-links"
-                            >
-                                <li class="link">
-                                    <a href="../classes/AboutPage.html" >AboutPage</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeAnimationsElements.html" >ActionSettingsChangeAnimationsElements</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeAnimationsPage.html" >ActionSettingsChangeAnimationsPage</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeAnimationsPageDisabled.html" >ActionSettingsChangeAnimationsPageDisabled</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeAutoNightMode.html" >ActionSettingsChangeAutoNightMode</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeHour.html" >ActionSettingsChangeHour</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeLanguage.html" >ActionSettingsChangeLanguage</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeStickyHeader.html" >ActionSettingsChangeStickyHeader</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/ActionSettingsChangeTheme.html" >ActionSettingsChangeTheme</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/AppPage.html" >AppPage</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../classes/TodosPage.html" >TodosPage</a>
-                                </li>
-                        </ul>
-                    </li>
-            
-                    <li class="chapter">
-                        <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
-                    </li>
-            
-                    <li class="chapter">
-                        <div class="simple">
-                            <span class="fa fa-long-arrow-down"></span>
-                            <span>Injectables</span>
-                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                    data-target="#xs-injectables-links"
-                                ></span>
-                        </div>
-                        <ul class="links collapse in"
-                                id="xs-injectables-links"
-                            >
-                                <li class="link">
-                                    <a href="../injectables/AnimationsService.html" >AnimationsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/AppErrorHandler.html" >AppErrorHandler</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/AuthEffects.html" >AuthEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/AuthGuardService.html" >AuthGuardService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/BooksEffects.html" >BooksEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ConfigurationSchemaProviderService.html" >ConfigurationSchemaProviderService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/CustomSerializer.html" >CustomSerializer</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ExamplesEffects.html" >ExamplesEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/FormEffects.html" >FormEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/FormsService.html"  class="active" >FormsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/GoogleAnalyticsEffects.html" >GoogleAnalyticsEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/HttpErrorInterceptor.html" >HttpErrorInterceptor</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/LocalStorageService.html" >LocalStorageService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/NotificationService.html" >NotificationService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ObjectsDefinitionsService.html" >ObjectsDefinitionsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/ParameterNameUtilsService.html" >ParameterNameUtilsService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/SettingsEffects.html" >SettingsEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/StockMarketEffects.html" >StockMarketEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/StockMarketService.html" >StockMarketService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/TitleService.html" >TitleService</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/TodosEffects.html" >TodosEffects</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../injectables/UserService.html" >UserService</a>
-                                </li>
-                        </ul>
-                    </li>
-            
-                    <li class="chapter">
-                        <div class="simple">
-                            <span class="fa fa-info"></span>
-                            <span>Interfaces</span>
-                            <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                    data-target="#xs-interfaces-links"
-                                ></span>
-                        </div>
-                        <ul class="links collapse in"
-                                id="xs-interfaces-links"
-                            >
-                                <li class="link">
-                                    <a href="../interfaces/AppState.html" >AppState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/AuthState.html" >AuthState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/Book.html" >Book</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/BookState.html" >BookState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ComplexParameter.html" >ComplexParameter</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ComplexParameterEnum.html" >ComplexParameterEnum</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ConfigurationStep.html" >ConfigurationStep</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ExamplesState.html" >ExamplesState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/Feature.html" >Feature</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/Form.html" >Form</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/FormState.html" >FormState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/Parameter.html" >Parameter</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ParameterDefinition.html" >ParameterDefinition</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ParameterTree.html" >ParameterTree</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/ParameterTreeNode.html" >ParameterTreeNode</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/RouterStateUrl.html" >RouterStateUrl</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/SettingsState.html" >SettingsState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/SimpleParameter.html" >SimpleParameter</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/SimulationConfiguration.html" >SimulationConfiguration</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/State.html" >State</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/State.html" >State</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/Stock.html" >Stock</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/StockMarketState.html" >StockMarketState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/Todo.html" >Todo</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/TodosState.html" >TodosState</a>
-                                </li>
-                                <li class="link">
-                                    <a href="../interfaces/User.html" >User</a>
-                                </li>
-                        </ul>
-                    </li>
-            
-            
-                    <li class="chapter">
-                        <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
-                    </li>
-            
-                    <li class="chapter">
-                        <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
-                    </li>
-            
-                    <li class="divider"></li>
-                    <li class="copyright">
-                            Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
-                                        <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
-                            </a>
-                    </li>
-            
-                </ul>
-            
-            </nav>
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
         </div>
 
         <div class="container-fluid main">
            <div class="row main">
                <div class="hidden-xs menu">
-                   <nav>
-                   
-                       <ul class="list">
-                   
-                           <li class="title">
-                               <a href="../">simbad-client documentation</a>
-                           </li>
-                   
-                           <li class="divider"></li>
-                   
-                               <div id="book-search-input" role="search">
-                                   <input type="text" placeholder="Type to search">
-                               </div>
-                   
-                           <li class="chapter">
-                               <a data-type="chapter-link" href="../"><span class="fa fa-home"></span>Getting started</a>
-                               <ul class="links">
-                                       <li class="link">
-                                           <a href="../" ><span class="fa fa-file-text-o"></span>README</a>
-                                       </li>
-                                       <li class="link">
-                                           <a 
-                                               
-                                                href="../overview.html" 
-                                                href="../overview.html" 
-                                               >
-                                               <span class="fa fa-th"></span>Overview
-                                           </a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                           <li class="chapter">
-                               <a data-type="chapter-link" href="./modules.html" >
-                                   <span class="fa fa-archive"></span>
-                                   <span>Modules</span>
-                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                           data-target="#modules-links"
-                                   ></span>
-                               </a>
-                               <ul class="links collapse in"
-                                       id="modules-links"
-                   >
-                                       <li class="link">
-                                           <a href="../modules/AboutModule.html" >AboutModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/AboutRoutingModule.html" >AboutRoutingModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/AppModule.html" >AppModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/CoreModule.html" >CoreModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/ExamplesModule.html" >ExamplesModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/ExamplesRoutingModule.html" >ExamplesRoutingModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/FeatureListModule.html" >FeatureListModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/FeatureListRoutingModule.html" >FeatureListRoutingModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/SettingsModule.html" >SettingsModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/SettingsRoutingModule.html" >SettingsRoutingModule</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../modules/SharedModule.html" >SharedModule</a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                           <li class="chapter">
-                               <div class="simple">
-                                   <span class="fa fa-cogs"></span>
-                                   <span>Components</span>
-                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                           data-target="#components-links"
-                   ></span>
-                               </div>
-                               <ul class="links collapse in"
-                                       id="components-links"
-                   >
-                                       <li class="link">
-                                           <a href="../components/AboutComponent.html" >AboutComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AppComponent.html" >AppComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/AuthenticatedComponent.html" >AuthenticatedComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/BigInputActionComponent.html" >BigInputActionComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/BigInputComponent.html" >BigInputComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/ChildComponent.html" >ChildComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/ComplexParameterComponent.html" >ComplexParameterComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/ConfigurationStepComponent.html" >ConfigurationStepComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/CrudComponent.html" >CrudComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/ExamplesComponent.html" >ExamplesComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/FeatureListComponent.html" >FeatureListComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/FormComponent.html" >FormComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/NotificationsComponent.html" >NotificationsComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/ParentComponent.html" >ParentComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/SettingsContainerComponent.html" >SettingsContainerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/SimpleParameterComponent.html" >SimpleParameterComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/StockMarketContainerComponent.html" >StockMarketContainerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/TodosContainerComponent.html" >TodosContainerComponent</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../components/UserComponent.html" >UserComponent</a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                           <li class="chapter">
-                               <div class="simple">
-                                   <span class="fa fa-code"></span>
-                                   <span>Directives</span>
-                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                           data-target="#directives-links"
-                   ></span>
-                               </div>
-                               <ul class="links collapse in"
-                                       id="directives-links"
-                   >
-                                       <li class="link">
-                                           <a href="../directives/RtlSupportDirective.html" >RtlSupportDirective</a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                           <li class="chapter">
-                               <div class="simple">
-                                   <span class="fa fa-file-code-o"></span>
-                                   <span>Classes</span>
-                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                           data-target="#classes-links"
-                   ></span>
-                               </div>
-                               <ul class="links collapse in"
-                                       id="classes-links"
-                   >
-                                       <li class="link">
-                                           <a href="../classes/AboutPage.html" >AboutPage</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeAnimationsElements.html" >ActionSettingsChangeAnimationsElements</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeAnimationsPage.html" >ActionSettingsChangeAnimationsPage</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeAnimationsPageDisabled.html" >ActionSettingsChangeAnimationsPageDisabled</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeAutoNightMode.html" >ActionSettingsChangeAutoNightMode</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeHour.html" >ActionSettingsChangeHour</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeLanguage.html" >ActionSettingsChangeLanguage</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeStickyHeader.html" >ActionSettingsChangeStickyHeader</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/ActionSettingsChangeTheme.html" >ActionSettingsChangeTheme</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/AppPage.html" >AppPage</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../classes/TodosPage.html" >TodosPage</a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                           <li class="chapter">
-                               <a data-type="chapter-link" href="../routes.html" ><span class="fa fa-code-fork"></span>Routes</a>
-                           </li>
-                   
-                           <li class="chapter">
-                               <div class="simple">
-                                   <span class="fa fa-long-arrow-down"></span>
-                                   <span>Injectables</span>
-                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                           data-target="#injectables-links"
-                   ></span>
-                               </div>
-                               <ul class="links collapse in"
-                                       id="injectables-links"
-                   >
-                                       <li class="link">
-                                           <a href="../injectables/AnimationsService.html" >AnimationsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/AppErrorHandler.html" >AppErrorHandler</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/AuthEffects.html" >AuthEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/AuthGuardService.html" >AuthGuardService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/BooksEffects.html" >BooksEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ConfigurationSchemaProviderService.html" >ConfigurationSchemaProviderService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/CustomSerializer.html" >CustomSerializer</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ExamplesEffects.html" >ExamplesEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/FormEffects.html" >FormEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/FormsService.html"  class="active" >FormsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/GoogleAnalyticsEffects.html" >GoogleAnalyticsEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/HttpErrorInterceptor.html" >HttpErrorInterceptor</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/LocalStorageService.html" >LocalStorageService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/NotificationService.html" >NotificationService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ObjectsDefinitionsService.html" >ObjectsDefinitionsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/ParameterNameUtilsService.html" >ParameterNameUtilsService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/SettingsEffects.html" >SettingsEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/StockMarketEffects.html" >StockMarketEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/StockMarketService.html" >StockMarketService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/TitleService.html" >TitleService</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/TodosEffects.html" >TodosEffects</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../injectables/UserService.html" >UserService</a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                           <li class="chapter">
-                               <div class="simple">
-                                   <span class="fa fa-info"></span>
-                                   <span>Interfaces</span>
-                                   <span class="menu-toggler fa fa-angle-up" data-toggle="collapse"
-                                           data-target="#interfaces-links"
-                   ></span>
-                               </div>
-                               <ul class="links collapse in"
-                                       id="interfaces-links"
-                   >
-                                       <li class="link">
-                                           <a href="../interfaces/AppState.html" >AppState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/AuthState.html" >AuthState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/Book.html" >Book</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/BookState.html" >BookState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ComplexParameter.html" >ComplexParameter</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ComplexParameterEnum.html" >ComplexParameterEnum</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ConfigurationStep.html" >ConfigurationStep</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ExamplesState.html" >ExamplesState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/Feature.html" >Feature</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/Form.html" >Form</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/FormState.html" >FormState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/Parameter.html" >Parameter</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ParameterDefinition.html" >ParameterDefinition</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ParameterTree.html" >ParameterTree</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/ParameterTreeNode.html" >ParameterTreeNode</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/RouterStateUrl.html" >RouterStateUrl</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/SettingsState.html" >SettingsState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/SimpleParameter.html" >SimpleParameter</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/SimulationConfiguration.html" >SimulationConfiguration</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/State.html" >State</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/State.html" >State</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/Stock.html" >Stock</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/StockMarketState.html" >StockMarketState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/Todo.html" >Todo</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/TodosState.html" >TodosState</a>
-                                       </li>
-                                       <li class="link">
-                                           <a href="../interfaces/User.html" >User</a>
-                                       </li>
-                               </ul>
-                           </li>
-                   
-                   
-                           <li class="chapter">
-                               <a data-type="chapter-link" href="../miscellaneous.html" ><span class="fa fa-cubes"></span>Miscellaneous</a>
-                           </li>
-                   
-                           <li class="chapter">
-                               <a data-type="chapter-link" href="../coverage.html" ><span class="fa fa-tasks"></span>Documentation coverage</a>
-                           </li>
-                   
-                           <li class="divider"></li>
-                           <li class="copyright">
-                                   Documentation generated using <a href="https://compodoc.github.io/compodoc/" target="_blank">
-                                               <img src="..//images/compodoc-vectorise.svg" class="img-responsive">
-                                   </a>
-                           </li>
-                   
-                       </ul>
-                   
-                   </nav>
+                   <compodoc-menu mode="normal"></compodoc-menu>
                </div>
+               <!-- START CONTENT -->
                <div class="content injectable">
                    <div class="content-data">
+
+
+
 
 
 
@@ -854,16 +42,16 @@
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active">
-        <a href="#infos" id="infos-tab" role="tab" data-toggle="tab">Infos</a>
-    </li>
-    <li>
-        <a href="#source" role="tab" id="source-tab" data-toggle="tab">Source</a>
-    </li>
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="infos">
+    <div class="tab-pane fade active in" id="c-info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -872,199 +60,1137 @@
         </p>
 
 
-            <section>
-                <h3 id="constructor">Constructor</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <code>constructor(fb: <a href="https://angular.io/docs/ts/latest/api/forms/index/FormBuilder-class.html" target="_blank" >FormBuilder</a>)</code>
-                                </td>
-                            </tr>
-            
-                        </tbody>
-                    </table>
-            </section>
+
 
             <section>
-                <h3 id="methods">Methods</h3>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Private</span> generateIntValidators</b>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play lock">
-                                            <span class="fa fa-lock"></span>
-                                        </span>
-                                    <code>generateIntValidators(parameter: SimpleParameter)</code>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description">
-                                            <b>Returns: </b>    <code>ValidatorFn[]</code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Private</span> generateFloatValidators</b>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play lock">
-                                            <span class="fa fa-lock"></span>
-                                        </span>
-                                    <code>generateFloatValidators(parameter: SimpleParameter)</code>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description">
-                                            <b>Returns: </b>    <code>ValidatorFn[]</code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> generateValidators</b>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play circle">
-                                            <span class="fa fa-circle"></span>
-                                        </span>
-                                    <code>generateValidators(parameter: SimpleParameter)</code>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description">
-                                            <b>Returns: </b>    <code>ValidatorFn[]</code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                            <tr>
-                                <td class="col-md-4">
-                                    <b><span class="modifier">Public</span> generateFormGroup</b>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <span class="modifier-icon method fa fa-play circle">
-                                            <span class="fa fa-circle"></span>
-                                        </span>
-                                    <code>generateFormGroup(parameter: ComplexParameter)</code>
-                                </td>
-                            </tr>
-            
-                            <tr>
-                                <td class="col-md-4">
-                                        <div class="io-description">
-                                            <b>Returns: </b>    <code><a href="https://angular.io/docs/ts/latest/api/forms/index/FormGroup-class.html" target="_blank" >FormGroup</a></code>
-            
-                                        </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#addParameterControlToForm">addParameterControlToForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#buildFormForNode">buildFormForNode</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#deepAssign">deepAssign</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#formValueToTree">formValueToTree</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#generateFloatValidators">generateFloatValidators</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#generateIntValidators">generateIntValidators</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#generateValidators">generateValidators</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#getPathForParameter">getPathForParameter</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#removeControlFromForm">removeControlFromForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#removeControls">removeControls</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#treeValueToConfigurationObject">treeValueToConfigurationObject</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="../interfaces/Form.html">FormBuilder</a>, ods: <a href="../injectables/ObjectsDefinitionsService.html">ObjectsDefinitionsService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:10</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/Form.html" target="_self" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>ods</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ObjectsDefinitionsService.html" target="_self" >ObjectsDefinitionsService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addParameterControlToForm"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            addParameterControlToForm
+                        </b>
+                        <a href="#addParameterControlToForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addParameterControlToForm(form: <a href="../interfaces/Form.html">FormGroup</a>, node: <a href="../interfaces/ParameterTreeNode.html">ParameterTreeNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:34</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterTreeNode.html" target="_self" >ParameterTreeNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buildFormForNode"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            buildFormForNode
+                        </b>
+                        <a href="#buildFormForNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>buildFormForNode(form: <a href="../interfaces/Form.html">FormGroup</a>, node: <a href="../interfaces/ParameterTreeNode.html">ParameterTreeNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterTreeNode.html" target="_self" >ParameterTreeNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deepAssign"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            deepAssign
+                        </b>
+                        <a href="#deepAssign"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deepAssign(obj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, prop: string | string[], value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:90</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>prop</td>
+                                    <td>
+                                            <code>string | string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formValueToTree"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            formValueToTree
+                        </b>
+                        <a href="#formValueToTree"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formValueToTree(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateFloatValidators"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            generateFloatValidators
+                        </b>
+                        <a href="#generateFloatValidators"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateFloatValidators(parameter: <a href="../interfaces/ParameterDefinition.html">ParameterDefinition</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:17</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>parameter</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterDefinition.html" target="_self" >ParameterDefinition</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ValidatorFn[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateIntValidators"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Static</span>
+                            generateIntValidators
+                        </b>
+                        <a href="#generateIntValidators"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateIntValidators(parameter: <a href="../interfaces/ParameterDefinition.html">ParameterDefinition</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:13</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>parameter</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterDefinition.html" target="_self" >ParameterDefinition</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ValidatorFn[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateValidators"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            generateValidators
+                        </b>
+                        <a href="#generateValidators"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateValidators(parameter: <a href="../interfaces/ParameterDefinition.html">ParameterDefinition</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:21</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>parameter</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterDefinition.html" target="_self" >ParameterDefinition</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ValidatorFn[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getPathForParameter"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            getPathForParameter
+                        </b>
+                        <a href="#getPathForParameter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPathForParameter(node: <a href="../interfaces/ParameterTreeNode.html">ParameterTreeNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:40</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterTreeNode.html" target="_self" >ParameterTreeNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeControlFromForm"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            removeControlFromForm
+                        </b>
+                        <a href="#removeControlFromForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeControlFromForm(form: <a href="../interfaces/Form.html">FormGroup</a>, node: <a href="../interfaces/ParameterTreeNode.html">ParameterTreeNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:49</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterTreeNode.html" target="_self" >ParameterTreeNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeControls"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            removeControls
+                        </b>
+                        <a href="#removeControls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeControls(form: <a href="../interfaces/Form.html">FormGroup</a>, node: <a href="../interfaces/ParameterTreeNode.html">ParameterTreeNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>form</td>
+                                    <td>
+                                                <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/ParameterTreeNode.html" target="_self" >ParameterTreeNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Form.html" target="_self" >FormGroup</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="treeValueToConfigurationObject"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Public</span>
+                            treeValueToConfigurationObject
+                        </b>
+                        <a href="#treeValueToConfigurationObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>treeValueToConfigurationObject(treeObject)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">projects/simbad-client/src/app/features/examples/form/forms-service.ts:104</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>treeObject</td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
     </div>
-    <div class="tab-pane fade tab-source-code" id="source">
-        <pre><code class="hljs javascript">import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-    ComplexParameter,
-    SimpleParameter
-} from &#x27;../../../core/configuration-management/models/configurationStep&#x27;;
-import {
-    FormBuilder,
-    FormControl,
-    FormGroup,
-    ValidatorFn,
-    Validators
-} from &#x27;@angular/forms&#x27;;
-import { from } from &#x27;rxjs&#x27;;
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from &#x27;@angular/forms&#x27;;
+import { ParameterDefinition } from &#x27;../../../core/configuration-management/models&#x27;;
+import { ParameterTreeNode } from &#x27;../../../core/configuration-management/models/parameter-tree-node&#x27;;
+import { ObjectsDefinitionsService } from &#x27;../../../core/configuration-management/objects-definitions.service&#x27;;
 
 @Injectable({
     providedIn: &#x27;root&#x27;
 })
 export class FormsService {
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder, private ods: ObjectsDefinitionsService) {}
 
-    private static generateIntValidators(
-        parameter: SimpleParameter
-    ): ValidatorFn[] {
-        return [
-            Validators.min(parameter.maxValue),
-            Validators.max(parameter.maxValue)
-        ];
+    private static generateIntValidators(parameter: ParameterDefinition): ValidatorFn[] {
+        return [Validators.min(parameter.maxValue), Validators.max(parameter.maxValue)];
     }
 
-    private static generateFloatValidators(
-        parameter: SimpleParameter
-    ): ValidatorFn[] {
-        return [
-            Validators.min(parameter.maxValue),
-            Validators.max(parameter.maxValue)
-        ];
+    private static generateFloatValidators(parameter: ParameterDefinition): ValidatorFn[] {
+        return [Validators.min(parameter.maxValue), Validators.max(parameter.maxValue)];
     }
 
-    public generateValidators(parameter: SimpleParameter): ValidatorFn[] {
+    public generateValidators(parameter: ParameterDefinition): ValidatorFn[] {
         let validators &#x3D; [Validators.required];
-        switch (parameter.parameterType) {
+        switch (parameter.valueType) {
             case &#x27;int&#x27;:
-                validators &#x3D; validators.concat(
-                    FormsService.generateIntValidators(parameter)
-                );
+                validators &#x3D; validators.concat(FormsService.generateIntValidators(parameter));
                 break;
             case &#x27;float&#x27;:
-                validators &#x3D; validators.concat(
-                    FormsService.generateFloatValidators(parameter)
-                );
+                validators &#x3D; validators.concat(FormsService.generateFloatValidators(parameter));
                 break;
         }
         return validators;
     }
 
-    public generateFormGroup(parameter: ComplexParameter): FormGroup {
-        const group &#x3D; {};
-        parameter.simpleChildren.forEach((child: SimpleParameter) &#x3D;&gt; {
-            group[child.classKey] &#x3D; [&#x27;&#x27;, this.generateValidators(child)];
+    public addParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        if (node.definition.type &#x3D;&#x3D;&#x3D; &#x27;complex&#x27;) return form;
+        form.addControl(node.definition.possibleClasses ? node.path + &#x27;.class&#x27; : node.path, new FormControl(node.definition.defaultValue));
+        return form;
+    }
+
+    public getPathForParameter(node: ParameterTreeNode): string {
+        if (node.definition.type &#x3D;&#x3D;&#x3D; &#x27;simple&#x27;) {
+        }
+        if (node.definition.type &#x3D;&#x3D;&#x3D; &#x27;enum&#x27;) {
+            return node.path + &#x27;.class&#x27;;
+        }
+        return &#x27;&#x27;;
+    }
+
+    public removeControlFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        if (node.definition.type &#x3D;&#x3D;&#x3D; &#x27;complex&#x27;) return form;
+        form.removeControl(node.definition.possibleClasses ? node.path + &#x27;.class&#x27; : node.path);
+        return form;
+    }
+
+    public removeControls(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        form &#x3D; this.removeControlFromForm(form, node);
+        node.complexChildren.forEach((child: ParameterTreeNode) &#x3D;&gt; {
+            form &#x3D; this.removeControls(form, child);
         });
-        return this.fb.group(group);
+        node.simpleChildren.forEach((child: ParameterTreeNode) &#x3D;&gt; {
+            form &#x3D; this.removeControls(form, child);
+        });
+        return form;
+    }
+
+    public buildFormForNode(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        form &#x3D; this.addParameterControlToForm(form, node);
+
+        if (node.definition.possibleClasses) {
+            form &#x3D; this.buildFormForNode(
+                form,
+                this.ods.toParameterTreeNode(this.ods.getByClassName(node.definition.possibleClasses[0]), node.path)
+            );
+        }
+        node.complexChildren.forEach((child: ParameterTreeNode) &#x3D;&gt; {
+            form &#x3D; this.buildFormForNode(form, child);
+        });
+        node.simpleChildren.forEach((child: ParameterTreeNode) &#x3D;&gt; {
+            form &#x3D; this.buildFormForNode(form, child);
+        });
+        return form;
+    }
+
+    public formValueToTree(value: any): any {
+        const tree &#x3D; {};
+        Object.keys(value).forEach(key &#x3D;&gt; this.deepAssign(tree, key, value[key]));
+        return tree;
+    }
+
+    public deepAssign(obj: any, prop: string | string[], value: any): void {
+        if (typeof prop &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) prop &#x3D; prop.split(&#x27;.&#x27;);
+        if (prop.length &gt; 1) {
+            const e &#x3D; prop.shift();
+            this.deepAssign(
+                (obj[e] &#x3D; Object.prototype.toString.call(obj[e]) &#x3D;&#x3D;&#x3D; &#x27;[object Object]&#x27; ? obj[e] : {}),
+                prop,
+                value
+            );
+        } else {
+            obj[prop[0]] &#x3D; value;
+        }
+    }
+
+    public treeValueToConfigurationObject(treeObject) {
+        decorateConfiguration(treeObject);
+        return treeObject;
+
+        function decorateConfiguration(obj) {
+            for (const property in obj) {
+                if (obj.hasOwnProperty(property)) {
+                    if (typeof obj[property] &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+                        decorateConfiguration(obj[property]);
+                    } else {
+                        obj[&#x27;parameters&#x27;] &#x3D; obj[obj[property]];
+                        delete obj[obj[property]];
+                    }
+                }
+            }
+        }
     }
 }
 </code></pre>
     </div>
+
 </div>
 
 
@@ -1073,9 +1199,14 @@ export class FormsService {
 
 
 
+                   
+
+
+
+
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1083,8 +1214,21 @@ export class FormsService {
     </div>
 </div>
 </div>
+               <!-- END CONTENT -->
            </div>
        </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'FormsService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
@@ -1095,20 +1239,17 @@ export class FormsService {
 
        <script src="../js/compodoc.js"></script>
 
-       <script src="../js/search/search.js"></script>
-       <script src="../js/search/lunr.min.js"></script>
-       <script src="../js/search/search-lunr.js"></script>
-
+       <script src="../js/tabs.js"></script>
        <script src="../js/menu.js"></script>
-       <script src="../js/libs/highlight.pack.js"></script>
-       <script src="../js/libs/highlightjs-line-numbers.min.js"></script>
-       <script src="../js/search/search_index.js"></script>
-       <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                hljs.initHighlightingOnLoad();
-                hljs.initLineNumbersOnLoad();
-            });
-       </script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
 
     </body>
 </html>

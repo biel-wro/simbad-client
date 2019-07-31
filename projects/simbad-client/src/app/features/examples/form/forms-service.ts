@@ -33,7 +33,10 @@ export class FormsService {
 
     public addParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
         if (node.definition.type === 'complex') return form;
-        form.addControl(node.definition.possibleClasses ? node.path + '.class' : node.path, new FormControl());
+        form.addControl(
+            node.definition.possibleClasses ? node.path + '.class' : node.path,
+            new FormControl(node.definition.defaultValue)
+        );
         return form;
     }
 

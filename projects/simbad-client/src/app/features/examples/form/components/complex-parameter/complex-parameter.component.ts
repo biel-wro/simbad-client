@@ -27,7 +27,7 @@ export class ComplexParameterComponent implements OnInit {
 
     ngOnInit() {
         if (this.node.definition.possibleClasses) {
-            this.chosenOption = this.node.definition.possibleClasses[0];
+            this.chosenOption = this.node.definition.defaultValue;
             this.chosenEnumParameter = this.ods.toParameterTreeNode(
                 this.ods.getByClassName(this.chosenOption),
                 this.node.path

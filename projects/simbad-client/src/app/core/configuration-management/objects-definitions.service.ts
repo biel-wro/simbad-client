@@ -23,6 +23,7 @@ export class ObjectsDefinitionsService {
                 valueType: val.valueType,
                 minValue: val.minValue,
                 maxValue: val.maxValue,
+                defaultValue: val.defaultValue ? val.defaultValue : null,
                 isRoot: val.isRoot ? val.isRoot : false
             };
         } else if (val.type === 'complex') {
@@ -39,6 +40,7 @@ export class ObjectsDefinitionsService {
                 type: val.type,
                 description: val.description,
                 possibleClasses: val.possibleClasses,
+                defaultValue: val.defaultValue ? val.defaultValue : null,
                 isRoot: val.isRoot ? val.isRoot : false
             };
         }

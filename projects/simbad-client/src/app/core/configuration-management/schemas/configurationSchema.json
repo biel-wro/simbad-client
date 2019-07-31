@@ -4,41 +4,48 @@
             "type": "complex",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "childClasses": ["final_estimator"],
+            "defaultValue": "final_estimator",
             "isRoot": true
         },
         "final_estimator": {
             "type": "enum",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "possibleClasses": ["population_size", "elapsed_time"]
+            "possibleClasses": ["population_size", "elapsed_time"],
+            "defaultValue": "population_size"
         },
         "population_size": {
             "type": "complex",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "childClasses": ["start_size"]
+            "childClasses": ["start_size"],
+            "defaultValue": "start_size"
         },
         "elapsed_time": {
             "type": "complex",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "childClasses": ["simulation_time_s"]
+            "childClasses": ["simulation_time_s"],
+            "defaultValue": "simulation_time_s"
         },
         "simulation_time_s": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "valueType": "int",
             "minValue": 0,
-            "maxValue": 9999999
+            "maxValue": 9999999,
+            "defaultValue": 1000
         },
         "start_size": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "valueType": "int",
             "minValue": 0,
-            "maxValue": 9999999
+            "maxValue": 9999999,
+            "defaultValue": 100000
         },
         "model": {
             "type": "enum",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "possibleClasses": ["parameter_evolution_3d"],
+            "defaultValue": "parameter_evolution_3d",
             "isRoot": true
         },
         "parameter_evolution_3d": {
@@ -64,7 +71,8 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 10
+            "maxValue": 10,
+            "defaultValue": 3
         },
         "mutation": {
             "type": "complex",
@@ -76,7 +84,8 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "float",
             "minValue": 0.0,
-            "maxValue": 1.0
+            "maxValue": 1.0,
+            "defaultValue": "0.05"
         },
         "interaction": {
             "type": "complex",
@@ -88,28 +97,32 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 1000
+            "maxValue": 1000,
+            "defaultValue": 3
         },
         "sigma": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 1000
+            "maxValue": 1000,
+            "defaultValue": 1
         },
         "gamma": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 1000
+            "maxValue": 1000,
+            "defaultValue": 2
         },
         "tolerance": {
             "type": "simple",
             "description": "Integer porttitor blandit ipsum, vitae malesuada nisi euismod ac. Pellentesque consequat dolor eget nunc tempus, quis rhoncus leo molestie.",
             "parameterType": "float",
             "minValue": 0.0,
-            "maxValue": 1.0
+            "maxValue": 1.0,
+            "defaultValue": 0.1
         },
         "birth": {
             "type": "complex",
@@ -127,7 +140,8 @@
             "possibleClasses": [
                 "generalized_exponential",
                 "inverse_generalized_exponential"
-            ]
+            ],
+            "defaultValue": "generalized_exponential"
         },
         "generalized_exponential": {
             "type": "complex",
@@ -144,7 +158,8 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 1000
+            "maxValue": 1000,
+            "defaultValue": 10
         },
         "mutator": {
             "type": "complex",
@@ -154,7 +169,8 @@
         "efficiency": {
             "type": "enum",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "possibleClasses": ["uniform_step"]
+            "possibleClasses": ["uniform_step"],
+            "defaultValue": "uniform_step"
         },
         "uniform_step": {
             "type": "complex",
@@ -166,19 +182,22 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "float",
             "minValue": 0.0,
-            "maxValue": 10.0
+            "maxValue": 10.0,
+            "defaultValue": 0.1
         },
         "decrease_length": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "float",
             "minValue": 0.0,
-            "maxValue": 10.0
+            "maxValue": 10.0,
+            "defaultValue": 1.0
         },
         "resistance": {
             "type": "enum",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "possibleClasses": ["uniform_step"]
+            "possibleClasses": ["uniform_step"],
+            "defaultValue": ["uniform_step"]
         },
         "death": {
             "type": "complex",
@@ -191,7 +210,8 @@
         "initial_configuration": {
             "type": "enum",
             "isRoot": true,
-            "possibleClasses": ["cubic_crystal"]
+            "possibleClasses": ["cubic_crystal"],
+            "defaultValue": ["cubic_crystal"]
         },
         "cubic_crystal": {
             "type": "complex",
@@ -202,21 +222,24 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 10
+            "maxValue": 10,
+            "defaultValue": 3
         },
         "radius": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 10
+            "maxValue": 10,
+            "defaultValue": 2
         },
         "spacing": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "parameterType": "int",
             "minValue": 0,
-            "maxValue": 10
+            "maxValue": 10,
+            "defaultValue": 1
         },
         "snapshots": {
             "type": "complex",
