@@ -21,7 +21,8 @@ export class CreateConfigurationDialogComponent implements OnInit {
     }
 
     submit() {
-        const selectedOrderIds = Object.keys(this.form.value).filter(key => this.form.value[key]);
+        let selectedOrderIds = Object.keys(this.form.value).filter(key => this.form.value[key]);
+        if (!selectedOrderIds) selectedOrderIds = [];
         this.dialogRef.close(selectedOrderIds);
     }
 
