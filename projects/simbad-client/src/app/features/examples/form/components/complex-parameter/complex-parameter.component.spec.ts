@@ -29,7 +29,7 @@ describe('ComplexParameterComponent', () => {
                 description: 'description',
                 type: 'complex'
             },
-            path: 'stream.final_estimator',
+            path: 'stream/final_estimator',
             simpleChildren: [
                 {
                     definition: {
@@ -38,7 +38,7 @@ describe('ComplexParameterComponent', () => {
                         description: 'description',
                         type: 'simple'
                     },
-                    path: 'stream.final_estimator.start_size',
+                    path: 'stream/final_estimator/start_size',
                     simpleChildren: [],
                     complexChildren: []
                 }
@@ -48,8 +48,8 @@ describe('ComplexParameterComponent', () => {
         component.parentPath = '';
         const fb = TestBed.get(FormBuilder) as FormBuilder;
         component.form = fb.group({
-            'stream.final_estimator.start_size': new FormControl(),
-            'stream.final_estimator': new FormControl()
+            'stream/final_estimator/start_size': new FormControl(),
+            'stream/final_estimator': new FormControl()
         });
         fixture.detectChanges();
     });

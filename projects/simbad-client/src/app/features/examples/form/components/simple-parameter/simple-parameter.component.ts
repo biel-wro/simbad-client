@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ParameterTreeNode } from '../../../../../core/configuration-management/models';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'simbad-simple-parameter',
@@ -16,9 +16,19 @@ export class SimpleParameterComponent implements OnInit {
     @Input()
     parentPath: string;
 
+    control: FormControl;
+
     constructor() {}
 
     ngOnInit() {
-        this.node.path = this.parentPath + `.${this.node.definition.className}`;
+        this.node.path = this.parentPath + `/${this.node.definition.className}`;
+        this.control = this.form.get(this.node.path) as FormControl;
     }
+
+    // hasValueErrors(): boolean {
+    // }
+    //
+    // getErrorMessage(): string {
+    //
+    // }
 }

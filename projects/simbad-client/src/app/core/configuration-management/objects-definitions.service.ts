@@ -80,7 +80,7 @@ export class ObjectsDefinitionsService {
     }
 
     private getPath(className: string, parentPath?: string) {
-        return parentPath ? `${parentPath}.${className}` : `${className}`;
+        return parentPath ? `${parentPath}/${className}` : `${className}`;
     }
 
     private areAllNecessaryParametersDefined(): boolean {
