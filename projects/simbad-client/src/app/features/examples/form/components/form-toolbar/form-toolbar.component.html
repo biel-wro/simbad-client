@@ -3,9 +3,10 @@
         <simbad-big-input-action class="form-action-button" fontSet="fas" fontIcon="fa-plus" faIcon="plus" color="accent" (action)="openCreateConfigurationDialog()"
                                  [matTooltip]="'simbad.configuration.forms.tooltip.create' | translate" matTooltipPosition="after">
         </simbad-big-input-action>
-        <simbad-big-input-action class="form-action-button" fontSet="fas" fontIcon="fa-file" faIcon="file" color="warn"
-                                 [matTooltip]="'simbad.configuration.forms.tooltip.load' | translate" matTooltipPosition="after">
+        <simbad-big-input-action class="form-action-button" fontSet="fas" fontIcon="fa-file" faIcon="file" color="warn" (action)="fileInput.click()"
+                                 [matTooltip]="'simbad.configuration.forms.tooltip.load' | translate" matTooltipPosition="after" file-browser>
         </simbad-big-input-action>
+        <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
         <a [href]="downloadJsonHref" [download]="'configuration.json'">
             <simbad-big-input-action class="form-action-button btn btn-clear" fontSet="fas" fontIcon="fa-download" faIcon="download" color="warn"
                                       [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate" matTooltipPosition="after">`

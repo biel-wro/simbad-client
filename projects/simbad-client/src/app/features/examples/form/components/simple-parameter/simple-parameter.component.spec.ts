@@ -35,7 +35,7 @@ describe('SimpleParameterComponent', () => {
         component.parentPath = 'some_parameter';
         const fb = TestBed.get(FormBuilder) as FormBuilder;
         component.form = fb.group({
-            'some_parameter.start_size': new FormControl()
+            'some_parameter/start_size': new FormControl()
         });
         fixture.detectChanges();
     });

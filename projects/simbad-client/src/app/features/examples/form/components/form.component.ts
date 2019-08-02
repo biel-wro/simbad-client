@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { NotificationService, ObjectsDefinitionsService } from '../../../../core/core.module';
 
 import { State } from '../../examples.state';
-import { ParameterTree } from '../../../../core/configuration-management/models/parameter-tree';
+import { ParameterTree } from '../../../../core/configuration-management/models';
 import { FormsService } from '../forms-service';
 
 @Component({
@@ -35,16 +35,15 @@ export class FormComponent implements OnInit {
 
     ngOnInit() {
         this.configurationModel$ = this.treeForm.valueChanges.pipe(
-            map(value => {
-                return this.fs.treeValueToConfigurationObject(this.fs.formValueToTree(value));
-            })
+            map(value => this.fs.formValueToConfigurationObject(value))
         );
     }
 
-    onSelectedRootObjectsChange(value: any) {
-        console.log('Parent received', value);
-        this.tree.rootParameters = (value as string[]).map(name =>
-            this.ods.toParameterTreeNode(this.ods.getByClassName(name))
-        );
+    onSelectedRootObjectsChange(classNames: string[]) {
+        this.tree.rootParameters = classNames.map(name => this.ods.toParameterTreeNode(this.ods.getByClassName(name)));
+    }
+
+    onFilePatch(value: any) {
+        setTimeout(() => this.treeForm.patchValue(value), 0);
     }
 }

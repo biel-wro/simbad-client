@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ObjectsDefinitionsService } from './objects-definitions.service';
-import { ParameterDefinition } from './models/parameter-definition';
+import { ParameterDefinition } from './models';
 
 describe('ObjectsDefinitionsService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
@@ -158,7 +158,7 @@ describe('ObjectsDefinitionsService', () => {
 
             // then
             expect(tree.path).toEqual('stream');
-            expect(tree.complexChildren[0].path).toEqual('stream.final_estimator');
+            expect(tree.complexChildren[0].path).toEqual('stream/final_estimator');
         });
 
         it('should return valid parameter tree for complex parameter', () => {
