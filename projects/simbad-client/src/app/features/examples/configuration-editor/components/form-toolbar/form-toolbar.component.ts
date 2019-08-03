@@ -3,7 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { CreateConfigurationDialogComponent } from '../create-configuration-dialog/create-configuration-dialog.component';
-import { FormsService } from '../../forms-service';
+import { FormsService } from '../../services/forms.service';
 
 @Component({
     selector: 'simbad-form-toolbar',

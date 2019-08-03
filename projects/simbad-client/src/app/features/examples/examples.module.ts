@@ -20,19 +20,19 @@ import { ParentComponent } from './theming/parent/parent.component';
 import { ChildComponent } from './theming/child/child.component';
 import { CrudComponent } from './crud/components/crud.component';
 import { BooksEffects } from './crud/books.effects';
-import { FormComponent } from './form/components/form.component';
-import { FormEffects } from './form/form.effects';
+import { FormComponent } from './configuration-editor/components/configuration-form/form.component';
+import { FormEffects } from './configuration-editor/store/form.effects';
 import { AuthenticatedComponent } from './authenticated/authenticated.component';
 import { NotificationsComponent } from './notifications/components/notifications.component';
 import { ExamplesEffects } from './examples.effects';
 import { UserComponent } from './simple-state-management/components/user.component';
 import { UserService } from './simple-state-management/user.service';
-import { ConfigurationStepComponent } from './form/components/configuration-step/configuration-step.component';
-import { ComplexParameterComponent } from './form/components/complex-parameter/complex-parameter.component';
-import { SimpleParameterComponent } from './form/components/simple-parameter/simple-parameter.component';
-import { FormsService } from './form/forms-service';
-import { CreateConfigurationDialogComponent } from './form/components/create-configuration-dialog/create-configuration-dialog.component';
-import { FormToolbarComponent } from './form/components/form-toolbar/form-toolbar.component';
+import { ConfigurationStepComponent } from './configuration-editor/components/configuration-step/configuration-step.component';
+import { ComplexParameterComponent } from './configuration-editor/components/complex-parameter/complex-parameter.component';
+import { SimpleParameterComponent } from './configuration-editor/components/simple-parameter/simple-parameter.component';
+import { FormsService } from './configuration-editor/services/forms.service';
+import { CreateConfigurationDialogComponent } from './configuration-editor/components/create-configuration-dialog/create-configuration-dialog.component';
+import { FormToolbarComponent } from './configuration-editor/components/form-toolbar/form-toolbar.component';
 import { MatDialogModule } from '@angular/material';
 
 export function HttpLoaderFactory(http: HttpClient) {

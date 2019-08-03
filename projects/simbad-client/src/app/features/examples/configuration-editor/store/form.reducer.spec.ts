@@ -20,7 +20,7 @@ describe('FormReducer', () => {
         expect(state).toBe(initialState);
     });
 
-    it('should update the form', () => {
+    it('should update the configuration-editor', () => {
         const action = actionFormUpdate({
             form: { ...form, username: 'updated' }
         });
@@ -28,7 +28,7 @@ describe('FormReducer', () => {
         expect(state.form.username).toBe('updated');
     });
 
-    it('should reset the form', () => {
+    it('should reset the configuration-editor', () => {
         const action = actionFormReset();
         const state = formReducer(undefined, action);
         expect(state).toEqual(initialState);

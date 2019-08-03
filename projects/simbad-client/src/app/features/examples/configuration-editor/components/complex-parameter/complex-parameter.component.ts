@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { ParameterTreeNode } from '../../../../../core/configuration-management/models/parameter-tree-node';
 import { ObjectsDefinitionsService } from '../../../../../core/configuration-management/objects-definitions.service';
 import { FormGroup } from '@angular/forms';
-import { FormsService } from '../../forms-service';
+import { FormsService } from '../../services/forms.service';
 
 @Component({
     selector: 'simbad-complex-parameter',

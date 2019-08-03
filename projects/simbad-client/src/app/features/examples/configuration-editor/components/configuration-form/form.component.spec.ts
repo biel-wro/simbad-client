@@ -5,13 +5,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 
-import { NotificationService } from '../../../../core/core.module';
-import { SharedModule } from '../../../../shared/shared.module';
+import { NotificationService } from '../../../../../core/core.module';
+import { SharedModule } from '../../../../../shared/shared.module';
 
-import { State } from '../../examples.state';
-import { FormState } from '../form.model';
+import { State } from '../../../examples.state';
+import { FormState } from '../../store/form.model';
 import { FormComponent } from './form.component';
-import { initialState } from '../form.reducer';
+import { initialState } from '../../store/form.reducer';
 
 describe('FormComponent', () => {
     // let store: MockStore<State>;
@@ -52,7 +52,7 @@ describe('FormComponent', () => {
     //     dispatchSpy = spyOn(store, 'dispatch');
     // });
     //
-    // it('should save form', async () => {
+    // it('should save configuration-editor', async () => {
     //     const inputEvent = new KeyboardEvent('input', {
     //         bubbles: true,
     //         cancelable: true,
@@ -71,7 +71,7 @@ describe('FormComponent', () => {
     //     expect(dispatchSpy.calls.mostRecent().args[0].type).toBe(
     //         '[Form] Update'
     //     );
-    //     expect(dispatchSpy.calls.mostRecent().args[0].form).toEqual({
+    //     expect(dispatchSpy.calls.mostRecent().args[0].configuration-editor).toEqual({
     //         autosave: false,
     //         username: 'tomastrajan',
     //         password: '',
@@ -83,7 +83,7 @@ describe('FormComponent', () => {
     //     });
     // });
     //
-    // it('should reset form', async () => {
+    // it('should reset configuration-editor', async () => {
     //     const inputEvent = new KeyboardEvent('input', {
     //         bubbles: true,
     //         cancelable: true,
@@ -108,7 +108,7 @@ describe('FormComponent', () => {
 // function createState(formState: FormState): State {
 //     return {
 //         examples: {
-//             form: formState
+//             configuration-editor: formState
 //         }
 //     } as State;
 // }

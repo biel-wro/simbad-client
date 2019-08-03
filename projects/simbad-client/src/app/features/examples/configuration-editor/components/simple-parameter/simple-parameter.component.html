@@ -7,8 +7,8 @@
                     <mat-error *ngIf="control.errors.required">
                         Parameter is required
                     </mat-error>
-                    <mat-error *ngIf="control.errors.min">
-                        Parameter must be {{node.definition.valueType}} and be between {{node.definition.minValue}} and {{node.definition.maxValue}}
+                    <mat-error *ngIf="control.errors.min || control.errors.max">
+                        Value must be {{node.definition.valueType}} between {{node.definition.minValue}} and {{node.definition.maxValue}}
                     </mat-error>
                 </div>
             </mat-form-field>

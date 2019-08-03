@@ -5,11 +5,11 @@ import { map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { NotificationService, ObjectsDefinitionsService } from '../../../../core/core.module';
+import { NotificationService, ObjectsDefinitionsService } from '../../../../../core/core.module';
 
-import { State } from '../../examples.state';
-import { ParameterTree } from '../../../../core/configuration-management/models';
-import { FormsService } from '../forms-service';
+import { State } from '../../../examples.state';
+import { ParameterTree } from '../../../../../core/configuration-management/models';
+import { FormsService } from '../../services/forms.service';
 
 @Component({
     selector: 'simbad-form',

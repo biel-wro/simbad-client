@@ -23,6 +23,9 @@ export class SimpleParameterComponent implements OnInit {
     ngOnInit() {
         this.node.path = this.parentPath + `/${this.node.definition.className}`;
         this.control = this.form.get(this.node.path) as FormControl;
+        this.control.valueChanges.subscribe(() => {
+            console.log(this.control.errors);
+        });
     }
 
     // hasValueErrors(): boolean {

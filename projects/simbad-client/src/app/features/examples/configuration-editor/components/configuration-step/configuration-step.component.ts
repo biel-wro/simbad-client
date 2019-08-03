@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ParameterTreeNode } from '../../../../../core/configuration-management/models/parameter-tree-node';
 import { FormGroup } from '@angular/forms';
-import { FormsService } from '../../forms-service';
+import { FormsService } from '../../services/forms.service';
 import { Observable } from 'rxjs';
 import { promise } from 'selenium-webdriver';
 import map = promise.map;
