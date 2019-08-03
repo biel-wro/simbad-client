@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FormsService } from './forms-service';
+import { FormsService } from './forms.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ObjectsDefinitionsService } from '../../../core/core.module';
+import { ObjectsDefinitionsService } from '../../../../core/core.module';
 
 describe('FormsService', () => {
     let service: FormsService;
@@ -316,7 +316,7 @@ describe('FormsService', () => {
     });
 
     describe('buildFormForNode', () => {
-        it('should build form that returns valid value for root object', () => {
+        it('should build configuration-editor that returns valid value for root object', () => {
             // given
             const className = 'model';
             const object = ods.getByClassName(className);
@@ -332,7 +332,7 @@ describe('FormsService', () => {
     });
 
     describe('configurationObjectToTreePatch', () => {
-        it('should convert object to its form patch', () => {
+        it('should convert object to its configuration-editor patch', () => {
             // given
             const obj = {
                 stream: {
@@ -357,7 +357,7 @@ describe('FormsService', () => {
             expect(result).toEqual(expected);
         });
 
-        // it('should convert object with multiple nested complex parameters to its form patch', () => {
+        // it('should convert object with multiple nested complex parameters to its configuration-editor patch', () => {
         //     // given
         //     const obj = {
         //         'model': {

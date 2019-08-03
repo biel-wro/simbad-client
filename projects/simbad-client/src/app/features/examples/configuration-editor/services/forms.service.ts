@@ -1,38 +1,21 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ParameterDefinition } from '../../../core/configuration-management/models';
-import { ParameterTreeNode } from '../../../core/configuration-management/models';
-import { ObjectsDefinitionsService } from '../../../core/configuration-management/objects-definitions.service';
+import { ParameterDefinition } from '../../../../core/configuration-management/models';
+import { ParameterTreeNode } from '../../../../core/configuration-management/models';
+import { ObjectsDefinitionsService } from '../../../../core/configuration-management/objects-definitions.service';
+import { ValidatorsService } from './validators.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FormsService {
-    constructor(private fb: FormBuilder, private ods: ObjectsDefinitionsService) {}
-
-    private static generateIntValidators(parameter: ParameterDefinition): ValidatorFn[] {
-        return [Validators.min(parameter.minValue), Validators.max(parameter.maxValue)];
-    }
-
-    private static generateFloatValidators(parameter: ParameterDefinition): ValidatorFn[] {
-        return [Validators.min(parameter.minValue), Validators.max(parameter.maxValue)];
-    }
-
-    public generateValidators(parameter: ParameterDefinition): ValidatorFn[] {
-        switch (parameter.valueType) {
-            case 'int':
-                return [Validators.required, Validators.min(parameter.minValue), Validators.max(parameter.maxValue)];
-            case 'float':
-                return [Validators.required, Validators.min(parameter.minValue), Validators.max(parameter.maxValue)];
-        }
-        return [];
-    }
+    constructor(private fb: FormBuilder, private ods: ObjectsDefinitionsService, private vs: ValidatorsService) {}
 
     public addParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
         if (node.definition.type === 'complex') return form;
         form.addControl(
             node.definition.possibleClasses ? node.path + '/class' : node.path,
-            new FormControl(node.definition.defaultValue, this.generateValidators(node.definition))
+            new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
         );
         return form;
     }
