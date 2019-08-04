@@ -4,6 +4,7 @@ import { FormToolbarComponent } from './form-toolbar.component';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { Observable, of } from 'rxjs';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('FormToolbarComponent', () => {
     let component: FormToolbarComponent;
@@ -12,14 +13,18 @@ describe('FormToolbarComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [SharedModule, TranslateModule.forRoot()],
-            declarations: [FormToolbarComponent]
+            declarations: [FormToolbarComponent],
+            providers: [
+                provideMockStore({
+                    initialState: {}
+                })
+            ]
         }).compileComponents();
     }));
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FormToolbarComponent);
         component = fixture.componentInstance;
-        component.configurationModel$ = of({});
         fixture.detectChanges();
     });
 

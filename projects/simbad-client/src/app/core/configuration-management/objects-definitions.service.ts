@@ -79,7 +79,7 @@ export class ObjectsDefinitionsService {
         return this.areAllNecessaryParametersDefined();
     }
 
-    private getPath(className: string, parentPath?: string) {
+    public getPath(className: string, parentPath?: string) {
         return parentPath ? `${parentPath}/${className}` : `${className}`;
     }
 

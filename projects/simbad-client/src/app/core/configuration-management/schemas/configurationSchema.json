@@ -3,9 +3,14 @@
         "stream": {
             "type": "complex",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "childClasses": ["final_estimator"],
-            "defaultValue": "final_estimator",
+            "childClasses": ["final_estimator", "stream_printer"],
             "isRoot": true
+        },
+        "stream_printer": {
+            "type": "enum",
+            "possibleClasses": ["csv_printer"],
+            "defaultValue": "csv_printer",
+            "description": "Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus."
         },
         "final_estimator": {
             "type": "enum",
@@ -265,34 +270,60 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "valueType": "int",
             "minValue": 0,
-            "maxValue": 10
+            "maxValue": 10,
+            "defaultValue": 4
         },
         "time_step": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "valueType": "int",
             "minValue": 0,
-            "maxValue": 10
+            "maxValue": 10,
+            "defaultValue": 4
         },
         "configuration_printer": {
             "type": "enum",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "possibleClasses": ["csv_printer"]
+            "possibleClasses": ["csv_printer"],
+            "defaultValue": "csv_printer"
         },
         "csv_printer": {
             "type": "complex",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "childClasses": ["delimiter", "file"]
+            "childClasses": ["delimiter", "file", "default_precision", "special_precision"]
+        },
+        "default_precision": {
+            "type": "simple",
+            "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
+            "valueType": "int",
+            "minValue": 0,
+            "maxValue": 10,
+            "defaultValue": 6
+        },
+        "special_precision": {
+            "type": "complex",
+            "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
+            "childClasses": ["event_time"]
+        },
+        "event_time": {
+            "type": "simple",
+            "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
+            "valueType": "int",
+            "minValue": 1,
+            "maxValue": 50,
+            "defaultValue": 17
         },
         "delimiter": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "valueType": "string"
+            "valueType": "string",
+            "defaultValue": ";"
         },
         "file": {
             "type": "simple",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "valueType": "string"
+            "valueType": "string",
+            "defaultValue": "STDOUT"
         }
     }
 }

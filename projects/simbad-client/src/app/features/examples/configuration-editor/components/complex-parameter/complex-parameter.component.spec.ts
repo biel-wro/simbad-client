@@ -6,6 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { SimpleParameterComponent } from '../simple-parameter/simple-parameter.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ComplexParameterComponent', () => {
     let component: ComplexParameterComponent;
@@ -15,7 +16,12 @@ describe('ComplexParameterComponent', () => {
         return TestBed.configureTestingModule({
             imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
             declarations: [ComplexParameterComponent, SimpleParameterComponent],
-            providers: [FormBuilder]
+            providers: [
+                FormBuilder,
+                provideMockStore({
+                    initialState: {}
+                })
+            ]
         }).compileComponents();
     }));
 

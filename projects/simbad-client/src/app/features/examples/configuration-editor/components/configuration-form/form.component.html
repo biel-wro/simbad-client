@@ -1,9 +1,10 @@
 <mat-accordion>
-    <simbad-form-toolbar [configurationModel$]="configurationModel$" (selectedRootObjectsChange)="onSelectedRootObjectsChange($event)" (planPatch)="onFilePatch($event)">
-    </simbad-form-toolbar>
-    <simbad-configuration-step
-        *ngFor="let rootNode of tree.rootParameters"
-        [node]="rootNode"
-        [form]="treeForm"
-    ></simbad-configuration-step>
+    <simbad-form-toolbar></simbad-form-toolbar>
+    <div *ngIf="tree$ | async as tree">
+        <simbad-configuration-step
+            *ngFor="let rootNode of tree.rootParameters"
+            [node]="rootNode"
+            [form]="treeForm"
+        ></simbad-configuration-step>
+    </div>
 </mat-accordion>

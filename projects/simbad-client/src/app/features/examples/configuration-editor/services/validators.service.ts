@@ -9,7 +9,7 @@ export class ValidatorsService {
     constructor() {}
 
     /**
-     * Generates form validators for parameter
+     * Generates formValue validators for parameter
      * @param parameter
      * @returns array with validator functions
      */

@@ -36,12 +36,10 @@ export class ComplexParameterComponent implements OnInit {
     }
 
     onSelect($event: any) {
-        const oldParameter = this.chosenEnumParameter;
         this.fs.buildFormForNode(
             this.form,
             this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path)
         );
         this.chosenEnumParameter = this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path);
-        this.fs.removeControls(this.form, oldParameter);
     }
 }

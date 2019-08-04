@@ -72,7 +72,7 @@ describe('FormsService', () => {
     });
 
     describe('configurationObjectToTreeValue', () => {
-        it('should convert object to its tree value', () => {
+        it('should convert object to its tree$ value', () => {
             // given
             const obj = {
                 stream: {
@@ -103,7 +103,7 @@ describe('FormsService', () => {
     });
 
     describe('treeValueToConfigurationObject', () => {
-        it('should tree value to conf object', () => {
+        it('should tree$ value to conf object', () => {
             // given
             const tree = {
                 model: {
@@ -357,70 +357,72 @@ describe('FormsService', () => {
             expect(result).toEqual(expected);
         });
 
-        // it('should convert object with multiple nested complex parameters to its configuration-editor patch', () => {
-        //     // given
-        //     const obj = {
-        //         'model': {
-        //             'class':  'parameter_evolution_3d',
-        //             'parameters': {
-        //                 'space': {
-        //                     'tile_size':  null
-        //                 },
-        //                 'birth': {
-        //                     'dispersion': {
-        //                         'sigma':  null
-        //                     },
-        //                     'saturation': {
-        //                         'class':  'generalized_exponential',
-        //                             'generalized_exponential': {
-        //                             'sigma':  null,
-        //                                 'gamma':  null,
-        //                                 'tolerance':  null
-        //                         }
-        //                     },
-        //                     'mutator': {
-        //                         'efficiency': {
-        //                             'class':  'uniform_step',
-        //                                 'uniform_step': {
-        //                                 'increase_length':  null,
-        //                                 'decrease_length':  null
-        //                             }
-        //                         },
-        //                         'resistance': {
-        //                             'class':  'uniform_step',
-        //                                 'uniform_step': {
-        //                                 'increase_length':  null,
-        //                                 'decrease_length':  null
-        //                             }
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     };
-        //
-        //     const expected = {
-        //         'model/class': 'parameter_evolution_3d',
-        //         'model/parameter_evolution_3d/space/tile_size' : null,
-        //         'model/parameter_evolution_3d/birth/dispersion/sigma' : null,
-        //         'model/parameter_evolution_3d/birth/saturation/sigma' : null,
-        //         'model/parameter_evolution_3d/birth/saturation/class' : 'generalized_exponential',
-        //         'model/parameter_evolution_3d/birth/saturation/generalized_exponential/sigma' : null,
-        //         'model/parameter_evolution_3d/birth/saturation/generalized_exponential/gamma' : null,
-        //         'model/parameter_evolution_3d/birth/saturation/generalized_exponential/tolerance' : null,
-        //         'model/parameter_evolution_3d/birth/mutator/efficiency/class' : 'uniform_step',
-        //         'model/parameter_evolution_3d/birth/mutator/efficiency/uniform_step/increase_length' : null,
-        //         'model/parameter_evolution_3d/birth/mutator/efficiency/uniform_step/decrease_length' : null,
-        //         'model/parameter_evolution_3d/birth/mutator/resistance/class' : 'uniform_step',
-        //         'model/parameter_evolution_3d/birth/mutator/resistance/uniform_step/increase_length' : null,
-        //         'model/parameter_evolution_3d/birth/mutator/resistance/uniform_step/decrease_length' : null,
-        //     };
-        //
-        //     // when
-        //     const result = service.configurationObjectToFormPatch(obj);
-        //
-        //     // then
-        //     expect(result).toEqual(expected);
-        // });
+        it('should convert object with multiple nested complex parameters to its configuration-editor patch', () => {
+            // given
+            const obj = {
+                model: {
+                    class: 'parameter_evolution_3d',
+                    parameters: {
+                        space: {
+                            tile_size: null
+                        },
+                        birth: {
+                            dispersion: {
+                                sigma: null
+                            },
+                            saturation: {
+                                class: 'generalized_exponential',
+                                generalized_exponential: {
+                                    sigma: null,
+                                    gamma: null,
+                                    tolerance: null
+                                }
+                            },
+                            mutator: {
+                                efficiency: {
+                                    class: 'uniform_step',
+                                    uniform_step: {
+                                        increase_length: null,
+                                        decrease_length: null
+                                    }
+                                },
+                                resistance: {
+                                    class: 'uniform_step',
+                                    uniform_step: {
+                                        increase_length: null,
+                                        decrease_length: null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            const expected = {
+                'model/class': 'parameter_evolution_3d',
+                'model/parameter_evolution_3d/space/tile_size': null,
+                'model/parameter_evolution_3d/birth/dispersion/sigma': null,
+                'model/parameter_evolution_3d/birth/saturation/sigma': null,
+                'model/parameter_evolution_3d/birth/saturation/class': 'generalized_exponential',
+                'model/parameter_evolution_3d/birth/saturation/generalized_exponential/sigma': null,
+                'model/parameter_evolution_3d/birth/saturation/generalized_exponential/gamma': null,
+                'model/parameter_evolution_3d/birth/saturation/generalized_exponential/tolerance': null,
+                'model/parameter_evolution_3d/birth/mutator/efficiency/class': 'uniform_step',
+                'model/parameter_evolution_3d/birth/mutator/efficiency/uniform_step/increase_length': null,
+                'model/parameter_evolution_3d/birth/mutator/efficiency/uniform_step/decrease_length': null,
+                'model/parameter_evolution_3d/birth/mutator/resistance/class': 'uniform_step',
+                'model/parameter_evolution_3d/birth/mutator/resistance/uniform_step/increase_length': null,
+                'model/parameter_evolution_3d/birth/mutator/resistance/uniform_step/decrease_length': null
+            };
+
+            // when
+            const result = service.configurationObjectToFormPatch(obj);
+
+            // then
+            console.log(Object.keys(result));
+            console.log(Object.keys(expected));
+            expect(result).toEqual(expected);
+        });
     });
 });

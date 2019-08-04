@@ -6,6 +6,7 @@ import { ComplexParameterComponent } from '../complex-parameter/complex-paramete
 import { SimpleParameterComponent } from '../simple-parameter/simple-parameter.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ConfigurationStepComponent', () => {
     let component: ConfigurationStepComponent;
@@ -14,7 +15,12 @@ describe('ConfigurationStepComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [SharedModule, NoopAnimationsModule],
-            declarations: [ConfigurationStepComponent, ComplexParameterComponent, SimpleParameterComponent]
+            declarations: [ConfigurationStepComponent, ComplexParameterComponent, SimpleParameterComponent],
+            providers: [
+                provideMockStore({
+                    initialState: {}
+                })
+            ]
         }).compileComponents();
     }));
 

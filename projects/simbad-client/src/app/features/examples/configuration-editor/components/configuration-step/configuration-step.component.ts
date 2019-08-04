@@ -22,6 +22,5 @@ export class ConfigurationStepComponent implements OnInit {
 
     ngOnInit() {
         this.node.path = `${this.node.definition.className}`;
-        this.form = this.fs.buildFormForNode(this.form, this.node);
     }
 }

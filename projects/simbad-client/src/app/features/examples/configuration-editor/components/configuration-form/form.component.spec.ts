@@ -9,7 +9,7 @@ import { NotificationService } from '../../../../../core/core.module';
 import { SharedModule } from '../../../../../shared/shared.module';
 
 import { State } from '../../../examples.state';
-import { FormState } from '../../store/form.model';
+import { ConfigurationFormState } from '../../store/form.model';
 import { FormComponent } from './form.component';
 import { initialState } from '../../store/form.reducer';
 
@@ -105,7 +105,7 @@ describe('FormComponent', () => {
     // });
 });
 
-// function createState(formState: FormState): State {
+// function createState(formState: ConfigurationFormState): State {
 //     return {
 //         examples: {
 //             configuration-editor: formState

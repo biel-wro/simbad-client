@@ -1,50 +1,21 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { ParameterDefinition } from '../../../../core/configuration-management/models';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ParameterTreeNode } from '../../../../core/configuration-management/models';
 import { ObjectsDefinitionsService } from '../../../../core/configuration-management/objects-definitions.service';
 import { ValidatorsService } from './validators.service';
+import { State } from '../../examples.state';
+import { Store } from '@ngrx/store';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FormsService {
-    constructor(private fb: FormBuilder, private ods: ObjectsDefinitionsService, private vs: ValidatorsService) {}
-
-    public addParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        if (node.definition.type === 'complex') return form;
-        form.addControl(
-            node.definition.possibleClasses ? node.path + '/class' : node.path,
-            new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
-        );
-        return form;
-    }
-
-    public getPathForParameter(node: ParameterTreeNode): string {
-        if (node.definition.type === 'simple') {
-        }
-        if (node.definition.type === 'enum') {
-            return node.path + '/class';
-        }
-        return '';
-    }
-
-    public removeControlFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        if (node.definition.type === 'complex') return form;
-        form.removeControl(node.definition.possibleClasses ? node.path + '/class' : node.path);
-        return form;
-    }
-
-    public removeControls(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        form = this.removeControlFromForm(form, node);
-        node.complexChildren.forEach((child: ParameterTreeNode) => {
-            form = this.removeControls(form, child);
-        });
-        node.simpleChildren.forEach((child: ParameterTreeNode) => {
-            form = this.removeControls(form, child);
-        });
-        return form;
-    }
+    constructor(
+        private fb: FormBuilder,
+        private ods: ObjectsDefinitionsService,
+        private vs: ValidatorsService,
+        private store: Store<State>
+    ) {}
 
     public buildFormForNode(form: FormGroup, node: ParameterTreeNode): FormGroup {
         form = this.addParameterControlToForm(form, node);
@@ -64,9 +35,37 @@ export class FormsService {
         return form;
     }
 
-    public formValueToTree(value: any): any {
+    public removeNodeControlsFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        form = this.removeParameterControlFromForm(form, node);
+        node.complexChildren.forEach((child: ParameterTreeNode) => {
+            form = this.removeNodeControlsFromForm(form, child);
+        });
+        node.simpleChildren.forEach((child: ParameterTreeNode) => {
+            form = this.removeNodeControlsFromForm(form, child);
+        });
+        return form;
+    }
+
+    private removeParameterControlFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        if (node.definition.type === 'complex') return form;
+        form.removeControl(node.definition.possibleClasses ? node.path + '/class' : node.path);
+        return form;
+    }
+
+    private addParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        if (node.definition.type === 'complex') return form;
+        form.addControl(
+            node.definition.possibleClasses ? node.path + '/class' : node.path,
+            new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
+        );
+        return form;
+    }
+
+    private formValueToTree(value: any): any {
         const tree = {};
-        Object.keys(value).forEach(key => this.deepAssign(tree, key, value[key]));
+        Object.keys(value)
+            .filter(key => value[key] !== null)
+            .forEach(key => this.deepAssign(tree, key, value[key]));
         return tree;
     }
 
@@ -114,7 +113,10 @@ export class FormsService {
                 if (obj.hasOwnProperty(property)) {
                     if (property === 'class') {
                         obj['parameters'] = obj[obj[property]];
-                        delete obj[obj[property]];
+                        const allowed = ['parameters', 'class'];
+                        Object.keys(obj)
+                            .filter(key => !allowed.includes(key))
+                            .forEach(key => delete obj[key]);
                         decorateConfiguration(obj['parameters']);
                     }
                     if (typeof obj[property] === 'object') {
@@ -130,7 +132,7 @@ export class FormsService {
         return this.treeValueToConfigurationObject(tree);
     }
 
-    public configurationObjectToTreeValue(configurationObject) {
+    public configurationObjectToTreeValue(configurationObject: any): any {
         decorateConfiguration(configurationObject);
         return configurationObject;
 
@@ -154,13 +156,5 @@ export class FormsService {
     public configurationObjectToFormPatch(configurationObject) {
         const tree = this.configurationObjectToTreeValue(configurationObject);
         return this.treeToFormPatch(tree);
-    }
-
-    public getRootObjectsFromConfiguration(configurationObject) {
-        const rootObjects = [];
-        Object.keys(configurationObject).map(key => {
-            rootObjects.push(this.ods.getByClassName(key));
-        });
-        return rootObjects;
     }
 }

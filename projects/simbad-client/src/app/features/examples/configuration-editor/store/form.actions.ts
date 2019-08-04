@@ -1,11 +1,16 @@
 import { createAction, props } from '@ngrx/store';
-import { Form } from './form.model';
 
 export enum FormActionTypes {
-    UPDATE = '[Form] Update',
-    RESET = '[Form] Reset'
+    UpdateFormValue = '[Form] Update',
+    ResetFormValue = '[Form] Reset',
+    UpdateRootObjects = '[Form] Update root objects'
 }
 
-export const actionFormUpdate = createAction(FormActionTypes.UPDATE, props<{ form: Form }>());
+export const actionFormUpdate = createAction(FormActionTypes.UpdateFormValue, props<{ formValue: any }>());
 
-export const actionFormReset = createAction(FormActionTypes.RESET);
+export const actionFormUpdateRootObjects = createAction(
+    FormActionTypes.UpdateRootObjects,
+    props<{ rootObjectClassNames: string[] }>()
+);
+
+export const actionFormReset = createAction(FormActionTypes.ResetFormValue);

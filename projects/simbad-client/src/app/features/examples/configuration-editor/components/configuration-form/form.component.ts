@@ -1,15 +1,21 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 
 import { NotificationService, ObjectsDefinitionsService } from '../../../../../core/core.module';
 
 import { State } from '../../../examples.state';
-import { ParameterTree } from '../../../../../core/configuration-management/models';
+import {
+    ParameterDefinition,
+    ParameterTree,
+    ParameterTreeNode
+} from '../../../../../core/configuration-management/models';
 import { FormsService } from '../../services/forms.service';
+import { actionFormReset, actionFormUpdate } from '../../store/form.actions';
+import { selectFormValues, selectRootObjectClassNames } from '../../store/form.selectors';
 
 @Component({
     selector: 'simbad-form',
@@ -17,12 +23,11 @@ import { FormsService } from '../../services/forms.service';
     styleUrls: ['./form.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormComponent implements OnInit {
-    tree: ParameterTree = {
-        rootParameters: []
-    };
+export class FormComponent implements OnInit, OnDestroy {
     treeForm: FormGroup = new FormGroup({});
-    configurationModel$: Observable<any>;
+    tree$: Observable<ParameterTree>;
+    formChanges: Subscription;
+    storeChanges: Subscription;
 
     constructor(
         private fb: FormBuilder,
@@ -34,16 +39,46 @@ export class FormComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.configurationModel$ = this.treeForm.valueChanges.pipe(
-            map(value => this.fs.formValueToConfigurationObject(value))
+        this.tree$ = this.store.pipe(
+            select(selectRootObjectClassNames),
+            map((classNames: string[]) => {
+                const rootParameters: ParameterTreeNode[] = this.buildRootParametersFromClassNames(classNames);
+                this.buildFormForRootParameters(rootParameters);
+                this.subscribeOnStoreChanges();
+                return { rootParameters };
+            })
         );
+
+        this.subscribeOnFormChanges();
     }
 
-    onSelectedRootObjectsChange(classNames: string[]) {
-        this.tree.rootParameters = classNames.map(name => this.ods.toParameterTreeNode(this.ods.getByClassName(name)));
+    private buildRootParametersFromClassNames(classNames: string[]): ParameterTreeNode[] {
+        return classNames.map((name: string) => {
+            const definition: ParameterDefinition = this.ods.getByClassName(name);
+            return this.ods.toParameterTreeNode(definition);
+        });
     }
 
-    onFilePatch(value: any) {
-        setTimeout(() => this.treeForm.patchValue(value), 0);
+    private buildFormForRootParameters(rootParameters: ParameterTreeNode[]): void {
+        rootParameters.map((node: ParameterTreeNode) => {
+            this.treeForm = this.fs.buildFormForNode(this.treeForm, node);
+        });
+    }
+
+    private subscribeOnStoreChanges(): void {
+        this.storeChanges = this.store
+            .pipe(select(selectFormValues))
+            .subscribe(formValue => this.treeForm.patchValue(formValue, { emitEvent: false, onlySelf: true }));
+    }
+
+    private subscribeOnFormChanges(): void {
+        this.formChanges = this.treeForm.valueChanges.pipe(debounceTime(500)).subscribe(formValue => {
+            this.store.dispatch(actionFormUpdate({ formValue }));
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.formChanges.unsubscribe();
+        this.storeChanges.unsubscribe();
     }
 }

@@ -1,9 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { DomSanitizer } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { CreateConfigurationDialogComponent } from '../create-configuration-dialog/create-configuration-dialog.component';
 import { FormsService } from '../../services/forms.service';
+import { select, Store } from '@ngrx/store';
+import { State } from '../../../examples.state';
+import { selectFormValues } from '../../store/form.selectors';
+import { filter, map } from 'rxjs/operators';
+import { actionFormReset, actionFormUpdate, actionFormUpdateRootObjects } from '../../store/form.actions';
 
 @Component({
     selector: 'simbad-form-toolbar',
@@ -11,34 +16,32 @@ import { FormsService } from '../../services/forms.service';
     styleUrls: ['./form-toolbar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormToolbarComponent implements OnInit, OnDestroy {
-    @Input()
-    configurationModel$: Observable<any>;
-    @Output()
-    selectedRootObjectsChange = new EventEmitter<string[]>();
-    @Output()
-    planPatch = new EventEmitter<any>();
+export class FormToolbarComponent implements OnInit {
+    configurationJsonHref$: Observable<SafeUrl>;
 
-    subscription: Subscription;
-
-    downloadJsonHref: any;
-
-    constructor(private sanitizer: DomSanitizer, private dialog: MatDialog, private fs: FormsService) {}
+    constructor(
+        private sanitizer: DomSanitizer,
+        private dialog: MatDialog,
+        private fs: FormsService,
+        private store: Store<State>
+    ) {}
 
     ngOnInit() {
-        this.subscription = this.configurationModel$.subscribe(configuration => {
-            const theJSON = JSON.stringify(configuration, null, 2);
-            this.downloadJsonHref = this.sanitizer.bypassSecurityTrustUrl(
-                'data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON)
-            );
-        });
+        this.configurationJsonHref$ = this.store.pipe(
+            select(selectFormValues),
+            filter(formValue => !!formValue),
+            map(formValue => {
+                const configuration = this.fs.formValueToConfigurationObject(formValue);
+                const theJSON = JSON.stringify(configuration, null, 2);
+                return this.sanitizer.bypassSecurityTrustUrl(
+                    'data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON)
+                );
+            })
+        );
     }
 
     openCreateConfigurationDialog() {
-        const dialogRef = this.dialog.open(CreateConfigurationDialogComponent);
-        dialogRef.afterClosed().subscribe(result => {
-            this.selectedRootObjectsChange.emit(result);
-        });
+        this.dialog.open(CreateConfigurationDialogComponent);
     }
 
     onFileSelected() {
@@ -49,16 +52,14 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
 
             reader.onload = (e: any) => {
                 const obj = JSON.parse(e.target.result);
-                this.selectedRootObjectsChange.emit(Object.keys(obj));
-                const patch = this.fs.configurationObjectToFormPatch(obj);
-                this.planPatch.emit(patch);
+                const rootObjectClassNames = Object.keys(obj);
+                const formValue = this.fs.configurationObjectToFormPatch(obj);
+                this.store.dispatch(actionFormReset());
+                this.store.dispatch(actionFormUpdateRootObjects({ rootObjectClassNames }));
+                this.store.dispatch(actionFormUpdate({ formValue }));
             };
 
             if (inputNode.files[0]) reader.readAsText(inputNode.files[0]);
         }
-    }
-
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
     }
 }

@@ -8,7 +8,7 @@ import { stockMarketReducer } from './stock-market/stock-market.reducer';
 import { StockMarketState } from './stock-market/stock-market.model';
 import { bookReducer } from './crud/books.reducer';
 import { formReducer } from './configuration-editor/store/form.reducer';
-import { FormState } from './configuration-editor/store/form.model';
+import { ConfigurationFormState } from './configuration-editor/store/form.model';
 import { BookState } from './crud/books.model';
 
 export const FEATURE_NAME = 'examples';
@@ -23,7 +23,7 @@ export const reducers: ActionReducerMap<ExamplesState> = {
 export interface ExamplesState {
     todos: TodosState;
     stocks: StockMarketState;
-    form: FormState;
+    form: ConfigurationFormState;
     books: BookState;
 }
 
