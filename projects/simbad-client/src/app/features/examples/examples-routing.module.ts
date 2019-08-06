@@ -11,7 +11,6 @@ import { StockMarketContainerComponent } from './stock-market/components/stock-m
 import { CrudComponent } from './crud/components/crud.component';
 import { FormComponent } from './configuration-editor/components/configuration-form/form.component';
 import { NotificationsComponent } from './notifications/components/notifications.component';
-import { UserComponent } from './simple-state-management/components/user.component';
 
 const routes: Routes = [
     {
@@ -47,11 +46,6 @@ const routes: Routes = [
                 path: 'crud/:id',
                 component: CrudComponent,
                 data: { title: 'simbad.examples.menu.crud' }
-            },
-            {
-                path: 'simple-state-management',
-                component: UserComponent,
-                data: { title: 'simbad.examples.menu.simple-state-management' }
             },
             {
                 path: 'form',

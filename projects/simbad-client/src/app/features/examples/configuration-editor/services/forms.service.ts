@@ -113,11 +113,17 @@ export class FormsService {
                 if (obj.hasOwnProperty(property)) {
                     if (property === 'class') {
                         obj['parameters'] = obj[obj[property]];
-                        const allowed = ['parameters', 'class'];
+                        const allowed = ['parameters', 'class', 'default_attributes'];
                         Object.keys(obj)
                             .filter(key => !allowed.includes(key))
                             .forEach(key => delete obj[key]);
                         decorateConfiguration(obj['parameters']);
+                    }
+                    if (property.startsWith('d_')) {
+                        const newProp = property.slice(2);
+                        obj[newProp] = obj[property];
+                        delete obj[property];
+                        decorateConfiguration(obj[newProp]);
                     }
                     if (typeof obj[property] === 'object') {
                         decorateConfiguration(obj[property]);
@@ -145,8 +151,25 @@ export class FormsService {
                         delete obj['parameters'];
                         decorateConfiguration(obj[prop]);
                     }
+                    if (property === 'default_attributes') {
+                        decorateDefaultAttributes(obj[property]);
+                        continue;
+                    }
                     if (typeof obj[property] === 'object') {
                         decorateConfiguration(obj[property]);
+                    }
+                }
+            }
+        }
+
+        function decorateDefaultAttributes(obj) {
+            for (const property in obj) {
+                if (obj.hasOwnProperty(property)) {
+                    const newProp = 'd_' + property;
+                    obj[newProp] = obj[property];
+                    delete obj[property];
+                    if (typeof obj[newProp] === 'object') {
+                        decorateDefaultAttributes(obj[newProp]);
                     }
                 }
             }

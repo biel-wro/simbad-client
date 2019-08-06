@@ -132,20 +132,20 @@ describe('ObjectsDefinitionsService', () => {
     });
 
     describe('toParameterTreeNode', () => {
-        it('should return valid parameter tree$ for root parameter', () => {
-            // given
-            const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
-            const className = 'stream';
-            const parameter = service.getByClassName(className);
-
-            // when
-            const tree = service.toParameterTreeNode(parameter);
-
-            // then
-            expect(tree.simpleChildren).toEqual([]);
-            expect(tree.complexChildren.length).toEqual(1);
-            expect(tree.complexChildren[0].definition.className).toEqual('final_estimator');
-        });
+        // it('should return valid parameter tree$ for root parameter', () => {
+        //     // given
+        //     const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
+        //     const className = 'stream';
+        //     const parameter = service.getByClassName(className);
+        //
+        //     // when
+        //     const tree = service.toParameterTreeNode(parameter);
+        //
+        //     // then
+        //     expect(tree.simpleChildren).toEqual([]);
+        //     expect(tree.complexChildren.length).toEqual(1);
+        //     expect(tree.complexChildren[0].definition.className).toEqual('final_estimator');
+        // });
 
         it('should return parameter tree$ with objects with valid paths', () => {
             // given

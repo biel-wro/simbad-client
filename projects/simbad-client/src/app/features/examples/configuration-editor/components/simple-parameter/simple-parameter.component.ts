@@ -25,6 +25,10 @@ export class SimpleParameterComponent implements OnInit {
         this.control = this.form.get(this.node.path) as FormControl;
     }
 
+    getDisplayName(className: string) {
+        return className.startsWith('d_') ? className.slice(2) : className;
+    }
+
     // hasValueErrors(): boolean {
     // }
     //

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-5">
             <mat-form-field class="example-full-width" [formGroup]="form">
-                <input matInput placeholder="{{node.definition.className}}" [formControlName]="node.path" >
+                <input matInput placeholder="{{getDisplayName(node.definition.className)}}" [formControlName]="node.path" >
                 <div class="errors-wrapper" *ngIf="control.errors">
                     <mat-error *ngIf="control.errors.required">
                         Parameter is required
@@ -15,7 +15,7 @@
         </div>
         <div class="col-5">
             <p>
-                <b>{{node.definition.className}}: </b>
+                <b>{{getDisplayName(node.definition.className)}}: </b>
                 {{node.definition.description}}
             </p>
         </div>

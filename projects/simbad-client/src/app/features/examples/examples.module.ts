@@ -25,8 +25,6 @@ import { FormEffects } from './configuration-editor/store/form.effects';
 import { AuthenticatedComponent } from './authenticated/authenticated.component';
 import { NotificationsComponent } from './notifications/components/notifications.component';
 import { ExamplesEffects } from './examples.effects';
-import { UserComponent } from './simple-state-management/components/user.component';
-import { UserService } from './simple-state-management/user.service';
 import { ConfigurationStepComponent } from './configuration-editor/components/configuration-step/configuration-step.component';
 import { ComplexParameterComponent } from './configuration-editor/components/complex-parameter/complex-parameter.component';
 import { SimpleParameterComponent } from './configuration-editor/components/simple-parameter/simple-parameter.component';
@@ -65,14 +63,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         CrudComponent,
         FormComponent,
         NotificationsComponent,
-        UserComponent,
         ConfigurationStepComponent,
         ComplexParameterComponent,
         SimpleParameterComponent,
         CreateConfigurationDialogComponent,
         FormToolbarComponent
     ],
-    providers: [StockMarketService, UserService, FormsService],
+    providers: [StockMarketService, FormsService],
     entryComponents: [CreateConfigurationDialogComponent]
 })
 export class ExamplesModule {
