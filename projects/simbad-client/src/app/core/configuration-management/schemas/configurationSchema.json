@@ -216,6 +216,7 @@
             "type": "enum",
             "isRoot": true,
             "possibleClasses": ["cubic_crystal"],
+            "childClasses": ["default_attributes"],
             "defaultValue": "cubic_crystal"
         },
         "cubic_crystal": {
@@ -324,6 +325,55 @@
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
             "valueType": "string",
             "defaultValue": "STDOUT"
+        },
+        "default_attributes": {
+            "type": "complex",
+            "description": "",
+            "childClasses": ["d_birth", "d_death", "d_success", "d_mutation"]
+        },
+        "d_birth": {
+            "type": "complex",
+            "description": "",
+            "childClasses": ["d_efficiency", "d_resistance"]
+        },
+        "d_death": {
+            "type": "complex",
+            "description": "",
+            "childClasses": ["d_efficiency", "d_resistance"]
+        },
+        "d_success": {
+            "type": "complex",
+            "description": "",
+            "childClasses": ["d_efficiency", "d_resistance"]
+        },
+        "d_mutation": {
+            "type": "complex",
+            "description": "",
+            "childClasses": ["d_id"]
+        },
+        "d_id": {
+            "type": "simple",
+            "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
+            "valueType": "int",
+            "minValue": 0,
+            "maxValue": 10,
+            "defaultValue": 1
+        },
+        "d_efficiency": {
+            "type": "simple",
+            "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
+            "valueType": "float",
+            "minValue": 0.0,
+            "maxValue": 1.0,
+            "defaultValue": 0.1
+        },
+        "d_resistance": {
+            "type": "simple",
+            "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
+            "valueType": "int",
+            "minValue": 0.0,
+            "maxValue": 1.0,
+            "defaultValue": 0.5
         }
     }
 }

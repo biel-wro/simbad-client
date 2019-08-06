@@ -2,7 +2,7 @@
     <mat-divider class="complex-divider" *ngIf="level==3"></mat-divider>
     <div class="row">
         <div class="col-5">
-            <h3>{{node.definition.className}}</h3>
+            <h3>{{getDisplayName(node.definition.className)}}</h3>
         </div>
         <div class="col-5" *ngIf="node.definition && node.definition.possibleClasses">
             <div class="row">

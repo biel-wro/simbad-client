@@ -35,6 +35,10 @@ export class ComplexParameterComponent implements OnInit {
         }
     }
 
+    getDisplayName(className: string) {
+        return className.startsWith('d_') ? className.slice(2) : className;
+    }
+
     onSelect($event: any) {
         this.fs.buildFormForNode(
             this.form,
