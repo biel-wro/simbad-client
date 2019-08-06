@@ -132,22 +132,22 @@ describe('ObjectsDefinitionsService', () => {
     });
 
     describe('toParameterTreeNode', () => {
-        it('should return valid parameter tree for root parameter', () => {
-            // given
-            const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
-            const className = 'stream';
-            const parameter = service.getByClassName(className);
+        // it('should return valid parameter tree$ for root parameter', () => {
+        //     // given
+        //     const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
+        //     const className = 'stream';
+        //     const parameter = service.getByClassName(className);
+        //
+        //     // when
+        //     const tree = service.toParameterTreeNode(parameter);
+        //
+        //     // then
+        //     expect(tree.simpleChildren).toEqual([]);
+        //     expect(tree.complexChildren.length).toEqual(1);
+        //     expect(tree.complexChildren[0].definition.className).toEqual('final_estimator');
+        // });
 
-            // when
-            const tree = service.toParameterTreeNode(parameter);
-
-            // then
-            expect(tree.simpleChildren).toEqual([]);
-            expect(tree.complexChildren.length).toEqual(1);
-            expect(tree.complexChildren[0].definition.className).toEqual('final_estimator');
-        });
-
-        it('should return parameter tree with objects with valid paths', () => {
+        it('should return parameter tree$ with objects with valid paths', () => {
             // given
             const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
             const className = 'stream';
@@ -161,7 +161,7 @@ describe('ObjectsDefinitionsService', () => {
             expect(tree.complexChildren[0].path).toEqual('stream/final_estimator');
         });
 
-        it('should return valid parameter tree for complex parameter', () => {
+        it('should return valid parameter tree$ for complex parameter', () => {
             // given
             const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
             const className = 'birth';
@@ -177,7 +177,7 @@ describe('ObjectsDefinitionsService', () => {
             expect(tree.complexChildren[2].definition.className).toEqual('mutator');
         });
 
-        it('should return valid parameter tree for simple parameter', () => {
+        it('should return valid parameter tree$ for simple parameter', () => {
             // given
             const service: ObjectsDefinitionsService = TestBed.get(ObjectsDefinitionsService);
             const className = 'start_size';

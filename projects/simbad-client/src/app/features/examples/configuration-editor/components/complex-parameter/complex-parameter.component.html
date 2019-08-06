@@ -1,0 +1,49 @@
+<div class="complex-wrapper" *ngIf="node">
+    <mat-divider class="complex-divider" *ngIf="level==3"></mat-divider>
+    <div class="row">
+        <div class="col-5">
+            <h3>{{getDisplayName(node.definition.className)}}</h3>
+        </div>
+        <div class="col-5" *ngIf="node.definition && node.definition.possibleClasses">
+            <div class="row">
+                <div class="col-3">
+                    <span>Object class: </span>
+                </div>
+                <div class="col-7" [formGroup]="form">
+                    <mat-select
+                        [formControlName]="node.path + '/class'"
+                        [placeholder]="node.definition.possibleClasses[0]"
+                        [ngModel]="chosenOption"
+                        (selectionChange)="onSelect($event)"
+                    >
+                        <mat-option *ngFor="let className of node.definition.possibleClasses" [value]="className">
+                            {{className}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <simbad-simple-parameter
+        *ngFor="let childNode of node.simpleChildren"
+         [node]="childNode"
+         [form]="form"
+         [parentPath]="node.path"
+    ></simbad-simple-parameter>
+    <simbad-complex-parameter
+        *ngFor="let childNode of node.complexChildren"
+        [node]="childNode"
+        [level]="level + 1"
+        [form]="form"
+        [parentPath]="node.path"
+    ></simbad-complex-parameter>
+    <simbad-complex-parameter
+        *ngIf="chosenEnumParameter"
+        [node]="chosenEnumParameter"
+        [level]="level + 1"
+        [form]="form"
+        [parentPath]="node.path">
+    </simbad-complex-parameter>
+</div>
+

@@ -40,6 +40,7 @@ export class ObjectsDefinitionsService {
                 type: val.type,
                 description: val.description,
                 possibleClasses: val.possibleClasses,
+                childClasses: val.childClasses ? val.childClasses : null,
                 defaultValue: val.defaultValue ? val.defaultValue : null,
                 isRoot: val.isRoot ? val.isRoot : false
             };
@@ -79,7 +80,7 @@ export class ObjectsDefinitionsService {
         return this.areAllNecessaryParametersDefined();
     }
 
-    private getPath(className: string, parentPath?: string) {
+    public getPath(className: string, parentPath?: string) {
         return parentPath ? `${parentPath}/${className}` : `${className}`;
     }
 
