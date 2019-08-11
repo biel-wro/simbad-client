@@ -18,6 +18,9 @@ import {
     selectEffectiveTheme,
     ActionSettingsChangeLanguage
 } from '../core/core.module';
+import { version } from 'punycode';
+
+declare var require: any;
 
 @Component({
     selector: 'simbad-root',
@@ -27,10 +30,9 @@ import {
 })
 export class AppComponent implements OnInit {
     isProd = env.production;
-    envName = env.envName;
-    version = env.versions.app;
+    envName = 'test';
+    version = '1.2.3';
     year = new Date().getFullYear();
-    logo = require('../../assets/logo.png');
     languages = ['en'];
     navigation = [
         { link: 'about', label: 'simbad.menu.about' },

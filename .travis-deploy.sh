@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 echo Deploy to GitHub Pages
-if [ "$TRAVIS_BRANCH" == "master"]; then
+if [ "$TRAVIS_BRANCH" != "master" ]; then
     echo Not on master, skipping deployment;
 else
     echo Deploy to GitHub Pages - Start
-    cd dist/apps/simbad-client
+    cd dist/projects/simbad-client
     git init
 
     git config user.name "Travis CI"

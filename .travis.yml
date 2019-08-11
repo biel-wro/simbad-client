@@ -15,10 +15,12 @@ before_install:
 install:
   - npm install codecov -g
   - npm ci --ignore-scripts
+before_script:
+  - npm rebuild node-sass;
 script:
   # run build script specified in package.json
   - npm run ci
-  - compodoc
+  - npm run compodoc:generate
   - bash ./.travis-deploy.sh
 after_success:
   - codecov

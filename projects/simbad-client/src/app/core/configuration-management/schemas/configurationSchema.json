@@ -56,15 +56,7 @@
         "parameter_evolution_3d": {
             "type": "complex",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "childClasses": [
-                "seed",
-                "space",
-                "mutation",
-                "interaction",
-                "birth",
-                "death",
-                "success"
-            ]
+            "childClasses": ["seed", "space", "mutation", "interaction", "birth", "death", "success"]
         },
         "space": {
             "type": "complex",
@@ -142,10 +134,7 @@
         "saturation": {
             "type": "enum",
             "description": "Pellentesque dui ante, iaculis vel ligula et, cursus cursus eros. Cras eget metus vel elit vulputate sollicitudin vel ac tellus. Duis cursus, enim eget interdum faucibus, nisi purus pulvinar risus",
-            "possibleClasses": [
-                "generalized_exponential",
-                "inverse_generalized_exponential"
-            ],
+            "possibleClasses": ["generalized_exponential", "inverse_generalized_exponential"],
             "defaultValue": "generalized_exponential"
         },
         "generalized_exponential": {
@@ -250,11 +239,7 @@
         "snapshots": {
             "type": "complex",
             "isRoot": true,
-            "childClasses": [
-                "step_estimator",
-                "final_estimator",
-                "configuration_printer"
-            ]
+            "childClasses": ["step_estimator", "final_estimator", "configuration_printer"]
         },
         "step_estimator": {
             "type": "enum",

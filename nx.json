@@ -1,0 +1,21 @@
+{
+    "npmScope": "simbad",
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": "*",
+        "tsconfig.json": "*",
+        "tslint.json": "*",
+        "nx.json": "*"
+    },
+    "projects": {
+        "simbad-client": {
+            "tags": ["simbad-client"]
+        },
+        "simbad-cli-api": {
+            "tags": ["simbad-cli-api"]
+        },
+        "simbad-dev-server": {
+            "tags": ["simbad-dev-server"]
+        }
+    }
+}

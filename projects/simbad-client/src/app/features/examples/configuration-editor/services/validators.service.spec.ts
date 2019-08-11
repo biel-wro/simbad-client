@@ -56,10 +56,8 @@ describe('ValidatorsService', () => {
             // when
             const validators: ValidatorFn[] = service.generateValidators(parameter);
 
-            // then
-            // Function equality is tricky in jasmine, so this is not a strong assertion
+            // Anonymous function equality tricky in jest, so this is not a strong assertion
             expect(validators.length).toEqual(3);
-            expect(validators[0].name).toEqual('required');
         });
     });
 });

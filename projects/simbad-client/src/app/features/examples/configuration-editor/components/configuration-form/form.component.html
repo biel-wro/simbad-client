@@ -1,6 +1,6 @@
 <mat-accordion>
     <simbad-form-toolbar></simbad-form-toolbar>
-    <div *ngIf="tree$ | async as tree">
+    <div *ngIf="(tree$ | async) as tree">
         <simbad-configuration-step
             *ngFor="let rootNode of tree.rootParameters"
             [node]="rootNode"

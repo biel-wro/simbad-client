@@ -1,28 +1,38 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./src",
-        "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "importHelpers": true,
-        "module": "esnext",
-        "target": "es2015",
-        "typeRoots": ["node_modules/@types"],
+        "noImplicitAny": false,
+        "strictNullChecks": false,
         "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "lib": ["es2018", "dom"]
+        "suppressImplicitAnyIndexErrors": true,
+        "importHelpers": true,
+        "target": "es5",
+        "module": "commonjs",
+        "typeRoots": ["node_modules/@types"],
+        "lib": ["es2017", "dom"],
+        "baseUrl": ".",
+        "paths": {
+            "@simbad-cli-api/*": ["libs/simbad-cli-api/src/*"],
+            "@simbad-client/*": ["projects/simbad-client/src/*"]
+        }
     },
-    "typedocOptions": {
-        "name": "simbad-client",
-        "mode": "modules",
-        "theme": "markdown",
-        "exclude": "**/*+(index|.spec|.e2e|.module|index.d).ts",
-        "excludeExternals": true,
-        "hideGenerator": true,
-        "ignoreCompilerErrors": false
-    }
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true
+    },
+    "exclude": [
+        "node_modules",
+        "tmp",
+        "dist",
+        "coverage",
+        "projects/simbad-client/dist",
+        "e2e-reports",
+        "ut-reports",
+        "webpack-analyze",
+        ".vscode"
+    ]
 }

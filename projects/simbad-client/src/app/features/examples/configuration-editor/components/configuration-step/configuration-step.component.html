@@ -1,7 +1,7 @@
-<mat-expansion-panel class="configuration-step-panel" [expanded]="node.definition.className==='model'">
+<mat-expansion-panel class="configuration-step-panel" [expanded]="node.definition.className === 'model'">
     <mat-expansion-panel-header>
         <mat-panel-title>
-           {{node.definition.className}}
+            {{ node.definition.className }}
         </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="container">
@@ -18,8 +18,8 @@
             [node]="childNode"
             [level]="1"
             [parentPath]="node.path"
-            [form]="form">
+            [form]="form"
+        >
         </simbad-complex-parameter>
     </div>
 </mat-expansion-panel>
-

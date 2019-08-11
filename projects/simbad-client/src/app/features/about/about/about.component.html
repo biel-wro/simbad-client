@@ -1,41 +1,64 @@
 <div class="background">
-  <div class="gradient">
-    <div class="container">
-      <h1>{{ 'simbad.title.long' | translate }}</h1>
-      <div class="actions">
-        <a [ngClass]="routeAnimationsElements" mat-raised-button class="actions-main" color="primary" routerLink="../feature-list">
-          {{ 'simbad.menu.features' | translate }}
-        </a>
-        <a mat-raised-button class="actions-main" color="accent" routerLink="../examples" [ngClass]="routeAnimationsElements">
-          {{ 'simbad.menu.examples' | translate }}
-        </a>
-        <a mat-raised-button class="actions-main" color="warn" routerLink="../settings" [ngClass]="routeAnimationsElements">
-          {{ 'simbad.about.change-theme' | translate }}
-        </a>
-        <br>
-      </div>
-      <div class="get-started" [ngClass]="routeAnimationsElements">
-        <h2>{{ 'simbad.about.get-started' | translate }}</h2>
-        <code>git clone
-          https://github.com/jakubsokolowski/simbad-client.git
-          new-project</code><br>
-        <code>cd new-project</code><br>
-        <code>npm install</code><br>
-        <code>npm start</code>
-      </div>
+    <div class="gradient">
+        <div class="container">
+            <h1>{{ 'simbad.title.long' | translate }}</h1>
+            <div class="actions">
+                <a
+                    [ngClass]="routeAnimationsElements"
+                    mat-raised-button
+                    class="actions-main"
+                    color="primary"
+                    routerLink="../feature-list"
+                >
+                    {{ 'simbad.menu.features' | translate }}
+                </a>
+                <a
+                    mat-raised-button
+                    class="actions-main"
+                    color="accent"
+                    routerLink="../examples"
+                    [ngClass]="routeAnimationsElements"
+                >
+                    {{ 'simbad.menu.examples' | translate }}
+                </a>
+                <a
+                    mat-raised-button
+                    class="actions-main"
+                    color="warn"
+                    routerLink="../settings"
+                    [ngClass]="routeAnimationsElements"
+                >
+                    {{ 'simbad.about.change-theme' | translate }}
+                </a>
+                <br />
+            </div>
+            <div class="get-started" [ngClass]="routeAnimationsElements">
+                <h2>{{ 'simbad.about.get-started' | translate }}</h2>
+                <code>git clone https://github.com/jakubsokolowski/simbad-client.git new-project</code><br />
+                <code>cd new-project</code><br />
+                <code>npm install</code><br />
+                <code>npm start</code>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 <div class="container">
-  <div class="follow-releases" [ngClass]="routeAnimationsElements">
-    <h2 rtl>{{ 'simbad.about.get-notified.title' | translate }}</h2>
-    <p rtl>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nibh dui. Integer rutrum, lacus eget placerat sollicitudin, dolor metus tincidunt ex, id scelerisque nibh ex in mi. Etiam eu massa ligula. Nullam mollis cursus feugiat. Proin aliquam turpis ut arcu dapibus, vel pellentesque erat dignissim. Curabitur blandit condimentum quam id condimentum. Quisque nisi urna, vulputate eget augue in, convallis interdum dolor. Proin porta viverra pellentesque.
-
-    </p>
-    <p rtl>
-    Nullam vitae commodo nunc. Vestibulum vel ullamcorper tortor. Morbi tristique ullamcorper lorem ornare tempor. Quisque convallis consectetur neque, eget laoreet turpis. Aenean iaculis sagittis efficitur. Maecenas enim mi, convallis vehicula nunc vestibulum, vehicula pretium nisl. Duis porta, sapien nec eleifend imperdiet, sem nisl mollis nunc, ac tempus erat orci et turpis. Mauris faucibus diam id dui porttitor congue. Ut ullamcorper, nisi vitae egestas tincidunt, justo erat condimentum dolor, at ultricies nisi arcu sit amet tellus. Vestibulum nec velit tincidunt, rhoncus orci eget, ultricies mauris.
-    </p>
-  </div>
+    <div class="follow-releases" [ngClass]="routeAnimationsElements">
+        <h2 rtl>{{ 'simbad.about.get-notified.title' | translate }}</h2>
+        <p rtl>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nibh dui. Integer rutrum, lacus eget
+            placerat sollicitudin, dolor metus tincidunt ex, id scelerisque nibh ex in mi. Etiam eu massa ligula. Nullam
+            mollis cursus feugiat. Proin aliquam turpis ut arcu dapibus, vel pellentesque erat dignissim. Curabitur
+            blandit condimentum quam id condimentum. Quisque nisi urna, vulputate eget augue in, convallis interdum
+            dolor. Proin porta viverra pellentesque.
+        </p>
+        <p rtl>
+            Nullam vitae commodo nunc. Vestibulum vel ullamcorper tortor. Morbi tristique ullamcorper lorem ornare
+            tempor. Quisque convallis consectetur neque, eget laoreet turpis. Aenean iaculis sagittis efficitur.
+            Maecenas enim mi, convallis vehicula nunc vestibulum, vehicula pretium nisl. Duis porta, sapien nec eleifend
+            imperdiet, sem nisl mollis nunc, ac tempus erat orci et turpis. Mauris faucibus diam id dui porttitor
+            congue. Ut ullamcorper, nisi vitae egestas tincidunt, justo erat condimentum dolor, at ultricies nisi arcu
+            sit amet tellus. Vestibulum nec velit tincidunt, rhoncus orci eget, ultricies mauris.
+        </p>
+    </div>
 </div>
-

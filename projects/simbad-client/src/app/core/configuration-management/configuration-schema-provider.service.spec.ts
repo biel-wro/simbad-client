@@ -20,6 +20,5 @@ describe('ConfigurationSchemaProviderService', () => {
         // then
         expect(schema).toBeTruthy();
         expect(schema.classMap).toBeTruthy();
-        console.log(schema.classMap);
     });
 });

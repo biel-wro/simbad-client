@@ -1,9 +1,9 @@
 {
-    "extends": "../../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
-        "outDir": "../../out-tsc/app",
+        "outDir": "../../dist/projects/simbad-client",
         "types": []
     },
-    "include": ["src/**/*.ts"],
-    "exclude": ["src/test.ts", "src/**/*.spec.ts"]
+    "exclude": ["src/test-setup.ts", "src/jest-global-mocks.ts", "**/*.spec.ts", "scripts/*", "dist/*"],
+    "include": ["**/*.ts"]
 }
