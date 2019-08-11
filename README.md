@@ -2,7 +2,8 @@
 [![Build Status](https://travis-ci.org/JakubSokolowski/simbad-client.svg?branch=master)](https://travis-ci.org/JakubSokolowski/simbad-client)
 [![Code Coverage](https://codecov.io/gh/JakubSokolowski/simbad-client/graph/badge.svg)](https://codecov.io/gh/JakubSokolowski/simbad-client/)  
 
-[Live Demo](https://jakubsokolowski.github.io/simbad-client#/about)
+[Live Demo](https://jakubsokolowski.github.io/simbad-client#/about)  
+[Documentation](https://jakubsokolowski.github.io/simbad-docs/)
 
 ## Supported browsers
 - chrome 72-74
