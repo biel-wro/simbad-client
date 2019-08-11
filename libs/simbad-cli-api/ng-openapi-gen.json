@@ -1,0 +1,11 @@
+{
+    "$schema": "../../node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
+    "input": "./.tmp/SIMBAD-CLI-REST_openapi.json",
+    "output": "./src/gen",
+    "defaultTag": "simbad-cli-client",
+    "module": "SimbadCliClientModule",
+    "ignoreUnusedModels": true,
+    "removeStaleFiles": false,
+    "serviceIndex": "index",
+    "enumStyle": "upper"
+}
