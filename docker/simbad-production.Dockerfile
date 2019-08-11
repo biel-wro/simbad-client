@@ -17,12 +17,12 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
     # Set the work directory to where we copied our source files
 WORKDIR /usr/src/app
     # Build our distributable
-RUN npm run build:prod
+RUN npm run build
 
 FROM node:11.1.0 as production
     # Copy the dist folder from builder
 COPY --from=builder /usr/src/app/dist /usr/src/app/dist
-COPY --from=builder /usr/src/app/projects/server/server.js /usr/src/app/projects/server/server.js
+COPY --from=builder /usr/src/app/docker/server/server.js /usr/src/app/apps/server/server.js
     # Set the work directory to where we copied our source files
 WORKDIR /usr/src/app
 RUN npm install compression@1.7.3
@@ -31,4 +31,4 @@ RUN npm install express@4.16.4
 ENV CONTEXT=
 ENV PORT=
     # Run the node server which should be used for production
-CMD ["node", "/usr/src/app/projects/server/server.js"]
+CMD ["node", "/usr/src/app/apps/server/server.js"]

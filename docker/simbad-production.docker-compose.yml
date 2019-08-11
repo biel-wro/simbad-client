@@ -4,8 +4,8 @@ services:
         image: simbad-client
         container_name: simbad-client
         build:
-            context: .
-            dockerfile: simbad-production.Dockerfile
+            context: ../
+            dockerfile: ./docker/simbad-production.Dockerfile
             target: production
         environment:
             - CONTEXT=
