@@ -18,6 +18,7 @@ install:
 script:
   # run build script specified in package.json
   - npm run ci
+  - compodoc
   - bash ./.travis-deploy.sh
 after_success:
   - codecov
