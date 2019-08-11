@@ -334,7 +334,6 @@ describe('FormsService', () => {
             form = service.buildFormForNode(form, node);
 
             // then
-            console.log(Object.keys(form.getRawValue()));
         });
     });
 

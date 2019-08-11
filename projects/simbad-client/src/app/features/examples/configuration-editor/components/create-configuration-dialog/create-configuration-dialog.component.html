@@ -1,17 +1,15 @@
 <h3>Choose root objects for configuration</h3>
 <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="container">
-        <mat-label class="row"
-                   *ngFor="let object of rootObjects">
+        <mat-label class="row" *ngFor="let object of rootObjects">
             <mat-checkbox [formControlName]="object.name">
-                {{object.name}}
+                {{ object.name }}
             </mat-checkbox>
         </mat-label>
         <div *ngIf="!form.valid">At least one object must be selected</div>
         <div class="row action-button-wrapper" align="end">
             <button class="dialog-action-button" mat-raised-button color="primary" (click)="submit()">Cancel</button>
-            <button class="dialog-action-button" mat-raised-button color="accent" (click)=" cancel()">Submit</button>
+            <button class="dialog-action-button" mat-raised-button color="accent" (click)="cancel()">Submit</button>
         </div>
     </div>
 </form>
-

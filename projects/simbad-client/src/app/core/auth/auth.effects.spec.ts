@@ -7,16 +7,23 @@ import { TestScheduler } from 'rxjs/testing';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { authLogin, authLogout } from './auth.actions';
 import { AuthEffects, AUTH_KEY } from './auth.effects';
+import Mocked = jest.Mocked;
+import { TestBed } from '@angular/core/testing';
 
+jest.mock('../local-storage/local-storage.service');
+jest.mock('@angular/router');
 const scheduler = new TestScheduler((actual, expected) => assert.deepStrictEqual(actual, expected));
 
 describe('AuthEffects', () => {
-    let localStorageService: jasmine.SpyObj<LocalStorageService>;
-    let router: jasmine.SpyObj<Router>;
+    let localStorageService: Mocked<LocalStorageService>;
+    let router: Mocked<Router>;
 
-    beforeEach(() => {
-        localStorageService = jasmine.createSpyObj('LocalStorageService', ['setItem']);
-        router = jasmine.createSpyObj('Router', ['navigateByUrl']);
+    beforeEach(async () => {
+        TestBed.configureTestingModule({
+            providers: [Router, LocalStorageService]
+        }).compileComponents();
+        router = TestBed.get(Router);
+        localStorageService = TestBed.get(LocalStorageService);
     });
 
     describe('login', () => {

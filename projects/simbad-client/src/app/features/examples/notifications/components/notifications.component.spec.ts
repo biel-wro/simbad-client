@@ -6,6 +6,7 @@ import { NotificationService } from '../../../../core/core.module';
 import { SharedModule } from '../../../../shared/shared.module';
 
 import { NotificationsComponent } from './notifications.component';
+import { MatSnackBarModule } from '@angular/material';
 
 describe('NotificationsComponent', () => {
     let component: NotificationsComponent;
@@ -13,7 +14,7 @@ describe('NotificationsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot()],
+            imports: [SharedModule, NoopAnimationsModule, TranslateModule.forRoot(), MatSnackBarModule],
             providers: [NotificationService],
             declarations: [NotificationsComponent]
         }).compileComponents();

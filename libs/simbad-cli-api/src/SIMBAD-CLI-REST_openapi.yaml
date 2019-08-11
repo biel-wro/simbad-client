@@ -1,0 +1,118 @@
+openapi: 3.0.0
+
+info:
+    title: SIMBAD-CLI REST API
+    version: v1
+    contact:
+        email: jakub.sokolowski199@gmai.com
+
+tags:
+    - name: SCLI
+
+servers:
+    - url: /api/cli
+
+paths:
+    /run:
+        post:
+            tags:
+                - CLI
+            operationId: runCliCommand
+            description: Executes command using simbad-cli binary
+            requestBody:
+                content:
+                    application:/json:
+                        schema:
+                            $ref: "#/components/schemas/RunCliCommandRequest"
+            responses:
+                "202":
+                    description: Request is accepted and command starts to execute
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/RunCliCommandResponse"
+                "400":
+                    description: CLI is busy
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/RunCliError"
+    /status:
+        get:
+            tags:
+                - CLI
+            operationId: getSimbadCliStatus
+            description: Get cli operation status
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/CliStatus"
+    /progress:
+        get:
+            tags:
+                - CLI
+            operationId: getCliOperationProgress
+            description: Get cli operation progress
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/CliOperationProgress"
+
+components:
+    schemas:
+        RunCliCommandRequest:
+            type: object
+            properties:
+                configurationName:
+                    description: The configuration file name
+                    type: string
+                configuration:
+                    description: The configuration file to be sent to CLI
+                    type: string
+                    format: binary
+            required:
+                - configuration
+                - confiugrationName
+        RunCliCommandResponse:
+            type: object
+            properties:
+                status:
+                    description: The status of command
+                    type: string
+        RunCliError:
+            type: object
+            properties:
+                cause:
+                    description: The cause of an error
+                    type: string
+        CliStatus:
+            type: object
+            properties:
+                status:
+                    description: CLI status - BUSY / IDLE
+                    type: string
+                cpu:
+                    description: cpu usage
+                    type: number
+                memory:
+                    description: Memory usage
+                    type: number
+                uptime:
+                    description: CLI uptime in s
+                    type: number
+        CliOperationProgress:
+            type: object
+            properties:
+                progress:
+                    description: Run command progress
+                    type: number
+                runningTime:
+                    description: Command running time
+                    type: number
+

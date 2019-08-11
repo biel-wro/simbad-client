@@ -4,11 +4,9 @@
 /dist
 /tmp
 /out-tsc
-/coverage
 
 # dependencies
 /node_modules
-yarn.lock
 
 # IDEs and editors
 /.idea
@@ -18,34 +16,25 @@ yarn.lock
 *.launch
 .settings/
 *.sublime-workspace
+.vscode/
 
-# IDE - VSCode
-.vscode/*
-# !.vscode/settings.json
-# !.vscode/tasks.json
-# !.vscode/launch.json
-# !.vscode/extensions.json
-
-# compodoc
-/documentation
 
 # misc
 /.sass-cache
 /connect.lock
 /coverage
+/e2e-reports
+/documentation
+/docs
+/webpack-analyze
+/ut-reports
 /libpeerconnection.log
+debug.log
 npm-debug.log
+yarn-error.log
 testem.log
 /typings
-
-# e2e
-/e2e/src/*.js
-/e2e/src/*.map
-/cypress/screenshots
 
 # System Files
 .DS_Store
 Thumbs.db
-
-# debug
-debug.log

@@ -15,6 +15,6 @@ export class ConfigurationSchemaProviderService {
      * @returns object containing parameter definitions in format { className: definition}
      */
     public getSchema(): any {
-        return this.schema.default;
+        return this.schema;
     }
 }

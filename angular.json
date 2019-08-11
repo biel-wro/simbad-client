@@ -1,40 +1,61 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "version": 1,
-    "newProjectRoot": "projects",
+    "newProjectRoot": "",
     "projects": {
         "simbad-client": {
+            "root": "projects/simbad-client/",
+            "sourceRoot": "projects/simbad-client/src",
             "projectType": "application",
+            "prefix": "simbad-client",
             "schematics": {
-                "@schematics/angular:component": {
-                    "changeDetection": "OnPush",
-                    "style": "scss"
+                "@nrwl/schematics:component": {
+                    "styleext": "scss"
                 }
             },
-            "root": "projects/simbad-client",
-            "sourceRoot": "projects/simbad-client/src",
-            "prefix": "simbad",
             "architect": {
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/simbad-client",
+                        "outputPath": "dist/projects/simbad-client",
                         "index": "projects/simbad-client/src/index.html",
                         "main": "projects/simbad-client/src/main.ts",
                         "polyfills": "projects/simbad-client/src/polyfills.ts",
                         "tsConfig": "projects/simbad-client/tsconfig.app.json",
-                        "aot": false,
                         "assets": [
                             "projects/simbad-client/src/favicon.ico",
-                            "projects/simbad-client/src/assets"
+                            "projects/simbad-client/src/assets",
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui-simbad-client/src/assets",
+                                "output": "./assets"
+                            }
                         ],
                         "styles": [
                             "projects/simbad-client/src/styles-app-loading.scss",
                             "projects/simbad-client/src/styles.scss"
                         ],
-                        "scripts": []
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["libs/ui-simbad-client/src/lib"]
+                        }
                     },
                     "configurations": {
+                        "serve": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/simbad-client/src/environments/environment.ts",
+                                    "with": "projects/simbad-client/src/environments/environment.serve.ts"
+                                }
+                            ]
+                        },
+                        "hmr": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/simbad-client/src/environments/environment.ts",
+                                    "with": "projects/simbad-client/src/environments/environment.hmr.ts"
+                                }
+                            ]
+                        },
                         "production": {
                             "fileReplacements": [
                                 {
@@ -47,31 +68,18 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
+                            "statsJson": true,
+                            "showCircularDependencies": true,
                             "aot": true,
                             "extractLicenses": true,
-                            "vendorChunk": false,
+                            "vendorChunk": true,
+                            "forkTypeChecker": true,
                             "buildOptimizer": true,
                             "budgets": [
                                 {
-                                    "type": "bundle",
-                                    "name": "polyfills",
-                                    "baseline": "150kb",
-                                    "maximumWarning": "50kb",
-                                    "maximumError": "100kb"
-                                },
-                                {
-                                    "type": "bundle",
-                                    "name": "styles",
-                                    "baseline": "280kb",
-                                    "maximumWarning": "50kb",
-                                    "maximumError": "100kb"
-                                },
-                                {
-                                    "type": "bundle",
-                                    "name": "main",
-                                    "baseline": "1024kb",
-                                    "maximumWarning": "100kb",
-                                    "maximumError": "200kb"
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
                                 }
                             ]
                         }
@@ -80,11 +88,23 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "simbad-client:build"
+                        "browserTarget": "simbad-client:build:hmr",
+                        "proxyConfig": "proxy.config.json",
+                        "hmr": true,
+                        "hmrWarning": false
                     },
                     "configurations": {
                         "production": {
+                            "hmr": false,
+                            "liveReload": false,
+                            "watch": false,
                             "browserTarget": "simbad-client:build:production"
+                        },
+                        "e2e": {
+                            "hmr": false,
+                            "liveReload": false,
+                            "watch": false,
+                            "browserTarget": "simbad-client:build:serve"
                         }
                     }
                 },
@@ -94,58 +114,103 @@
                         "browserTarget": "simbad-client:build"
                     }
                 },
-                "test": {
-                    "builder": "@angular-devkit/build-angular:karma",
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "main": "projects/simbad-client/src/test.ts",
-                        "polyfills": "projects/simbad-client/src/polyfills.ts",
+                        "tsConfig": ["projects/simbad-client/tsconfig.app.json", "projects/simbad-client/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/builders:jest",
+                    "options": {
+                        "jestConfig": "projects/simbad-client/jest.config.js",
                         "tsConfig": "projects/simbad-client/tsconfig.spec.json",
-                        "karmaConfig": "projects/simbad-client/karma.conf.js",
-                        "assets": [
-                            "projects/simbad-client/src/favicon.ico",
-                            "projects/simbad-client/src/assets"
-                        ],
+                        "setupFile": "projects/simbad-client/src/test-setup.ts",
                         "styles": [
-                            "projects/simbad-client/src/styles-app-loading.scss",
-                            "projects/simbad-client/src/styles.scss"
-                        ],
-                        "scripts": []
-                    },
-                    "configurations": {
-                        "test": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "projects/simbad-client/src/environments/environment.ts",
-                                    "with": "projects/simbad-client/src/environments/environment.test.ts"
-                                }
-                            ]
-                        }
+                            "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
+                        ]
+                    }
+                }
+            }
+        },
+        "simbad-cli-api": {
+            "root": "libs/simbad-cli-api",
+            "sourceRoot": "libs/simbad-cli-api/src",
+            "projectType": "library",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "libs/simbad-cli-api/tsconfig.lib.json",
+                        "project": "libs/simbad-cli-api/ng-package.json"
                     }
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": [
-                            "projects/simbad-client/tsconfig.app.json",
-                            "projects/simbad-client/tsconfig.spec.json",
-                            "projects/simbad-client/e2e/tsconfig.json"
-                        ],
+                        "tsConfig": ["libs/simbad-cli-api/tsconfig.lib.json"],
                         "exclude": ["**/node_modules/**"]
                     }
-                },
-                "e2e": {
-                    "builder": "@angular-devkit/build-angular:protractor",
+                }
+            },
+            "schematics": {
+                "@nrwl/schematics:component": {
+                    "styleext": "scss"
+                }
+            }
+        },
+        "simbad-dev-server": {
+            "root": "projects/simbad-dev-server",
+            "sourceRoot": "projects/simbad-dev-server/src",
+            "projectType": "application",
+            "prefix": "simbad-dev-server",
+            "schematics": {},
+            "architect": {
+                "build-dev": {
+                    "builder": "@nrwl/builders:node-build",
                     "options": {
-                        "protractorConfig": "projects/simbad-client/e2e/protractor.conf.js",
-                        "devServerTarget": "simbad-client:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "simbad-client:serve:production"
-                        }
+                        "outputPath": "dist/projects/simbad-dev-server",
+                        "main": "projects/simbad-dev-server/src/main.ts",
+                        "tsConfig": "projects/simbad-dev-server/tsconfig.app.json",
+                        "assets": ["projects/simbad-dev-server/src/assets"]
+                    }
+                },
+                "serve": {
+                    "builder": "@nrwl/builders:node-execute",
+                    "options": {
+                        "buildTarget": "simbad-dev-server:build-dev"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["projects/simbad-dev-server/tsconfig.app.json"],
+                        "exclude": ["**/node_modules/**"]
                     }
                 }
             }
+        }
+    },
+    "cli": {
+        "warnings": {
+            "typescriptMismatch": false,
+            "versionMismatch": false
+        },
+        "defaultCollection": "@ngrx/schematics",
+        "packageManager": "npm"
+    },
+    "schematics": {
+        "@nrwl/schematics:application": {
+            "style": "scss",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "protractor"
+        },
+        "@nrwl/schematics:library": {
+            "style": "scss",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "protractor"
         }
     },
     "defaultProject": "simbad-client"

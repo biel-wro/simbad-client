@@ -12,28 +12,28 @@ export interface Feature {
 export const features: Feature[] = [
     {
         name: 'Angular',
-        version: env.versions.angular,
+        version: '1',
         description: 'simbad.features.angular',
         github: 'https://github.com/angular/angular',
         documentation: 'https://angular.io/docs/ts/latest/'
     },
     {
         name: 'Angular Material',
-        version: env.versions.material,
+        version: '1',
         description: 'simbad.features.angular-material',
         github: 'https://github.com/angular/material2/',
         documentation: 'https://material.angular.io/'
     },
     {
         name: 'Angular Cli',
-        version: env.versions.angularCli,
+        version: '1',
         description: 'simbad.features.angular-cli',
         github: 'https://github.com/angular/angular-cli',
         documentation: 'https://cli.angular.io/'
     },
     {
         name: 'NgRx',
-        version: env.versions.ngrx,
+        version: '1',
         description: 'simbad.features.ngrx',
         github: 'https://github.com/ngrx/platform',
         documentation: 'http://ngrx.github.io/',
@@ -41,7 +41,7 @@ export const features: Feature[] = [
     },
     {
         name: 'RxJS',
-        version: env.versions.rxjs,
+        version: '1',
         description: 'simbad.features.rxjs',
         github: 'https://github.com/ReactiveX/RxJS',
         documentation: 'http://reactivex.io/rxjs/',
@@ -50,7 +50,7 @@ export const features: Feature[] = [
     },
     {
         name: 'Bootstrap',
-        version: env.versions.bootstrap,
+        version: '1',
         description: 'simbad.features.bootstrap',
         github: 'https://github.com/twbs/bootstrap',
         documentation: 'https://getbootstrap.com/docs/4.0/layout/grid/',
@@ -59,28 +59,28 @@ export const features: Feature[] = [
     },
     {
         name: 'Typescript',
-        version: env.versions.typescript,
+        version: '1',
         description: 'simbad.features.typescript',
         github: 'https://github.com/Microsoft/TypeScript',
         documentation: 'https://www.typescriptlang.org/docs/home.html'
     },
     {
         name: 'I18n',
-        version: env.versions.ngxtranslate,
+        version: '1',
         description: 'simbad.features.ngxtranslate',
         github: 'https://github.com/ngx-translate/core',
         documentation: 'http://www.ngx-translate.com/'
     },
     {
         name: 'Font Awesome 5',
-        version: env.versions.fontAwesome,
+        version: '1',
         description: 'simbad.features.fontawesome',
         github: 'https://github.com/FortAwesome/Font-Awesome',
         documentation: 'https://fontawesome.com/icons'
     },
     {
         name: 'Cypress',
-        version: env.versions.cypress,
+        version: '1',
         description: 'simbad.features.cypress',
         github: 'https://github.com/cypress-io/cypress',
         documentation: 'https://www.cypress.io/'

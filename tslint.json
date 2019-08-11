@@ -1,69 +1,199 @@
 {
-    "rulesDirectory": ["node_modules/codelyzer"],
-    "rules": {
-        "arrow-return-shorthand": true,
-        "callable-types": true,
-        "class-name": true,
-        "comment-format": [true, "check-space"],
-        "deprecation": {
-            "severity": "warn"
-        },
-        "forin": true,
-        "import-blacklist": [true, "rxjs/Rx", ["rxjs/(?!operators|testing)"]],
-        "interface-over-type-literal": true,
-        "label-position": true,
-        "member-access": false,
-        "member-ordering": [
-            true,
-            {
-                "order": [
-                    "static-field",
-                    "instance-field",
-                    "static-method",
-                    "instance-method"
-                ]
-            }
-        ],
-        "no-arg": true,
-        "no-bitwise": true,
-        "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
-        "no-construct": true,
-        "no-debugger": true,
-        "no-duplicate-super": true,
-        "no-empty": false,
-        "no-empty-interface": true,
-        "no-eval": true,
-        "no-inferrable-types": [true, "ignore-params"],
-        "no-misused-new": true,
-        "no-non-null-assertion": true,
-        "no-shadowed-variable": true,
-        "no-string-literal": false,
-        "no-string-throw": true,
-        "no-switch-case-fall-through": true,
-        "no-unnecessary-initializer": true,
-        "no-unused-expression": true,
-        "no-use-before-declare": true,
-        "no-var-keyword": true,
-        "object-literal-sort-keys": false,
-        "prefer-const": true,
-        "quotemark": [true, "single"],
-        "radix": true,
-        "triple-equals": [true, "allow-null-check"],
-        "unified-signatures": true,
-        "variable-name": false,
-        "whitespace": [
-            true,
-            "check-branch",
-            "check-decl",
-            "check-operator",
-            "check-separator",
-            "check-type"
-        ],
-        "no-output-on-prefix": true,
-        "no-input-rename": true,
-        "no-output-rename": true,
-        "use-pipe-transform-interface": true,
-        "component-class-suffix": true,
-        "directive-class-suffix": true
-    }
+  "rulesDirectory": [
+    "node_modules/codelyzer",
+    "node_modules/@nrwl/schematics/src/tslint"
+  ],
+  "extends": [
+    "rxjs-tslint-rules"
+  ],
+  "defaultSeverity": "error",
+  "rules": {
+    "no-bitwise": true,
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "no-construct": true,
+    "no-duplicate-super": true,
+    "no-empty": false,
+    "no-empty-interface": false,
+    "no-misused-new": true,
+    "no-non-null-assertion": true,
+    "no-shadowed-variable": true,
+    "no-string-literal": false,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-unnecessary-initializer": true,
+    "no-use-before-declare": true,
+    "object-literal-sort-keys": false,
+    "radix": true,
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "unified-signatures": true,
+    "directive-selector": [
+      true,
+      "attribute",
+      "simbad",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "simbad",
+      "kebab-case"
+    ],
+    "no-output-on-prefix": true,
+    "use-input-property-decorator": true,
+    "use-output-property-decorator": true,
+    "use-host-property-decorator": true,
+    "no-input-rename": true,
+    "no-output-rename": true,
+    "use-life-cycle-interface": true,
+    "use-pipe-transform-interface": true,
+    "component-class-suffix": true,
+    "directive-class-suffix": true,
+    "nx-enforce-module-boundaries": [
+      true,
+      {
+        "allow": [],
+        "depConstraints": [
+          {
+            "sourceTag": "*",
+            "onlyDependOnLibsWithTags": [
+              "*"
+            ]
+          }
+        ]
+      }
+    ],
+    "arrow-return-shorthand": true,
+    "callable-types": true,
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "no-import-side-effect": [
+      true,
+      {
+        "ignore-module": "^(?!rxjs\/)"
+      }
+    ],
+    "rxjs-no-unsafe-switchmap": {
+      "severity": "error"
+    },
+    // https://blog.angularindepth.com/switchmap-bugs-b6de69155524
+    "align": [
+      true,
+      "elements",
+      "members",
+      "parameters",
+      "statements"
+    ],
+    "no-inferrable-types": true,
+    "no-debugger": true,
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "eofline": true,
+    "import-spacing": true,
+    "newline-before-return": false,
+    "no-consecutive-blank-lines": [
+      true,
+      2
+    ],
+    "max-line-length":  [true, {"limit": 140, "ignore-pattern": "^import |^export {(.*?)}"}],
+    "semicolon": {
+      "options": [
+        "always",
+        "ignore-interfaces",
+        "strict-bound-class-methods"
+      ]
+    },
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-any": false,
+    "no-arg": true,
+    "no-internal-module": true,
+    "no-trailing-whitespace": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "one-line": [
+      true,
+      "check-catch",
+      "check-else",
+      "check-finally",
+      "check-open-brace",
+      "check-whitespace"
+    ],
+    "ordered-imports": false,
+    "prefer-const": true,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-module",
+      "check-preblock",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
+      "import-blacklist": [true, {"@angular/common": ["APP_BASE_HREF"]} ],
+    "ban": [
+      true,
+      "eval",
+      [
+        "describe",
+        "only"
+      ],
+      [
+        "it",
+        "only"
+      ]
+    ]
+  }
 }

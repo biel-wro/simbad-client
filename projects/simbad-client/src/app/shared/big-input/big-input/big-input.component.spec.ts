@@ -75,12 +75,12 @@ describe('BigInputComponent', () => {
     });
 
     it('should respond to focus and blur', () => {
-        expect(bigInputDebugElement.componentInstance.hasFocus).toBe(false, 'before focus');
+        expect(bigInputDebugElement.componentInstance.hasFocus).toBe(false);
 
         inputNativeElement.dispatchEvent(new Event('focus'));
-        expect(bigInputDebugElement.componentInstance.hasFocus).toBe(true, 'after focus');
+        expect(bigInputDebugElement.componentInstance.hasFocus).toBe(true);
 
         inputNativeElement.dispatchEvent(new Event('blur'));
-        expect(bigInputDebugElement.componentInstance.hasFocus).toBe(false, 'after blur');
+        expect(bigInputDebugElement.componentInstance.hasFocus).toBe(false);
     });
 });
