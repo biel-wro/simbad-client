@@ -4,6 +4,13 @@ import { FormsService } from './forms.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ObjectsDefinitionsService } from '../../../../core/core.module';
 import { provideMockStore } from '@ngrx/store/testing';
+import {
+    configurationFileInitialConfigurationMock,
+    configurationFileModelMock,
+    formValueInitialConfigurationMock,
+    formValueModelMock,
+    treeFormValueModelMock
+} from '@simbad-client/app/core/configuration-management/mocks';
 
 describe('FormsService', () => {
     let service: FormsService;
@@ -109,213 +116,40 @@ describe('FormsService', () => {
         });
     });
 
-    describe('treeValueToConfigurationObject', () => {
-        it('should tree$ value to conf object', () => {
+    describe('treeFormValueToConfiguration', () => {
+        it('should convert tree value to conf object', () => {
             // given
-            const tree = {
-                model: {
-                    class: 'parameter_evolution_3d',
-                    parameter_evolution_3d: {
-                        space: {
-                            tile_size: 3
-                        },
-                        seed: 13,
-                        mutation: {
-                            probability: 0.05
-                        },
-                        interaction: {
-                            sigma: 1,
-                            gamma: 2,
-                            tolerance: 0.1
-                        },
-                        birth: {
-                            dispersion: {
-                                sigma: 1
-                            },
-                            saturation: {
-                                class: 'generalized_exponential',
-                                generalized_exponential: {
-                                    sigma: 5,
-                                    gamma: 2,
-                                    scale: 10
-                                }
-                            },
-                            mutator: {
-                                efficiency: {
-                                    class: 'uniform_step',
-                                    uniform_step: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                },
-                                resistance: {
-                                    class: 'uniform_step',
-                                    uniform_step: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                }
-                            }
-                        },
-                        death: {
-                            saturation: {
-                                class: 'inverse_generalized_exponential',
-                                inverse_generalized_exponential: {
-                                    sigma: 10,
-                                    gamma: 2,
-                                    scale: 1000
-                                }
-                            },
-                            mutator: {
-                                efficiency: {
-                                    class: 'uniform_step',
-                                    uniform_step: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                },
-                                resistance: {
-                                    class: 'uniform_step',
-                                    uniform_step: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                }
-                            }
-                        },
-                        success: {
-                            saturation: {
-                                class: 'generalized_exponential',
-                                generalized_exponential: {
-                                    sigma: 5,
-                                    gamma: 2,
-                                    scale: 1
-                                }
-                            },
-                            mutator: {
-                                efficiency: {
-                                    class: 'uniform_step',
-                                    uniform_step: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1
-                                    }
-                                },
-                                resistance: {
-                                    class: 'uniform_step',
-                                    uniform_step: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
-
-            const expected = {
-                model: {
-                    class: 'parameter_evolution_3d',
-                    parameters: {
-                        space: {
-                            tile_size: 3
-                        },
-                        seed: 13,
-                        mutation: {
-                            probability: 0.05
-                        },
-                        interaction: {
-                            sigma: 1,
-                            gamma: 2,
-                            tolerance: 0.1
-                        },
-                        birth: {
-                            dispersion: {
-                                sigma: 1
-                            },
-                            saturation: {
-                                class: 'generalized_exponential',
-                                parameters: {
-                                    sigma: 5,
-                                    gamma: 2,
-                                    scale: 10
-                                }
-                            },
-                            mutator: {
-                                efficiency: {
-                                    class: 'uniform_step',
-                                    parameters: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                },
-                                resistance: {
-                                    class: 'uniform_step',
-                                    parameters: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                }
-                            }
-                        },
-                        death: {
-                            saturation: {
-                                class: 'inverse_generalized_exponential',
-                                parameters: {
-                                    sigma: 10,
-                                    gamma: 2,
-                                    scale: 1000
-                                }
-                            },
-                            mutator: {
-                                efficiency: {
-                                    class: 'uniform_step',
-                                    parameters: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                },
-                                resistance: {
-                                    class: 'uniform_step',
-                                    parameters: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                }
-                            }
-                        },
-                        success: {
-                            saturation: {
-                                class: 'generalized_exponential',
-                                parameters: {
-                                    sigma: 5,
-                                    gamma: 2,
-                                    scale: 1
-                                }
-                            },
-                            mutator: {
-                                efficiency: {
-                                    class: 'uniform_step',
-                                    parameters: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                },
-                                resistance: {
-                                    class: 'uniform_step',
-                                    parameters: {
-                                        increase_length: 0.1,
-                                        decrease_length: 1.0
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
+            const tree = treeFormValueModelMock;
+            const expected = configurationFileModelMock;
 
             // when
-            const result = service.treeValueToConfigurationObject(tree);
+            const result = service.treeFormValueToConfiguration(tree);
+
+            // then
+            expect(result).toEqual(expected);
+        });
+    });
+
+    describe('formValueToConfiguration', () => {
+        it('should convert form value to configuration', () => {
+            // given
+            const formValue = formValueModelMock;
+            const expected = configurationFileModelMock;
+
+            // when
+            const result = service.formValueToConfigurationObject(formValue);
+
+            // then
+            expect(result).toEqual(expected);
+        });
+
+        it('should convert form value to configuration when form value has initial_configuration object', () => {
+            // given
+            const formValue = formValueInitialConfigurationMock;
+            const expected = configurationFileInitialConfigurationMock;
+
+            // when
+            const result = service.formValueToConfigurationObject(formValue);
 
             // then
             expect(result).toEqual(expected);

@@ -3,8 +3,6 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ParameterTreeNode } from '../../../../core/configuration-management/models';
 import { ObjectsDefinitionsService } from '../../../../core/configuration-management/objects-definitions.service';
 import { ValidatorsService } from './validators.service';
-import { State } from '../../examples.state';
-import { Store } from '@ngrx/store';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +12,6 @@ export class FormsService {
         private fb: FormBuilder,
         private ods: ObjectsDefinitionsService,
         private vs: ValidatorsService,
-        private store: Store<State>
     ) {}
 
     public buildFormForNode(form: FormGroup, node: ParameterTreeNode): FormGroup {
@@ -103,7 +100,7 @@ export class FormsService {
         }
     }
 
-    public treeValueToConfigurationObject(treeObject) {
+    public treeFormValueToConfiguration(treeObject) {
         const tree = treeObject;
         decorateConfiguration(tree);
         return tree;
@@ -135,7 +132,7 @@ export class FormsService {
 
     public formValueToConfigurationObject(value) {
         const tree = this.formValueToTree(value);
-        return this.treeValueToConfigurationObject(tree);
+        return this.treeFormValueToConfiguration(tree);
     }
 
     public configurationObjectToTreeValue(configurationObject: any): any {

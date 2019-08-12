@@ -1,64 +1,7 @@
-export const configurationFileMock = {
-    stream: {
-        final_estimator: {
-            class: 'population_size',
-            parameters: {
-                start_size: '100000'
-            }
-        }
-    },
+export const treeFormValueModelMock = {
     model: {
         class: 'parameter_evolution_3d',
-        parameters: {
-            space: {
-                tile_size: '3'
-            },
-            seed: '13',
-            mutation: {
-                probability: '0.05'
-            },
-            interaction: {
-                sigma: '1',
-                gamma: '2',
-                tolerance: '0.1'
-            },
-            birth: {
-                dispersion: {
-                    sigma: '1'
-                },
-                saturation: {
-                    class: 'generalized_exponential',
-                    parameters: {
-                        sigma: '5',
-                        gamma: '2',
-                        scale: '10'
-                    }
-                },
-                mutator: {
-                    efficiency: {
-                        class: 'uniform_step',
-                        parameters: {
-                            increase_length: '0.1',
-                            decrease_length: '1.0'
-                        }
-                    },
-                    resistance: {
-                        class: 'uniform_step',
-                        parameters: {
-                            increase_length: '0.1',
-                            decrease_length: '1.0'
-                        }
-                    }
-                }
-            }
-        }
-    }
-};
-
-export const configurationFileModelMock = {
-    model: {
-        class: 'parameter_evolution_3d',
-        parameters: {
+        parameter_evolution_3d: {
             space: {
                 tile_size: 3
             },
@@ -77,7 +20,7 @@ export const configurationFileModelMock = {
                 },
                 saturation: {
                     class: 'generalized_exponential',
-                    parameters: {
+                    generalized_exponential: {
                         sigma: 5,
                         gamma: 2,
                         scale: 10
@@ -86,14 +29,14 @@ export const configurationFileModelMock = {
                 mutator: {
                     efficiency: {
                         class: 'uniform_step',
-                        parameters: {
+                        uniform_step: {
                             increase_length: 0.1,
                             decrease_length: 1.0
                         }
                     },
                     resistance: {
                         class: 'uniform_step',
-                        parameters: {
+                        uniform_step: {
                             increase_length: 0.1,
                             decrease_length: 1.0
                         }
@@ -103,7 +46,7 @@ export const configurationFileModelMock = {
             death: {
                 saturation: {
                     class: 'inverse_generalized_exponential',
-                    parameters: {
+                    inverse_generalized_exponential: {
                         sigma: 10,
                         gamma: 2,
                         scale: 1000
@@ -112,14 +55,14 @@ export const configurationFileModelMock = {
                 mutator: {
                     efficiency: {
                         class: 'uniform_step',
-                        parameters: {
+                        uniform_step: {
                             increase_length: 0.1,
                             decrease_length: 1.0
                         }
                     },
                     resistance: {
                         class: 'uniform_step',
-                        parameters: {
+                        uniform_step: {
                             increase_length: 0.1,
                             decrease_length: 1.0
                         }
@@ -129,7 +72,7 @@ export const configurationFileModelMock = {
             success: {
                 saturation: {
                     class: 'generalized_exponential',
-                    parameters: {
+                    generalized_exponential: {
                         sigma: 5,
                         gamma: 2,
                         scale: 1
@@ -138,14 +81,14 @@ export const configurationFileModelMock = {
                 mutator: {
                     efficiency: {
                         class: 'uniform_step',
-                        parameters: {
+                        uniform_step: {
                             increase_length: 0.1,
-                            decrease_length: 1.0
+                            decrease_length: 1
                         }
                     },
                     resistance: {
                         class: 'uniform_step',
-                        parameters: {
+                        uniform_step: {
                             increase_length: 0.1,
                             decrease_length: 1.0
                         }
@@ -156,30 +99,6 @@ export const configurationFileModelMock = {
     }
 };
 
-export const configurationFileInitialConfigurationMock = {
-    initial_configuration: {
-        class: 'cubic_crystal',
-        default_attributes: {
-            'birth': {
-                'efficiency': 0.1,
-                'resistance': 0.5
-            },
-            'death': {
-                'efficiency': 0.1,
-                'resistance': 0.5
-            },
-            'success': {
-                'efficiency': 0.1,
-                'resistance': 0.5
-            },
-            'mutation': {
-                'id': 1
-            }
-        },
-        parameters: {
-            'dimension': 3,
-            'radius': 2,
-            'spacing': 1
-        }
-    }
+export const treeFormValueInitialConfigurationMock = {
+
 };
