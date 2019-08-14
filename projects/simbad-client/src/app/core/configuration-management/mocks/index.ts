@@ -6,7 +6,8 @@ import {
 } from './configuration-file.mock';
 import {
     formValueModelStreamInitialConfigurationMock,
-    formValueInitialConfigurationMock,
+    formValueModelWithDefaultValuesMock,
+    formPatchWithInitialConfigurationMock,
     formValueModelMock
 } from '@simbad-client/app/core/configuration-management/mocks/form-value.mock';
 
@@ -15,7 +16,8 @@ export {
     configurationFileModelMock,
     configurationFileInitialConfigurationMock,
     formValueModelStreamInitialConfigurationMock,
-    formValueInitialConfigurationMock,
+    formPatchWithInitialConfigurationMock,
+    formValueModelWithDefaultValuesMock,
     treeFormValueModelMock,
     formValueModelMock
 };

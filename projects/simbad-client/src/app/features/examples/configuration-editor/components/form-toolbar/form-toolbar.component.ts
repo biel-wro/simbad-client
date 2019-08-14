@@ -31,7 +31,7 @@ export class FormToolbarComponent implements OnInit {
             select(selectFormValues),
             filter(formValue => !!formValue),
             map(formValue => {
-                const configuration = this.fs.formValueToConfigurationObject(formValue);
+                const configuration = this.fs.formValueToConfiguration(formValue);
                 const theJSON = JSON.stringify(configuration, null, 2);
                 return this.sanitizer.bypassSecurityTrustUrl(
                     'data:text/json;charset=UTF-8,' + encodeURIComponent(theJSON)
@@ -53,7 +53,7 @@ export class FormToolbarComponent implements OnInit {
             reader.onload = (e: any) => {
                 const obj = JSON.parse(e.target.result);
                 const rootObjectClassNames = Object.keys(obj);
-                const formValue = this.fs.configurationObjectToFormPatch(obj);
+                const formValue = this.fs.configurationToFormValue(obj);
                 this.store.dispatch(actionFormReset());
                 this.store.dispatch(actionFormUpdateRootObjects({ rootObjectClassNames }));
                 this.store.dispatch(actionFormUpdate({ formValue }));

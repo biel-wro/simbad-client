@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ParameterTreeNode } from '../../../../core/configuration-management/models';
 import { ObjectsDefinitionsService } from '../../../../core/configuration-management/objects-definitions.service';
 import { ValidatorsService } from './validators.service';
-
+import { ObjectUtilsService } from '@simbad-client/app/features/examples/configuration-editor/services/object-utils.service';
+import { cloneDeep } from 'lodash';
 @Injectable({
     providedIn: 'root'
 })
@@ -12,10 +13,12 @@ export class FormsService {
         private fb: FormBuilder,
         private ods: ObjectsDefinitionsService,
         private vs: ValidatorsService,
-    ) {}
+        private objectUtils: ObjectUtilsService
+    ) {
+    }
 
     public buildFormForNode(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        form = this.addParameterControlToForm(form, node);
+        form = this.addNodeParameterControlToForm(form, node);
 
         if (node.definition.possibleClasses) {
             form = this.buildFormForNode(
@@ -49,24 +52,17 @@ export class FormsService {
         return form;
     }
 
-    private addParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        if (node.definition.type === 'complex') return form;
-        form.addControl(
-            node.definition.possibleClasses ? node.path + '/class' : node.path,
-            new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
-        );
-        return form;
+    public configurationToFormValue(configurationObject) {
+        const tree = this.configurationObjectToTreeValue(configurationObject);
+        return this.treeValueToFormValue(tree);
     }
 
-    private formValueToTree(value: any): any {
-        const tree = {};
-        Object.keys(value)
-            .filter(key => value[key] !== null)
-            .forEach(key => this.deepAssign(tree, key, value[key]));
-        return tree;
+    public formValueToConfiguration(value) {
+        const tree = this.formValueToTreeValue(value);
+        return this.treeFormValueToConfiguration(tree);
     }
 
-    public treeToFormPatch(tree: any): any {
+    private treeValueToFormValue(tree: any): any {
         const formValue = {};
         findPath(tree, '');
 
@@ -86,22 +82,64 @@ export class FormsService {
         return formValue;
     }
 
-    public deepAssign(obj: any, prop: string | string[], value: any): void {
-        if (typeof prop === 'string') prop = prop.split('/');
-        if (prop.length > 1) {
-            const e = prop.shift();
-            this.deepAssign(
-                (obj[e] = Object.prototype.toString.call(obj[e]) === '[object Object]' ? obj[e] : {}),
-                prop,
-                value
-            );
-        } else {
-            obj[prop[0]] = value;
+    private addNodeParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
+        if (node.definition.type === 'complex') return form;
+        form.addControl(
+            node.definition.possibleClasses ? node.path + '/class' : node.path,
+            new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
+        );
+        return form;
+    }
+
+    private formValueToTreeValue(value: any): any {
+        const tree = {};
+        Object.keys(value)
+            .filter(key => value[key] !== null)
+            .forEach(key => this.objectUtils.deepAssign(tree, key, value[key]));
+        return tree;
+    }
+
+    private configurationObjectToTreeValue(configurationObject: any): any {
+        const newConfiguration = cloneDeep(configurationObject);
+        decorateConfiguration(newConfiguration);
+        return newConfiguration;
+
+        function decorateConfiguration(obj) {
+            for (const property in obj) {
+                if (obj.hasOwnProperty(property)) {
+                    if (property === 'default_attributes') {
+                        decorateDefaultAttributes(obj[property]);
+                        continue;
+                    }
+                    if (property === 'parameters') {
+                        const prop = obj['class'];
+                        obj[prop] = obj['parameters'];
+                        delete obj['parameters'];
+                        decorateConfiguration(obj[prop]);
+                    }
+                    if (typeof obj[property] === 'object') {
+                        decorateConfiguration(obj[property]);
+                    }
+                }
+            }
+        }
+
+        function decorateDefaultAttributes(obj: any) {
+            for (const property in obj) {
+                if (obj.hasOwnProperty(property)) {
+                    const newProp = 'd_' + property;
+                    obj[newProp] = obj[property];
+                    delete obj[property];
+                    if (typeof obj[newProp] === 'object') {
+                        decorateDefaultAttributes(obj[newProp]);
+                    }
+                }
+            }
         }
     }
 
-    public treeFormValueToConfiguration(treeObject) {
-        const tree = treeObject;
+    private treeFormValueToConfiguration(treeObject) {
+        const tree = cloneDeep(treeObject);
         decorateConfiguration(tree);
         return tree;
 
@@ -129,52 +167,4 @@ export class FormsService {
             }
         }
     }
-
-    public formValueToConfigurationObject(value) {
-        const tree = this.formValueToTree(value);
-        return this.treeFormValueToConfiguration(tree);
-    }
-
-    public configurationObjectToTreeValue(configurationObject: any): any {
-        decorateConfiguration(configurationObject);
-        return configurationObject;
-
-        function decorateConfiguration(obj) {
-            for (const property in obj) {
-                if (obj.hasOwnProperty(property)) {
-                    if (property === 'parameters') {
-                        const prop = obj['class'];
-                        obj[prop] = obj['parameters'];
-                        delete obj['parameters'];
-                        decorateConfiguration(obj[prop]);
-                    }
-                    if (property === 'default_attributes') {
-                        decorateDefaultAttributes(obj[property]);
-                        continue;
-                    }
-                    if (typeof obj[property] === 'object') {
-                        decorateConfiguration(obj[property]);
-                    }
-                }
-            }
-        }
-
-        function decorateDefaultAttributes(obj) {
-            for (const property in obj) {
-                if (obj.hasOwnProperty(property)) {
-                    const newProp = 'd_' + property;
-                    obj[newProp] = obj[property];
-                    delete obj[property];
-                    if (typeof obj[newProp] === 'object') {
-                        decorateDefaultAttributes(obj[newProp]);
-                    }
-                }
-            }
-        }
-    }
-
-    public configurationObjectToFormPatch(configurationObject) {
-        const tree = this.configurationObjectToTreeValue(configurationObject);
-        return this.treeToFormPatch(tree);
-    }
-}
+ }
