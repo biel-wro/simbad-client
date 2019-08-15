@@ -6,7 +6,6 @@ module.exports = {
     resolver: '@nrwl/builders/plugins/jest/resolver',
     moduleFileExtensions: ['ts', 'js', 'html'],
     collectCoverage: true,
-    coverageReporters: ['html'],
     moduleNameMapper: {
         '^@simbad-cli-api(.*)$': `${__dirname}/libs/simbad-cli-api/src$1`,
         '^@simbad-client(.*)$': `${__dirname}/projects/simbad-client/src$1`,
