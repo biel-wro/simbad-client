@@ -20,7 +20,7 @@ before_script:
 script:
   # run build script specified in package.json
   - npm run ci
-  - npm run compodoc:generate
-  - bash ./.travis-deploy.sh
 after_success:
-  - codecov
+    - codecov
+    - npm run compodoc:generate
+    - bash ./.travis-deploy.sh
