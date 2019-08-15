@@ -40,7 +40,7 @@ export class ComplexParameterComponent implements OnInit {
     }
 
     onSelect($event: any) {
-        this.fs.buildFormForNode(
+        this.fs.addNodeControlsToFormRecursive(
             this.form,
             this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path)
         );

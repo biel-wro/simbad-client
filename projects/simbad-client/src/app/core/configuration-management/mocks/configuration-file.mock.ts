@@ -52,6 +52,31 @@ export const configurationFileMock = {
                 }
             }
         }
+    },
+    initial_configuration: {
+        class: 'cubic_crystal',
+        default_attributes: {
+            'birth': {
+                'efficiency': 0.1,
+                'resistance': 0.5
+            },
+            'death': {
+                'efficiency': 0.1,
+                'resistance': 0.5
+            },
+            'success': {
+                'efficiency': 0.1,
+                'resistance': 0.5
+            },
+            'mutation': {
+                'id': 1
+            }
+        },
+        parameters: {
+            'dimension': 3,
+            'radius': 2,
+            'spacing': 1
+        }
     }
 };
 

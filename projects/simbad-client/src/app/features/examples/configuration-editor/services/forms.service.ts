@@ -5,6 +5,10 @@ import { ObjectsDefinitionsService } from '../../../../core/configuration-manage
 import { ValidatorsService } from './validators.service';
 import { ObjectUtilsService } from '@simbad-client/app/features/examples/configuration-editor/services/object-utils.service';
 import { cloneDeep } from 'lodash';
+
+export type ConfigurationObject = {[key: string]: any};
+export type FormValue = {[key: string]: any};
+
 @Injectable({
     providedIn: 'root'
 })
@@ -17,47 +21,59 @@ export class FormsService {
     ) {
     }
 
-    public buildFormForNode(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        form = this.addNodeParameterControlToForm(form, node);
+    /**
+     * Adds all form controls necessary to edit configuration parameters of node and its child
+     * nodes to formGroup. This method executes recursively for all node complexChildren, simpleChildren
+     * and possibleClasses. The name of each added control is the same as node path in tree.
+     * @param form FormGroup to add controls to
+     * @param node Provides control names to add to form
+     * @returns FormGroup with added controls
+     */
+    public addNodeControlsToFormRecursive(form: FormGroup, node: ParameterTreeNode) {
+        this.addNodeParameterControlToForm(form, node);
 
         if (node.definition.possibleClasses) {
-            form = this.buildFormForNode(
+            this.addNodeControlsToFormRecursive(
                 form,
                 this.ods.toParameterTreeNode(this.ods.getByClassName(node.definition.defaultValue as string), node.path)
             );
         }
         node.complexChildren.forEach((child: ParameterTreeNode) => {
-            form = this.buildFormForNode(form, child);
+            this.addNodeControlsToFormRecursive(form, child);
         });
         node.simpleChildren.forEach((child: ParameterTreeNode) => {
-            form = this.buildFormForNode(form, child);
+            this.addNodeControlsToFormRecursive(form, child);
         });
-        return form;
     }
 
+    /**
+     * Removes all form controls that correspond to node and it's children paths from form
+     * @param form Form to remove controls from
+     * @param node Provides control names to remove
+     *
+     */
     public removeNodeControlsFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        form = this.removeParameterControlFromForm(form, node);
-        node.complexChildren.forEach((child: ParameterTreeNode) => {
-            form = this.removeNodeControlsFromForm(form, child);
-        });
-        node.simpleChildren.forEach((child: ParameterTreeNode) => {
-            form = this.removeNodeControlsFromForm(form, child);
-        });
+        Object.keys(form.controls)
+            .filter((controlName) => controlName.startsWith(node.path))
+            .forEach((controlNameToRemove) => form.removeControl(controlNameToRemove));
         return form;
     }
 
-    private removeParameterControlFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        if (node.definition.type === 'complex') return form;
-        form.removeControl(node.definition.possibleClasses ? node.path + '/class' : node.path);
-        return form;
-    }
-
-    public configurationToFormValue(configurationObject) {
-        const tree = this.configurationObjectToTreeValue(configurationObject);
+    /**
+     * Converts simulation configuration object to it's form value, that then can be used to patch FormGroup
+     * @param configuration
+     * @return configuration converted to form value
+     */
+    public configurationToFormValue(configuration: ConfigurationObject): FormValue {
+        const tree = this.configurationObjectToTreeValue(configuration);
         return this.treeValueToFormValue(tree);
     }
 
-    public formValueToConfiguration(value) {
+    /**
+     * Converts raw form value to configuration object
+     * @param value
+     */
+    public formValueToConfiguration(value: FormValue): ConfigurationObject {
         const tree = this.formValueToTreeValue(value);
         return this.treeFormValueToConfiguration(tree);
     }
@@ -82,13 +98,12 @@ export class FormsService {
         return formValue;
     }
 
-    private addNodeParameterControlToForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
-        if (node.definition.type === 'complex') return form;
+    private addNodeParameterControlToForm(form: FormGroup, node: ParameterTreeNode) {
+        if (node.definition.type === 'complex') return;
         form.addControl(
             node.definition.possibleClasses ? node.path + '/class' : node.path,
             new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
         );
-        return form;
     }
 
     private formValueToTreeValue(value: any): any {
@@ -167,4 +182,4 @@ export class FormsService {
             }
         }
     }
- }
+}

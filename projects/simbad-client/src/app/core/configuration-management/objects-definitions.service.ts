@@ -64,6 +64,7 @@ export class ObjectsDefinitionsService {
         const simpleChildren: ParameterDefinition[] = children.filter(child => child.type === 'simple');
         const complexChildren: ParameterDefinition[] = children.filter(child => child.type !== 'simple');
         const path = this.getPath(parameter.className, parentPath);
+
         return {
             path: path,
             definition: parameter,
@@ -74,6 +75,12 @@ export class ObjectsDefinitionsService {
                 ? complexChildren.map(child => this.toParameterTreeNode(child, path))
                 : []
         };
+    }
+
+    public buildNodeFromClassName(className: string, parentPath?: string): ParameterTreeNode | undefined {
+        const definition = this.getByClassName(className);
+        if (!definition) return undefined;
+        return this.toParameterTreeNode(definition, parentPath);
     }
 
     public isSchemaValid(): boolean {

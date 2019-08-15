@@ -8,7 +8,8 @@ import {
     configurationFileInitialConfigurationMock,
     configurationFileModelMock,
     formPatchWithInitialConfigurationMock,
-    formValueModelMock, formValueModelWithDefaultValuesMock
+    formValueModelMock,
+    formValueModelWithDefaultValuesMock
 } from '@simbad-client/app/core/configuration-management/mocks';
 
 describe('FormsService', () => {
@@ -61,8 +62,8 @@ describe('FormsService', () => {
 
         it('should convert configuration with multiple complex objects objects to its form value', () => {
             // given
-            const configuration = {...configurationFileModelMock};
-            const expected = {...formValueModelMock};
+            const configuration = { ...configurationFileModelMock };
+            const expected = { ...formValueModelMock };
 
             // when
             const patch = service.configurationToFormValue(configuration);
@@ -87,8 +88,8 @@ describe('FormsService', () => {
     describe('formValueToConfiguration', () => {
         it('should convert form value to configuration', () => {
             // given
-            const formValue = {...formValueModelMock};
-            const expected = {...configurationFileModelMock};
+            const formValue = { ...formValueModelMock };
+            const expected = { ...configurationFileModelMock };
 
             // when
             const result = service.formValueToConfiguration(formValue);
@@ -110,17 +111,46 @@ describe('FormsService', () => {
         });
     });
 
-    describe('buildFormForNode', () => {
+    describe('addNodeControlsToFormRecursive', () => {
         it('should build configuration-editor that returns valid value for root object', () => {
             // given
-            const className = 'model';
-            const object = ods.getByClassName(className);
-            const node = ods.toParameterTreeNode(object, '');
+            const node = ods.buildNodeFromClassName('model');
             const expectedFormValue = formValueModelWithDefaultValuesMock;
             let form = new FormGroup({});
 
             // when
-            form = service.buildFormForNode(form, node);
+            service.addNodeControlsToFormRecursive(form, node);
+            const result = form.getRawValue();
+
+            // then
+            expect(result).toEqual(expectedFormValue);
+        });
+    });
+
+    describe('removeNodeControlsFromForm', () => {
+        it('should remove all node controls from form', () => {
+            // given
+            const parentPath = 'model/parameter_evolution_3d';
+            const firstNode = ods.buildNodeFromClassName('birth', parentPath);
+            const secondNode = ods.buildNodeFromClassName('death', parentPath);
+            const expectedFormValue = {
+                'model/parameter_evolution_3d/death/saturation/class': 'generalized_exponential',
+                'model/parameter_evolution_3d/death/saturation/generalized_exponential/sigma': 1,
+                'model/parameter_evolution_3d/death/saturation/generalized_exponential/gamma': 2,
+                'model/parameter_evolution_3d/death/saturation/generalized_exponential/scale': 10,
+                'model/parameter_evolution_3d/death/mutator/efficiency/class': 'uniform_step',
+                'model/parameter_evolution_3d/death/mutator/efficiency/uniform_step/increase_length': 0.1,
+                'model/parameter_evolution_3d/death/mutator/efficiency/uniform_step/decrease_length': 1,
+                'model/parameter_evolution_3d/death/mutator/resistance/class': 'uniform_step',
+                'model/parameter_evolution_3d/death/mutator/resistance/uniform_step/increase_length': 0.1,
+                'model/parameter_evolution_3d/death/mutator/resistance/uniform_step/decrease_length': 1
+            };
+            let form = new FormGroup({});
+
+            // when
+            service.addNodeControlsToFormRecursive(form, firstNode);
+            service.addNodeControlsToFormRecursive(form, secondNode);
+            service.removeNodeControlsFromForm(form, firstNode);
             const result = form.getRawValue();
 
             // then
