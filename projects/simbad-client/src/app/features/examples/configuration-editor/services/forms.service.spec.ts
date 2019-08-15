@@ -116,7 +116,7 @@ describe('FormsService', () => {
             // given
             const node = ods.buildNodeFromClassName('model');
             const expectedFormValue = formValueModelWithDefaultValuesMock;
-            let form = new FormGroup({});
+            const form = new FormGroup({});
 
             // when
             service.addNodeControlsToFormRecursive(form, node);
@@ -145,7 +145,7 @@ describe('FormsService', () => {
                 'model/parameter_evolution_3d/death/mutator/resistance/uniform_step/increase_length': 0.1,
                 'model/parameter_evolution_3d/death/mutator/resistance/uniform_step/decrease_length': 1
             };
-            let form = new FormGroup({});
+            const form = new FormGroup({});
 
             // when
             service.addNodeControlsToFormRecursive(form, firstNode);

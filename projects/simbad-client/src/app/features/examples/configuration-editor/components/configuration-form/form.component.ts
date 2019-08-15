@@ -61,7 +61,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
     private buildFormForRootParameters(rootParameters: ParameterTreeNode[]): void {
         rootParameters.map((node: ParameterTreeNode) => {
-            this.treeForm = this.fs.addNodeControlsToFormRecursive(this.treeForm, node);
+           this.fs.addNodeControlsToFormRecursive(this.treeForm, node);
         });
     }
 
