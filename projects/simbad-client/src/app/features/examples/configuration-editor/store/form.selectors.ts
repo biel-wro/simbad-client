@@ -11,3 +11,8 @@ export const selectFormValues = createSelector(
     selectExamples,
     (state: ExamplesState) => state.form.formValue
 );
+
+export const selectConfigurationName = createSelector(
+    selectExamples,
+    (state: ExamplesState) => state.form.configurationName
+);

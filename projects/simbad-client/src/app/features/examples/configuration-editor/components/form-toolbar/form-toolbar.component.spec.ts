@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormToolbarComponent } from './form-toolbar.component';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { Observable, of } from 'rxjs';
 import { provideMockStore } from '@ngrx/store/testing';
 import { MatDialogModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('FormToolbarComponent', () => {
     let component: FormToolbarComponent;
@@ -13,7 +13,7 @@ describe('FormToolbarComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule, TranslateModule.forRoot(), MatDialogModule],
+            imports: [SharedModule, TranslateModule.forRoot(), MatDialogModule, NoopAnimationsModule],
             declarations: [FormToolbarComponent],
             providers: [
                 provideMockStore({
