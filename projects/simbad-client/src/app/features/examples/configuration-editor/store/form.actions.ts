@@ -3,10 +3,19 @@ import { createAction, props } from '@ngrx/store';
 export enum FormActionTypes {
     UpdateFormValue = '[Form] Update',
     ResetFormValue = '[Form] Reset',
-    UpdateRootObjects = '[Form] Update root objects'
+    UpdateRootObjects = '[Form] Update root objects',
+    UpdateConfigurationName = '[Form] Update configuration name'
 }
 
-export const actionFormUpdate = createAction(FormActionTypes.UpdateFormValue, props<{ formValue: any }>());
+export const actionFormUpdate = createAction(
+    FormActionTypes.UpdateFormValue,
+    props<{ formValue: any }>()
+);
+
+export const actionFormUpdateConfigurationName = createAction(
+    FormActionTypes.UpdateConfigurationName,
+    props<{configurationName: string}>()
+);
 
 export const actionFormUpdateRootObjects = createAction(
     FormActionTypes.UpdateRootObjects,

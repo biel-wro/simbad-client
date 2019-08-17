@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, take, tap, withLatestFrom } from 'rxjs/operators';
+import { debounceTime, map } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-import { combineLatest, Observable, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { NotificationService, ObjectsDefinitionsService } from '../../../../../core/core.module';
 
@@ -14,7 +14,7 @@ import {
     ParameterTreeNode
 } from '../../../../../core/configuration-management/models';
 import { FormsService } from '../../services/forms.service';
-import { actionFormReset, actionFormUpdate } from '../../store/form.actions';
+import { actionFormUpdate } from '../../store/form.actions';
 import { selectFormValues, selectRootObjectClassNames } from '../../store/form.selectors';
 
 @Component({
@@ -36,7 +36,8 @@ export class FormComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private ods: ObjectsDefinitionsService,
         private fs: FormsService
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.tree$ = this.store.pipe(
@@ -52,6 +53,11 @@ export class FormComponent implements OnInit, OnDestroy {
         this.subscribeOnFormChanges();
     }
 
+    ngOnDestroy(): void {
+        this.formChanges.unsubscribe();
+        this.storeChanges.unsubscribe();
+    }
+
     private buildRootParametersFromClassNames(classNames: string[]): ParameterTreeNode[] {
         return classNames.map((name: string) => {
             const definition: ParameterDefinition = this.ods.getByClassName(name);
@@ -61,7 +67,7 @@ export class FormComponent implements OnInit, OnDestroy {
 
     private buildFormForRootParameters(rootParameters: ParameterTreeNode[]): void {
         rootParameters.map((node: ParameterTreeNode) => {
-           this.fs.addNodeControlsToFormRecursive(this.treeForm, node);
+            this.fs.addNodeControlsToFormRecursive(this.treeForm, node);
         });
     }
 
@@ -75,10 +81,5 @@ export class FormComponent implements OnInit, OnDestroy {
         this.formChanges = this.treeForm.valueChanges.pipe(debounceTime(500)).subscribe(formValue => {
             this.store.dispatch(actionFormUpdate({ formValue }));
         });
-    }
-
-    ngOnDestroy(): void {
-        this.formChanges.unsubscribe();
-        this.storeChanges.unsubscribe();
     }
 }

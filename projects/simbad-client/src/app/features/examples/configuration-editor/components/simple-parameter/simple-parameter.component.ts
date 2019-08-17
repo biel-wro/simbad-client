@@ -29,10 +29,4 @@ export class SimpleParameterComponent implements OnInit {
         return className.startsWith('d_') ? className.slice(2) : className;
     }
 
-    // hasValueErrors(): boolean {
-    // }
-    //
-    // getErrorMessage(): string {
-    //
-    // }
 }

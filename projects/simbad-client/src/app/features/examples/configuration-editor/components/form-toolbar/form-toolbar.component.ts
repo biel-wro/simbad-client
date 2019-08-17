@@ -1,14 +1,20 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material';
 import { CreateConfigurationDialogComponent } from '../create-configuration-dialog/create-configuration-dialog.component';
 import { FormsService } from '../../services/forms.service';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../../examples.state';
-import { selectFormValues } from '../../store/form.selectors';
-import { filter, map } from 'rxjs/operators';
-import { actionFormReset, actionFormUpdate, actionFormUpdateRootObjects } from '../../store/form.actions';
+import { selectConfigurationName, selectFormValues } from '../../store/form.selectors';
+import { debounceTime, filter, map } from 'rxjs/operators';
+import {
+    actionFormReset,
+    actionFormUpdate,
+    actionFormUpdateConfigurationName,
+    actionFormUpdateRootObjects
+} from '../../store/form.actions';
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector: 'simbad-form-toolbar',
@@ -16,15 +22,19 @@ import { actionFormReset, actionFormUpdate, actionFormUpdateRootObjects } from '
     styleUrls: ['./form-toolbar.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormToolbarComponent implements OnInit {
+export class FormToolbarComponent implements OnInit, OnDestroy {
     configurationJsonHref$: Observable<SafeUrl>;
+    configurationNameControl: FormControl;
+    storeChanges: Subscription;
+    nameChanges: Subscription;
 
     constructor(
         private sanitizer: DomSanitizer,
         private dialog: MatDialog,
         private fs: FormsService,
         private store: Store<State>
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.configurationJsonHref$ = this.store.pipe(
@@ -38,6 +48,15 @@ export class FormToolbarComponent implements OnInit {
                 );
             })
         );
+        this.configurationNameControl = new FormControl();
+        this.subscribeOnStoreChanges();
+        this.subscribeOnNameChanges();
+    }
+
+
+    ngOnDestroy() {
+        this.nameChanges.unsubscribe();
+        this.storeChanges.unsubscribe();
     }
 
     openCreateConfigurationDialog() {
@@ -59,7 +78,28 @@ export class FormToolbarComponent implements OnInit {
                 this.store.dispatch(actionFormUpdate({ formValue }));
             };
 
-            if (inputNode.files[0]) reader.readAsText(inputNode.files[0]);
+            if (inputNode.files[0]) {
+                this.store.dispatch(actionFormUpdateConfigurationName({configurationName: inputNode.files[0].name}));
+                reader.readAsText(inputNode.files[0]);
+            }
         }
     }
+
+    private subscribeOnStoreChanges(): void {
+        this.storeChanges = this.store.pipe(
+            select(selectConfigurationName)
+        ).subscribe((name: string) => this.configurationNameControl.setValue(name));
+    }
+
+    private subscribeOnNameChanges(): void {
+        this.nameChanges = this.configurationNameControl.valueChanges.pipe(
+            debounceTime(500)
+        ).subscribe((configurationName: string) => {
+            this.store.dispatch(actionFormUpdateConfigurationName({ configurationName }));
+        });
+    }
+    public getConfigurationFileName(): string {
+        return this.configurationNameControl.value + '.json';
+    }
+
 }
