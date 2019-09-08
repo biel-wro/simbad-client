@@ -1,0 +1,30 @@
+<div class="simulation-wrapper" *ngIf="configuration | async as conf">
+    <div class="simulation-menu">
+        <button mat-raised-button (click)="sendToCli(conf)" id="toggle-linear">
+            Start Simulation
+        </button>
+        <simbad-upload-configuration-button></simbad-upload-configuration-button>
+    </div>
+    <mat-vertical-stepper linear="true" #stepper *ngIf="cliTaskStatus$ | async as status">
+        <ng-template matStepperIcon="edit">
+            <fa-icon icon="ellipsis-h"></fa-icon>
+        </ng-template>
+        <ng-template matStepperIcon="done">
+            <fa-icon icon="check"></fa-icon>
+        </ng-template>
+        <ng-template matStepperIcon="number">
+            <fa-icon icon="spinner" spin="true" pulse="true" *ngIf="!status.result"></fa-icon>
+            <fa-icon icon="check" *ngIf="status.result"></fa-icon>
+        </ng-template>
+        <mat-step class="cli-step">
+            <ng-template matStepLabel>Simbad CLI</ng-template>
+            <simbad-client-cli-step></simbad-client-cli-step>
+        </mat-step>
+        <mat-step [editable]="true" [completed]="true">
+            <ng-template matStepLabel>Spark</ng-template>
+        </mat-step>
+        <mat-step [editable]="true" [completed]="true">
+            <ng-template matStepLabel>Post processing</ng-template>
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
