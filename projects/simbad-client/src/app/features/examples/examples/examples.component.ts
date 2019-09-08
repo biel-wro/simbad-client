@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { routeAnimations, selectIsAuthenticated } from '../../../core/core.module';
 
-import { State } from '../examples.state';
+import { State } from '../simulationState';
 
 @Component({
     selector: 'simbad-examples',
@@ -22,6 +22,10 @@ export class ExamplesComponent implements OnInit {
             link: 'authenticated',
             label: 'simbad.examples.menu.auth',
             auth: true
+        },
+        {
+            link: 'simulation-pipeline',
+            label: 'simbad.examples.menu.simulation-pipeline'
         }
     ];
 

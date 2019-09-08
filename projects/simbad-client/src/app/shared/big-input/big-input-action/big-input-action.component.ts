@@ -17,7 +17,7 @@ export class BigInputActionComponent {
     faIcon = '';
     @Input()
     label = '';
-    @Input() angul;
+    @Input()
     color = '';
 
     @Output()

@@ -7,6 +7,7 @@ import { ExamplesComponent } from './examples/examples.component';
 import { AuthenticatedComponent } from './authenticated/authenticated.component';
 import { FormComponent } from './configuration-editor/components/configuration-form/form.component';
 import { NotificationsComponent } from './notifications/components/notifications.component';
+import { SimulationPipelineComponent } from '@simbad-client/app/features/examples/simulation-pipeline/pages/simulation-pipeline.component';
 
 const routes: Routes = [
     {
@@ -33,6 +34,11 @@ const routes: Routes = [
                 component: AuthenticatedComponent,
                 canActivate: [AuthGuardService],
                 data: { title: 'simbad.examples.menu.auth' }
+            },
+            {
+                path: 'simulation-pipeline',
+                component: SimulationPipelineComponent,
+                data: { title: 'simbad.examples.menu.simulation-pipeline' }
             }
         ]
     }
