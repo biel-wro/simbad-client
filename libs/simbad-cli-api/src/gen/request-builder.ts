@@ -132,6 +132,8 @@ export class RequestBuilder {
     reportProgress?: boolean;
   }): HttpRequest<T> {
 
+    options = options || {};
+
     // Path parameters
     let path = this.operationPath;
     for (const param of Array.from(this._path.keys())) {
@@ -156,6 +158,9 @@ export class RequestBuilder {
 
     // Header parameters
     let httpHeaders = new HttpHeaders();
+    if (options.accept) {
+      httpHeaders = httpHeaders.append('Accept', options.accept);
+    }
     for (const param of Array.from(this._header.keys())) {
       const value = this._header.get(param);
       if (value instanceof Array) {
@@ -176,7 +181,8 @@ export class RequestBuilder {
     return new HttpRequest<T>(this.method.toUpperCase(), url, this._bodyContent, {
       params: httpParams,
       headers: httpHeaders,
-      ...options
+      responseType: options.responseType,
+      reportProgress: options.reportProgress
     });
   }
 }

@@ -2,22 +2,12 @@
 export interface CliStatus  {
 
   /**
-   * cpu usage
-   */
-  cpu?: number;
-
-  /**
-   * Memory usage
-   */
-  memory?: number;
-
-  /**
    * CLI status - BUSY / IDLE
    */
-  status?: string;
+  status: 'BUSY' | 'IDLE';
 
   /**
-   * CLI uptime in s
+   * The ID of CLI task that is being executed
    */
-  uptime?: number;
+  taskId?: string;
 }

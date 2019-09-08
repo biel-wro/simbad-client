@@ -8,8 +8,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { CliOperationProgress } from '../models/cli-operation-progress';
 import { CliStatus } from '../models/cli-status';
+import { CliTaskStatus } from '../models/cli-task-status';
 import { RunCliCommandRequest } from '../models/run-cli-command-request';
 import { RunCliCommandResponse } from '../models/run-cli-command-response';
 
@@ -27,7 +27,7 @@ export class CliService extends BaseService {
   /**
    * Path part for operation runCliCommand
    */
-  static readonly RunCliCommandPath = '/run';
+  static readonly RunCliCommandPath = '/api/cli/run';
 
   /**
    * Executes command using simbad-cli binary
@@ -42,8 +42,9 @@ export class CliService extends BaseService {
     body?: RunCliCommandRequest
   }): Observable<StrictHttpResponse<RunCliCommandResponse>> {
 
-    const rb = new RequestBuilder(this.rootUrl, '/run', 'post');
+    const rb = new RequestBuilder(this.rootUrl, CliService.RunCliCommandPath, 'post');
     if (params) {
+
 
       rb.body(params.body, 'application:/json');
     }
@@ -77,24 +78,25 @@ export class CliService extends BaseService {
   }
 
   /**
-   * Path part for operation getSimbadCliStatus
+   * Path part for operation getCliStatus
    */
-  static readonly GetSimbadCliStatusPath = '/status';
+  static readonly GetCliStatusPath = '/api/cli/status';
 
   /**
-   * Get cli operation status
+   * Get cli status
    *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getSimbadCliStatus()` instead.
+   * To access only the response body, use `getCliStatus()` instead.
    *
    * This method doesn't expect any response body
    */
-  getSimbadCliStatus$Response(params?: {
+  getCliStatus$Response(params?: {
 
   }): Observable<StrictHttpResponse<CliStatus>> {
 
-    const rb = new RequestBuilder(this.rootUrl, '/status', 'get');
+    const rb = new RequestBuilder(this.rootUrl, CliService.GetCliStatusPath, 'get');
     if (params) {
+
 
     }
     return this.http.request(rb.build({
@@ -109,41 +111,42 @@ export class CliService extends BaseService {
   }
 
   /**
-   * Get cli operation status
+   * Get cli status
    *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getSimbadCliStatus$Response()` instead.
+   * To access the full response (for headers, for example), `getCliStatus$Response()` instead.
    *
    * This method doesn't expect any response body
    */
-  getSimbadCliStatus(params?: {
+  getCliStatus(params?: {
 
   }): Observable<CliStatus> {
 
-    return this.getSimbadCliStatus$Response(params).pipe(
+    return this.getCliStatus$Response(params).pipe(
       map((r: StrictHttpResponse<CliStatus>) => r.body as CliStatus)
     );
   }
 
   /**
-   * Path part for operation getCliOperationProgress
+   * Path part for operation getCliTaskStatus
    */
-  static readonly GetCliOperationProgressPath = '/progress';
+  static readonly GetCliTaskStatusPath = '/api/cli/status/{taskId}';
 
   /**
-   * Get cli operation progress
-   *
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `getCliOperationProgress()` instead.
+   * To access only the response body, use `getCliTaskStatus()` instead.
    *
    * This method doesn't expect any response body
    */
-  getCliOperationProgress$Response(params?: {
+  getCliTaskStatus$Response(params: {
+    taskId: string;
 
-  }): Observable<StrictHttpResponse<CliOperationProgress>> {
+  }): Observable<StrictHttpResponse<CliTaskStatus>> {
 
-    const rb = new RequestBuilder(this.rootUrl, '/progress', 'get');
+    const rb = new RequestBuilder(this.rootUrl, CliService.GetCliTaskStatusPath, 'get');
     if (params) {
+
+      rb.path('taskId', params.taskId);
 
     }
     return this.http.request(rb.build({
@@ -152,25 +155,24 @@ export class CliService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CliOperationProgress>;
+        return r as StrictHttpResponse<CliTaskStatus>;
       })
     );
   }
 
   /**
-   * Get cli operation progress
-   *
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `getCliOperationProgress$Response()` instead.
+   * To access the full response (for headers, for example), `getCliTaskStatus$Response()` instead.
    *
    * This method doesn't expect any response body
    */
-  getCliOperationProgress(params?: {
+  getCliTaskStatus(params: {
+    taskId: string;
 
-  }): Observable<CliOperationProgress> {
+  }): Observable<CliTaskStatus> {
 
-    return this.getCliOperationProgress$Response(params).pipe(
-      map((r: StrictHttpResponse<CliOperationProgress>) => r.body as CliOperationProgress)
+    return this.getCliTaskStatus$Response(params).pipe(
+      map((r: StrictHttpResponse<CliTaskStatus>) => r.body as CliTaskStatus)
     );
   }
 

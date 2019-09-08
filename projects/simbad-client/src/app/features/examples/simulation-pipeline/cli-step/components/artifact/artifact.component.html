@@ -1,0 +1,10 @@
+<mat-expansion-panel *ngIf="elements" class="artifact-panel">
+    <mat-expansion-panel-header >
+        <mat-panel-title>
+            {{ elements[0].value}}
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <simbad-client-info-list [data]="elements">
+
+    </simbad-client-info-list>
+</mat-expansion-panel>

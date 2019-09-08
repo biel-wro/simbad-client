@@ -13,7 +13,7 @@ servers:
     - url: /api/cli
 
 paths:
-    /run:
+    /api/cli/run:
         post:
             tags:
                 - CLI
@@ -36,13 +36,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/RunCliError"
-    /status:
+                                $ref: "#/components/schemas/CliError"
+    /api/cli/status:
         get:
             tags:
                 - CLI
-            operationId: getSimbadCliStatus
-            description: Get cli operation status
+            operationId: getCliStatus
+            description: Get cli status
             responses:
                 "200":
                     description: OK
@@ -50,19 +50,31 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/CliStatus"
-    /progress:
+    /api/cli/status/{taskId}:
+        parameters:
+            - name: taskId
+              in: path
+              required: true
+              schema:
+                  type: string
         get:
             tags:
-                - CLI
-            operationId: getCliOperationProgress
-            description: Get cli operation progress
+              - CLI
+            summary: Get status of task by given taskId
+            operationId: getCliTaskStatus
             responses:
                 "200":
                     description: OK
                     content:
+                      application/json:
+                          schema:
+                              $ref: "#/components/schemas/CliTaskStatus"
+                "404":
+                    description: Not found
+                    content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/CliOperationProgress"
+                                $ref: "#/components/schemas/CliError"
 
 components:
     schemas:
@@ -82,37 +94,96 @@ components:
         RunCliCommandResponse:
             type: object
             properties:
-                status:
-                    description: The status of command
+                taskId:
+                    description: The id of task that was commisioned
                     type: string
-        RunCliError:
+        CliError:
             type: object
             properties:
                 cause:
                     description: The cause of an error
                     type: string
+        CliTaskStatus:
+            type: object
+            required:
+                - cliInfo
+                - state
+                - status
+                - startTimestamp
+            properties:
+                cliInfo:
+                    $ref: "#/components/schemas/CliInfo"
+                result:
+                    $ref: "#/components/schemas/CliResult"
+                state:
+                    description: The state of task
+                    type: string
+                    enum:
+                        - PROGRESS
+                        - SUCCESS
+                        - FAILURE
+                        - PENDING
+                status:
+                    description: Additional information about task, including failure reasons
+                    type: string
+                startTimestamp:
+                    description: Time when task was commisioned in unix timestamp format
+                    type: number
         CliStatus:
             type: object
+            required:
+                - status
             properties:
                 status:
-                    description: CLI status - BUSY / IDLE
                     type: string
-                cpu:
-                    description: cpu usage
-                    type: number
-                memory:
-                    description: Memory usage
-                    type: number
-                uptime:
-                    description: CLI uptime in s
-                    type: number
-        CliOperationProgress:
+                    enum:
+                        - BUSY
+                        - IDLE
+                    description: CLI status - BUSY / IDLE
+                taskId:
+                    type: string
+                    description: The ID of CLI task that is being executed
+            example:
+                status: BUSY
+                taskId: c6f905ab-bd3e-452e-ab84-a0ad7d73be2f
+        CliInfo:
             type: object
+            required:
+                - cpu
+                - memory
+                - runtime
             properties:
-                progress:
-                    description: Run command progress
+                cpu:
                     type: number
-                runningTime:
-                    description: Command running time
+                    description: Cli cpu usage in percent
+                memory:
                     type: number
+                    description: Cli memory usage in megabytes
+                runtime:
+                    type: number
+                    description: Cli command running time in s
+            example:
+                cpu: 75.7
+                memory: 20.529152
+                runtime: 128.6882803440094
+        CliResult:
+            type: object
+            required:
+                - artifactPath
+                - artifactSize
+                - executionTime
+            properties:
+                artifactPath:
+                    type: string
+                    description: Path to generated csv file
+                artifactSize:
+                    type: number
+                    description: The size of generated artifact in megabytes
+                executionTime:
+                    type: number
+                    description: The total time of execution for task
+            example:
+                artifactPath: /home/user/dev/simbad/output/SIM_0_CONF_parametric_evolution_3d/cli_out.csv
+                artifactSize: 178.190269
+                executionTime: 128.73994994163513
 

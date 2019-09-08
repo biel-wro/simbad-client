@@ -7,7 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { NotificationService, ObjectsDefinitionsService } from '../../../../../core/core.module';
 
-import { State } from '../../../examples.state';
+import { State } from '../../../simulationState';
 import {
     ParameterDefinition,
     ParameterTree,

@@ -8,7 +8,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../../shared/shared.module';
 import { environment } from '../../../environments/environment';
 
-import { FEATURE_NAME, reducers } from './examples.state';
+import { FEATURE_NAME, reducers } from './simulationState';
 import { ExamplesRoutingModule } from './examples-routing.module';
 import { ExamplesComponent } from './examples/examples.component';
 import { FormComponent } from './configuration-editor/components/configuration-form/form.component';
@@ -22,7 +22,18 @@ import { SimpleParameterComponent } from './configuration-editor/components/simp
 import { FormsService } from './configuration-editor/services/forms.service';
 import { CreateConfigurationDialogComponent } from './configuration-editor/components/create-configuration-dialog/create-configuration-dialog.component';
 import { FormToolbarComponent } from './configuration-editor/components/form-toolbar/form-toolbar.component';
-import { MatDialogModule } from '@angular/material';
+import { MatDialogModule, MatStepperModule } from '@angular/material';
+import { SimulationPipelineComponent } from '@simbad-client/app/features/examples/simulation-pipeline/pages/simulation-pipeline.component';
+import { TaskContextComponent } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/components/task-context/task-context.component';
+import { StatusTileComponent } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/components/status-tile/status-tile.component';
+import { PerformanceMonitorComponent } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/components/performance-monitor/performance-monitor.component';
+import { ArtifactListComponent } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/components/artifact-list/artifact-list.component';
+import { CliStepComponent } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/components/cli-step/cli-step.component';
+import { CliStepEffects } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/store/cli-step.effects';
+import { UploadConfigurationButtonComponent } from './common/upload-configuration-button/upload-configuration-button.component';
+import { InfoListComponent } from './simulation-pipeline/cli-step/components/info-list/info-list.component';
+import { InfoListElementComponent } from './simulation-pipeline/cli-step/components/info-list-element/info-list-element.component';
+import { ArtifactComponent } from './simulation-pipeline/cli-step/components/artifact/artifact.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
@@ -41,8 +52,9 @@ export function HttpLoaderFactory(http: HttpClient) {
             },
             isolate: true
         }),
-        EffectsModule.forFeature([ExamplesEffects, FormEffects]),
-        MatDialogModule
+        EffectsModule.forFeature([ExamplesEffects, FormEffects, CliStepEffects]),
+        MatDialogModule,
+        MatStepperModule
     ],
     declarations: [
         ExamplesComponent,
@@ -53,11 +65,22 @@ export function HttpLoaderFactory(http: HttpClient) {
         ComplexParameterComponent,
         SimpleParameterComponent,
         CreateConfigurationDialogComponent,
-        FormToolbarComponent
+        FormToolbarComponent,
+        SimulationPipelineComponent,
+        StatusTileComponent,
+        PerformanceMonitorComponent,
+        CliStepComponent,
+        ArtifactListComponent,
+        TaskContextComponent,
+        UploadConfigurationButtonComponent,
+        InfoListComponent,
+        InfoListElementComponent,
+        ArtifactComponent
     ],
     providers: [FormsService],
     entryComponents: [CreateConfigurationDialogComponent]
 })
 export class ExamplesModule {
-    constructor() {}
+    constructor() {
+    }
 }

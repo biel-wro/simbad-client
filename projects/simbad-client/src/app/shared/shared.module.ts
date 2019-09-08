@@ -47,17 +47,25 @@ import {
     faPowerOff,
     faRocket,
     faSquare,
+    faMicrochip,
     faStream,
     faTasks,
     faTimes,
     faTrash,
+    faSpinner,
+    faMemory,
     faUserCircle,
-    faWindowMaximize
+    faWindowMaximize,
+    faClock,
+    faFolderOpen,
+    faEye
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faInstagram, faMediumM, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { BigInputComponent } from './big-input/big-input/big-input.component';
 import { BigInputActionComponent } from './big-input/big-input-action/big-input-action.component';
 import { RtlSupportDirective } from './rtl-support/rtl-support.directive';
+import { SmallInputActionComponent } from './small-input-action/small-input-action.component';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons/faEllipsisH';
 
 library.add(
     faBars,
@@ -82,6 +90,7 @@ library.add(
     faTasks,
     faCheck,
     faSquare,
+    faClock,
     faLanguage,
     faPaintBrush,
     faLightbulb,
@@ -89,7 +98,13 @@ library.add(
     faStream,
     faBook,
     faFile,
-    faDownload
+    faDownload,
+    faMemory,
+    faMicrochip,
+    faFolderOpen,
+    faEye,
+    faSpinner,
+    faEllipsisH
 );
 
 @NgModule({
@@ -120,7 +135,7 @@ library.add(
 
         FontAwesomeModule
     ],
-    declarations: [BigInputComponent, BigInputActionComponent, RtlSupportDirective],
+    declarations: [BigInputComponent, BigInputActionComponent, RtlSupportDirective, SmallInputActionComponent],
     exports: [
         CommonModule,
         FormsModule,
@@ -154,6 +169,7 @@ library.add(
 
         BigInputComponent,
         BigInputActionComponent,
+        SmallInputActionComponent,
         RtlSupportDirective
     ]
 })

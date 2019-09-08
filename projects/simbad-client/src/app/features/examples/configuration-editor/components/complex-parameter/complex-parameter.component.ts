@@ -40,10 +40,12 @@ export class ComplexParameterComponent implements OnInit {
     }
 
     onSelect($event: any) {
+        const oldParameter = this.chosenEnumParameter;
         this.fs.addNodeControlsToFormRecursive(
             this.form,
             this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path)
         );
         this.chosenEnumParameter = this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path);
+        this.fs.removeNodeControlsFromForm(this.form, oldParameter);
     }
 }

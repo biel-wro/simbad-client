@@ -2,7 +2,7 @@
 export interface RunCliCommandResponse  {
 
   /**
-   * The status of command
+   * The id of task that was commisioned
    */
-  status?: string;
+  taskId?: string;
 }

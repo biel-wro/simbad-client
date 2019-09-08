@@ -44,6 +44,7 @@
     "simbad.examples.menu.auth": "Auth",
     "simbad.examples.menu.crud": "CRUD",
     "simbad.examples.menu.form": "Configuration Form",
+    "simbad.examples.menu.simulation-pipeline": "Simulation Pipeline",
     "simbad.examples.menu.tree-form": "Configuration Tree",
     "simbad.examples.menu.notifications": "Notifications",
     "simbad.examples.menu.stocks": "Stocks",
@@ -132,5 +133,6 @@
     "simbad.examples.todos.undo": "Undo",
     "simbad.configuration.forms.tooltip.create": "Create new configuration file",
     "simbad.configuration.forms.tooltip.load": "Upload configuration file from computer",
-    "simbad.configuration.forms.tooltip.download": "Download current configuration file"
+    "simbad.configuration.forms.tooltip.download": "Download current configuration file",
+    "simbad.configuration.forms.tooltip.downloadArtifact": "Download current configuration file"
 }

@@ -1,5 +1,7 @@
 export { RunCliCommandRequest } from './models/run-cli-command-request';
 export { RunCliCommandResponse } from './models/run-cli-command-response';
-export { RunCliError } from './models/run-cli-error';
+export { CliError } from './models/cli-error';
+export { CliTaskStatus } from './models/cli-task-status';
 export { CliStatus } from './models/cli-status';
-export { CliOperationProgress } from './models/cli-operation-progress';
+export { CliInfo } from './models/cli-info';
+export { CliResult } from './models/cli-result';
