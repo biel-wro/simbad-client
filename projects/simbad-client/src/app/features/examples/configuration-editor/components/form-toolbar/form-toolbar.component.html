@@ -18,19 +18,7 @@
                     matTooltipPosition="after"
                 >
                 </simbad-big-input-action>
-                <simbad-big-input-action
-                    class="form-action-button"
-                    fontSet="fas"
-                    fontIcon="fa-file"
-                    faIcon="file"
-                    color="warn"
-                    (action)="fileInput.click()"
-                    [matTooltip]="'simbad.configuration.forms.tooltip.load' | translate"
-                    matTooltipPosition="after"
-                    file-browser
-                >
-                </simbad-big-input-action>
-                <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" />
+                <simbad-upload-configuration-button></simbad-upload-configuration-button>
                 <a *ngIf="(configurationJsonHref$ | async) as json" [href]="json" [download]="getConfigurationFileName()">
                     <simbad-big-input-action
                         class="form-action-button btn btn-clear"

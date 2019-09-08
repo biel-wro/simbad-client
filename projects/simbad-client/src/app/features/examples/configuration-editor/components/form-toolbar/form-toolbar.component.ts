@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 import { CreateConfigurationDialogComponent } from '../create-configuration-dialog/create-configuration-dialog.component';
 import { FormsService } from '../../services/forms.service';
 import { select, Store } from '@ngrx/store';
-import { State } from '../../../examples.state';
+import { State } from '../../../simulationState';
 import { selectConfigurationName, selectFormValues } from '../../store/form.selectors';
 import { debounceTime, filter, map } from 'rxjs/operators';
 import {

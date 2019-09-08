@@ -1,18 +1,29 @@
 import { createSelector } from '@ngrx/store';
 
-import { ExamplesState, selectExamples } from '../../examples.state';
+import { SimulationState, selectSimulationState } from '../../simulationState';
 
 export const selectRootObjectClassNames = createSelector(
-    selectExamples,
-    (state: ExamplesState) => state.form.rootObjectClassNames
+    selectSimulationState,
+    (state: SimulationState) => state.form.rootObjectClassNames
 );
 
 export const selectFormValues = createSelector(
-    selectExamples,
-    (state: ExamplesState) => state.form.formValue
+    selectSimulationState,
+    (state: SimulationState) => state.form.formValue
 );
 
+export const selectConfiguration = createSelector(
+    selectSimulationState,
+    (state: SimulationState) => {
+        return {
+            name: state.form.configurationName,
+            formValue: state.form.formValue
+        };
+    }
+);
+
+
 export const selectConfigurationName = createSelector(
-    selectExamples,
-    (state: ExamplesState) => state.form.configurationName
+    selectSimulationState,
+    (state: SimulationState) => state.form.configurationName
 );

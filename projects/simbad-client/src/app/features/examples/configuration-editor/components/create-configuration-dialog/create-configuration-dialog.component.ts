@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
-import { State } from '../../../examples.state';
-import { selectRootObjectClassNames } from '../../store/form.selectors';
+import { State } from '../../../simulationState';
 import { actionFormReset, actionFormUpdateRootObjects } from '../../store/form.actions';
 
 @Component({
