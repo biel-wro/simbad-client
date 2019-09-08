@@ -1,0 +1,9 @@
+<div class="details-section">
+    <div class="section-data" *ngIf="data" cdkScrollable>
+        <div [title]="item.key" class="section-row"
+        *ngFor="let item of data;">
+            <simbad-client-info-list-element [data]="item" class="list-element">
+            </simbad-client-info-list-element>
+        </div>
+    </div>
+</div>

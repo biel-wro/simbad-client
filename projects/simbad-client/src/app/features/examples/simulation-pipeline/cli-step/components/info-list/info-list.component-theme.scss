@@ -1,0 +1,34 @@
+@mixin simbad-info-list-component-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .details-section {
+        .section-row {
+            &:nth-child(even) {
+                background-color: mat-color($background, background)
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: mat-color($foreground, foreground);
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: mat-color($background, background);
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: mat-color($background, background);
+    }
+}

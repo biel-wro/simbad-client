@@ -1,0 +1,39 @@
+<div class="item">
+    <div class="section-row-key">
+        <span>{{data.key}}:</span>
+    </div>
+    <div class="section-row-value">
+        <span>
+            {{data.value}}
+        </span>
+        <div class="spacer"></div>
+        <simbad-small-input-action *ngIf="data.download"
+            class="btn btn-clear list-action-btn"
+            fontSet="fas"
+            fontIcon="fa-download"
+            faIcon="download"
+            style="font-size: 11px;"
+            color="warn"
+            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+            matTooltipPosition="after">
+        </simbad-small-input-action>
+        <simbad-small-input-action *ngIf="data.preview"
+            class="btn btn-clear list-action-btn"
+            fontSet="fas"
+            fontIcon="fa-eye"
+            faIcon="eye"
+            color="warn"
+            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+            matTooltipPosition="after">
+        </simbad-small-input-action>
+        <simbad-small-input-action *ngIf="data.show"
+            class="btn btn-clear list-action-btn"
+            fontSet="fas"
+            fontIcon="fa-folder-open"
+            faIcon="folder-open"
+            color="warn"
+            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+            matTooltipPosition="after">
+        </simbad-small-input-action>
+    </div>
+</div>
