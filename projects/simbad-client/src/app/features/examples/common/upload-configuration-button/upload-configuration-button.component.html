@@ -1,0 +1,12 @@
+<simbad-big-input-action
+    (action)="fileInput.click()"
+    [matTooltip]="'simbad.configuration.forms.tooltip.load' | translate"
+    class="form-action-button"
+    color="warn"
+    faIcon="file"
+    file-browser
+    fontIcon="fa-file"
+    fontSet="fas"
+    matTooltipPosition="after"
+></simbad-big-input-action>
+<input #fileInput (change)="onFileSelected()" hidden id="file" type="file"/>
