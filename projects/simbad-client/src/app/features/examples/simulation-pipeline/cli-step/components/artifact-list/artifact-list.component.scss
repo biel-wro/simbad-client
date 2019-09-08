@@ -1,0 +1,13 @@
+
+.wrapper {
+    height: 100%;
+    width: 100%;
+    .artifacts-list-section {
+        .section-data{
+            height: 200px;
+            overflow-y: scroll;
+            width: 100%;
+        }
+    }
+
+}

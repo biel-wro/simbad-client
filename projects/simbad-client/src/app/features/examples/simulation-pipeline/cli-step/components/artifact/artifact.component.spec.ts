@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SmallInputActionComponent } from './small-input-action.component';
+import { ArtifactComponent } from './artifact.component';
 
-describe('SmallInputActionComponent', () => {
-  let component: SmallInputActionComponent;
-  let fixture: ComponentFixture<SmallInputActionComponent>;
+describe('ArtifactComponent', () => {
+  let component: ArtifactComponent;
+  let fixture: ComponentFixture<ArtifactComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SmallInputActionComponent ]
+      declarations: [ ArtifactComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SmallInputActionComponent);
+    fixture = TestBed.createComponent(ArtifactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
