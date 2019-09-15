@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const compression = require('compression');
+const proxy = require('http-proxy-middleware');
 
 const CONTEXT = `/${process.env.CONTEXT || 'simbad-client'}`;
 const PORT = process.env.PORT || 4000;
