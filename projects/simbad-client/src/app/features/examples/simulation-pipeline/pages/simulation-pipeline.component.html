@@ -1,5 +1,8 @@
 <div class="simulation-wrapper" *ngIf="configuration | async as conf">
     <div class="simulation-menu">
+        <button mat-raised-button (click)="openFile()" class="action-button">
+            Open
+        </button>
         <button mat-raised-button (click)="sendToCli(conf)" id="toggle-linear">
             Start
         </button>

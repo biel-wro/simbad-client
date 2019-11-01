@@ -100,9 +100,10 @@ export class FormsService {
 
     private addNodeParameterControlToForm(form: FormGroup, node: ParameterTreeNode) {
         if (node.definition.type === 'complex') return;
+        const value = node.value || node.definition.defaultValue;
         form.addControl(
             node.definition.possibleClasses ? node.path + '/class' : node.path,
-            new FormControl(node.definition.defaultValue, this.vs.generateValidators(node.definition))
+            new FormControl(value, this.vs.generateValidators(node.definition))
         );
     }
 

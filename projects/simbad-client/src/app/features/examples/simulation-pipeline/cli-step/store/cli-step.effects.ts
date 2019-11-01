@@ -7,6 +7,7 @@ import {
     cliTaskFinished,
     cliTaskHttpError,
     fetchCliTaskStatus,
+    openArtifact,
     pollForCliTaskStatusChange,
     startCliTask,
     startTimer,
@@ -19,6 +20,7 @@ import { CliService } from '@simbad-cli-api/gen';
 import { CliStatus } from '@simbad-cli-api/gen/models/cli-status';
 import { interval, of } from 'rxjs';
 import { PollingService } from '@simbad-client/app/core/polling/polling.service';
+import { HostService } from '@simbad-host-api/gen';
 
 const POLLING_PERIOD_MS = 1000;
 
@@ -110,7 +112,20 @@ export class CliStepEffects {
         );
     });
 
-    constructor(private actions$: Actions, private cliService: CliService, private pollingService: PollingService) {
+    openArtifact$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(openArtifact),
+            switchMap((action) => {
+                return this.hostService.openLocation({ body: { path: action.path } });
+            })
+        );
+    }, { dispatch: false });
+
+    constructor(
+        private actions$: Actions,
+        private cliService: CliService,
+        private hostService: HostService,
+        private pollingService: PollingService) {
     }
 
 }

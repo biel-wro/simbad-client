@@ -1,0 +1,24 @@
+{
+    "name": "@simbad/simbad-host-api",
+    "version": "0.0.1",
+    "peerDependencies": {
+        "@angular/common": "^7.2.0",
+        "@angular/core": "^7.2.0",
+        "ng-swagger-gen": "^1.7.0-b",
+        "swagger-cli": "^2.2.1",
+        "run-s": "0.0.0"
+    },
+    "scripts": {
+        "generate": "npm run generate:validate && npm run generate:convert && npm run generate:sources && npm run generate:text-format",
+        "generate:sources": "ng-openapi-gen",
+        "generate:text-format": "crlf --set=LF ./src/**",
+        "generate:validate": "swagger-cli validate ./src/SIMBAD-HOST-REST_openapi.yaml",
+        "generate:convert": "swagger-cli bundle -o .tmp/SIMBAD-HOST-REST_openapi.json ./src/SIMBAD-HOST-REST_openapi.yaml"
+    },
+    "dependencies": {
+        "crlf": "^1.1.1",
+        "ng-openapi-gen": "^0.5.2",
+        "ng-swagger-gen": "^1.7.1",
+        "swagger-cli": "^2.3.0"
+    }
+}

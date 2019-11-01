@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-        "outDir": "../../dist/libs/simbad-ci-apu",
+        "outDir": "../../dist/libs/simbad-cli-api",
         "module": "commonjs",
         "types": ["jest", "node"]
     },

@@ -16,9 +16,6 @@ export interface ListElement {
 export class InfoListComponent implements OnInit {
     @Input() data: ListElement[];
 
-    constructor() {
-    }
-
     ngOnInit() {
         this.data = [
             {
@@ -35,7 +32,6 @@ export class InfoListComponent implements OnInit {
             { key: 'Stop Criterion', value: 'Population size' },
             { key: 'Status', value: 'Running...' }
         ];
-
     }
 
 }

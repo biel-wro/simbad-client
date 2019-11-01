@@ -161,6 +161,32 @@
                 }
             }
         },
+        "simbad-cli-api": {
+            "root": "libs/simbad-host-api",
+            "sourceRoot": "libs/simbad-host-api/src",
+            "projectType": "library",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "libs/simbad-host-api/tsconfig.lib.json",
+                        "project": "libs/simbad-host-api/ng-package.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["libs/simbad-host-api/tsconfig.lib.json"],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            },
+            "schematics": {
+                "@nrwl/schematics:component": {
+                    "styleext": "scss"
+                }
+            }
+        },
         "simbad-dev-server": {
             "root": "projects/simbad-dev-server",
             "sourceRoot": "projects/simbad-dev-server/src",

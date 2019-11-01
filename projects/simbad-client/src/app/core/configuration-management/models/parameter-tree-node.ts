@@ -6,4 +6,5 @@ export interface ParameterTreeNode {
     simpleChildren: ParameterTreeNode[];
     complexChildren: ParameterTreeNode[];
     possibleValues?: ParameterTreeNode[];
+    value?: string;
 }

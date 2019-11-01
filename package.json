@@ -15,6 +15,7 @@
     "e2e": "ng e2e --prod --no-webdriver-update",
     "ci": "npm run format:check && npm run lint && npm run test && npm run build -- --deploy-url /simbad-client/ --base-href /simbad-client",
     "generate:simbad-cli-api": "npm run generate --prefix libs/simbad-cli-api",
+    "generate:simbad-host-api": "npm run generate --prefix libs/simbad-host-api",
     "serve:app": "ng serve --open",
     "serve:mock": "ng serve simbad-dev-server",
     "update-webdrivers": "npm i -D chromedriver --chromedriver-force-download",

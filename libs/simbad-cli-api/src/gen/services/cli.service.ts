@@ -42,9 +42,8 @@ export class CliService extends BaseService {
     body?: RunCliCommandRequest
   }): Observable<StrictHttpResponse<RunCliCommandResponse>> {
 
-    const rb = new RequestBuilder(this.rootUrl, CliService.RunCliCommandPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, '/api/cli/run', 'post');
     if (params) {
-
 
       rb.body(params.body, 'application:/json');
     }
@@ -94,9 +93,8 @@ export class CliService extends BaseService {
 
   }): Observable<StrictHttpResponse<CliStatus>> {
 
-    const rb = new RequestBuilder(this.rootUrl, CliService.GetCliStatusPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, '/api/cli/status', 'get');
     if (params) {
-
 
     }
     return this.http.request(rb.build({
@@ -143,11 +141,10 @@ export class CliService extends BaseService {
 
   }): Observable<StrictHttpResponse<CliTaskStatus>> {
 
-    const rb = new RequestBuilder(this.rootUrl, CliService.GetCliTaskStatusPath, 'get');
+    const rb = new RequestBuilder(this.rootUrl, '/api/cli/status/{taskId}', 'get');
     if (params) {
 
       rb.path('taskId', params.taskId);
-
     }
     return this.http.request(rb.build({
       responseType: 'json',

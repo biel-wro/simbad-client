@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { ParameterTreeNode } from '../../../../../core/configuration-management/models/parameter-tree-node';
-import { ObjectsDefinitionsService } from '../../../../../core/configuration-management/objects-definitions.service';
+import { ParameterTreeNode } from '@simbad-client/app/core/configuration-management/models';
+import { ObjectsDefinitionsService } from '@simbad-client/app/core/configuration-management/objects-definitions.service';
 import { FormGroup } from '@angular/forms';
 import { FormsService } from '../../services/forms.service';
 
@@ -11,14 +11,10 @@ import { FormsService } from '../../services/forms.service';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComplexParameterComponent implements OnInit {
-    @Input()
-    node: ParameterTreeNode;
-    @Input()
-    level: number;
-    @Input()
-    form: FormGroup;
-    @Input()
-    parentPath: string;
+    @Input() node: ParameterTreeNode;
+    @Input() level: number;
+    @Input() form: FormGroup;
+    @Input() parentPath: string;
 
     chosenOption: any;
     chosenEnumParameter: ParameterTreeNode;
@@ -27,7 +23,7 @@ export class ComplexParameterComponent implements OnInit {
 
     ngOnInit() {
         if (this.node.definition.possibleClasses) {
-            this.chosenOption = this.node.definition.defaultValue;
+            this.chosenOption = this.node.value || this.node.definition.defaultValue;
             this.chosenEnumParameter = this.ods.toParameterTreeNode(
                 this.ods.getByClassName(this.chosenOption),
                 this.node.path
@@ -39,7 +35,7 @@ export class ComplexParameterComponent implements OnInit {
         return className.startsWith('d_') ? className.slice(2) : className;
     }
 
-    onSelect($event: any) {
+    onSelect($event: any): void {
         const oldParameter = this.chosenEnumParameter;
         this.fs.addNodeControlsToFormRecursive(
             this.form,

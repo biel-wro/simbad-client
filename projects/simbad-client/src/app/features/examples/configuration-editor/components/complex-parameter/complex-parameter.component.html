@@ -1,20 +1,20 @@
-<div class="complex-wrapper" *ngIf="node">
-    <mat-divider class="complex-divider" *ngIf="level == 3"></mat-divider>
+<div *ngIf="node" class="complex-wrapper">
+    <mat-divider *ngIf="level == 3" class="complex-divider"></mat-divider>
     <div class="row">
         <div class="col-5">
             <h3>{{ getDisplayName(node.definition.className) }}</h3>
         </div>
-        <div class="col-5" *ngIf="node.definition && node.definition.possibleClasses">
+        <div *ngIf="node.definition && node.definition.possibleClasses" class="col-5">
             <div class="row">
                 <div class="col-3">
                     <span>Object class: </span>
                 </div>
-                <div class="col-7" [formGroup]="form">
+                <div [formGroup]="form" class="col-7">
                     <mat-select
-                        [formControlName]="node.path + '/class'"
-                        [placeholder]="node.definition.possibleClasses[0]"
-                        [ngModel]="chosenOption"
                         (selectionChange)="onSelect($event)"
+                        [formControlName]="node.path + '/class'"
+                        [ngModel]="chosenOption"
+                        [placeholder]="node.definition.possibleClasses[0]"
                     >
                         <mat-option *ngFor="let className of node.definition.possibleClasses" [value]="className">
                             {{ className }}
@@ -26,23 +26,22 @@
     </div>
     <simbad-simple-parameter
         *ngFor="let childNode of node.simpleChildren"
-        [node]="childNode"
         [form]="form"
+        [node]="childNode"
         [parentPath]="node.path"
     ></simbad-simple-parameter>
     <simbad-complex-parameter
         *ngFor="let childNode of node.complexChildren"
-        [node]="childNode"
-        [level]="level + 1"
         [form]="form"
+        [level]="level + 1"
+        [node]="childNode"
         [parentPath]="node.path"
     ></simbad-complex-parameter>
     <simbad-complex-parameter
         *ngIf="chosenEnumParameter"
-        [node]="chosenEnumParameter"
-        [level]="level + 1"
         [form]="form"
+        [level]="level + 1"
+        [node]="chosenEnumParameter"
         [parentPath]="node.path"
-    >
-    </simbad-complex-parameter>
+    ></simbad-complex-parameter>
 </div>

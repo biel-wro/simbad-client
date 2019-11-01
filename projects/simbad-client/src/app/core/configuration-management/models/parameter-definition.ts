@@ -8,5 +8,6 @@ export interface ParameterDefinition {
     maxValue?: number;
     defaultValue?: number | string;
     possibleClasses?: string[];
+    chosenClass?: string;
     childClasses?: string[];
 }

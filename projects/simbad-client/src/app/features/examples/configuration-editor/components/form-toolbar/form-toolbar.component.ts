@@ -9,10 +9,10 @@ import { State } from '../../../simulationState';
 import { selectConfigurationName, selectFormValues } from '../../store/form.selectors';
 import { debounceTime, filter, map } from 'rxjs/operators';
 import {
-    actionFormReset,
-    actionFormUpdate,
-    actionFormUpdateConfigurationName,
-    actionFormUpdateRootObjects
+    resetFormValue,
+    updateFormValue,
+    updateConfigurationName,
+    updateFormRootObjects
 } from '../../store/form.actions';
 import { FormControl } from '@angular/forms';
 
@@ -73,13 +73,13 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
                 const obj = JSON.parse(e.target.result);
                 const rootObjectClassNames = Object.keys(obj);
                 const formValue = this.fs.configurationToFormValue(obj);
-                this.store.dispatch(actionFormReset());
-                this.store.dispatch(actionFormUpdateRootObjects({ rootObjectClassNames }));
-                this.store.dispatch(actionFormUpdate({ formValue }));
+                this.store.dispatch(resetFormValue());
+                this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
+                this.store.dispatch(updateFormValue({ formValue }));
             };
 
             if (inputNode.files[0]) {
-                this.store.dispatch(actionFormUpdateConfigurationName({configurationName: inputNode.files[0].name}));
+                this.store.dispatch(updateConfigurationName({configurationName: inputNode.files[0].name}));
                 reader.readAsText(inputNode.files[0]);
             }
         }
@@ -95,7 +95,7 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
         this.nameChanges = this.configurationNameControl.valueChanges.pipe(
             debounceTime(500)
         ).subscribe((configurationName: string) => {
-            this.store.dispatch(actionFormUpdateConfigurationName({ configurationName }));
+            this.store.dispatch(updateConfigurationName({ configurationName }));
         });
     }
     public getConfigurationFileName(): string {

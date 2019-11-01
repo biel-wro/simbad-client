@@ -17,7 +17,8 @@ export enum CliTaskActionTypes {
     CliTaskHttpError = '[SimulationPipeline] CLI task http error',
     UpdateElapsedTime = '[SimulationPipeline] Update elapsed time',
     StartTimer = '[SimulationPipeline] Start timer',
-    StopTimer = '[SimulationPipeline] Stop timer'
+    StopTimer = '[SimulationPipeline] Stop timer',
+    OpenArtifact = '[SimulationPipeline] Open artifact'
 }
 
 
@@ -45,12 +46,12 @@ export const updateCliTaskStatus = createAction(
 
 export const cliTaskFinished = createAction(
     CliTaskActionTypes.CliTaskFinished,
-    props<{result: CliResult, finishedTimestamp: number}>()
+    props<{ result: CliResult, finishedTimestamp: number }>()
 );
 
 export const startCliTask = createAction(
     CliTaskActionTypes.StartCliTask,
-    props<{request: RunCliCommandRequest}>()
+    props<{ request: RunCliCommandRequest }>()
 );
 
 export const stopPollingForTaskStatusChange = createAction(
@@ -59,19 +60,24 @@ export const stopPollingForTaskStatusChange = createAction(
 
 export const cliTaskHttpError = createAction(
     CliTaskActionTypes.CliTaskHttpError,
-    props<{errorResponse: HttpErrorResponse}>()
+    props<{ errorResponse: HttpErrorResponse }>()
 );
 
 export const updateElapsedTime = createAction(
     CliTaskActionTypes.UpdateElapsedTime,
-    props<{time: number}>()
+    props<{ time: number }>()
 );
 
 export const startTimer = createAction(
-    CliTaskActionTypes.StartTimer,
+    CliTaskActionTypes.StartTimer
 );
 
 export const stopTimer = createAction(
-    CliTaskActionTypes.StopTimer,
+    CliTaskActionTypes.StopTimer
+);
+
+export const openArtifact = createAction(
+    CliTaskActionTypes.OpenArtifact,
+    props<{ path: string }>()
 );
 

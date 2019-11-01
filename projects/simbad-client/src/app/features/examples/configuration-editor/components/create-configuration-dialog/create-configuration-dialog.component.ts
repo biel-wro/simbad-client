@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { State } from '../../../simulationState';
-import { actionFormReset, actionFormUpdateRootObjects } from '../../store/form.actions';
+import { resetFormValue, updateFormRootObjects } from '../../store/form.actions';
 
 @Component({
     selector: 'simbad-create-configuration-dialog',
@@ -26,8 +26,8 @@ export class CreateConfigurationDialogComponent implements OnInit {
     submit() {
         const rootObjectClassNames = Object.keys(this.form.value).filter(key => this.form.value[key]);
         if (rootObjectClassNames.length) {
-            this.store.dispatch(actionFormReset());
-            this.store.dispatch(actionFormUpdateRootObjects({ rootObjectClassNames }));
+            this.store.dispatch(resetFormValue());
+            this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
         }
         this.dialogRef.close();
     }

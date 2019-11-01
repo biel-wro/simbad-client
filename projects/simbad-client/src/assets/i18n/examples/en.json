@@ -134,5 +134,7 @@
     "simbad.configuration.forms.tooltip.create": "Create new configuration file",
     "simbad.configuration.forms.tooltip.load": "Upload configuration file from computer",
     "simbad.configuration.forms.tooltip.download": "Download current configuration file",
+    "simbad.configuration.forms.tooltip.show": "Show file in file manager",
+    "simbad.configuration.forms.tooltip.preview": "File preview",
     "simbad.configuration.forms.tooltip.downloadArtifact": "Download current configuration file"
 }

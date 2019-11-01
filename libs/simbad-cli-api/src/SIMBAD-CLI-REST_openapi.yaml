@@ -4,7 +4,7 @@ info:
     title: SIMBAD-CLI REST API
     version: v1
     contact:
-        email: jakub.sokolowski199@gmai.com
+        email: jakub.sokolowski1996@gmai.com
 
 tags:
     - name: SCLI
@@ -186,4 +186,3 @@ components:
                 artifactPath: /home/user/dev/simbad/output/SIM_0_CONF_parametric_evolution_3d/cli_out.csv
                 artifactSize: 178.190269
                 executionTime: 128.73994994163513
-

@@ -1,0 +1,81 @@
+openapi: 3.0.0
+
+info:
+    title: SIMBAD-HOST REST API
+    version: v1
+    contact:
+        email: jakub.sokolowski1996@gmail.com
+
+tags:
+    - name: HOST
+
+servers:
+    - url: /host
+
+paths:
+    /host/open:
+        post:
+            tags:
+                - HOST
+                - ARTIFACTS
+            operationId: openLocation
+            description: Opens default system file manager at given path
+            requestBody:
+                content:
+                    application:/json:
+                        schema:
+                            $ref: "#/components/schemas/OpenLocationRequest"
+            responses:
+                "202":
+                    description: Request is accepted and command starts to execute
+                "400":
+                    description: Location does not exist
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/HostLocationError"
+    /host/setup:
+        post:
+            tags:
+                - HOST
+                - DOCKER
+            operationId: setupPipeline
+            description: Starts docker containers relating to pipeline
+            responses:
+                "202":
+                    description: Request is accepted and command starts to execute
+                "400":
+                    description: Pipeline containers are already running
+    /host/teardown:
+        post:
+            tags:
+                - HOST
+                - DOCKER
+            operationId: teardownPipeline
+            description: Shutdowns docker containers relating to pipeline
+            responses:
+                "202":
+                    description: Request is accepted and command starts to execute
+                "400":
+                    description: Pipeline containers are already down
+
+components:
+    schemas:
+        OpenLocationRequest:
+            type: object
+            properties:
+                path:
+                    description: Absolute path to folder or file
+                    type: string
+            required:
+                - path
+        HostLocationError:
+            type: object
+            properties:
+                message:
+                    description: The cause of an error
+                    type: string
+                path:
+                    description: The path that was requested
+                    type: string
+

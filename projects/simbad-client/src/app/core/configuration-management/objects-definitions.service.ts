@@ -58,7 +58,7 @@ export class ObjectsDefinitionsService {
         return children;
     }
 
-    public toParameterTreeNode(parameter: ParameterDefinition, parentPath?: string): ParameterTreeNode {
+    public toParameterTreeNode(parameter: ParameterDefinition, parentPath?: string, value?: any): ParameterTreeNode {
         if (!parameter) return;
         const children: ParameterDefinition[] = this.getAllChildren(parameter.className);
         const simpleChildren: ParameterDefinition[] = children.filter(child => child.type === 'simple');
@@ -66,8 +66,9 @@ export class ObjectsDefinitionsService {
         const path = this.getPath(parameter.className, parentPath);
 
         return {
-            path: path,
+            path,
             definition: parameter,
+            value,
             simpleChildren: simpleChildren.length
                 ? simpleChildren.map(child => this.toParameterTreeNode(child, path))
                 : [],

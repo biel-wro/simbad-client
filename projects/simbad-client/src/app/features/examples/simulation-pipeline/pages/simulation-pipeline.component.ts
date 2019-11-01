@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { CliService } from '../../../../../../../../libs/simbad-cli-api/src/gen';
+import { CliService } from '@simbad-cli-api/gen';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../simulationState';
 import { Observable } from 'rxjs';
@@ -8,11 +8,11 @@ import { filter, map } from 'rxjs/operators';
 import { FormsService } from '../../configuration-editor/services/forms.service';
 import { selectCliTaskStatus } from '../cli-step/store/cli-step.selectors';
 import {
-    checkForRunningCliTask, startCliTask,
+    checkForRunningCliTask, openArtifact, startCliTask,
     stopPollingForTaskStatusChange
 } from '../cli-step/store/cli-step.actions';
 import { MatVerticalStepper } from '@angular/material';
-import { CliTaskStatus } from '../../../../../../../../libs/simbad-cli-api/src/gen/models/cli-task-status';
+import { CliTaskStatus } from '@simbad-cli-api/gen/models/cli-task-status';
 
 @Component({
     selector: 'simbad-client-simulation-pipeline',
@@ -65,5 +65,10 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
     sendToCli(conf: any): void {
         console.log('Sending conf...', conf);
         this.store.dispatch(startCliTask({request: {configuration: conf.value, configurationName: conf.name}}));
+    }
+
+    openFile(): void {
+        const path = '/home/jakub/Downloads/KEKW';
+        this.store.dispatch(openArtifact({path}));
     }
 }

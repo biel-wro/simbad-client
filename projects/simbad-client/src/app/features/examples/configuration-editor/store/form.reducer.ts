@@ -1,9 +1,9 @@
 import { ConfigurationFormState } from './form.model';
 import {
-    actionFormReset,
-    actionFormUpdate,
-    actionFormUpdateConfigurationName,
-    actionFormUpdateRootObjects
+    resetFormValue,
+    updateFormValue,
+    updateConfigurationName,
+    updateFormRootObjects
 } from './form.actions';
 import { Action, createReducer, on } from '@ngrx/store';
 
@@ -15,10 +15,10 @@ export const initialState: ConfigurationFormState = {
 
 const reducer = createReducer(
     initialState,
-    on(actionFormUpdate, (state, { formValue }) => ({ ...state, formValue })),
-    on(actionFormReset, state => ({ ...state, formValue: {} })),
-    on(actionFormUpdateRootObjects, (state, { rootObjectClassNames }) => ({ ...state, rootObjectClassNames })),
-    on(actionFormUpdateConfigurationName, (state, { configurationName }) => ({ ...state, configurationName }))
+    on(updateFormValue, (state, { formValue }) => ({ ...state, formValue })),
+    on(resetFormValue, state => ({ ...state, formValue: {} })),
+    on(updateFormRootObjects, (state, { rootObjectClassNames }) => ({ ...state, rootObjectClassNames })),
+    on(updateConfigurationName, (state, { configurationName }) => ({ ...state, configurationName }))
 );
 
 export function formReducer(state: ConfigurationFormState | undefined, action: Action) {

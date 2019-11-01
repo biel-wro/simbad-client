@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { FormsService } from '@simbad-client/app/features/examples/configuration-editor/services/forms.service';
 import {
-    actionFormReset,
-    actionFormUpdate,
-    actionFormUpdateConfigurationName,
-    actionFormUpdateRootObjects
+    resetFormValue,
+    updateFormValue,
+    updateConfigurationName,
+    updateFormRootObjects
 } from '@simbad-client/app/features/examples/configuration-editor/store/form.actions';
 
 
@@ -24,7 +22,7 @@ export class UploadConfigurationButtonComponent implements OnInit {
 
     }
 
-    onFileSelected() {
+    onFileSelected(): void {
         const inputNode: any = document.querySelector('#file');
 
         if (typeof FileReader !== 'undefined') {
@@ -34,13 +32,13 @@ export class UploadConfigurationButtonComponent implements OnInit {
                 const obj = JSON.parse(e.target.result);
                 const rootObjectClassNames = Object.keys(obj);
                 const formValue = this.fs.configurationToFormValue(obj);
-                this.store.dispatch(actionFormReset());
-                this.store.dispatch(actionFormUpdateRootObjects({ rootObjectClassNames }));
-                this.store.dispatch(actionFormUpdate({ formValue }));
+                this.store.dispatch(resetFormValue());
+                this.store.dispatch(updateFormValue({ formValue }));
+                this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
             };
 
             if (inputNode.files[0]) {
-                this.store.dispatch(actionFormUpdateConfigurationName({ configurationName: inputNode.files[0].name }));
+                this.store.dispatch(updateConfigurationName({ configurationName: inputNode.files[0].name }));
                 reader.readAsText(inputNode.files[0]);
             }
         }

@@ -18,6 +18,8 @@ export class ArtifactComponent implements OnInit {
     @Input()
     elements: ListElement[];
 
+    isExpanded = false;
+
     constructor() {
     }
 

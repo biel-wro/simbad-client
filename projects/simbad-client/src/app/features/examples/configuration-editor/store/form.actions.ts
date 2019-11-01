@@ -7,19 +7,24 @@ export enum FormActionTypes {
     UpdateConfigurationName = '[Form] Update configuration name'
 }
 
-export const actionFormUpdate = createAction(
+export const updateFormValue = createAction(
     FormActionTypes.UpdateFormValue,
     props<{ formValue: any }>()
 );
 
-export const actionFormUpdateConfigurationName = createAction(
+export const updateConfigurationName = createAction(
     FormActionTypes.UpdateConfigurationName,
     props<{configurationName: string}>()
 );
 
-export const actionFormUpdateRootObjects = createAction(
+export const updateFormRootObjects = createAction(
     FormActionTypes.UpdateRootObjects,
     props<{ rootObjectClassNames: string[] }>()
 );
 
-export const actionFormReset = createAction(FormActionTypes.ResetFormValue);
+export const buildFormFromFile = createAction(
+    FormActionTypes.UpdateRootObjects,
+    props<{ rootObjectClassNames: string[], formValue: any }>()
+);
+
+export const resetFormValue = createAction(FormActionTypes.ResetFormValue);

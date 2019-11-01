@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import { concatMap, tap } from 'rxjs/operators';
 
 import { LocalStorageService } from '../../../../core/core.module';
 
-import { actionFormUpdate, actionFormUpdateRootObjects } from './form.actions';
+import { updateFormValue, updateFormRootObjects, buildFormFromFile } from './form.actions';
 
 export const FORM_KEY = 'CONF.FORM';
 export const FORM_ROOT_OB = 'CONF.FORM.ROOT_OBJ';
@@ -14,7 +14,7 @@ export class FormEffects {
     persistForm$ = createEffect(
         () =>
             this.actions$.pipe(
-                ofType(actionFormUpdate),
+                ofType(updateFormValue),
                 tap(action =>
                     this.localStorageService.setItem(FORM_KEY, {
                         form: action.formValue
@@ -23,10 +23,11 @@ export class FormEffects {
             ),
         { dispatch: false }
     );
+
     persistRootObjects$ = createEffect(
         () =>
             this.actions$.pipe(
-                ofType(actionFormUpdateRootObjects),
+                ofType(updateFormRootObjects),
                 tap(action =>
                     this.localStorageService.setItem(FORM_ROOT_OB, {
                         form: action.rootObjectClassNames
@@ -35,6 +36,15 @@ export class FormEffects {
             ),
         { dispatch: false }
     );
+
+    // buildFormFromFile$ = createEffect(() => {
+    //     this.actions$.pipe(
+    //         ofType(buildFormFromFile),
+    //         concatMap((action) => {
+    //
+    //         })
+    //     );
+    // });
 
     constructor(private actions$: Actions, private localStorageService: LocalStorageService) {}
 }
