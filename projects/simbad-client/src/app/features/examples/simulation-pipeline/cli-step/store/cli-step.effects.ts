@@ -116,7 +116,12 @@ export class CliStepEffects {
         return this.actions$.pipe(
             ofType(openArtifact),
             switchMap((action) => {
-                return this.hostService.openLocation({ body: { path: action.path } });
+                console.log('Action: ', action);
+                return this.hostService.openLocation({ body: { path: action.path } }).pipe(
+                    map((response) => {
+                        console.log('Response: ', response);
+                    })
+                );
             })
         );
     }, { dispatch: false });
