@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface CliError  {
+export interface SimulationError  {
 
   /**
    * The cause of an error

@@ -3,7 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { CliService } from './services/cli.service';
+import { SimulationService } from './services/simulation.service';
 
 /**
  * Module that provides all services and configuration.
@@ -18,7 +18,7 @@ import { CliService } from './services/cli.service';
   ],
   declarations: [],
   providers: [
-    CliService,
+    SimulationService,
     ApiConfiguration
   ],
 })

@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface CliInfo  {
+export interface CliRuntimeInfo  {
 
   /**
    * Cli cpu usage in percent
@@ -12,7 +12,7 @@ export interface CliInfo  {
   memory: number;
 
   /**
-   * Cli command running time in s
+   * Cli command progress
    */
-  runtime: number;
+  progress: number;
 }

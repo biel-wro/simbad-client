@@ -1,5 +1,5 @@
 /* tslint:disable */
-export interface RunCliCommandRequest  {
+export interface StartSimulationRequest  {
 
   /**
    * The configuration file to be sent to CLI

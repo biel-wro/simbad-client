@@ -13,72 +13,123 @@ servers:
     - url: /api/cli
 
 paths:
-    /api/cli/run:
+    /api/simulation/status:
+        get:
+            tags:
+                - CLI
+            operationId: getSimulationStatus
+            description: Get SimulationStatus
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationStatus"
+    /api/simulation/start:
         post:
             tags:
                 - CLI
-            operationId: runCliCommand
-            description: Executes command using simbad-cli binary
+            operationId: startSimulation
+            description: Starts simulation process
             requestBody:
                 content:
                     application:/json:
                         schema:
-                            $ref: "#/components/schemas/RunCliCommandRequest"
+                            $ref: "#/components/schemas/StartSimulationRequest"
             responses:
                 "202":
                     description: Request is accepted and command starts to execute
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/RunCliCommandResponse"
+                                $ref: "#/components/schemas/StartSimulationResponse"
                 "400":
-                    description: CLI is busy
+                    description: Simulation process is already running
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/CliError"
-    /api/cli/status:
+                                $ref: "#/components/schemas/SimulationError"
+    /api/simulation/{id}:
+        parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                type: string
         get:
             tags:
-                - CLI
-            operationId: getCliStatus
-            description: Get cli status
+                - SIMULATION
+            summary: Get all info of simulation specified by id
+            operationId: getSimulationInfo
             responses:
                 "200":
                     description: OK
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/CliStatus"
-    /api/cli/status/{taskId}:
+                                $ref: "#/components/schemas/SimulationInfo"
+                "404":
+                    description: Not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationError"
+    /api/step/{id}:
         parameters:
-            - name: taskId
+            - name: id
               in: path
               required: true
               schema:
                   type: string
         get:
             tags:
-              - CLI
-            summary: Get status of task by given taskId
-            operationId: getCliTaskStatus
+                - SIMULATION
+            summary: Get all info of simulation step specified by id
+            operationId: getSimulationStepInfo
             responses:
                 "200":
                     description: OK
                     content:
-                      application/json:
-                          schema:
-                              $ref: "#/components/schemas/CliTaskStatus"
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationStepInfo"
                 "404":
                     description: Not found
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/CliError"
+                                $ref: "#/components/schemas/SimulationError"
+    /api/artifact/{id}:
+        parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                type: string
+        get:
+            tags:
+                - SIMULATION
+            summary: Get all info of artifact specified by id
+            operationId: getArtifactInfo
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationStepInfo"
+                "404":
+                    description: Not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationError"
+
 
 components:
     schemas:
-        RunCliCommandRequest:
+        StartSimulationRequest:
             type: object
             properties:
                 configurationName:
@@ -91,45 +142,18 @@ components:
             required:
                 - configuration
                 - confiugrationName
-        RunCliCommandResponse:
+        StartSimulationResponse:
             type: object
             properties:
-                taskId:
-                    description: The id of task that was commisioned
-                    type: string
-        CliError:
+                simulationId:
+                    description: The id of started simulation
+        SimulationError:
             type: object
             properties:
                 cause:
                     description: The cause of an error
                     type: string
-        CliTaskStatus:
-            type: object
-            required:
-                - cliInfo
-                - state
-                - status
-                - startTimestamp
-            properties:
-                cliInfo:
-                    $ref: "#/components/schemas/CliInfo"
-                result:
-                    $ref: "#/components/schemas/CliResult"
-                state:
-                    description: The state of task
-                    type: string
-                    enum:
-                        - PROGRESS
-                        - SUCCESS
-                        - FAILURE
-                        - PENDING
-                status:
-                    description: Additional information about task, including failure reasons
-                    type: string
-                startTimestamp:
-                    description: Time when task was commisioned in unix timestamp format
-                    type: number
-        CliStatus:
+        SimulationStatus:
             type: object
             required:
                 - status
@@ -139,19 +163,161 @@ components:
                     enum:
                         - BUSY
                         - IDLE
-                    description: CLI status - BUSY / IDLE
-                taskId:
+                    description: Simulation status - BUSY / IDLE
+                currentStep:
                     type: string
-                    description: The ID of CLI task that is being executed
+                    enum:
+                        - CONF
+                        - CLI
+                        - ANALYZER
+                        - REPORT
+                        - FINISHED
+                    description: Current step of simulation pipeline
+                simulationId:
+                    type: number
+                    description: The id of simulation
             example:
                 status: BUSY
-                taskId: c6f905ab-bd3e-452e-ab84-a0ad7d73be2f
-        CliInfo:
+                currentStep: CLI
+                simulationId: 123
+        ArtifactInfo:
+            type: object
+            required:
+                - id
+                - simulationId
+                - stepId
+                - createdUtc
+                - sizeKb
+                - path
+            properties:
+                id:
+                    type: number
+                    description: The id of artifact
+                simulationId:
+                    type: number
+                    description: The id of simulation in which the artifact was created
+                stepId:
+                    type: number
+                    description: The id of step in which the artifact was created
+                createdUtc:
+                    type: string
+                    description: UTC timestamp when artifact was created
+                sizeKb:
+                    type: number
+                    description: The size of artifact in kb
+                path:
+                    type: string
+                    description: The path to artifact in filesystem
+            example:
+                id: 123
+                simulationId: 123
+                stepId: 11
+                createdUtc: 123124124
+                sizeKb: 120
+                path:  /home/user/dev/simbad/data/SIM_0_CONF_parametric_evolution_3d/cli_out.csv
+        SimulationStepInfo:
+            type: object
+            required:
+                - id
+                - status
+                - simulationId
+                - startedUtc
+                - origin
+                - celeryId
+            properties:
+                id:
+                    type: number
+                    description: The id of step
+                status:
+                    type: string
+                    enum:
+                        - 'ONGOING'
+                        - 'SUCCESS'
+                        - 'FAILURE'
+                simulationId:
+                    type: number
+                    description: The id of simulation in which the step was executed
+                startedUtc:
+                    type: string
+                    description: UTC timestamp when step was started
+                finishedUtc:
+                    type: string
+                    description: UTC timestamp when step was finished
+                origin:
+                    type: string
+                    enum:
+                        - CONF
+                        - CLI
+                        - ANALYZER
+                        - REPORT
+                    description: Step origin
+                celeryId:
+                    type: string
+                    description: The celery task id of given step
+                artifacts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ArtifactInfo'
+                cliRuntimeInfo:
+                    type: object
+                    $ref: "#/components/schemas/CliRuntimeInfo"
+                analyzerRuntimeInfo:
+                    type: object
+                    $ref: "#/components/schemas/AnalyzerRuntimeInfo"
+
+
+            example:
+                id: 123
+                simulationId: 123
+                stepId: 11
+                createdUtc: 123124124
+                sizeKb: 120
+                path:  /home/user/dev/simbad/data/SIM_0_CONF_parametric_evolution_3d/cli_out.csv
+        SimulationInfo:
+            type: object
+            required:
+                - id
+                - startedUtc
+                - currentStepId
+                - workdir
+                - steps
+                - artifacts
+            properties:
+                id:
+                    type: number
+                    description: The id of simulation
+                startedUtc:
+                    type: string
+                    description: UTC timestamp when simulation was started
+                finishedUtc:
+                    type: string
+                    description: UTC timestamp when simulation was finished
+                currentStepId:
+                    type: number
+                    description: Id of currently excuted step
+                workdir:
+                    type: string
+                    description: The path to working directory for this simulation
+                steps:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/SimulationStepInfo'
+                artifacts:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/ArtifactInfo'
+                cliRuntimeInfo:
+                    type: object
+                    $ref: "#/components/schemas/CliRuntimeInfo"
+                analyzerRuntimeInfo:
+                    type: object
+                    $ref: "#/components/schemas/AnalyzerRuntimeInfo"
+        CliRuntimeInfo:
             type: object
             required:
                 - cpu
                 - memory
-                - runtime
+                - progress
             properties:
                 cpu:
                     type: number
@@ -159,30 +325,16 @@ components:
                 memory:
                     type: number
                     description: Cli memory usage in megabytes
-                runtime:
+                progress:
                     type: number
-                    description: Cli command running time in s
-            example:
-                cpu: 75.7
-                memory: 20.529152
-                runtime: 128.6882803440094
-        CliResult:
+                    description: Cli command progress
+        AnalyzerRuntimeInfo:
             type: object
             required:
-                - artifactPath
-                - artifactSize
-                - executionTime
+                - sparkJobId
             properties:
-                artifactPath:
-                    type: string
-                    description: Path to generated csv file
-                artifactSize:
+                sparkJobId:
                     type: number
-                    description: The size of generated artifact in megabytes
-                executionTime:
-                    type: number
-                    description: The total time of execution for task
-            example:
-                artifactPath: /home/user/dev/simbad/output/SIM_0_CONF_parametric_evolution_3d/cli_out.csv
-                artifactSize: 178.190269
-                executionTime: 128.73994994163513
+                    description: Id of spark job
+
+
