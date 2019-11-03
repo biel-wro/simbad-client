@@ -1,22 +1,22 @@
 openapi: 3.0.0
 
 info:
-    title: SIMBAD-CLI REST API
+    title: SIMBAD-PIPELINE REST API
     version: v1
     contact:
         email: jakub.sokolowski1996@gmai.com
 
 tags:
-    - name: SCLI
+    - name: SIMBAD-PIPELINE
 
 servers:
-    - url: /api/cli
+    - url: /api/simulation
 
 paths:
     /api/simulation/status:
         get:
             tags:
-                - CLI
+                - STATUS
             operationId: getSimulationStatus
             description: Get SimulationStatus
             responses:
@@ -29,7 +29,7 @@ paths:
     /api/simulation/start:
         post:
             tags:
-                - CLI
+                - SIMULATION
             operationId: startSimulation
             description: Starts simulation process
             requestBody:
@@ -43,7 +43,7 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/StartSimulationResponse"
+                                $ref: "#/components/schemas/SimulationStep"
                 "400":
                     description: Simulation process is already running
                     content:
@@ -59,7 +59,7 @@ paths:
                 type: string
         get:
             tags:
-                - SIMULATION
+                - STATUS
             summary: Get all info of simulation specified by id
             operationId: getSimulationInfo
             responses:
@@ -81,10 +81,10 @@ paths:
               in: path
               required: true
               schema:
-                  type: string
+                  type: number
         get:
             tags:
-                - SIMULATION
+                - STATUS
             summary: Get all info of simulation step specified by id
             operationId: getSimulationStepInfo
             responses:
@@ -109,7 +109,7 @@ paths:
                 type: string
         get:
             tags:
-                - SIMULATION
+                - STATUS
             summary: Get all info of artifact specified by id
             operationId: getArtifactInfo
             responses:
@@ -141,12 +141,17 @@ components:
                     format: binary
             required:
                 - configuration
-                - confiugrationName
+                - configurationName
         StartSimulationResponse:
             type: object
             properties:
                 simulationId:
+                    type: number
                     description: The id of started simulation
+                simulationStep:
+                    type: object
+                    description: The first step of started simuation
+                    $ref: '#/components/schemas/SimulationStepInfo'
         SimulationError:
             type: object
             properties:

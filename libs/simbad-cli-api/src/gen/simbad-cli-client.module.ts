@@ -3,6 +3,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { StatusService } from './services/status.service';
 import { SimulationService } from './services/simulation.service';
 
 /**
@@ -18,6 +19,7 @@ import { SimulationService } from './services/simulation.service';
   ],
   declarations: [],
   providers: [
+    StatusService,
     SimulationService,
     ApiConfiguration
   ],

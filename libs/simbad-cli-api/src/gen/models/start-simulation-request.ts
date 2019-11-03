@@ -9,5 +9,5 @@ export interface StartSimulationRequest  {
   /**
    * The configuration file name
    */
-  configurationName?: string;
+  configurationName: string;
 }
