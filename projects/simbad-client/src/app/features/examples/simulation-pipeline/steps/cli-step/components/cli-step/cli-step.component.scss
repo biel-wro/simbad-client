@@ -1,18 +1,16 @@
 .step-container {
     display: flex;
-    height: 250px;
+    height: 100%;
 }
 
 .artifact-list {
     flex: 1 1 0;
-    height: 100px;
     margin-right: 10px;
     max-width: 400px;
 }
 
 .task-context {
-    flex: 2 1 0;
-    height: 100px;
+    flex: 1 1 0;
     margin-right: 10px;
 }
 
@@ -20,6 +18,5 @@
 
 .performance-monitor {
     flex: 1 1 0;
-    height: 100px;
     margin-right: 10px;
 }

@@ -1,0 +1,12 @@
+<h4>Status Monitor</h4>
+<mat-divider></mat-divider>
+<div class="tile-container" *ngIf="runtimeInfo">
+    <div>
+        <simbad-status-tile class="simple-tile" value="{{elapsedTime}}" title="Time Running"
+                            faIcon="clock"></simbad-status-tile>
+        <simbad-status-tile class="simple-tile" value="{{runtimeInfo.memory.toFixed(2)}}" title="RAM Usage [MB]"
+                            faIcon="memory"></simbad-status-tile>
+        <simbad-status-tile class="simple-tile" value="{{runtimeInfo.cpu.toFixed(2)}}" title="CPU Usage [%]"
+                            faIcon="microchip"></simbad-status-tile>
+    </div>
+</div>

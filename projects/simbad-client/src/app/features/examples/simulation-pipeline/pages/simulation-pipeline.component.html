@@ -1,14 +1,18 @@
-<div class="simulation-wrapper" *ngIf="configuration | async as conf">
+<div class="simulation-wrapper" *ngIf="{conf: configuration$ | async, shouldDisable: shouldDisableStartButton$ | async} as data" >
     <div class="simulation-menu">
-        <button mat-raised-button (click)="openFile()" class="action-button">
-            Open
-        </button>
-        <button mat-raised-button (click)="sendToCli(conf)" id="toggle-linear">
-            Start
+        <button mat-raised-button
+                (click)="sendToCli(data.conf)"
+                id="toggle-linear"
+                [disabled]="data.shouldDisable"
+        >
+            Start Pipeline
         </button>
         <simbad-upload-configuration-button></simbad-upload-configuration-button>
+        <span *ngIf="!data.shouldDisable" class="conf-name">
+           {{data.conf.name}}
+        </span>
     </div>
-    <mat-vertical-stepper linear="true" #stepper *ngIf="cliTaskStatus$ | async as status">
+    <mat-vertical-stepper linear="true" #stepper *ngIf="cliStepInfo$ | async as status">
         <ng-template matStepperIcon="edit">
             <fa-icon icon="ellipsis-h"></fa-icon>
         </ng-template>
@@ -16,8 +20,8 @@
             <fa-icon icon="check"></fa-icon>
         </ng-template>
         <ng-template matStepperIcon="number">
-            <fa-icon icon="spinner" spin="true" pulse="true" *ngIf="!status.result"></fa-icon>
-            <fa-icon icon="check" *ngIf="status.result"></fa-icon>
+            <fa-icon icon="spinner" spin="true" pulse="true" *ngIf="!status.finishedUtc"></fa-icon>
+            <fa-icon icon="check" *ngIf="status.finishedUtc"></fa-icon>
         </ng-template>
         <mat-step class="cli-step">
             <ng-template matStepLabel>Simbad CLI</ng-template>

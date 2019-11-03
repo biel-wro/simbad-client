@@ -36,7 +36,6 @@ import {
     SettingsActions,
     SettingsActionTypes
 } from './settings/settings.actions';
-import { CliTaskActionTypes } from '@simbad-client/app/features/examples/simulation-pipeline/cli-step/store/cli-step.actions';
 
 export {
     TitleService,
@@ -82,7 +81,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             : StoreDevtoolsModule.instrument({
                 name: 'Angular NgRx Material Starter',
                 actionsBlocklist: [
-                    CliTaskActionTypes.UpdateElapsedTime
                 ]
             }),
 
