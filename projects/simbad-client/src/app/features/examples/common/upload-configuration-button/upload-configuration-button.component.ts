@@ -7,6 +7,7 @@ import {
     updateConfigurationName,
     updateFormRootObjects
 } from '@simbad-client/app/features/examples/configuration-editor/store/form.actions';
+import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {
     styleUrls: ['./upload-configuration-button.component.scss']
 })
 export class UploadConfigurationButtonComponent implements OnInit {
-    constructor(private store: Store<{}>, private fs: FormsService) {
+    constructor(private store: Store<{}>, private fs: FormsService, private ns: NotificationService) {
     }
 
     ngOnInit() {
@@ -35,6 +36,7 @@ export class UploadConfigurationButtonComponent implements OnInit {
                 this.store.dispatch(resetFormValue());
                 this.store.dispatch(updateFormValue({ formValue }));
                 this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
+                this.ns.info(`Uploaded configuration ${inputNode.files[0].name}. The original file was not changed`);
             };
 
             if (inputNode.files[0]) {
