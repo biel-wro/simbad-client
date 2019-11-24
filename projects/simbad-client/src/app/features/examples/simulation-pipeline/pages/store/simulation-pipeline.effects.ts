@@ -6,19 +6,24 @@ import { of, Subject } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
 import { SimulationStatus } from '@simbad-cli-api/gen/models/simulation-status';
 import {
+    analyzerStepFinished,
     checkForRunningSimulation,
-    getSimulationStepInfo, openArtifact,
+    cliStepFinished,
+    downloadArtifact,
+    getSimulationStepInfo,
+    openArtifact,
     pollForSimulationStatusChange,
     pollForSimulationStepInfo,
     simulationError,
-    simulationStepFinished,
-    startSimulation, updateCliStepInfo,
+    startSimulation,
+    updateCliStepInfo,
     updateStepInfo
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
 import { SimulationService, StatusService } from '@simbad-cli-api/gen';
 import { PollingService } from '@simbad-client/app/core/polling/polling.service';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
+import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 
 const POLLING_PERIOD_MS = 3000;
 
@@ -47,7 +52,7 @@ export class SimulationPipelineEffects {
             switchMap((action) => this.simulationService.startSimulation({ body: action.request }).pipe(
                 tap(() => this.notificationService.info(`Started simulation pipeline with conf: ${action.request.configurationName}`)),
                 concatMap((response: SimulationStepInfo) => [
-                    updateCliStepInfo({ step: response }),
+                    updateStepInfo({ step: response }),
                     pollForSimulationStepInfo({ stepId: response.id })
                 ]),
                 catchError((err) => {
@@ -64,10 +69,16 @@ export class SimulationPipelineEffects {
             switchMap(({ stepId }) => this.statusService.getSimulationStepInfo({ id: stepId }).pipe(
                 concatMap((stepInfo) => {
                     console.log('SimulationStepInfo', stepInfo);
-                    return of(stepInfo.finishedUtc
-                        ? simulationStepFinished({ step: stepInfo })
-                        : updateCliStepInfo({ step: stepInfo })
-                    );
+                    if (stepInfo.finishedUtc) {
+                        switch (stepInfo.origin) {
+                            case 'ANALYZER':
+                                return of(analyzerStepFinished({ step: stepInfo }));
+                            case 'CLI':
+                                return of(cliStepFinished({ step: stepInfo }));
+                        }
+                    }
+
+                    return of(updateStepInfo({ step: stepInfo }));
                 }),
                 catchError((err) => {
                     console.log('getStimulationStepInfo: ', err);
@@ -79,11 +90,18 @@ export class SimulationPipelineEffects {
 
     stopPolling$ = new Subject();
 
-    simulationStepFinished$ = createEffect(() => {
+    cliStepFinished$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(simulationStepFinished),
-            tap(() => {
-                this.notificationService.success('CLI step finished');
+            ofType(cliStepFinished, analyzerStepFinished),
+            tap((action) => {
+                switch (action.step.origin) {
+                    case 'ANALYZER':
+                        this.notificationService.success('Analyzer step finished!');
+                        break;
+                    case 'CLI':
+                        this.notificationService.success('CLI step finished!');
+                        break;
+                }
                 this.stopPolling$.next();
             })
         );
@@ -105,6 +123,22 @@ export class SimulationPipelineEffects {
         );
     });
 
+    startAnalyzerStep$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(cliStepFinished),
+            switchMap((action) => this.statusService.getSimulationInfo({ id: action.step.simulationId.toString(10) }).pipe(
+                tap(() => this.notificationService.info(`Started analyzer step`)),
+                concatMap((response: SimulationInfo) => {
+                    const analyzerStep: SimulationStepInfo = response.steps.find((step) => step.origin === 'ANALYZER');
+                    return [
+                        updateStepInfo({ step: analyzerStep }),
+                        pollForSimulationStepInfo({ stepId: analyzerStep.id })
+                    ];
+                })
+            ))
+        );
+    });
+
     openArtifact$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(openArtifact),
@@ -113,7 +147,31 @@ export class SimulationPipelineEffects {
                 return this.hostService.openLocation({ body: { path: action.path } }).pipe(
                     map((response) => {
                         console.log('Response: ', response);
+                        return of();
                     })
+                );
+            })
+        );
+    }, { dispatch: false });
+
+    downloadArtifact$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(downloadArtifact),
+            tap((action) => {
+                this.notificationService.info(`${action.name} download started.`);
+            }),
+            switchMap((action) => {
+                console.log('Action: ', action);
+                return this.statusService.downloadArtifact({ id: action.id }).pipe(
+                    map((response) => {
+                        const downloadURL = window.URL.createObjectURL(response);
+                        const link = document.createElement('a');
+                        link.href = downloadURL;
+                        link.download = action.name;
+                        link.click();
+                        return of();
+                    }),
+                    tap(() => this.notificationService.success(`${action.name} download finished.`))
                 );
             })
         );

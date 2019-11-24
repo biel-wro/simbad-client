@@ -1,9 +1,15 @@
-<div class="simulation-wrapper" *ngIf="{conf: configuration$ | async, shouldDisable: shouldDisableStartButton$ | async} as data" >
+<div *ngIf="{
+    conf: configuration$ | async,
+    shouldDisable: shouldDisableStartButton$ | async,
+    isAnalyzerStepCompleted: isAnalyzerStepCompleted$ | async,
+    isCliTaskCompleted: isCliTaskCompleted$ | async
+} as data"
+     class="simulation-wrapper">
     <div class="simulation-menu">
-        <button mat-raised-button
-                (click)="sendToCli(data.conf)"
-                id="toggle-linear"
+        <button (click)="sendToCli(data.conf)"
                 [disabled]="data.shouldDisable"
+                id="toggle-linear"
+                mat-raised-button
         >
             Start Pipeline
         </button>
@@ -12,26 +18,32 @@
            {{data.conf.name}}
         </span>
     </div>
-    <mat-vertical-stepper linear="true" #stepper *ngIf="cliStepInfo$ | async as status">
+    <mat-horizontal-stepper
+        #stepper
+        *ngIf="cliStepInfo$ | async as cliStatus"
+        linear="true">
         <ng-template matStepperIcon="edit">
             <fa-icon icon="ellipsis-h"></fa-icon>
         </ng-template>
         <ng-template matStepperIcon="done">
             <fa-icon icon="check"></fa-icon>
         </ng-template>
-        <ng-template matStepperIcon="number">
-            <fa-icon icon="spinner" spin="true" pulse="true" *ngIf="!status.finishedUtc"></fa-icon>
-            <fa-icon icon="check" *ngIf="status.finishedUtc"></fa-icon>
+        <ng-template matStepperIcon="number" let-index="index">
+            <fa-icon *ngIf="index === 0 && !data.isCliTaskCompleted" icon="spinner" pulse="true" spin="true"></fa-icon>
+            <fa-icon *ngIf="index === 0 && data.isCliTaskCompleted" icon="check"></fa-icon>
+            <fa-icon *ngIf="index === 1 && !data.isAnalyzerStepCompleted" icon="spinner" pulse="true" spin="true"></fa-icon>
+            <fa-icon *ngIf="index === 1 && data.isAnalyzerStepCompleted" icon="check"></fa-icon>
         </ng-template>
-        <mat-step class="cli-step">
+        <mat-step class="step" [completed]="isCliTaskCompleted$ | async">
             <ng-template matStepLabel>Simbad CLI</ng-template>
             <simbad-client-cli-step></simbad-client-cli-step>
         </mat-step>
-        <mat-step [editable]="true" [completed]="true">
+        <mat-step [completed]="isAnalyzerStepCompleted$ | async" class="step">
             <ng-template matStepLabel>Spark</ng-template>
+            <simbad-client-analyzer-step></simbad-client-analyzer-step>
         </mat-step>
-        <mat-step [editable]="true" [completed]="true">
+        <mat-step [completed]="true" [editable]="true" class="step">
             <ng-template matStepLabel>Post processing</ng-template>
         </mat-step>
-    </mat-vertical-stepper>
+    </mat-horizontal-stepper>
 </div>

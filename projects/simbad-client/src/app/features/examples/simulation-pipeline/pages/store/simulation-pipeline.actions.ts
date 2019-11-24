@@ -13,13 +13,16 @@ export enum SimulationPipelineActions {
     PollForSimulationStepInfoChange = '[SimulationPipeline] Poll for step info change',
     UpdateStepInfo = '[SimulationPipeline] Update step info',
     UpdateCliStepInfo = '[SimulationPipeline] Update cli step info',
-    SimulationStepFinished = '[SimulationPipeline] Simulation step finished',
+    UpdateAnalyzerStepInfo = '[SimulationPipeline] Update analyzer step info',
+    CliStepFinished = '[SimulationPipeline] Cli step finished',
+    AnalyzerStepFinished = '[SimulationPipeline] Analyzer step finished',
     StartSimulation = '[SimulationPipeline] Start simulation',
     SimulationError = '[SimulationPipeline] Simulation http error',
     UpdateElapsedTime = '[SimulationPipeline] Update elapsed time',
     StartTimer = '[SimulationPipeline] Start timer',
     StopTimer = '[SimulationPipeline] Stop timer',
-    OpenArtifact = '[SimulationPipeline] Open artifact'
+    OpenArtifact = '[SimulationPipeline] Open artifact',
+    DownloadArtifact = '[SimulationPipeline] Download artifact'
 }
 
 
@@ -74,8 +77,18 @@ export const updateCliStepInfo = createAction(
     props<{step: SimulationStepInfo}>()
 );
 
-export const simulationStepFinished = createAction(
-    SimulationPipelineActions.SimulationStepFinished,
+export const updateAnalyzerInfo = createAction(
+    SimulationPipelineActions.UpdateAnalyzerStepInfo,
+    props<{step: SimulationStepInfo}>()
+);
+
+export const cliStepFinished = createAction(
+    SimulationPipelineActions.CliStepFinished,
+    props<{step: SimulationStepInfo}>()
+);
+
+export const analyzerStepFinished = createAction(
+    SimulationPipelineActions.AnalyzerStepFinished,
     props<{step: SimulationStepInfo}>()
 );
 
@@ -96,5 +109,10 @@ export const stopTimer = createAction(
 export const openArtifact = createAction(
     SimulationPipelineActions.OpenArtifact,
     props<{ path: string }>()
+);
+
+export const downloadArtifact = createAction(
+    SimulationPipelineActions.DownloadArtifact,
+    props<{ id: number, name: string }>()
 );
 

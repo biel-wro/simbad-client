@@ -58,7 +58,7 @@ import {
     faWindowMaximize,
     faClock,
     faFolderOpen,
-    faEye
+    faEye, faExternalLinkAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faInstagram, faMediumM, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { BigInputComponent } from './big-input/big-input/big-input.component';
@@ -104,7 +104,8 @@ library.add(
     faFolderOpen,
     faEye,
     faSpinner,
-    faEllipsisH
+    faEllipsisH,
+    faExternalLinkAlt
 );
 
 @NgModule({

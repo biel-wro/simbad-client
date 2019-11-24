@@ -1,7 +1,8 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 import {
-    simulationStepFinished,
+    analyzerStepFinished,
+    cliStepFinished,
     startSimulation,
     updateCliStepInfo,
     updateSimulationInfo,
@@ -26,13 +27,17 @@ const reducer = createReducer(
     on(startSimulation, (state) => ({...state, isSimulationRunning: true})),
     on(updateSimulationInfo, (state, { simulation }) => ({ ...state, simulation })),
     on(updateCliStepInfo, (state, {step}) => ({...state, cliStep: step})),
-    on(simulationStepFinished, (state, {step}) => ({...state, cliStep: step})),
+    on(cliStepFinished, (state, {step}) => ({...state, cliStep: step})),
+    on(analyzerStepFinished, (state, {step}) => ({...state, analyzerStep: step})),
     on(updateStepInfo, (state, { step }) => {
-        const newSteps = state.simulation.steps.map((currentStep) => {
-            return currentStep.id === step.id ? step : currentStep;
-        });
-        const simulation = {...state.simulation, steps: newSteps};
-        return ({ ...state, simulation });
+        switch (step.origin) {
+            case 'ANALYZER':
+                return ({ ...state, analyzerStep: step});
+            case 'CLI':
+                return ({...state, cliStep: step});
+            default:
+                return state;
+        }
     }),
 );
 

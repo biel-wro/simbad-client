@@ -28,8 +28,18 @@ export const cliStepState = createSelector(
     (state) => state.cliStep
 );
 
+export const analyzerStepState = createSelector(
+    selectSimulationPipelineState,
+    (state) => state.analyzerStep
+);
+
 export const cliStepStartTimestamp = createSelector(
     cliStepState,
+    (state) => state ? state.startedUtc : undefined
+);
+
+export const analyzerStepStartTimestamp = createSelector(
+    analyzerStepState,
     (state) => state ? state.startedUtc : undefined
 );
 

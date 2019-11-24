@@ -1,12 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../simulationState';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, Subject } from 'rxjs';
 import { selectConfiguration } from '../../configuration-editor/store/form.selectors';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { FormsService } from '../../configuration-editor/services/forms.service';
-import { MatVerticalStepper } from '@angular/material';
 import {
+    analyzerStepState,
     cliStepState,
     isSimulationOngoing
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.selectors';
@@ -17,6 +17,7 @@ import {
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
 
 import { isEmpty } from 'lodash';
+import { MatHorizontalStepper } from '@angular/material';
 
 @Component({
     selector: 'simbad-client-simulation-pipeline',
@@ -26,11 +27,14 @@ import { isEmpty } from 'lodash';
 export class SimulationPipelineComponent implements OnInit, OnDestroy {
     configuration$: Observable<any>;
     cliStepInfo$: Observable<SimulationStepInfo>;
+    analyzerStepInfo$: Observable<SimulationStepInfo>;
     isCliTaskCompleted$: Observable<boolean>;
+    isAnalyzerStepCompleted$: Observable<boolean>;
     shouldDisableStartButton$: Observable<boolean>;
     isSimulationOngoing$: Observable<boolean>;
+    private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-    @ViewChild(MatVerticalStepper) stepper: MatVerticalStepper;
+    @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
 
     constructor(private store: Store<State>, private fs: FormsService) {
     }
@@ -63,8 +67,38 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
             filter((status) => !!status),
         );
 
+        this.cliStepInfo$.pipe(
+            takeUntil(this.ngUnsubscribe),
+            filter((info) => !!info)
+        ).subscribe((info: SimulationStepInfo) => {
+            if (info && info.finishedUtc) {
+                this.stepper.next();
+            }
+        });
+
+        this.analyzerStepInfo$ = this.store.pipe(
+            select(analyzerStepState),
+            filter((status) => !!status),
+        );
+
+        this.isAnalyzerStepCompleted$ = this.store.pipe(
+            select(analyzerStepState),
+            filter((info) => !!info),
+            map((value) => !!value.finishedUtc)
+        );
+
+        this.analyzerStepInfo$.pipe(
+            takeUntil(this.ngUnsubscribe),
+            filter((info) => !!info)
+        ).subscribe((info: SimulationStepInfo) => {
+            if (info && info.finishedUtc) {
+                this.stepper.next();
+            }
+        });
+
         this.isCliTaskCompleted$ = this.store.pipe(
             select(cliStepState),
+            filter((info) => !!info),
             map((value) => !!value.finishedUtc)
         );
 
