@@ -13,7 +13,7 @@ import {
     getSimulationStepInfo,
     openArtifact,
     pollForSimulationStatusChange,
-    pollForSimulationStepInfo,
+    pollForSimulationStepInfo, reportStepFinished,
     simulationError,
     startSimulation,
     updateCliStepInfo,
@@ -75,6 +75,8 @@ export class SimulationPipelineEffects {
                                 return of(analyzerStepFinished({ step: stepInfo }));
                             case 'CLI':
                                 return of(cliStepFinished({ step: stepInfo }));
+                            case 'REPORT':
+                                return of(reportStepFinished({ step: stepInfo }));
                         }
                     }
 
@@ -92,7 +94,7 @@ export class SimulationPipelineEffects {
 
     cliStepFinished$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(cliStepFinished, analyzerStepFinished),
+            ofType(cliStepFinished, analyzerStepFinished, reportStepFinished),
             tap((action) => {
                 switch (action.step.origin) {
                     case 'ANALYZER':
@@ -100,6 +102,9 @@ export class SimulationPipelineEffects {
                         break;
                     case 'CLI':
                         this.notificationService.success('CLI step finished!');
+                        break;
+                    case 'REPORT':
+                        this.notificationService.success('Report step finished!');
                         break;
                 }
                 this.stopPolling$.next();
@@ -139,6 +144,22 @@ export class SimulationPipelineEffects {
         );
     });
 
+    startReportStep$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(analyzerStepFinished),
+            switchMap((action) => this.statusService.getSimulationInfo({ id: action.step.simulationId.toString(10) }).pipe(
+                tap(() => this.notificationService.info(`Started analyzer step`)),
+                concatMap((response: SimulationInfo) => {
+                    const analyzerStep: SimulationStepInfo = response.steps.find((step) => step.origin === 'REPORT');
+                    return [
+                        updateStepInfo({ step: analyzerStep }),
+                        pollForSimulationStepInfo({ stepId: analyzerStep.id })
+                    ];
+                })
+            ))
+        );
+    });
+
     openArtifact$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(openArtifact),
@@ -167,7 +188,7 @@ export class SimulationPipelineEffects {
                         const downloadURL = window.URL.createObjectURL(response);
                         const link = document.createElement('a');
                         link.href = downloadURL;
-                        link.download = action.name;
+                        link.download = action.name.endsWith('.png') ? action.name : action.name + '.zip';
                         link.click();
                         return of();
                     }),

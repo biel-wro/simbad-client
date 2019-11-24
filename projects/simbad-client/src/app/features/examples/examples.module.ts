@@ -35,6 +35,7 @@ import { InfoListComponent } from './simulation-pipeline/components/common/info-
 import { InfoListElementComponent } from './simulation-pipeline/components/common/info-list-element/info-list-element.component';
 import { ArtifactComponent } from './simulation-pipeline/components/common/artifact/artifact.component';
 import { SimulationPipelineEffects } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.effects';
+import { ReportStepComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/steps/report-step/report-step.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
@@ -78,7 +79,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         InfoListComponent,
         InfoListElementComponent,
         ArtifactComponent,
-        AnalyzerStepComponent
+        AnalyzerStepComponent,
+        ReportStepComponent
     ],
     providers: [FormsService],
     entryComponents: [CreateConfigurationDialogComponent]

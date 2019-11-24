@@ -42,8 +42,9 @@
             <ng-template matStepLabel>Spark</ng-template>
             <simbad-client-analyzer-step></simbad-client-analyzer-step>
         </mat-step>
-        <mat-step [completed]="true" [editable]="true" class="step">
-            <ng-template matStepLabel>Post processing</ng-template>
+        <mat-step [completed]="isReportStepCompleted$ | async" class="step">
+            <ng-template matStepLabel>Reports</ng-template>
+            <simbad-client-report-step></simbad-client-report-step>
         </mat-step>
     </mat-horizontal-stepper>
 </div>

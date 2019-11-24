@@ -16,6 +16,7 @@ export enum SimulationPipelineActions {
     UpdateAnalyzerStepInfo = '[SimulationPipeline] Update analyzer step info',
     CliStepFinished = '[SimulationPipeline] Cli step finished',
     AnalyzerStepFinished = '[SimulationPipeline] Analyzer step finished',
+    ReportStepFinished = '[SimulationPipeline] Report step finished',
     StartSimulation = '[SimulationPipeline] Start simulation',
     SimulationError = '[SimulationPipeline] Simulation http error',
     UpdateElapsedTime = '[SimulationPipeline] Update elapsed time',
@@ -89,6 +90,11 @@ export const cliStepFinished = createAction(
 
 export const analyzerStepFinished = createAction(
     SimulationPipelineActions.AnalyzerStepFinished,
+    props<{step: SimulationStepInfo}>()
+);
+
+export const reportStepFinished = createAction(
+    SimulationPipelineActions.ReportStepFinished,
     props<{step: SimulationStepInfo}>()
 );
 

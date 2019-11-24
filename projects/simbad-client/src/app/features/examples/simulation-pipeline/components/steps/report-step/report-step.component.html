@@ -1,0 +1,26 @@
+<div *ngIf="{
+    elapsedTime: elapsedTime$ | async,
+    taskContext: taskContext$ | async,
+    artifactList: artifactList$ | async,
+    runtimeInfo: runtimeInfo$ | async
+} as data">
+    <div class="step-container">
+        <simbad-performance-monitor
+            [elapsedTime]="data.elapsedTime"
+            class="performance-monitor"
+        >
+        </simbad-performance-monitor>
+        <simbad-client-task-context
+            [data]="taskContext$ | async"
+            class="task-context"
+        >
+        </simbad-client-task-context>
+        <simbad-client-artifact-list
+            [artifacts]="data.artifactList"
+            class="artifact-list"
+        ></simbad-client-artifact-list>
+    </div>
+    <span>Spark job progress: {{data.runtimeInfo?.progress}}%</span>
+    <mat-progress-bar mode="determinate" [value]="data.runtimeInfo?.progress"></mat-progress-bar>
+    <mat-divider></mat-divider>
+</div>

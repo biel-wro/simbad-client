@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 import {
     analyzerStepFinished,
-    cliStepFinished,
+    cliStepFinished, reportStepFinished,
     startSimulation,
     updateCliStepInfo,
     updateSimulationInfo,
@@ -15,6 +15,7 @@ export interface SimulationPipelineState {
     simulation?: SimulationInfo;
     cliStep?: SimulationStepInfo,
     analyzerStep?: SimulationStepInfo
+    reportsStep?: SimulationStepInfo
 }
 
 
@@ -29,12 +30,15 @@ const reducer = createReducer(
     on(updateCliStepInfo, (state, {step}) => ({...state, cliStep: step})),
     on(cliStepFinished, (state, {step}) => ({...state, cliStep: step})),
     on(analyzerStepFinished, (state, {step}) => ({...state, analyzerStep: step})),
+    on(reportStepFinished, (state, {step}) => ({...state, reportsStep: step, isSimulationRunning: false})),
     on(updateStepInfo, (state, { step }) => {
         switch (step.origin) {
             case 'ANALYZER':
                 return ({ ...state, analyzerStep: step});
             case 'CLI':
                 return ({...state, cliStep: step});
+            case 'REPORT':
+                return ({...state, reportsStep: step});
             default:
                 return state;
         }

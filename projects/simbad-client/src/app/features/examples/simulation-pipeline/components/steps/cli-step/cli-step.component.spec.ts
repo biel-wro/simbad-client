@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CliStepComponent } from './cli-step.component';
 
-describe('AnalyzerStepComponent', () => {
+describe('ReportStepComponent', () => {
   let component: CliStepComponent;
   let fixture: ComponentFixture<CliStepComponent>;
 

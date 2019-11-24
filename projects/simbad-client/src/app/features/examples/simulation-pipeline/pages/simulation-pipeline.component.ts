@@ -8,7 +8,7 @@ import { FormsService } from '../../configuration-editor/services/forms.service'
 import {
     analyzerStepState,
     cliStepState,
-    isSimulationOngoing
+    isSimulationOngoing, reportStepState
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.selectors';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import {
@@ -30,6 +30,7 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
     analyzerStepInfo$: Observable<SimulationStepInfo>;
     isCliTaskCompleted$: Observable<boolean>;
     isAnalyzerStepCompleted$: Observable<boolean>;
+    isReportStepCompleted$: Observable<boolean>;
     shouldDisableStartButton$: Observable<boolean>;
     isSimulationOngoing$: Observable<boolean>;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
@@ -83,6 +84,12 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
         this.isAnalyzerStepCompleted$ = this.store.pipe(
             select(analyzerStepState),
+            filter((info) => !!info),
+            map((value) => !!value.finishedUtc)
+        );
+
+        this.isReportStepCompleted$ = this.store.pipe(
+            select(reportStepState),
             filter((info) => !!info),
             map((value) => !!value.finishedUtc)
         );
