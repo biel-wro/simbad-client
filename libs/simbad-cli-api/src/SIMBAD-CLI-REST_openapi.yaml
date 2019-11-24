@@ -26,6 +26,19 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/SimulationStatus"
+    /api/simulation/latest:
+        get:
+            tags:
+                - STATUS
+            operationId: getLatestSimulation
+            description: Get latest stimulation data
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationInfo"
     /api/simulation/start:
         post:
             tags:

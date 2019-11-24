@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, concatMap, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
 import { SimulationStatus } from '@simbad-cli-api/gen/models/simulation-status';
@@ -10,7 +10,7 @@ import {
     checkForRunningSimulation,
     cliStepFinished,
     downloadArtifact,
-    getSimulationStepInfo,
+    getSimulationStepInfo, loadLatestSimulation,
     openArtifact,
     pollForSimulationStatusChange,
     pollForSimulationStepInfo, reportStepFinished,
@@ -43,6 +43,22 @@ export class SimulationPipelineEffects {
                     return of(simulationError({ error: err }));
                 })
             ))
+        );
+    });
+
+    loadLatestSimulation$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(checkForRunningSimulation),
+            switchMap(() => this.statusService.getLatestSimulation().pipe(
+                map((response: SimulationInfo) => {
+                    return loadLatestSimulation({ simulation: response });
+                }),
+                catchError((err) => {
+                    console.log('loadLatestSimulation$: ', err);
+                    return of(simulationError({ error: err }));
+                })
+            )),
+            take(1)
         );
     });
 

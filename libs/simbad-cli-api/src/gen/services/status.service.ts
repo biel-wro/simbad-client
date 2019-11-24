@@ -74,6 +74,55 @@ export class StatusService extends BaseService {
   }
 
   /**
+   * Path part for operation getLatestSimulation
+   */
+  static readonly GetLatestSimulationPath = '/api/simulation/latest';
+
+  /**
+   * Get latest stimulation data
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getLatestSimulation()` instead.
+   *
+   * This method doesn't expect any response body
+   */
+  getLatestSimulation$Response(params?: {
+
+  }): Observable<StrictHttpResponse<SimulationInfo>> {
+
+    const rb = new RequestBuilder(this.rootUrl, '/api/simulation/latest', 'get');
+    if (params) {
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<SimulationInfo>;
+      })
+    );
+  }
+
+  /**
+   * Get latest stimulation data
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getLatestSimulation$Response()` instead.
+   *
+   * This method doesn't expect any response body
+   */
+  getLatestSimulation(params?: {
+
+  }): Observable<SimulationInfo> {
+
+    return this.getLatestSimulation$Response(params).pipe(
+      map((r: StrictHttpResponse<SimulationInfo>) => r.body as SimulationInfo)
+    );
+  }
+
+  /**
    * Path part for operation getSimulationInfo
    */
   static readonly GetSimulationInfoPath = '/api/simulation/status/{id}';
