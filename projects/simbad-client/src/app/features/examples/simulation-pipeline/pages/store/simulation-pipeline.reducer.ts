@@ -25,7 +25,7 @@ export const initialState: SimulationPipelineState = {
 
 const reducer = createReducer(
     initialState,
-    on(startSimulation, (state) => ({...state, isSimulationRunning: true})),
+    on(startSimulation, (state) => ({...state, isSimulationRunning: true, cliStep: undefined, analyzerStep: undefined, reportsStep: undefined})),
     on(updateSimulationInfo, (state, { simulation }) => ({ ...state, simulation })),
     on(updateCliStepInfo, (state, {step}) => ({...state, cliStep: step})),
     on(cliStepFinished, (state, {step}) => ({...state, cliStep: step})),
