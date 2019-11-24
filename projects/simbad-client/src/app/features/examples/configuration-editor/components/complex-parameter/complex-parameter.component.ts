@@ -3,6 +3,10 @@ import { ParameterTreeNode } from '@simbad-client/app/core/configuration-managem
 import { ObjectsDefinitionsService } from '@simbad-client/app/core/configuration-management/objects-definitions.service';
 import { FormGroup } from '@angular/forms';
 import { FormsService } from '../../services/forms.service';
+import { select, Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { selectNodeValue } from '@simbad-client/app/features/examples/configuration-editor/store/form.selectors';
 
 @Component({
     selector: 'simbad-complex-parameter',
@@ -16,10 +20,18 @@ export class ComplexParameterComponent implements OnInit {
     @Input() form: FormGroup;
     @Input() parentPath: string;
 
+    formControlValueInStore: Observable<any>;
+    formControlValueUpdate: Subject<any> = new Subject();
+    ngUnsubscribe: Subject<void> = new Subject();
+
     chosenOption: any;
     chosenEnumParameter: ParameterTreeNode;
 
-    constructor(private ods: ObjectsDefinitionsService, private fs: FormsService) {}
+    constructor(
+        private ods: ObjectsDefinitionsService,
+        private fs: FormsService,
+        private store: Store<{}>
+    )  { }
 
     ngOnInit() {
         if (this.node.definition.possibleClasses) {
@@ -29,6 +41,19 @@ export class ComplexParameterComponent implements OnInit {
                 this.node.path
             );
         }
+
+        this.formControlValueInStore = this.store.pipe(
+            takeUntil(this.ngUnsubscribe),
+            select(selectNodeValue(this.node.path)),
+            distinctUntilChanged(),
+        );
+
+        this.formControlValueInStore.subscribe((value) => console.log(`${this.node.path} value:`, value));
+
+        this.formControlValueUpdate.pipe(
+            takeUntil(this.ngUnsubscribe)
+        ).subscribe((value) => console.log('Form control value update emit', value));
+
     }
 
     getDisplayName(className: string) {

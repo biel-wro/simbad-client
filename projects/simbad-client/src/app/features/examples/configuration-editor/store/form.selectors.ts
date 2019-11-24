@@ -22,6 +22,11 @@ export const selectConfiguration = createSelector(
     }
 );
 
+export const selectNodeValue = (path: string) => createSelector(
+    selectFormValues,
+    (values: any) => values[path]
+);
+
 
 export const selectConfigurationName = createSelector(
     selectSimulationState,
