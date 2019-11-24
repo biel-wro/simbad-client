@@ -36,6 +36,7 @@ import { InfoListElementComponent } from './simulation-pipeline/components/commo
 import { ArtifactComponent } from './simulation-pipeline/components/common/artifact/artifact.component';
 import { SimulationPipelineEffects } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.effects';
 import { ReportStepComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/steps/report-step/report-step.component';
+import { ImagePreviewDialogComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
@@ -80,10 +81,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         InfoListElementComponent,
         ArtifactComponent,
         AnalyzerStepComponent,
-        ReportStepComponent
+        ReportStepComponent,
+        ImagePreviewDialogComponent
     ],
     providers: [FormsService],
-    entryComponents: [CreateConfigurationDialogComponent]
+    entryComponents: [CreateConfigurationDialogComponent, ImagePreviewDialogComponent]
 })
 export class ExamplesModule {
     constructor() {

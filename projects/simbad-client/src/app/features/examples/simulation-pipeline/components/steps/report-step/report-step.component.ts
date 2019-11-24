@@ -1,13 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { reportStepStartTimestamp, reportStepState } from '../../../pages/store/simulation-pipeline.selectors';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import {
+    cliStepEndTimestamp,
+    cliStepStartTimestamp, reportStepEndTimestamp,
+    reportStepStartTimestamp,
+    reportStepState
+} from '../../../pages/store/simulation-pipeline.selectors';
+import { filter, map, take, takeUntil } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
 import { downloadArtifact } from '../../../pages/store/simulation-pipeline.actions';
 import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
+import { StatusService } from '@simbad-cli-api/gen';
+import { MatDialog } from '@angular/material';
+import { ImagePreviewDialogComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'simbad-client-report-step',
@@ -25,8 +34,12 @@ export class ReportStepComponent implements OnInit, OnDestroy {
     ngUnsubscribe$: Subject<void> = new Subject();
 
 
-    constructor(private store: Store<{}>) {
-    }
+    constructor(
+        private store: Store<{}>,
+        private statusService: StatusService,
+        private dialog: MatDialog,
+        private sanitizer: DomSanitizer
+    ) { }
 
     ngOnInit() {
         this.runtimeInfo$ = this.store.pipe(
@@ -54,12 +67,14 @@ export class ReportStepComponent implements OnInit, OnDestroy {
             takeUntil(this.stopTimer$)
         );
 
+
         this.elapsedTime$ = combineLatest([
             this.store.select(reportStepStartTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(reportStepEndTimestamp).pipe(filter((time) => !!time)),
             this.timer$
         ]).pipe(
-            map(([timestamp, tick]) => {
-                return this.timeToTimeString(timestamp);
+            map(([startTimestamp, endTimestamp]) => {
+                return this.timeToTimeString(startTimestamp, endTimestamp);
             })
         );
 
@@ -72,10 +87,10 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
     }
 
-    timeToTimeString(timestamp: string) {
+    timeToTimeString(startTimestamp: string, endTimestamp?: string) {
         const now = Date.now();
-        const start = Date.parse(timestamp);
-        const diff = now - start;
+        const start = Date.parse(startTimestamp);
+        const diff = endTimestamp ? Date.parse(endTimestamp) - start :  now - start;
         return new Date(diff).toISOString().substr(11, 8);
     }
 
@@ -98,7 +113,20 @@ export class ReportStepComponent implements OnInit, OnDestroy {
                     return console.log('Downloading artifact', artifact.id);
                 },
                 preview: () => {
-                    return console.log('Showing artifact', artifact.id);
+                    this.statusService.downloadArtifact({ id: artifact.id }).pipe(
+                        take(1)
+                    ).subscribe((response) => {
+                        const objectURL = URL.createObjectURL(response);
+                        const image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                        const name = artifact.path.split('/').slice(-1)[0];
+                        this.dialog.open(
+                            ImagePreviewDialogComponent,
+                            {
+                                data: { image, name }
+                            }
+                        );
+                        return console.log('Showing artifact', artifact.id);
+                    });
                 }
             };
         });

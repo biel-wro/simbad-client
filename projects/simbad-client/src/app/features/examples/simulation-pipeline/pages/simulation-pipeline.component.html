@@ -35,11 +35,11 @@
             <fa-icon *ngIf="index === 1 && data.isAnalyzerStepCompleted" icon="check"></fa-icon>
         </ng-template>
         <mat-step class="step" [completed]="isCliTaskCompleted$ | async">
-            <ng-template matStepLabel>Simbad CLI</ng-template>
+            <ng-template matStepLabel>SimBaD CLI</ng-template>
             <simbad-client-cli-step></simbad-client-cli-step>
         </mat-step>
         <mat-step [completed]="isAnalyzerStepCompleted$ | async" class="step">
-            <ng-template matStepLabel>Spark</ng-template>
+            <ng-template matStepLabel>SimBaD Analyzer</ng-template>
             <simbad-client-analyzer-step></simbad-client-analyzer-step>
         </mat-step>
         <mat-step [completed]="isReportStepCompleted$ | async" class="step">

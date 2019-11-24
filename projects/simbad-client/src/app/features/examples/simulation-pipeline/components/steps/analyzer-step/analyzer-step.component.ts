@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
+    analyzerStepEndTimestamp,
     analyzerStepStartTimestamp,
-    analyzerStepState,
-    cliStepStartTimestamp
+    analyzerStepState
 } from '../../../pages/store/simulation-pipeline.selectors';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
-import { SimulationStepInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/simulation-step-info';
+import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
 import { downloadArtifact } from '../../../pages/store/simulation-pipeline.actions';
-import { ArtifactInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/artifact-info';
-import { AnalyzerRuntimeInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/analyzer-runtime-info';
+import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
+import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
 
 @Component({
     selector: 'simbad-client-analyzer-step',
@@ -61,10 +61,11 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
 
         this.elapsedTime$ = combineLatest([
             this.store.select(analyzerStepStartTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(analyzerStepEndTimestamp).pipe(filter((time) => !!time)),
             this.timer$
         ]).pipe(
-            map(([timestamp, tick]) => {
-                return this.timeToTimeString(timestamp);
+            map(([startTimestamp, endTimestamp]) => {
+                return this.timeToTimeString(startTimestamp, endTimestamp);
             })
         );
 
@@ -77,10 +78,10 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
 
     }
 
-    timeToTimeString(timestamp: string) {
+    timeToTimeString(startTimestamp: string, endTimestamp?: string) {
         const now = Date.now();
-        const start = Date.parse(timestamp);
-        const diff = now - start;
+        const start = Date.parse(startTimestamp);
+        const diff = endTimestamp ? Date.parse(endTimestamp) - start :  now - start;
         return new Date(diff).toISOString().substr(11, 8);
     }
 

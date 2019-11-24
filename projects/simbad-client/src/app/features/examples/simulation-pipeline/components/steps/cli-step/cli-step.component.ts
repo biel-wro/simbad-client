@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
+    analyzerStepEndTimestamp,
+    analyzerStepStartTimestamp, cliStepEndTimestamp,
     cliStepStartTimestamp,
     cliStepState
 } from '../../../pages/store/simulation-pipeline.selectors';
@@ -62,10 +64,11 @@ export class CliStepComponent implements OnInit, OnDestroy {
 
         this.elapsedTime$ = combineLatest([
             this.store.select(cliStepStartTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(cliStepEndTimestamp).pipe(filter((time) => !!time)),
             this.timer$
         ]).pipe(
-            map(([timestamp]) => {
-                return this.timeToTimeString(timestamp);
+            map(([startTimestamp, endTimestamp]) => {
+                return this.timeToTimeString(startTimestamp, endTimestamp);
             })
         );
 
@@ -78,10 +81,10 @@ export class CliStepComponent implements OnInit, OnDestroy {
 
     }
 
-    timeToTimeString(timestamp: string) {
+    timeToTimeString(startTimestamp: string, endTimestamp?: string) {
         const now = Date.now();
-        const start = Date.parse(timestamp);
-        const diff = now - start;
+        const start = Date.parse(startTimestamp);
+        const diff = endTimestamp ? Date.parse(endTimestamp) - start :  now - start;
         return new Date(diff).toISOString().substr(11, 8);
     }
 

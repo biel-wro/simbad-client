@@ -5,7 +5,7 @@ import { SharedModule } from '../../../../../shared/shared.module';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { provideMockStore } from '@ngrx/store/testing';
 
-describe('CreateConfigurationDialogComponent', () => {
+describe('ImagePreviewDialogComponent', () => {
     let component: CreateConfigurationDialogComponent;
     let fixture: ComponentFixture<CreateConfigurationDialogComponent>;
 

@@ -43,14 +43,29 @@ export const cliStepStartTimestamp = createSelector(
     (state) => state ? state.startedUtc : undefined
 );
 
+export const cliStepEndTimestamp = createSelector(
+    cliStepState,
+    (state) => state ? state.finishedUtc : undefined
+);
+
 export const analyzerStepStartTimestamp = createSelector(
     analyzerStepState,
     (state) => state ? state.startedUtc : undefined
 );
 
+export const analyzerStepEndTimestamp = createSelector(
+    analyzerStepState,
+    (state) => state ? state.finishedUtc : undefined
+);
+
 export const reportStepStartTimestamp = createSelector(
     reportStepState,
     (state) => state ? state.startedUtc : undefined
+);
+
+export const reportStepEndTimestamp = createSelector(
+    reportStepState,
+    (state) => state ? state.finishedUtc : undefined
 );
 
 export const isSimulationOngoing = createSelector(
