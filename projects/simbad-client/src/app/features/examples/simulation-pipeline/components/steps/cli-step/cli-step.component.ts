@@ -1,21 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
-    analyzerStepEndTimestamp,
-    analyzerStepStartTimestamp, cliStepEndTimestamp,
+    cliStepEndTimestamp,
     cliStepStartTimestamp,
     cliStepState
 } from '../../../pages/store/simulation-pipeline.selectors';
 import { filter, map, takeUntil } from 'rxjs/operators';
-import { CliRuntimeInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/cli-runtime-info';
+import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
-import { SimulationStepInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/simulation-step-info';
+import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
-import {
-    downloadArtifact,
-    openArtifact
-} from '../../../pages/store/simulation-pipeline.actions';
-import { ArtifactInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/artifact-info';
+import { downloadArtifact, openArtifact } from '../../../pages/store/simulation-pipeline.actions';
+import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 
 @Component({
     selector: 'simbad-client-cli-step',
@@ -64,7 +60,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
 
         this.elapsedTime$ = combineLatest([
             this.store.select(cliStepStartTimestamp).pipe(filter((time) => !!time)),
-            this.store.select(cliStepEndTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(cliStepEndTimestamp),
             this.timer$
         ]).pipe(
             map(([startTimestamp, endTimestamp]) => {
@@ -84,7 +80,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
     timeToTimeString(startTimestamp: string, endTimestamp?: string) {
         const now = Date.now();
         const start = Date.parse(startTimestamp);
-        const diff = endTimestamp ? Date.parse(endTimestamp) - start :  now - start;
+        const diff = endTimestamp ? Date.parse(endTimestamp) - start : now - start;
         return new Date(diff).toISOString().substr(11, 8);
     }
 

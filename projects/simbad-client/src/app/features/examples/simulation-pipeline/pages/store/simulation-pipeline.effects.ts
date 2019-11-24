@@ -10,14 +10,14 @@ import {
     checkForRunningSimulation,
     cliStepFinished,
     downloadArtifact,
-    getSimulationStepInfo, loadLatestSimulation,
+    getSimulationStepInfo, setLatestSimulation,
     openArtifact,
     pollForSimulationStatusChange,
     pollForSimulationStepInfo, reportStepFinished,
     simulationError,
     startSimulation,
     updateCliStepInfo,
-    updateStepInfo
+    updateStepInfo, loadLatestSimulation
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
 import { SimulationService, StatusService } from '@simbad-cli-api/gen';
 import { PollingService } from '@simbad-client/app/core/polling/polling.service';
@@ -48,17 +48,16 @@ export class SimulationPipelineEffects {
 
     loadLatestSimulation$ = createEffect(() => {
         return this.actions$.pipe(
-            ofType(checkForRunningSimulation),
+            ofType(loadLatestSimulation),
             switchMap(() => this.statusService.getLatestSimulation().pipe(
                 map((response: SimulationInfo) => {
-                    return loadLatestSimulation({ simulation: response });
+                    return setLatestSimulation({ simulation: response });
                 }),
                 catchError((err) => {
                     console.log('loadLatestSimulation$: ', err);
                     return of(simulationError({ error: err }));
                 })
-            )),
-            take(1)
+            ))
         );
     });
 
@@ -204,7 +203,7 @@ export class SimulationPipelineEffects {
                         const downloadURL = window.URL.createObjectURL(response);
                         const link = document.createElement('a');
                         link.href = downloadURL;
-                        link.download = action.name.endsWith('.png') ? action.name : action.name + '.zip';
+                        link.download = action.name;
                         link.click();
                         return of();
                     }),

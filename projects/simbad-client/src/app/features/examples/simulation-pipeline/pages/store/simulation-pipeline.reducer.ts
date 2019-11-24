@@ -2,7 +2,7 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 import {
     analyzerStepFinished,
-    cliStepFinished, loadLatestSimulation, reportStepFinished,
+    cliStepFinished, setLatestSimulation, reportStepFinished,
     startSimulation,
     updateCliStepInfo,
     updateSimulationInfo,
@@ -43,7 +43,7 @@ const reducer = createReducer(
                 return state;
         }
     }),
-    on(loadLatestSimulation, (state, { simulation }) => {
+    on(setLatestSimulation, (state, { simulation }) => {
         const analyzerStep: SimulationStepInfo = simulation.steps.find((step) => step.origin === 'ANALYZER');
         const cliStep: SimulationStepInfo = simulation.steps.find((step) => step.origin === 'CLI');
         const reportsStep: SimulationStepInfo = simulation.steps.find((step) => step.origin === 'REPORT');

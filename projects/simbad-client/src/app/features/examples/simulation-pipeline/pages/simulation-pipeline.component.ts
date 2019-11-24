@@ -12,7 +12,7 @@ import {
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.selectors';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import {
-    checkForRunningSimulation,
+    checkForRunningSimulation, loadLatestSimulation,
     startSimulation
 } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
 
@@ -118,5 +118,9 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
     sendToCli(conf: any): void {
         this.store.dispatch(startSimulation({ request: { configuration: conf.value, configurationName: conf.name } }));
+    }
+
+    loadLatestSimulation(): void {
+        this.store.dispatch(loadLatestSimulation());
     }
 }

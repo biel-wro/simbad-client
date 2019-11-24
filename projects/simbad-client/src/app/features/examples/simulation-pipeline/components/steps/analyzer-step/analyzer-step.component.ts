@@ -61,7 +61,7 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
 
         this.elapsedTime$ = combineLatest([
             this.store.select(analyzerStepStartTimestamp).pipe(filter((time) => !!time)),
-            this.store.select(analyzerStepEndTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(analyzerStepEndTimestamp),
             this.timer$
         ]).pipe(
             map(([startTimestamp, endTimestamp]) => {

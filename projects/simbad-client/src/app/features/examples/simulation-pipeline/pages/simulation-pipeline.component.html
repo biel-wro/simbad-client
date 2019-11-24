@@ -6,6 +6,12 @@
 } as data"
      class="simulation-wrapper">
     <div class="simulation-menu">
+        <button (click)="loadLatestSimulation()"
+                id="latest-simulation"
+                mat-raised-button
+        >
+            Load Latest
+        </button>
         <button (click)="sendToCli(data.conf)"
                 [disabled]="data.shouldDisable"
                 id="toggle-linear"

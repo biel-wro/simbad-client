@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
-    cliStepEndTimestamp,
-    cliStepStartTimestamp, reportStepEndTimestamp,
+    reportStepEndTimestamp,
     reportStepStartTimestamp,
     reportStepState
 } from '../../../pages/store/simulation-pipeline.selectors';
@@ -15,7 +14,7 @@ import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
 import { StatusService } from '@simbad-cli-api/gen';
 import { MatDialog } from '@angular/material';
-import { ImagePreviewDialogComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
+import { ImagePreviewDialogComponent } from '../../common/image-preview-dialog/image-preview-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -39,7 +38,8 @@ export class ReportStepComponent implements OnInit, OnDestroy {
         private statusService: StatusService,
         private dialog: MatDialog,
         private sanitizer: DomSanitizer
-    ) { }
+    ) {
+    }
 
     ngOnInit() {
         this.runtimeInfo$ = this.store.pipe(
@@ -70,7 +70,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
         this.elapsedTime$ = combineLatest([
             this.store.select(reportStepStartTimestamp).pipe(filter((time) => !!time)),
-            this.store.select(reportStepEndTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(reportStepEndTimestamp),
             this.timer$
         ]).pipe(
             map(([startTimestamp, endTimestamp]) => {
@@ -90,7 +90,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
     timeToTimeString(startTimestamp: string, endTimestamp?: string) {
         const now = Date.now();
         const start = Date.parse(startTimestamp);
-        const diff = endTimestamp ? Date.parse(endTimestamp) - start :  now - start;
+        const diff = endTimestamp ? Date.parse(endTimestamp) - start : now - start;
         return new Date(diff).toISOString().substr(11, 8);
     }
 
