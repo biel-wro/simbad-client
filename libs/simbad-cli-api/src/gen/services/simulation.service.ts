@@ -8,8 +8,8 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { SimulationStepInfo } from '../models/simulation-step-info';
 import { StartSimulationRequest } from '../models/start-simulation-request';
-import { StartSimulationResponse } from '../models/start-simulation-response';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +38,7 @@ export class SimulationService extends BaseService {
   startSimulation$Response(params?: {
 
     body?: StartSimulationRequest
-  }): Observable<StrictHttpResponse<StartSimulationResponse>> {
+  }): Observable<StrictHttpResponse<SimulationStepInfo>> {
 
     const rb = new RequestBuilder(this.rootUrl, '/api/simulation/start', 'post');
     if (params) {
@@ -51,7 +51,7 @@ export class SimulationService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<StartSimulationResponse>;
+        return r as StrictHttpResponse<SimulationStepInfo>;
       })
     );
   }
@@ -67,10 +67,10 @@ export class SimulationService extends BaseService {
   startSimulation(params?: {
 
     body?: StartSimulationRequest
-  }): Observable<StartSimulationResponse> {
+  }): Observable<SimulationStepInfo> {
 
     return this.startSimulation$Response(params).pipe(
-      map((r: StrictHttpResponse<StartSimulationResponse>) => r.body as StartSimulationResponse)
+      map((r: StrictHttpResponse<SimulationStepInfo>) => r.body as SimulationStepInfo)
     );
   }
 

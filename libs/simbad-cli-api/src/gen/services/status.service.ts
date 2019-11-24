@@ -8,6 +8,7 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
+import { ArtifactInfo } from '../models/artifact-info';
 import { SimulationInfo } from '../models/simulation-info';
 import { SimulationStatus } from '../models/simulation-status';
 import { SimulationStepInfo } from '../models/simulation-step-info';
@@ -75,7 +76,7 @@ export class StatusService extends BaseService {
   /**
    * Path part for operation getSimulationInfo
    */
-  static readonly GetSimulationInfoPath = '/api/simulation/{id}';
+  static readonly GetSimulationInfoPath = '/api/simulation/status/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -88,7 +89,7 @@ export class StatusService extends BaseService {
 
   }): Observable<StrictHttpResponse<SimulationInfo>> {
 
-    const rb = new RequestBuilder(this.rootUrl, '/api/simulation/{id}', 'get');
+    const rb = new RequestBuilder(this.rootUrl, '/api/simulation/status/{id}', 'get');
     if (params) {
 
       rb.path('id', params.id);
@@ -123,7 +124,7 @@ export class StatusService extends BaseService {
   /**
    * Path part for operation getSimulationStepInfo
    */
-  static readonly GetSimulationStepInfoPath = '/api/step/{id}';
+  static readonly GetSimulationStepInfoPath = '/api/simulation/step/{id}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -136,7 +137,7 @@ export class StatusService extends BaseService {
 
   }): Observable<StrictHttpResponse<SimulationStepInfo>> {
 
-    const rb = new RequestBuilder(this.rootUrl, '/api/step/{id}', 'get');
+    const rb = new RequestBuilder(this.rootUrl, '/api/simulation/step/{id}', 'get');
     if (params) {
 
       rb.path('id', params.id);
@@ -182,7 +183,7 @@ export class StatusService extends BaseService {
   getArtifactInfo$Response(params: {
     id: string;
 
-  }): Observable<StrictHttpResponse<SimulationStepInfo>> {
+  }): Observable<StrictHttpResponse<ArtifactInfo>> {
 
     const rb = new RequestBuilder(this.rootUrl, '/api/artifact/{id}', 'get');
     if (params) {
@@ -195,7 +196,7 @@ export class StatusService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<SimulationStepInfo>;
+        return r as StrictHttpResponse<ArtifactInfo>;
       })
     );
   }
@@ -209,10 +210,58 @@ export class StatusService extends BaseService {
   getArtifactInfo(params: {
     id: string;
 
-  }): Observable<SimulationStepInfo> {
+  }): Observable<ArtifactInfo> {
 
     return this.getArtifactInfo$Response(params).pipe(
-      map((r: StrictHttpResponse<SimulationStepInfo>) => r.body as SimulationStepInfo)
+      map((r: StrictHttpResponse<ArtifactInfo>) => r.body as ArtifactInfo)
+    );
+  }
+
+  /**
+   * Path part for operation downloadArtifact
+   */
+  static readonly DownloadArtifactPath = '/api/artifact/{id}/download';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `downloadArtifact()` instead.
+   *
+   * This method doesn't expect any response body
+   */
+  downloadArtifact$Response(params: {
+    id: number;
+
+  }): Observable<StrictHttpResponse<Blob>> {
+
+    const rb = new RequestBuilder(this.rootUrl, '/api/artifact/{id}/download', 'get');
+    if (params) {
+
+      rb.path('id', params.id);
+    }
+    return this.http.request(rb.build({
+      responseType: 'blob',
+      accept: 'application/*'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Blob>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `downloadArtifact$Response()` instead.
+   *
+   * This method doesn't expect any response body
+   */
+  downloadArtifact(params: {
+    id: number;
+
+  }): Observable<Blob> {
+
+    return this.downloadArtifact$Response(params).pipe(
+      map((r: StrictHttpResponse<Blob>) => r.body as Blob)
     );
   }
 

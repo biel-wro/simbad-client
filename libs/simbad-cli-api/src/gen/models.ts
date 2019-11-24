@@ -1,5 +1,4 @@
 export { StartSimulationRequest } from './models/start-simulation-request';
-export { StartSimulationResponse } from './models/start-simulation-response';
 export { SimulationError } from './models/simulation-error';
 export { SimulationStatus } from './models/simulation-status';
 export { ArtifactInfo } from './models/artifact-info';

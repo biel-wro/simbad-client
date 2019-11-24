@@ -43,14 +43,14 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/SimulationStep"
+                                $ref: "#/components/schemas/SimulationStepInfo"
                 "400":
                     description: Simulation process is already running
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/SimulationError"
-    /api/simulation/{id}:
+    /api/simulation/status/{id}:
         parameters:
             - name: id
               in: path
@@ -75,7 +75,7 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/SimulationError"
-    /api/step/{id}:
+    /api/simulation/step/{id}:
         parameters:
             - name: id
               in: path
@@ -118,14 +118,39 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/SimulationStepInfo"
+                                $ref: "#/components/schemas/ArtifactInfo"
                 "404":
                     description: Not found
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/SimulationError"
-
+    /api/artifact/{id}/download:
+        parameters:
+            - name: id
+              in: path
+              required: true
+              schema:
+                  type: number
+        get:
+            tags:
+                - STATUS
+            summary: Download artifact
+            operationId: downloadArtifact
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/*:
+                            schema:
+                                type: string
+                                format: binary
+                "404":
+                    description: Not found
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/SimulationError"
 
 components:
     schemas:
@@ -336,10 +361,14 @@ components:
         AnalyzerRuntimeInfo:
             type: object
             required:
+                - progress
                 - sparkJobId
             properties:
                 sparkJobId:
                     type: number
                     description: Id of spark job
+                progress:
+                    type: number
+                    description: The progress of job
 
 
