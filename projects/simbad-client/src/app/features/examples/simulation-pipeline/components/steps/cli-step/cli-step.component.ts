@@ -2,16 +2,18 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
     cliStepStartTimestamp,
-    cliStepState,
-    selectCliStepState
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.selectors';
-import { filter, map, takeUntil, tap } from 'rxjs/operators';
-import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
+    cliStepState
+} from '../../../pages/store/simulation-pipeline.selectors';
+import { filter, map, takeUntil } from 'rxjs/operators';
+import { CliRuntimeInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/cli-runtime-info';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
-import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
-import { ListElement } from '@simbad-client/app/features/examples/simulation-pipeline/steps/cli-step/components/info-list/info-list.component';
-import { openArtifact } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
-import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
+import { SimulationStepInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/simulation-step-info';
+import { ListElement } from '../../common/info-list/info-list.component';
+import {
+    downloadArtifact,
+    openArtifact
+} from '../../../pages/store/simulation-pipeline.actions';
+import { ArtifactInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/artifact-info';
 
 @Component({
     selector: 'simbad-client-cli-step',
@@ -26,7 +28,6 @@ export class CliStepComponent implements OnInit, OnDestroy {
 
     timer$: Observable<number>;
     stopTimer$: Subject<void> = new Subject<void>();
-    isCliStepFinished$: Observable<boolean>;
     ngUnsubscribe$: Subject<void> = new Subject();
 
 
@@ -51,6 +52,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
 
         this.taskContext$ = this.store.pipe(
             select(cliStepState),
+            filter((state) => !!state),
             map((state) => this.buildTaskContextFromCliState(state))
         );
 
@@ -59,12 +61,12 @@ export class CliStepComponent implements OnInit, OnDestroy {
         );
 
         this.elapsedTime$ = combineLatest([
-            this.store.select(cliStepStartTimestamp),
+            this.store.select(cliStepStartTimestamp).pipe(filter((time) => !!time)),
             this.timer$
         ]).pipe(
-            map(([timestamp, tick]) => {
+            map(([timestamp]) => {
                 return this.timeToTimeString(timestamp);
-            }),
+            })
         );
 
         this.artifactList$ = this.store.pipe(
@@ -89,10 +91,9 @@ export class CliStepComponent implements OnInit, OnDestroy {
             {
                 key: 'Configuration file',
                 value: conf.path.split('/').slice(-1)[0],
-                download: () => console.log('Downloading artifact', conf.path),
-                show: () => {
-                    console.log('Showing Artifact', conf.path);
-                    this.store.dispatch(openArtifact({ path: conf.path }));
+                download: () => {
+                    this.store.dispatch(downloadArtifact({ id: conf.id, name: conf.path.split('/').slice(-1)[0] }));
+                    return console.log('Downloading artifact', conf.id);
                 }
             },
             { key: 'Start Timestamp', value: state.startedUtc },
@@ -109,6 +110,13 @@ export class CliStepComponent implements OnInit, OnDestroy {
                 show: () => {
                     console.log('Showing Artifact', artifact.path);
                     this.store.dispatch(openArtifact({ path: artifact.path }));
+                },
+                download: () => {
+                    this.store.dispatch(downloadArtifact({
+                        id: artifact.id,
+                        name: artifact.path.split('/').slice(-1)[0]
+                    }));
+                    return console.log('Downloading artifact', artifact.id);
                 }
             };
         });

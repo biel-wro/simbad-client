@@ -16,8 +16,8 @@
 @import 'styles-reset.scss-theme';
 @import './app/app/app.component.scss-theme';
 @import './app/shared/big-input/big-input/big-input.component.scss-theme';
-@import 'app/features/examples/simulation-pipeline/steps/cli-step/components/info-list/info-list.component-theme';
-@import 'app/features/examples/simulation-pipeline/steps/cli-step/components/task-context/task-context.component-theme';
+@import 'app/features/examples/simulation-pipeline/components/common/info-list/info-list.component-theme';
+@import 'app/features/examples/simulation-pipeline/components/common/task-context/task-context.component-theme';
 @import './app/features/about/about/about.component.scss-theme';
 @import './app/features/examples/notifications/components/notifications.component.scss-theme';
 @import './app/features/examples/examples/examples.component.scss-theme';

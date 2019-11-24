@@ -1,0 +1,22 @@
+.step-container {
+    display: flex;
+    height: 100%;
+}
+
+.artifact-list {
+    flex: 1 1 0;
+    margin-right: 10px;
+    max-width: 400px;
+}
+
+.task-context {
+    flex: 1 1 0;
+    margin-right: 10px;
+}
+
+
+
+.performance-monitor {
+    flex: 1 1 0;
+    margin-right: 10px;
+}

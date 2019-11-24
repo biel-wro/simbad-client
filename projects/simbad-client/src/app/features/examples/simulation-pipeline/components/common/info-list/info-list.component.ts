@@ -5,7 +5,8 @@ export interface ListElement {
     value: string,
     preview?: () => any,
     download?: () => any,
-    show?: () => any
+    show?: () => any,
+    redirect?: () => any
 }
 
 @Component({

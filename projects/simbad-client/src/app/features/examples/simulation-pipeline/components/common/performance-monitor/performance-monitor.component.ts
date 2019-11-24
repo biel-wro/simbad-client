@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
+import { CliRuntimeInfo } from '../../../../../../../../../../libs/simbad-cli-api/src/gen/models/cli-runtime-info';
 
 @Component({
     selector: 'simbad-performance-monitor',
