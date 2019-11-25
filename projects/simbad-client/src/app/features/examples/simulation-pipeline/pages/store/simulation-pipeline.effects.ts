@@ -163,7 +163,7 @@ export class SimulationPipelineEffects {
         return this.actions$.pipe(
             ofType(analyzerStepFinished),
             switchMap((action) => this.statusService.getSimulationInfo({ id: action.step.simulationId.toString(10) }).pipe(
-                tap(() => this.notificationService.info(`Started analyzer step`)),
+                tap(() => this.notificationService.info(`Started report step`)),
                 concatMap((response: SimulationInfo) => {
                     const analyzerStep: SimulationStepInfo = response.steps.find((step) => step.origin === 'REPORT');
                     return [

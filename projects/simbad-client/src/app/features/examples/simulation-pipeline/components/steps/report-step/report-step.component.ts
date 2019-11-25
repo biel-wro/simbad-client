@@ -122,7 +122,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
                         this.dialog.open(
                             ImagePreviewDialogComponent,
                             {
-                                data: { image, name }
+                                data: { image, name },
                             }
                         );
                         return console.log('Showing artifact', artifact.id);
