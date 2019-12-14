@@ -31,7 +31,7 @@ export class SimulationPipelineEffects {
             switchMap(() => this.statusService.getLatestSimulation().pipe(
                 concatMap((response: SimulationInfo) => {
                     return response.finishedUtc
-                        ? [{ type: 'EMPTY_ACTION' }]
+                        ? [ setLatestSimulation({ simulation: response })]
                         : [
                             setLatestSimulation({ simulation: response }),
                             pollForSimulationStepInfo({ stepId: response.currentStepId })

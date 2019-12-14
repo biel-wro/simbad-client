@@ -87,8 +87,8 @@ describe('AuthEffects', () => {
                     { a: undefined }
                 );
                 flush();
-                expect(notificationService.info).toHaveBeenCalledWith('123 download started.');
-                expect(notificationService.success).toHaveBeenCalledWith('123 download finished.');
+                expect(notificationService.info).toHaveBeenCalledWith('123 download started');
+                expect(notificationService.success).toHaveBeenCalledWith('123 download finished');
             });
         });
 
@@ -110,7 +110,7 @@ describe('AuthEffects', () => {
                     { a: error }
                 );
                 flush();
-                expect(notificationService.error).toHaveBeenCalledWith('Failed to download 123.');
+                expect(notificationService.error).toHaveBeenCalledWith('Failed to download 123');
             });
         });
     });
@@ -150,7 +150,7 @@ describe('AuthEffects', () => {
                     { a: error }
                 );
                 flush();
-                expect(notificationService.error).toHaveBeenCalledWith('Failed to open /some/path.');
+                expect(notificationService.error).toHaveBeenCalledWith('Failed to open /some/path');
             });
         });
     });
