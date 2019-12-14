@@ -4,12 +4,12 @@ import {
     analyzerStepEndTimestamp,
     analyzerStepStartTimestamp,
     analyzerStepState
-} from '../../../pages/store/simulation-pipeline.selectors';
+} from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
-import { downloadArtifact } from '../../../pages/store/simulation-pipeline.actions';
+import { downloadArtifact } from '../../../core/store/simulation/simulation-pipeline.actions';
 import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
 

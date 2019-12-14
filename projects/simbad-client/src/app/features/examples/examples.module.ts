@@ -34,9 +34,10 @@ import { UploadConfigurationButtonComponent } from './common/upload-configuratio
 import { InfoListComponent } from './simulation-pipeline/components/common/info-list/info-list.component';
 import { InfoListElementComponent } from './simulation-pipeline/components/common/info-list-element/info-list-element.component';
 import { ArtifactComponent } from './simulation-pipeline/components/common/artifact/artifact.component';
-import { SimulationPipelineEffects } from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.effects';
+import { SimulationPipelineEffects } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.effects';
 import { ReportStepComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/steps/report-step/report-step.component';
 import { ImagePreviewDialogComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
+import { ArtifactsEffects } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/artifacts/artifacts.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
@@ -55,7 +56,14 @@ export function HttpLoaderFactory(http: HttpClient) {
             },
             isolate: true
         }),
-        EffectsModule.forFeature([ExamplesEffects, FormEffects, SimulationPipelineEffects]),
+        EffectsModule.forFeature(
+            [
+                ExamplesEffects,
+                FormEffects,
+                SimulationPipelineEffects,
+                ArtifactsEffects
+            ]
+        ),
         MatDialogModule,
         MatStepperModule,
         MatProgressBarModule

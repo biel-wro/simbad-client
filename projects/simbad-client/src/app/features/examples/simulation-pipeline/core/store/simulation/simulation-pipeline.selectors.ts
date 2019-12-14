@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import {
     selectSimulationPipelineState,
-} from '@simbad-client/app/features/examples/simulationState';
+} from '../../../../simulationState';
 
 export const selectCliStepState = createSelector(
     selectSimulationPipelineState,

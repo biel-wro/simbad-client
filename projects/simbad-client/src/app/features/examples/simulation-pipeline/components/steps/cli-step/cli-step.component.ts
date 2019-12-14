@@ -4,13 +4,13 @@ import {
     cliStepEndTimestamp,
     cliStepStartTimestamp,
     cliStepState
-} from '../../../pages/store/simulation-pipeline.selectors';
+} from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
-import { downloadArtifact, openArtifact } from '../../../pages/store/simulation-pipeline.actions';
+import { downloadArtifact, openArtifact } from '../../../core/store/simulation/simulation-pipeline.actions';
 import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 
 @Component({

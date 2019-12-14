@@ -9,12 +9,12 @@ import {
     analyzerStepState,
     cliStepState,
     isSimulationOngoing, reportStepState
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.selectors';
+} from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.selectors';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import {
     checkForRunningSimulation, loadLatestSimulation,
     startSimulation
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
+} from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.actions';
 
 import { isEmpty } from 'lodash';
 import { MatHorizontalStepper } from '@angular/material';

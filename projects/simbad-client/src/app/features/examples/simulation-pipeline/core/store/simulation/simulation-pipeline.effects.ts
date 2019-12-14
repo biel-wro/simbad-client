@@ -4,26 +4,22 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, concatMap, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
+
+import { PollingService } from '@simbad-client/app/core/polling/polling.service';
+import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
+import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 import {
     analyzerStepFinished,
-    checkForRunningSimulation,
     cliStepFinished,
-    downloadArtifact,
-    getSimulationStepInfo,
-    loadLatestSimulation,
-    openArtifact,
+    getSimulationStepInfo, loadLatestSimulation,
     pollForSimulationStepInfo,
     reportStepFinished,
     setLatestSimulation,
     simulationError,
-    startSimulation,
-    updateStepInfo
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
-import { SimulationService, StatusService } from '@simbad-cli-api/gen';
-import { PollingService } from '@simbad-client/app/core/polling/polling.service';
-import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
+    startSimulation, updateStepInfo
+} from './simulation-pipeline.actions';
+import { SimulationService, StatusService } from '../../../../../../../../../../libs/simbad-cli-api/src/gen';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
-import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 
 const POLLING_PERIOD_MS = 3000;
 
@@ -162,45 +158,6 @@ export class SimulationPipelineEffects {
             ))
         );
     });
-
-    openArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(openArtifact),
-            switchMap((action) => {
-                console.log('Action: ', action);
-                return this.hostService.openLocation({ body: { path: action.path } }).pipe(
-                    map((response) => {
-                        console.log('Response: ', response);
-                        return of();
-                    })
-                );
-            })
-        );
-    }, { dispatch: false });
-
-    downloadArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(downloadArtifact),
-            tap((action) => {
-                this.notificationService.info(`${action.name} download started.`);
-            }),
-            switchMap((action) => {
-                console.log('Action: ', action);
-                return this.statusService.downloadArtifact({ id: action.id }).pipe(
-                    map((response) => {
-                        const downloadURL = window.URL.createObjectURL(response);
-                        const link = document.createElement('a');
-                        link.href = downloadURL;
-                        link.download = action.name;
-                        link.click();
-                        return of();
-                    }),
-                    tap(() => this.notificationService.success(`${action.name} download finished.`))
-                );
-            })
-        );
-    }, { dispatch: false });
-
 
     constructor(
         private actions$: Actions,
