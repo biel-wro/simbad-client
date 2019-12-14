@@ -1,4 +1,4 @@
-import { simbadCliRouter } from './simbad-cli';
+import { simulationRouter } from './simulation';
 
 const fileUpload: any = require('express-fileupload');
 const express = require('express');
@@ -17,7 +17,7 @@ app.use(
 app.enable('case sensitive routing');
 app.enable('strict routing');
 
-app.use('/api/cli', simbadCliRouter);
+app.use('/api/simulation', simulationRouter);
 
 const port = 8000;
 
