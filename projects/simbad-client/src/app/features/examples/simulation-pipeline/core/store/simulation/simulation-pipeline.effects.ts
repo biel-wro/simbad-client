@@ -67,7 +67,6 @@ export class SimulationPipelineEffects {
             ofType(getSimulationStepInfo),
             switchMap(({ stepId }) => this.statusService.getSimulationStepInfo({ id: stepId }).pipe(
                 concatMap((stepInfo) => {
-                    console.log('SimulationStepInfo', stepInfo);
                     if (stepInfo.finishedUtc) {
                         switch (stepInfo.origin) {
                             case 'ANALYZER':
