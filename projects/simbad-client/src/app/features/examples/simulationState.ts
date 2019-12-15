@@ -6,7 +6,7 @@ import { ConfigurationFormState } from './configuration-editor/store/form.model'
 import {
     simulationPipelineReducer,
     SimulationPipelineState
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.reducer';
+} from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.reducer';
 
 export const FEATURE_NAME = 'examples';
 export const selectSimulationState = createFeatureSelector<State, SimulationState>(FEATURE_NAME);

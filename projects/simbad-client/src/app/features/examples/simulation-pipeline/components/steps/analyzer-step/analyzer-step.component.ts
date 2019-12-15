@@ -4,14 +4,15 @@ import {
     analyzerStepEndTimestamp,
     analyzerStepStartTimestamp,
     analyzerStepState
-} from '../../../pages/store/simulation-pipeline.selectors';
+} from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
-import { downloadArtifact } from '../../../pages/store/simulation-pipeline.actions';
-import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
+import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
+import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
+import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
 
 @Component({
     selector: 'simbad-client-analyzer-step',
@@ -30,7 +31,7 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
     ngUnsubscribe$: Subject<void> = new Subject();
 
 
-    constructor(private store: Store<{}>) {
+    constructor(private store: Store<{}>, private as: ArtifactsActionsService) {
     }
 
     ngOnInit() {
@@ -65,7 +66,7 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
             this.timer$
         ]).pipe(
             map(([startTimestamp, endTimestamp]) => {
-                return this.timeToTimeString(startTimestamp, endTimestamp);
+                return timeToTimeString(startTimestamp, endTimestamp);
             })
         );
 
@@ -73,16 +74,10 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
             select(analyzerStepState),
             filter((state) => !!state),
             map((state) => state.artifacts.filter((artifact) => !artifact.path.endsWith('.json'))),
-            map((artifacts) => this.artifactsToElementList(artifacts))
+            map((artifacts) => this.as.artifactsToElementList(
+                artifacts, [ArtifactActionType.Download]))
         );
 
-    }
-
-    timeToTimeString(startTimestamp: string, endTimestamp?: string) {
-        const now = Date.now();
-        const start = Date.parse(startTimestamp);
-        const diff = endTimestamp ? Date.parse(endTimestamp) - start :  now - start;
-        return new Date(diff).toISOString().substr(11, 8);
     }
 
     buildTaskContextFromAnalyzerState(state: SimulationStepInfo): ListElement[] {
@@ -98,34 +93,6 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
             },
             { key: 'Status', value: state.finishedUtc ? 'FINISHED' : 'RUNNING' }
         ];
-    }
-
-    artifactsToElementList(artifacts: ArtifactInfo[]): ListElement[] {
-        return artifacts.map((artifact) => {
-            return {
-                key: artifact.path.split('/').slice(-1)[0],
-                value: `Size ${this.formatBytes(artifact.sizeKb)}`,
-                download: () => {
-                    this.store.dispatch(downloadArtifact({
-                        id: artifact.id,
-                        name: artifact.path.split('/').slice(-1)[0]
-                    }));
-                    return console.log('Downloading artifact', artifact.id);
-                }
-            };
-        });
-    }
-
-    formatBytes(bytes: number, decimals = 2): string {
-        if (bytes === 0) return '0 Bytes';
-
-        const k = 1024;
-        const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
     }
 
     ngOnDestroy() {

@@ -1,23 +1,36 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../simulationState';
 import { combineLatest, Observable, Subject } from 'rxjs';
 import { selectConfiguration } from '../../configuration-editor/store/form.selectors';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, startWith, tap } from 'rxjs/operators';
 import { FormsService } from '../../configuration-editor/services/forms.service';
 import {
     analyzerStepState,
     cliStepState,
-    isSimulationOngoing, reportStepState
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.selectors';
+    isSimulationOngoing,
+    reportStepState
+} from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.selectors';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import {
-    checkForRunningSimulation, loadLatestSimulation,
+    checkForRunningSimulation,
+    loadLatestSimulation,
     startSimulation
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
+} from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.actions';
 
-import { isEmpty } from 'lodash';
-import { MatHorizontalStepper } from '@angular/material';
+import { isEmpty, isEqual } from 'lodash';
+
+export interface IconModel {
+    spin?: boolean;
+    pulse?: boolean;
+    icon: string;
+}
+
+export interface ProgressStatus {
+    isCliStepCompleted: boolean;
+    isAnalyzerStepCompleted: boolean;
+    isReportStepCompleted: boolean;
+}
 
 @Component({
     selector: 'simbad-client-simulation-pipeline',
@@ -28,14 +41,13 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
     configuration$: Observable<any>;
     cliStepInfo$: Observable<SimulationStepInfo>;
     analyzerStepInfo$: Observable<SimulationStepInfo>;
-    isCliTaskCompleted$: Observable<boolean>;
+    isCliStepCompleted$: Observable<boolean>;
     isAnalyzerStepCompleted$: Observable<boolean>;
     isReportStepCompleted$: Observable<boolean>;
+    iconModels$: Observable<IconModel[]>;
     shouldDisableStartButton$: Observable<boolean>;
     isSimulationOngoing$: Observable<boolean>;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
-
-    @ViewChild(MatHorizontalStepper) stepper: MatHorizontalStepper;
 
     constructor(private store: Store<State>, private fs: FormsService) {
     }
@@ -65,21 +77,12 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
         this.cliStepInfo$ = this.store.pipe(
             select(cliStepState),
-            filter((status) => !!status),
+            filter((status) => !!status)
         );
-
-        this.cliStepInfo$.pipe(
-            takeUntil(this.ngUnsubscribe),
-            filter((info) => !!info)
-        ).subscribe((info: SimulationStepInfo) => {
-            if (info && info.finishedUtc) {
-                this.stepper.next();
-            }
-        });
 
         this.analyzerStepInfo$ = this.store.pipe(
             select(analyzerStepState),
-            filter((status) => !!status),
+            filter((status) => !!status)
         );
 
         this.isAnalyzerStepCompleted$ = this.store.pipe(
@@ -94,26 +97,35 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
             map((value) => !!value.finishedUtc)
         );
 
-        this.analyzerStepInfo$.pipe(
-            takeUntil(this.ngUnsubscribe),
-            filter((info) => !!info)
-        ).subscribe((info: SimulationStepInfo) => {
-            if (info && info.finishedUtc) {
-                this.stepper.next();
-            }
-        });
-
-        this.isCliTaskCompleted$ = this.store.pipe(
+        this.isCliStepCompleted$ = this.store.pipe(
             select(cliStepState),
             filter((info) => !!info),
             map((value) => !!value.finishedUtc)
+        );
+
+        this.iconModels$ = combineLatest([
+            this.isCliStepCompleted$,
+            this.isAnalyzerStepCompleted$,
+            this.isReportStepCompleted$
+        ]).pipe(
+            startWith([false, false, false]),
+            map(([isCliStepCompleted, isAnalyzerStepCompleted, isReportStepCompleted]) => {
+                return {
+                    isCliStepCompleted,
+                    isAnalyzerStepCompleted,
+                    isReportStepCompleted
+                };
+            }),
+            distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
+            map((status) => this.buildIconsForSteps(status)),
+            tap((icons) => console.log(icons))
         );
 
         this.store.dispatch(checkForRunningSimulation());
     }
 
     ngOnDestroy(): void {
-
+        this.ngUnsubscribe.next();
     }
 
     sendToCli(conf: any): void {
@@ -122,5 +134,40 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
     loadLatestSimulation(): void {
         this.store.dispatch(loadLatestSimulation());
+    }
+
+    buildIconsForSteps(status: ProgressStatus): IconModel[] {
+        return [
+            this.buildIconForCliStep(status),
+            this.buildIconForAnalyzerStep(status),
+            this.buildIconForReportsStep(status)
+        ];
+    }
+
+    buildIconForCliStep(status: ProgressStatus): IconModel {
+        return status.isCliStepCompleted
+            ? { icon: 'check' }
+            : { icon: 'spinner', spin: true, pulse: true };
+    }
+
+    buildIconForAnalyzerStep(status: ProgressStatus): IconModel {
+        const isInProgress = status.isCliStepCompleted && !status.isAnalyzerStepCompleted;
+        const isCompleted = status.isCliStepCompleted && status.isAnalyzerStepCompleted;
+        if (isCompleted) return { icon: 'check' };
+        if (isInProgress) return { icon: 'spinner', spin: true, pulse: true };
+        return { icon: 'ellipsis-h' };
+    }
+
+    buildIconForReportsStep(status: ProgressStatus): IconModel {
+        const isInProgress =
+            status.isCliStepCompleted &&
+            status.isAnalyzerStepCompleted &&
+            !status.isReportStepCompleted;
+        const isCompleted = status.isCliStepCompleted &&
+            status.isAnalyzerStepCompleted &&
+            status.isReportStepCompleted;
+        if (isCompleted) return { icon: 'check' };
+        if (isInProgress) return { icon: 'spinner', spin: true, pulse: true };
+        return { icon: 'ellipsis-h' };
     }
 }

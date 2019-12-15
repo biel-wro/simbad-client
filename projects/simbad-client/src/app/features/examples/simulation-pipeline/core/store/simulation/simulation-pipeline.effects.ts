@@ -1,57 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, concatMap, map, switchMap, take, takeUntil, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
-import { SimulationStatus } from '@simbad-cli-api/gen/models/simulation-status';
-import {
-    analyzerStepFinished,
-    checkForRunningSimulation,
-    cliStepFinished,
-    downloadArtifact,
-    getSimulationStepInfo, setLatestSimulation,
-    openArtifact,
-    pollForSimulationStatusChange,
-    pollForSimulationStepInfo, reportStepFinished,
-    simulationError,
-    startSimulation,
-    updateCliStepInfo,
-    updateStepInfo, loadLatestSimulation
-} from '@simbad-client/app/features/examples/simulation-pipeline/pages/store/simulation-pipeline.actions';
-import { SimulationService, StatusService } from '@simbad-cli-api/gen';
+
 import { PollingService } from '@simbad-client/app/core/polling/polling.service';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
-import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
+import {
+    analyzerStepFinished,
+    cliStepFinished,
+    getSimulationStepInfo, loadLatestSimulation,
+    pollForSimulationStepInfo,
+    reportStepFinished,
+    setLatestSimulation,
+    simulationError,
+    startSimulation, updateStepInfo
+} from './simulation-pipeline.actions';
+import { SimulationService, StatusService } from '../../../../../../../../../../libs/simbad-cli-api/src/gen';
+import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 
 const POLLING_PERIOD_MS = 3000;
 
 @Injectable()
 export class SimulationPipelineEffects {
-    checkForRunningSimulation$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(checkForRunningSimulation),
-            switchMap(() => this.statusService.getSimulationStatus().pipe(
-                map((response: SimulationStatus) => {
-                    return response.status === 'BUSY'
-                        ? pollForSimulationStatusChange({ simulationId: response.simulationId })
-                        : { type: 'EMPTY_ACTION' };
-                }),
-                catchError((err) => {
-                    console.log('checkForRunningSimulation$: ', err);
-                    return of(simulationError({ error: err }));
-                })
-            ))
-        );
-    });
-
     loadLatestSimulation$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(loadLatestSimulation),
             switchMap(() => this.statusService.getLatestSimulation().pipe(
-                map((response: SimulationInfo) => {
-                    return setLatestSimulation({ simulation: response });
+                concatMap((response: SimulationInfo) => {
+                    return response.finishedUtc
+                        ? [ setLatestSimulation({ simulation: response })]
+                        : [
+                            setLatestSimulation({ simulation: response }),
+                            pollForSimulationStepInfo({ stepId: response.currentStepId })
+                        ];
                 }),
                 catchError((err) => {
                     console.log('loadLatestSimulation$: ', err);
@@ -83,7 +67,6 @@ export class SimulationPipelineEffects {
             ofType(getSimulationStepInfo),
             switchMap(({ stepId }) => this.statusService.getSimulationStepInfo({ id: stepId }).pipe(
                 concatMap((stepInfo) => {
-                    console.log('SimulationStepInfo', stepInfo);
                     if (stepInfo.finishedUtc) {
                         switch (stepInfo.origin) {
                             case 'ANALYZER':
@@ -174,44 +157,6 @@ export class SimulationPipelineEffects {
             ))
         );
     });
-
-    openArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(openArtifact),
-            switchMap((action) => {
-                console.log('Action: ', action);
-                return this.hostService.openLocation({ body: { path: action.path } }).pipe(
-                    map((response) => {
-                        console.log('Response: ', response);
-                        return of();
-                    })
-                );
-            })
-        );
-    }, { dispatch: false });
-
-    downloadArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(downloadArtifact),
-            tap((action) => {
-                this.notificationService.info(`${action.name} download started.`);
-            }),
-            switchMap((action) => {
-                console.log('Action: ', action);
-                return this.statusService.downloadArtifact({ id: action.id }).pipe(
-                    map((response) => {
-                        const downloadURL = window.URL.createObjectURL(response);
-                        const link = document.createElement('a');
-                        link.href = downloadURL;
-                        link.download = action.name;
-                        link.click();
-                        return of();
-                    }),
-                    tap(() => this.notificationService.success(`${action.name} download finished.`))
-                );
-            })
-        );
-    }, { dispatch: false });
 
     constructor(
         private actions$: Actions,

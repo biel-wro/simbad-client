@@ -4,14 +4,17 @@ import {
     cliStepEndTimestamp,
     cliStepStartTimestamp,
     cliStepState
-} from '../../../pages/store/simulation-pipeline.selectors';
+} from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil } from 'rxjs/operators';
 import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
-import { downloadArtifact, openArtifact } from '../../../pages/store/simulation-pipeline.actions';
-import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
+import { downloadArtifact } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/artifacts/artifacts.actions';
+import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
+import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
+import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
+import { extractFilename } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/path-utils';
 
 @Component({
     selector: 'simbad-client-cli-step',
@@ -28,8 +31,9 @@ export class CliStepComponent implements OnInit, OnDestroy {
     stopTimer$: Subject<void> = new Subject<void>();
     ngUnsubscribe$: Subject<void> = new Subject();
 
-
-    constructor(private store: Store<{}>) {
+    constructor(
+        private readonly store: Store<{}>,
+        private readonly artifactsService: ArtifactsActionsService) {
     }
 
     ngOnInit() {
@@ -64,7 +68,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
             this.timer$
         ]).pipe(
             map(([startTimestamp, endTimestamp]) => {
-                return this.timeToTimeString(startTimestamp, endTimestamp);
+                return timeToTimeString(startTimestamp, endTimestamp);
             })
         );
 
@@ -72,26 +76,22 @@ export class CliStepComponent implements OnInit, OnDestroy {
             select(cliStepState),
             filter((state) => !!state),
             map((state) => state.artifacts.filter((artifact) => !artifact.path.endsWith('.json'))),
-            map((artifacts) => this.artifactsToElementList(artifacts))
+            map((artifacts) => {
+                return this.artifactsService.artifactsToElementList(artifacts, [ArtifactActionType.Download]);
+            })
         );
 
     }
 
-    timeToTimeString(startTimestamp: string, endTimestamp?: string) {
-        const now = Date.now();
-        const start = Date.parse(startTimestamp);
-        const diff = endTimestamp ? Date.parse(endTimestamp) - start : now - start;
-        return new Date(diff).toISOString().substr(11, 8);
-    }
-
     buildTaskContextFromCliState(state: SimulationStepInfo): ListElement[] {
         const conf = state.artifacts.find((artifact) => artifact.path.endsWith('.json'));
+        const name = extractFilename(conf.path);
         return [
             {
                 key: 'Configuration file',
-                value: conf.path.split('/').slice(-1)[0],
+                value: name,
                 download: () => {
-                    this.store.dispatch(downloadArtifact({ id: conf.id, name: conf.path.split('/').slice(-1)[0] }));
+                    this.store.dispatch(downloadArtifact({ id: conf.id, name }));
                     return console.log('Downloading artifact', conf.id);
                 }
             },
@@ -101,39 +101,8 @@ export class CliStepComponent implements OnInit, OnDestroy {
         ];
     }
 
-    artifactsToElementList(artifacts: ArtifactInfo[]): ListElement[] {
-        return artifacts.map((artifact) => {
-            return {
-                key: artifact.path.split('/').slice(-1)[0],
-                value: `Size ${this.formatBytes(artifact.sizeKb)}`,
-                show: () => {
-                    console.log('Showing Artifact', artifact.path);
-                    this.store.dispatch(openArtifact({ path: artifact.path }));
-                },
-                download: () => {
-                    this.store.dispatch(downloadArtifact({
-                        id: artifact.id,
-                        name: artifact.path.split('/').slice(-1)[0]
-                    }));
-                    return console.log('Downloading artifact', artifact.id);
-                }
-            };
-        });
-    }
-
-    formatBytes(bytes: number, decimals = 2): string {
-        if (bytes === 0) return '0 Bytes';
-
-        const k = 1024;
-        const dm = decimals < 0 ? 0 : decimals;
-        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-        const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-        return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-    }
-
     ngOnDestroy() {
+        this.ngUnsubscribe$.next();
     }
 
 }

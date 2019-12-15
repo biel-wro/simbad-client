@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { StartSimulationRequest } from '@simbad-cli-api/gen/models/start-simulation-request';
-import { SimulationInfo, SimulationStepInfo } from '@simbad-cli-api/gen/models';
+import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
+import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 
 
 export enum SimulationPipelineActions {
@@ -21,11 +22,6 @@ export enum SimulationPipelineActions {
     ReportStepFinished = '[SimulationPipeline] Report step finished',
     StartSimulation = '[SimulationPipeline] Start simulation',
     SimulationError = '[SimulationPipeline] Simulation http error',
-    UpdateElapsedTime = '[SimulationPipeline] Update elapsed time',
-    StartTimer = '[SimulationPipeline] Start timer',
-    StopTimer = '[SimulationPipeline] Stop timer',
-    OpenArtifact = '[SimulationPipeline] Open artifact',
-    DownloadArtifact = '[SimulationPipeline] Download artifact'
 }
 
 
@@ -110,28 +106,3 @@ export const reportStepFinished = createAction(
     SimulationPipelineActions.ReportStepFinished,
     props<{step: SimulationStepInfo}>()
 );
-
-
-export const updateElapsedTime = createAction(
-    SimulationPipelineActions.UpdateElapsedTime,
-    props<{ time: number }>()
-);
-
-export const startTimer = createAction(
-    SimulationPipelineActions.StartTimer
-);
-
-export const stopTimer = createAction(
-    SimulationPipelineActions.StopTimer
-);
-
-export const openArtifact = createAction(
-    SimulationPipelineActions.OpenArtifact,
-    props<{ path: string }>()
-);
-
-export const downloadArtifact = createAction(
-    SimulationPipelineActions.DownloadArtifact,
-    props<{ id: number, name: string }>()
-);
-
