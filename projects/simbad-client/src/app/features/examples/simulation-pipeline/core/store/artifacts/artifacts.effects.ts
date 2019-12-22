@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, map, switchMap, take, tap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
@@ -49,7 +49,7 @@ export class ArtifactsEffects {
                         console.log(err);
                         this.notificationService.error(`Failed to download ${action.name}`);
                         return of(err);
-                    }),
+                    })
                 );
             })
         );

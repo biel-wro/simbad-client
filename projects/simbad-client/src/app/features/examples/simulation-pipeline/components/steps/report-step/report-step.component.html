@@ -15,10 +15,21 @@
             class="task-context"
         >
         </simbad-client-task-context>
-        <simbad-client-artifact-list
-            [artifacts]="data.artifactList"
-            class="artifact-list"
-        ></simbad-client-artifact-list>
+        <div>
+            <simbad-client-artifact-list
+                [artifacts]="data.artifactList"
+                class="artifact-list"
+            ></simbad-client-artifact-list>
+            <a>
+
+                <button
+                        id="latest-simulation"
+                        mat-raised-button
+                >
+                    Download Report
+                </button>
+            </a>
+        </div>
     </div>
     <span>Report job progress: {{data.runtimeInfo?.progress}}%</span>
     <mat-progress-bar mode="determinate" [value]="data.runtimeInfo?.progress"></mat-progress-bar>

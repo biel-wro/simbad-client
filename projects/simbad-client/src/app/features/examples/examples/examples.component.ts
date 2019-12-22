@@ -19,11 +19,6 @@ export class ExamplesComponent implements OnInit {
     examples = [
         { link: 'form', label: 'simbad.examples.menu.form' },
         {
-            link: 'authenticated',
-            label: 'simbad.examples.menu.auth',
-            auth: true
-        },
-        {
             link: 'simulation-pipeline',
             label: 'simbad.examples.menu.simulation-pipeline'
         }

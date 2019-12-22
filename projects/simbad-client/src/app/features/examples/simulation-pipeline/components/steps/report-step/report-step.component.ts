@@ -16,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
 import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
 import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
+import { extractFilename } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/path-utils';
 
 @Component({
     selector: 'simbad-client-report-step',
@@ -79,7 +80,14 @@ export class ReportStepComponent implements OnInit, OnDestroy {
         this.artifactList$ = this.store.pipe(
             select(reportStepState),
             filter((state) => !!state),
-            map((state) => state.artifacts.filter((artifact) => !artifact.path.endsWith('.json'))),
+            map((state) => {
+                return state.artifacts
+                    .filter((artifact) => !artifact.path.endsWith('.json'))
+                    .sort((a, b) => {
+                        if (a.id === b.id) return 0;
+                        return extractFilename(a.path) > extractFilename(b.path) ? 1 : -1;
+                    });
+            }),
             map((artifacts) => {
                 return this.artifactsService.artifactsToElementList(
                     artifacts,
