@@ -14,12 +14,12 @@ import { StatusService } from '@simbad-cli-api/gen';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatSnackBarModule } from '@angular/material';
+import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
-describe('AuthEffects', () => {
+describe('ArtifactEffects', () => {
     let actions$: Observable<any>;
     let effects: ArtifactsEffects;
     let statusService: StatusService;
@@ -32,7 +32,8 @@ describe('AuthEffects', () => {
             imports: [
                 HttpClientTestingModule,
                 MatSnackBarModule,
-                NoopAnimationsModule
+                NoopAnimationsModule,
+                MatDialogModule
             ],
             providers: [
                 ArtifactsEffects,
