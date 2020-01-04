@@ -161,7 +161,7 @@
                 }
             }
         },
-        "simbad-cli-api": {
+        "simbad-host-api": {
             "root": "libs/simbad-host-api",
             "sourceRoot": "libs/simbad-host-api/src",
             "projectType": "library",
