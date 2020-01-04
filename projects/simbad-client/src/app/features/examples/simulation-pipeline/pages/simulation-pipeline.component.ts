@@ -118,7 +118,6 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
             }),
             distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
             map((status) => this.buildIconsForSteps(status)),
-            tap((icons) => console.log(icons))
         );
 
         this.store.dispatch(checkForRunningSimulation());

@@ -1,3 +1,5 @@
+/* tslint:disable */
+
 export const simulation = {
     'artifacts': [
         {
