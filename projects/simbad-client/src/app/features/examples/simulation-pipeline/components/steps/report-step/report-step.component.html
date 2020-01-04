@@ -2,7 +2,9 @@
     elapsedTime: elapsedTime$ | async,
     taskContext: taskContext$ | async,
     artifactList: artifactList$ | async,
-    runtimeInfo: runtimeInfo$ | async
+    runtimeInfo: runtimeInfo$ | async,
+    simulationId: simulationId$ | async,
+    isFinished: isFinished$ | async
 } as data">
     <div class="step-container">
         <simbad-performance-monitor
@@ -21,17 +23,18 @@
                 class="artifact-list"
             ></simbad-client-artifact-list>
             <a>
-
                 <button
-                        id="latest-simulation"
+                        id="cell-model"
                         mat-raised-button
+                        (click)="goToModelViewer(data.simulationId)"
+                        [disabled]="!data.isFinished"
                 >
-                    Download Report
+                    View Cell Model
                 </button>
             </a>
         </div>
     </div>
     <span>Report job progress: {{data.runtimeInfo?.progress}}%</span>
-    <mat-progress-bar mode="determinate" [value]="data.runtimeInfo?.progress"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" class="progress" [value]="data.runtimeInfo?.progress"></mat-progress-bar>
     <mat-divider></mat-divider>
 </div>

@@ -21,6 +21,6 @@
         ></simbad-client-artifact-list>
     </div>
     <span>Spark job progress: {{data.runtimeInfo?.progress}}%</span>
-    <mat-progress-bar mode="determinate" [value]="data.runtimeInfo?.progress"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" class="progress" [value]="data.runtimeInfo?.progress"></mat-progress-bar>
     <mat-divider></mat-divider>
 </div>

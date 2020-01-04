@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
+    analyzerStepState,
     reportStepEndTimestamp,
     reportStepStartTimestamp,
     reportStepState
@@ -10,9 +11,6 @@ import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
-import { StatusService } from '@simbad-cli-api/gen';
-import { MatDialog } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
 import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
 import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
 import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
@@ -28,6 +26,8 @@ export class ReportStepComponent implements OnInit, OnDestroy {
     artifactList$: Observable<ListElement[]>;
     elapsedTime$: Observable<string>;
     taskContext$: Observable<ListElement[]>;
+    simulationId$: Observable<number>;
+    isFinished$: Observable<boolean>;
 
     timer$: Observable<number>;
     stopTimer$: Subject<void> = new Subject<void>();
@@ -36,7 +36,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<{}>,
-        private artifactsService: ArtifactsActionsService,
+        private artifactsService: ArtifactsActionsService
     ) {
     }
 
@@ -64,6 +64,18 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
         this.timer$ = timer(0, 1000).pipe(
             takeUntil(this.stopTimer$)
+        );
+
+        this.simulationId$ = this.store.pipe(
+            select(reportStepState),
+            filter((state) => !!state),
+            map((state) => state.simulationId)
+        );
+
+        this.isFinished$ = this.store.pipe(
+            select(reportStepState),
+            filter((status: SimulationStepInfo) => !!status),
+            map((status) => !!status.finishedUtc)
         );
 
 
@@ -102,6 +114,12 @@ export class ReportStepComponent implements OnInit, OnDestroy {
         return [
             { key: 'Status', value: state.finishedUtc ? 'FINISHED' : 'RUNNING' }
         ];
+    }
+
+    goToModelViewer(simulationId: number): void {
+        console.log('Opening Spark UI...');
+        const url = `http://localhost:8080/viewer/?r=${simulationId}`;
+        window.open(url, '_blank');
     }
 
     ngOnDestroy() {
