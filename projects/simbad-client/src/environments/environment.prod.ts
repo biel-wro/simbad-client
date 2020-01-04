@@ -4,7 +4,7 @@ export const environment: IEnvironment = {
     production: true,
     hmr: false,
     version: 'dev',
-    appName: 'sibmad-client',
+    appName: 'simbad-client',
     test: false,
     i18nPrefix: '',
     instrumentation: []
