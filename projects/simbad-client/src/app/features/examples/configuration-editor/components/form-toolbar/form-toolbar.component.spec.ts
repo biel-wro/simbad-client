@@ -6,15 +6,17 @@ import { TranslateModule } from '@ngx-translate/core';
 import { provideMockStore } from '@ngrx/store/testing';
 import { MatDialogModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MockComponent } from 'ng-mocks';
+import { UploadConfigurationButtonComponent } from '@simbad-client/app/features/examples/common/upload-configuration-button/upload-configuration-button.component';
 
 describe('FormToolbarComponent', () => {
     let component: FormToolbarComponent;
     let fixture: ComponentFixture<FormToolbarComponent>;
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({
+        return TestBed.configureTestingModule({
             imports: [SharedModule, TranslateModule.forRoot(), MatDialogModule, NoopAnimationsModule],
-            declarations: [FormToolbarComponent],
+            declarations: [FormToolbarComponent, MockComponent(UploadConfigurationButtonComponent)],
             providers: [
                 provideMockStore({
                     initialState: {}

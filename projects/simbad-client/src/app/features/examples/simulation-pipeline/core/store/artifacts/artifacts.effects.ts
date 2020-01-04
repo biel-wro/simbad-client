@@ -20,7 +20,6 @@ export class ArtifactsEffects {
             switchMap((action) => {
                 return this.hostService.openLocation({ body: { path: action.path } }).pipe(
                     catchError(err => {
-                        console.log(err);
                         this.notificationService.error(`Failed to open ${action.path}`);
                         return of(err);
                     })
@@ -46,7 +45,6 @@ export class ArtifactsEffects {
                         this.notificationService.success(`${action.name} download finished`);
                     }),
                     catchError(err => {
-                        console.log(err);
                         this.notificationService.error(`Failed to download ${action.name}`);
                         return of(err);
                     })

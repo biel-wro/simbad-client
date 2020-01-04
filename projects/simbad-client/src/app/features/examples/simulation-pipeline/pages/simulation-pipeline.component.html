@@ -23,7 +23,7 @@
         </button>
         <simbad-upload-configuration-button></simbad-upload-configuration-button>
         <span *ngIf="!data.shouldDisable" class="conf-name">
-           {{data.conf.name}}
+           {{data?.conf?.name}}
         </span>
     </div>
     <mat-horizontal-stepper
