@@ -13,3 +13,4 @@ RUN npm run build
 
 FROM nginx
 COPY --from=builder /usr/simbad-client/app/dist/projects/simbad-client /usr/share/nginx/html
+COPY ./viewer /usr/share/nginx/html/viewer
