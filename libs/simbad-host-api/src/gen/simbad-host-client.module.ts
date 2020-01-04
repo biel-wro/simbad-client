@@ -12,30 +12,21 @@ import { DockerService } from './services/docker.service';
  * Also exports Angular's `HttpClientModule`, as it is required for all services.
  */
 @NgModule({
-  imports: [
-    HttpClientModule
-  ],
-  exports: [
-    HttpClientModule
-  ],
-  declarations: [],
-  providers: [
-    HostService,
-    ArtifactsService,
-    DockerService,
-    ApiConfiguration
-  ],
+    imports: [HttpClientModule],
+    exports: [HttpClientModule],
+    declarations: [],
+    providers: [HostService, ArtifactsService, DockerService, ApiConfiguration]
 })
 export class SimbadHostClientModule {
-  static forRoot(params: ApiConfigurationParams): ModuleWithProviders {
-    return {
-      ngModule: SimbadHostClientModule,
-      providers: [
-        {
-          provide: ApiConfiguration,
-          useValue: params
-        }
-      ]
+    static forRoot(params: ApiConfigurationParams): ModuleWithProviders {
+        return {
+            ngModule: SimbadHostClientModule,
+            providers: [
+                {
+                    provide: ApiConfiguration,
+                    useValue: params
+                }
+            ]
+        };
     }
-  }
 }

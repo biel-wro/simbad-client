@@ -1,13 +1,12 @@
 /* tslint:disable */
-export interface HostLocationError  {
+export interface HostLocationError {
+    /**
+     * The cause of an error
+     */
+    message?: string;
 
-  /**
-   * The cause of an error
-   */
-  message?: string;
-
-  /**
-   * The path that was requested
-   */
-  path?: string;
+    /**
+     * The path that was requested
+     */
+    path?: string;
 }
