@@ -7,12 +7,22 @@ export interface ArtifactInfo  {
   createdUtc: string;
 
   /**
+   * The file type of artifact
+   */
+  fileType: 'CSV' | 'JSON' | 'PDF' | 'PNG' | 'LAS' | 'ENTWINE' | 'ZIP';
+
+  /**
    * The id of artifact
    */
   id: number;
 
   /**
-   * The path to artifact in filesystem
+   * The name of artifact
+   */
+  name: string;
+
+  /**
+   * The path to artifact
    */
   path: string;
 

@@ -39,7 +39,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SimulationInfo"
-paths:
   /api/simulation/start:
     post:
       tags:
@@ -232,7 +231,9 @@ components:
         - stepId
         - createdUtc
         - sizeKb
+        - name
         - path
+        - fileType
       properties:
         id:
           type: number
@@ -249,9 +250,23 @@ components:
         sizeKb:
           type: number
           description: The size of artifact in kb
+        name:
+          type: string
+          description: The name of artifact
         path:
           type: string
-          description: The path to artifact in filesystem
+          description: The path to artifact
+        fileType:
+          type: string
+          enum:
+            - CSV
+            - JSON
+            - PDF
+            - PNG
+            - LAS
+            - ENTWINE
+            - ZIP
+          description: The file type of artifact
       example:
         id: 123
         simulationId: 123
@@ -308,8 +323,6 @@ components:
         analyzerRuntimeInfo:
           type: object
           $ref: "#/components/schemas/AnalyzerRuntimeInfo"
-
-
       example:
         id: 123
         simulationId: 123
