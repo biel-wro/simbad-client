@@ -25,18 +25,16 @@ export class ArtifactsActionsService {
     }
 
     private artifactToListElement(artifact: ArtifactInfo, actions: ArtifactActionType[]): ListElement {
-        const name = extractFilename(artifact.path);
-        const { id, path } = artifact;
+        const { id, name } = artifact;
 
         const element: ListElement = {
-            key: extractFilename(artifact.path),
+            key: name,
             value: `Size ${formatBytes(artifact.sizeKb)}`,
         };
 
         const callbacks = {
             download: () => this.store.dispatch(downloadArtifact({ id, name })),
             preview: () => this.store.dispatch(previewArtifact({ id, name })),
-            show: () => this.store.dispatch(openArtifact({ path }))
         };
 
         actions.forEach((action) => {

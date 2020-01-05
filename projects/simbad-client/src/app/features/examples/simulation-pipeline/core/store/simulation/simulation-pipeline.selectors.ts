@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import {
-    selectSimulationPipelineState,
+    selectSimulationPipelineState
 } from '../../../../simulationState';
 
 export const selectCliStepState = createSelector(
@@ -28,14 +28,29 @@ export const cliStepState = createSelector(
     (state) => state.cliStep
 );
 
+export const cliStepStatus = createSelector(
+    cliStepState,
+    (state) => state ? state.status : 'PENDING'
+);
+
 export const analyzerStepState = createSelector(
     selectSimulationPipelineState,
     (state) => state.analyzerStep
 );
 
+export const analyzerStepStatus = createSelector(
+    analyzerStepState,
+    (state) => state ? state.status : 'PENDING'
+);
+
 export const reportStepState = createSelector(
     selectSimulationPipelineState,
     (state) => state.reportsStep
+);
+
+export const reportStepStatus = createSelector(
+    reportStepState,
+    (state) => state ? state.status : 'PENDING'
 );
 
 export const cliStepStartTimestamp = createSelector(

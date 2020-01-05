@@ -75,7 +75,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
         this.artifactList$ = this.store.pipe(
             select(cliStepState),
             filter((state) => !!state),
-            map((state) => state.artifacts.filter((artifact) => !artifact.path.endsWith('.json'))),
+            map((state) => state.artifacts.filter((artifact) => artifact.fileType !== 'JSON')),
             map((artifacts) => {
                 return this.artifactsService.artifactsToElementList(artifacts, [ArtifactActionType.Download]);
             })
@@ -84,8 +84,8 @@ export class CliStepComponent implements OnInit, OnDestroy {
     }
 
     buildTaskContextFromCliState(state: SimulationStepInfo): ListElement[] {
-        const conf = state.artifacts.find((artifact) => artifact.path.endsWith('.json'));
-        const name = extractFilename(conf.path);
+        const conf = state.artifacts.find((artifact) => artifact.fileType === 'JSON');
+        const { name } = conf;
         return [
             {
                 key: 'Configuration file',
