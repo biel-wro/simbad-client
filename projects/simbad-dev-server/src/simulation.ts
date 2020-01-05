@@ -1,4 +1,4 @@
-import { Request, Response } from 'express-serve-statreportic-core';
+import { Request, Response } from 'express';
 import { simulation } from './mocks/simulation';
 
 const express = require('express');
