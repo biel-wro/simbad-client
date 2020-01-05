@@ -6,10 +6,10 @@ import { selectConfiguration } from '../../configuration-editor/store/form.selec
 import { distinctUntilChanged, filter, map, startWith, tap } from 'rxjs/operators';
 import { FormsService } from '../../configuration-editor/services/forms.service';
 import {
-    analyzerStepState,
-    cliStepState,
+    analyzerStepState, analyzerStepStatus,
+    cliStepState, cliStepStatus,
     isSimulationOngoing,
-    reportStepState
+    reportStepState, reportStepStatus
 } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.selectors';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import {
@@ -44,6 +44,10 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
     isCliStepCompleted$: Observable<boolean>;
     isAnalyzerStepCompleted$: Observable<boolean>;
     isReportStepCompleted$: Observable<boolean>;
+    cliStepStatus$: Observable<string>;
+    analyzerStepStatus$: Observable<string>;
+    reportStepStatus$: Observable<string>;
+
     iconModels$: Observable<IconModel[]>;
     shouldDisableStartButton$: Observable<boolean>;
     isSimulationOngoing$: Observable<boolean>;
@@ -97,6 +101,10 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
             map((value) => !!value.finishedUtc)
         );
 
+        this.cliStepStatus$ = this.store.select(cliStepStatus);
+        this.analyzerStepStatus$ = this.store.select(analyzerStepStatus);
+        this.reportStepStatus$ = this.store.select(reportStepStatus);
+
         this.isCliStepCompleted$ = this.store.pipe(
             select(cliStepState),
             filter((info) => !!info),
@@ -104,20 +112,12 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
         );
 
         this.iconModels$ = combineLatest([
-            this.isCliStepCompleted$,
-            this.isAnalyzerStepCompleted$,
-            this.isReportStepCompleted$
+            this.cliStepStatus$,
+            this.analyzerStepStatus$,
+            this.reportStepStatus$
         ]).pipe(
-            startWith([false, false, false]),
-            map(([isCliStepCompleted, isAnalyzerStepCompleted, isReportStepCompleted]) => {
-                return {
-                    isCliStepCompleted,
-                    isAnalyzerStepCompleted,
-                    isReportStepCompleted
-                };
-            }),
-            distinctUntilChanged((prev, curr) => isEqual(prev, curr)),
-            map((status) => this.buildIconsForSteps(status)),
+            startWith(['PENDING', 'PENDING', 'PENDING']),
+            map((statuses) => statuses.map(this.buildIconForStep))
         );
 
         this.store.dispatch(checkForRunningSimulation());
@@ -135,12 +135,12 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
         this.store.dispatch(loadLatestSimulation());
     }
 
-    buildIconsForSteps(status: ProgressStatus): IconModel[] {
-        return [
-            this.buildIconForCliStep(status),
-            this.buildIconForAnalyzerStep(status),
-            this.buildIconForReportsStep(status)
-        ];
+    buildIconForStep(status: string): IconModel {
+        return {
+            ['SUCCESS']: { icon: 'check' },
+            ['ONGOING']: { icon: 'spinner', spin: true, pulse: true },
+            ['PENDING']: { icon: 'ellipsis-h' },
+        } [status] || { icon: 'ellipsis-h' };
     }
 
     buildIconForCliStep(status: ProgressStatus): IconModel {

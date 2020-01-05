@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
-    analyzerStepState,
     reportStepEndTimestamp,
     reportStepStartTimestamp,
     reportStepState
@@ -14,7 +13,8 @@ import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime
 import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
 import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
 import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
-import { extractFilename } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/path-utils';
+import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
+import { downloadArtifact } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/artifacts/artifacts.actions';
 
 @Component({
     selector: 'simbad-client-report-step',
@@ -24,6 +24,7 @@ import { extractFilename } from '@simbad-client/app/features/examples/simulation
 export class ReportStepComponent implements OnInit, OnDestroy {
     runtimeInfo$: Observable<AnalyzerRuntimeInfo>;
     artifactList$: Observable<ListElement[]>;
+    simulationReport$: Observable<ArtifactInfo>;
     elapsedTime$: Observable<string>;
     taskContext$: Observable<ListElement[]>;
     simulationId$: Observable<number>;
@@ -92,20 +93,20 @@ export class ReportStepComponent implements OnInit, OnDestroy {
         this.artifactList$ = this.store.pipe(
             select(reportStepState),
             filter((state) => !!state),
-            map((state) => {
-                return state.artifacts
-                    .filter((artifact) => !artifact.path.endsWith('.json'))
-                    .sort((a, b) => {
-                        if (a.id === b.id) return 0;
-                        return extractFilename(a.path) > extractFilename(b.path) ? 1 : -1;
-                    });
-            }),
+            map((state) => state.artifacts),
             map((artifacts) => {
                 return this.artifactsService.artifactsToElementList(
                     artifacts,
                     [ArtifactActionType.Download, ArtifactActionType.Preview]
                 );
             })
+        );
+
+        this.simulationReport$ = this.store.pipe(
+            select(reportStepState),
+            filter((state) => !!state),
+            map((state) => state.artifacts),
+            map((artifacts) => artifacts.find((artifact) => artifact.fileType === 'PDF'))
         );
 
     }
@@ -120,6 +121,11 @@ export class ReportStepComponent implements OnInit, OnDestroy {
         console.log('Opening Spark UI...');
         const url = `http://localhost:8080/viewer/?r=${simulationId}`;
         window.open(url, '_blank');
+    }
+
+    downloadReport(report: ArtifactInfo): void {
+        const {name, id} = report;
+        this.store.dispatch(downloadArtifact({name, id}));
     }
 
     ngOnDestroy() {

@@ -2,6 +2,7 @@
     elapsedTime: elapsedTime$ | async,
     taskContext: taskContext$ | async,
     artifactList: artifactList$ | async,
+    simulationReport: simulationReport$ | async,
     runtimeInfo: runtimeInfo$ | async,
     simulationId: simulationId$ | async,
     isFinished: isFinished$ | async
@@ -24,7 +25,15 @@
             ></simbad-client-artifact-list>
             <a>
                 <button
-                        id="cell-model"
+                        class="action-button"
+                        mat-raised-button
+                        (click)="downloadReport(data.simulationReport)"
+                        [disabled]="!data.isFinished"
+                >
+                    Download Report
+                </button>
+                <button
+                        class="action-button"
                         mat-raised-button
                         (click)="goToModelViewer(data.simulationId)"
                         [disabled]="!data.isFinished"

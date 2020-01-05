@@ -73,7 +73,7 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
         this.artifactList$ = this.store.pipe(
             select(analyzerStepState),
             filter((state) => !!state),
-            map((state) => state.artifacts.filter((artifact) => !artifact.path.endsWith('.json'))),
+            map((state) => state.artifacts.filter((artifact) => artifact.fileType !== 'JSON')),
             map((artifacts) => this.as.artifactsToElementList(
                 artifacts, [ArtifactActionType.Download]))
         );

@@ -1,1157 +1,697 @@
 /* tslint:disable */
 
 export const simulation = {
-    'artifacts': [
-        {
-            'createdUtc': 'Sat, 14 Dec 2019 21:33:49 GMT',
-            'id': 1521,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/parameteric_evolution_3D_stream.json',
-            'sizeKb': 3202
-        },
-        {
-            'createdUtc': 'Sat, 14 Dec 2019 21:36:12 GMT',
-            'id': 1522,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/cli_out.csv',
-            'sizeKb': 154329736
-        },
-        {
-            'createdUtc': null,
-            'id': 1523,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/time_points.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1524,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/large_clones.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1525,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_snapshots.parquet',
-            'sizeKb': 49152
-        },
-        {
-            'createdUtc': null,
-            'id': 1526,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/final_snapshot.csv',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1527,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_stats.parquet',
-            'sizeKb': 20480
-        },
-        {
-            'createdUtc': null,
-            'id': 1528,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_stats_scalars.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1529,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/large_muller_order.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1530,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/muller_data.parquet',
-            'sizeKb': 20480
-        },
-        {
-            'createdUtc': null,
-            'id': 1531,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/final_mutation_freq.parquet',
-            'sizeKb': 45056
-        },
-        {
-            'createdUtc': null,
-            'id': 1532,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_counts.parquet',
-            'sizeKb': 49152
-        },
-        {
-            'createdUtc': null,
-            'id': 1533,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/large_final_mutations.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1534,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/chronicles.parquet',
-            'sizeKb': 110592
-        },
-        {
-            'createdUtc': null,
-            'id': 1535,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/lineages.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1536,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_stats.parquet',
-            'sizeKb': 20480
-        },
-        {
-            'createdUtc': null,
-            'id': 1537,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_stats_scalars.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1538,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/muller_data.parquet',
-            'sizeKb': 20480
-        },
-        {
-            'createdUtc': null,
-            'id': 1539,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_stats.parquet',
-            'sizeKb': 20480
-        },
-        {
-            'createdUtc': null,
-            'id': 1540,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_stats_scalars.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1541,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/time_points.parquet',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1542,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/final_snapshot.csv',
-            'sizeKb': 4096
-        },
-        {
-            'createdUtc': null,
-            'id': 1543,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_birthEfficiency.csv',
-            'sizeKb': 17814
-        },
-        {
-            'createdUtc': null,
-            'id': 1544,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_birthResistance.csv',
-            'sizeKb': 19567
-        },
-        {
-            'createdUtc': null,
-            'id': 1545,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanEfficiency.csv',
-            'sizeKb': 17772
-        },
-        {
-            'createdUtc': null,
-            'id': 1546,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanEfficiency.csv',
-            'sizeKb': 17772
-        },
-        {
-            'createdUtc': null,
-            'id': 1547,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanEfficiency.csv',
-            'sizeKb': 17772
-        },
-        {
-            'createdUtc': null,
-            'id': 1548,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanResistance.csv',
-            'sizeKb': 19385
-        },
-        {
-            'createdUtc': null,
-            'id': 1549,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_successEfficiency.csv',
-            'sizeKb': 20817
-        },
-        {
-            'createdUtc': null,
-            'id': 1550,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_successResistance.csv',
-            'sizeKb': 19654
-        },
-        {
-            'createdUtc': null,
-            'id': 1551,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_birthEfficiency.csv',
-            'sizeKb': 16284
-        },
-        {
-            'createdUtc': null,
-            'id': 1552,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_birthResistance.csv',
-            'sizeKb': 16577
-        },
-        {
-            'createdUtc': null,
-            'id': 1553,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_lifespanEfficiency.csv',
-            'sizeKb': 16560
-        },
-        {
-            'createdUtc': null,
-            'id': 1554,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_lifespanResistance.csv',
-            'sizeKb': 16549
-        },
-        {
-            'createdUtc': null,
-            'id': 1555,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_successEfficiency.csv',
-            'sizeKb': 16572
-        },
-        {
-            'createdUtc': null,
-            'id': 1556,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_successResistance.csv',
-            'sizeKb': 16603
-        },
-        {
-            'createdUtc': null,
-            'id': 1557,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_birthEfficiency.csv',
-            'sizeKb': 16918
-        },
-        {
-            'createdUtc': null,
-            'id': 1558,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_birthResistance.csv',
-            'sizeKb': 18575
-        },
-        {
-            'createdUtc': null,
-            'id': 1559,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_lifespanEfficiency.csv',
-            'sizeKb': 16852
-        },
-        {
-            'createdUtc': null,
-            'id': 1560,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_lifespanResistance.csv',
-            'sizeKb': 18406
-        },
-        {
-            'createdUtc': null,
-            'id': 1561,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_successEfficiency.csv',
-            'sizeKb': 19816
-        },
-        {
-            'createdUtc': null,
-            'id': 1562,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_successResistance.csv',
-            'sizeKb': 18674
-        },
-        {
-            'createdUtc': null,
-            'id': 1563,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-successResistance.png',
-            'sizeKb': 170715
-        },
-        {
-            'createdUtc': null,
-            'id': 1564,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-lifespanResistance.png',
-            'sizeKb': 709666
-        },
-        {
-            'createdUtc': null,
-            'id': 1565,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.lifespanEfficiency.png',
-            'sizeKb': 189055
-        },
-        {
-            'createdUtc': null,
-            'id': 1566,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-lifespanResistance.png',
-            'sizeKb': 163533
-        },
-        {
-            'createdUtc': null,
-            'id': 1567,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-cloneCount.png',
-            'sizeKb': 23940
-        },
-        {
-            'createdUtc': null,
-            'id': 1568,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//normalized_entropy.png',
-            'sizeKb': 38593
-        },
-        {
-            'createdUtc': null,
-            'id': 1569,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-birthEfficiency.png',
-            'sizeKb': 154737
-        },
-        {
-            'createdUtc': null,
-            'id': 1570,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_birth_efficiency-stddev_birth_efficiency.png',
-            'sizeKb': 40100
-        },
-        {
-            'createdUtc': null,
-            'id': 1571,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_lifespan_efficiency-stddev_lifespan_efficiency.png',
-            'sizeKb': 42853
-        },
-        {
-            'createdUtc': null,
-            'id': 1572,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.lifespanResistance.png',
-            'sizeKb': 192656
-        },
-        {
-            'createdUtc': null,
-            'id': 1573,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_birth_efficiency-stddev_birth_efficiency.png',
-            'sizeKb': 42771
-        },
-        {
-            'createdUtc': null,
-            'id': 1574,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_lifespan_resistance-stddev_lifespan_resistance.png',
-            'sizeKb': 52330
-        },
-        {
-            'createdUtc': null,
-            'id': 1575,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//systemSize.png',
-            'sizeKb': 31698
-        },
-        {
-            'createdUtc': null,
-            'id': 1576,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mutation_histogram.png',
-            'sizeKb': 52900
-        },
-        {
-            'createdUtc': null,
-            'id': 1577,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_birth_resistance-stddev_birth_resistance.png',
-            'sizeKb': 39971
-        },
-        {
-            'createdUtc': null,
-            'id': 1578,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_success_efficiency-stddev_success_efficiency.png',
-            'sizeKb': 34800
-        },
-        {
-            'createdUtc': null,
-            'id': 1579,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//cloneCount.png',
-            'sizeKb': 32309
-        },
-        {
-            'createdUtc': null,
-            'id': 1580,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_birth_efficiency-stddev_birth_efficiency.png',
-            'sizeKb': 54180
-        },
-        {
-            'createdUtc': null,
-            'id': 1581,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-lifespanEfficiency.png',
-            'sizeKb': 384657
-        },
-        {
-            'createdUtc': null,
-            'id': 1582,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_success_resistance-stddev_success_resistance.png',
-            'sizeKb': 54322
-        },
-        {
-            'createdUtc': null,
-            'id': 1583,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-lifespanEfficiency.png',
-            'sizeKb': 165769
-        },
-        {
-            'createdUtc': null,
-            'id': 1584,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.birthResistance.png',
-            'sizeKb': 189030
-        },
-        {
-            'createdUtc': null,
-            'id': 1585,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_success_efficiency-stddev_success_efficiency.png',
-            'sizeKb': 51193
-        },
-        {
-            'createdUtc': null,
-            'id': 1586,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.successResistance.png',
-            'sizeKb': 192293
-        },
-        {
-            'createdUtc': null,
-            'id': 1587,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-birthResistance.png',
-            'sizeKb': 761845
-        },
-        {
-            'createdUtc': null,
-            'id': 1588,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-birthEfficiency.png',
-            'sizeKb': 407832
-        },
-        {
-            'createdUtc': null,
-            'id': 1589,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-systemSize.png',
-            'sizeKb': 33264
-        },
-        {
-            'createdUtc': null,
-            'id': 1590,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.successEfficiency.png',
-            'sizeKb': 183106
-        },
-        {
-            'createdUtc': null,
-            'id': 1591,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_success_resistance-stddev_success_resistance.png',
-            'sizeKb': 38441
-        },
-        {
-            'createdUtc': null,
-            'id': 1592,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-birthResistance.png',
-            'sizeKb': 176578
-        },
-        {
-            'createdUtc': null,
-            'id': 1593,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_lifespan_resistance-stddev_lifespan_resistance.png',
-            'sizeKb': 41721
-        },
-        {
-            'createdUtc': null,
-            'id': 1594,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_lifespan_resistance-stddev_lifespan_resistance.png',
-            'sizeKb': 37925
-        },
-        {
-            'createdUtc': null,
-            'id': 1595,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mutation-tree.png',
-            'sizeKb': 14773
-        },
-        {
-            'createdUtc': null,
-            'id': 1596,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-normalized_entropy.png',
-            'sizeKb': 47827
-        },
-        {
-            'createdUtc': null,
-            'id': 1597,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-entropy.png',
-            'sizeKb': 30407
-        },
-        {
-            'createdUtc': null,
-            'id': 1598,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_lifespan_efficiency-stddev_lifespan_efficiency.png',
-            'sizeKb': 53186
-        },
-        {
-            'createdUtc': null,
-            'id': 1599,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-systemSize.png',
-            'sizeKb': 31491
-        },
-        {
-            'createdUtc': null,
-            'id': 1600,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-successEfficiency.png',
-            'sizeKb': 725863
-        },
-        {
-            'createdUtc': null,
-            'id': 1601,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_birth_resistance-stddev_birth_resistance.png',
-            'sizeKb': 36552
-        },
-        {
-            'createdUtc': null,
-            'id': 1602,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-entropy.png',
-            'sizeKb': 35593
-        },
-        {
-            'createdUtc': null,
-            'id': 1603,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_birth_resistance-stddev_birth_resistance.png',
-            'sizeKb': 47004
-        },
-        {
-            'createdUtc': null,
-            'id': 1604,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_success_efficiency-stddev_success_efficiency.png',
-            'sizeKb': 39821
-        },
-        {
-            'createdUtc': null,
-            'id': 1605,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-successEfficiency.png',
-            'sizeKb': 178192
-        },
-        {
-            'createdUtc': null,
-            'id': 1606,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-normalized_entropy.png',
-            'sizeKb': 34695
-        },
-        {
-            'createdUtc': null,
-            'id': 1607,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-cloneCount.png',
-            'sizeKb': 31805
-        },
-        {
-            'createdUtc': null,
-            'id': 1608,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.birthEfficiency.png',
-            'sizeKb': 184426
-        },
-        {
-            'createdUtc': null,
-            'id': 1609,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_lifespan_efficiency-stddev_lifespan_efficiency.png',
-            'sizeKb': 39957
-        },
-        {
-            'createdUtc': null,
-            'id': 1610,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_success_resistance-stddev_success_resistance.png',
-            'sizeKb': 42360
-        },
-        {
-            'createdUtc': null,
-            'id': 1611,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-successResistance.png',
-            'sizeKb': 716658
-        },
-        {
-            'createdUtc': null,
-            'id': 1612,
-            'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//entropy.png',
-            'sizeKb': 30575
-        }
-    ],
-    'currentStep': null,
-    'currentStepId': null,
-    'finishedUtc': 'Sat, 14 Dec 2019 21:42:46 GMT',
-    'id': 35,
-    'name': 'test_simulation',
-    'startedUtc': 'Sat, 14 Dec 2019 21:33:49 GMT',
-    'steps': [
-        {
-            'analyzerRuntimeInfo': null,
-            'artifacts': [
+    "currentStep": null,
+    "currentStepId": null,
+    "finishedUtc": "Sun, 05 Jan 2020 19:43:21 GMT",
+    "id": 7,
+    "startedUtc": "Sun, 05 Jan 2020 19:25:06 GMT",
+    "steps": [
+        {
+            "analyzerRuntimeInfo": null,
+            "artifacts": [
                 {
-                    'createdUtc': 'Sat, 14 Dec 2019 21:33:49 GMT',
-                    'id': 1521,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/parameteric_evolution_3D_stream.json',
-                    'sizeKb': 3202
+                    "createdUtc": "Sun, 05 Jan 2020 19:25:06 GMT",
+                    "fileType": "JSON",
+                    "id": 283,
+                    "name": "xd.json",
+                    "sizeKb": 3202
                 },
                 {
-                    'createdUtc': 'Sat, 14 Dec 2019 21:36:12 GMT',
-                    'id': 1522,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/cli_out.csv',
-                    'sizeKb': 154329736
+                    "createdUtc": "Sun, 05 Jan 2020 19:33:47 GMT",
+                    "fileType": "CSV",
+                    "id": 284,
+                    "name": "cli_out",
+                    "sizeKb": 600534445
                 }
             ],
-            'cliRuntimeInfo': {
-                'cpu': 0,
-                'memory': 0
+            "cliRuntimeInfo": {
+                "cpu": 0,
+                "memory": 0,
+                "progress": 100.0
             },
-            'finishedUtc': 'Sat, 14 Dec 2019 21:36:12 GMT',
-            'id': 101,
-            'origin': 'CLI',
-            'simulationId': 35,
-            'startedUtc': 'Sat, 14 Dec 2019 21:33:49 GMT'
+            "finishedUtc": "Sun, 05 Jan 2020 19:33:47 GMT",
+            "id": 16,
+            "origin": "CLI",
+            "simulationId": 7,
+            "startedUtc": "Sun, 05 Jan 2020 19:25:06 GMT",
+            "status": "SUCCESS"
         },
         {
-            'analyzerRuntimeInfo': {
-                'progress': 100.0
+            "analyzerRuntimeInfo": {
+                "progress": 100.0
             },
-            'artifacts': [
+            "artifacts": [
                 {
-                    'createdUtc': null,
-                    'id': 1523,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/time_points.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:37:00 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 285,
+                    "name": "time_points.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1524,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/large_clones.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:39:46 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 286,
+                    "name": "large_clones.parquet",
+                    "sizeKb": 12288
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1525,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_snapshots.parquet',
-                    'sizeKb': 49152
+                    "createdUtc": "Sun, 05 Jan 2020 19:37:46 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 287,
+                    "name": "clone_snapshots.parquet",
+                    "sizeKb": 49152
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1526,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/final_snapshot.csv',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:57 GMT",
+                    "fileType": ".CSV",
+                    "id": 288,
+                    "name": "final_snapshot.csv",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1527,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_stats.parquet',
-                    'sizeKb': 20480
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:20 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 289,
+                    "name": "clone_stats.parquet",
+                    "sizeKb": 20480
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1528,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_stats_scalars.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 290,
+                    "name": "clone_stats_scalars.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1529,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/large_muller_order.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:39:47 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 291,
+                    "name": "large_muller_order.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1530,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/muller_data.parquet',
-                    'sizeKb': 20480
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:48 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 292,
+                    "name": "muller_data.parquet",
+                    "sizeKb": 24576
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1531,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/final_mutation_freq.parquet',
-                    'sizeKb': 45056
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:15 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 293,
+                    "name": "final_mutation_freq.parquet",
+                    "sizeKb": 45056
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1532,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/clone_counts.parquet',
-                    'sizeKb': 49152
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:34 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 294,
+                    "name": "clone_counts.parquet",
+                    "sizeKb": 53248
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1533,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/large_final_mutations.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:36 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 295,
+                    "name": "large_final_mutations.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1534,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/chronicles.parquet',
-                    'sizeKb': 110592
+                    "createdUtc": "Sun, 05 Jan 2020 19:36:58 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 296,
+                    "name": "chronicles.parquet",
+                    "sizeKb": 106496
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1535,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/lineages.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:39:35 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 297,
+                    "name": "lineages.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1536,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_stats.parquet',
-                    'sizeKb': 20480
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:00 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 298,
+                    "name": "major_stats.parquet",
+                    "sizeKb": 20480
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1537,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_stats_scalars.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 299,
+                    "name": "major_stats_scalars.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1538,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/muller_data.parquet',
-                    'sizeKb': 20480
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:48 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 300,
+                    "name": "muller_data.parquet",
+                    "sizeKb": 24576
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1539,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_stats.parquet',
-                    'sizeKb': 20480
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:33 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 301,
+                    "name": "noise_stats.parquet",
+                    "sizeKb": 20480
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1540,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_stats_scalars.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 302,
+                    "name": "noise_stats_scalars.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1541,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/time_points.parquet',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:37:00 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 303,
+                    "name": "time_points.parquet",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1542,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/final_snapshot.csv',
-                    'sizeKb': 4096
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:57 GMT",
+                    "fileType": ".CSV",
+                    "id": 304,
+                    "name": "final_snapshot.csv",
+                    "sizeKb": 4096
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1543,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_birthEfficiency.csv',
-                    'sizeKb': 17814
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 305,
+                    "name": "histogram_birthEfficiency.csv",
+                    "sizeKb": 20800
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1544,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_birthResistance.csv',
-                    'sizeKb': 19567
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 306,
+                    "name": "histogram_birthResistance.csv",
+                    "sizeKb": 23426
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1545,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanEfficiency.csv',
-                    'sizeKb': 17772
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 307,
+                    "name": "histogram_lifespanEfficiency.csv",
+                    "sizeKb": 20367
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1546,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanEfficiency.csv',
-                    'sizeKb': 17772
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 308,
+                    "name": "histogram_lifespanEfficiency.csv",
+                    "sizeKb": 20367
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1547,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanEfficiency.csv',
-                    'sizeKb': 17772
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 309,
+                    "name": "histogram_lifespanEfficiency.csv",
+                    "sizeKb": 20367
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1548,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_lifespanResistance.csv',
-                    'sizeKb': 19385
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 310,
+                    "name": "histogram_lifespanResistance.csv",
+                    "sizeKb": 22913
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1549,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_successEfficiency.csv',
-                    'sizeKb': 20817
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 311,
+                    "name": "histogram_successEfficiency.csv",
+                    "sizeKb": 25279
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1550,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/histogram_successResistance.csv',
-                    'sizeKb': 19654
+                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "fileType": ".CSV",
+                    "id": 312,
+                    "name": "histogram_successResistance.csv",
+                    "sizeKb": 23564
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1551,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_birthEfficiency.csv',
-                    'sizeKb': 16284
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".CSV",
+                    "id": 313,
+                    "name": "major_histogram_birthEfficiency.csv",
+                    "sizeKb": 18726
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1552,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_birthResistance.csv',
-                    'sizeKb': 16577
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".CSV",
+                    "id": 314,
+                    "name": "major_histogram_birthResistance.csv",
+                    "sizeKb": 19088
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1553,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_lifespanEfficiency.csv',
-                    'sizeKb': 16560
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".CSV",
+                    "id": 315,
+                    "name": "major_histogram_lifespanEfficiency.csv",
+                    "sizeKb": 18577
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1554,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_lifespanResistance.csv',
-                    'sizeKb': 16549
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".CSV",
+                    "id": 316,
+                    "name": "major_histogram_lifespanResistance.csv",
+                    "sizeKb": 19377
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1555,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_successEfficiency.csv',
-                    'sizeKb': 16572
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".CSV",
+                    "id": 317,
+                    "name": "major_histogram_successEfficiency.csv",
+                    "sizeKb": 18599
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1556,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/major_histogram_successResistance.csv',
-                    'sizeKb': 16603
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "fileType": ".CSV",
+                    "id": 318,
+                    "name": "major_histogram_successResistance.csv",
+                    "sizeKb": 19087
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1557,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_birthEfficiency.csv',
-                    'sizeKb': 16918
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".CSV",
+                    "id": 319,
+                    "name": "noise_histogram_birthEfficiency.csv",
+                    "sizeKb": 19560
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1558,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_birthResistance.csv',
-                    'sizeKb': 18575
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".CSV",
+                    "id": 320,
+                    "name": "noise_histogram_birthResistance.csv",
+                    "sizeKb": 21917
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1559,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_lifespanEfficiency.csv',
-                    'sizeKb': 16852
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".CSV",
+                    "id": 321,
+                    "name": "noise_histogram_lifespanEfficiency.csv",
+                    "sizeKb": 19245
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1560,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_lifespanResistance.csv',
-                    'sizeKb': 18406
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".CSV",
+                    "id": 322,
+                    "name": "noise_histogram_lifespanResistance.csv",
+                    "sizeKb": 21517
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1561,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_successEfficiency.csv',
-                    'sizeKb': 19816
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".CSV",
+                    "id": 323,
+                    "name": "noise_histogram_successEfficiency.csv",
+                    "sizeKb": 23960
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1562,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/output_data/noise_histogram_successResistance.csv',
-                    'sizeKb': 18674
+                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "fileType": ".CSV",
+                    "id": 324,
+                    "name": "noise_histogram_successResistance.csv",
+                    "sizeKb": 22152
                 }
             ],
-            'cliRuntimeInfo': null,
-            'finishedUtc': 'Sat, 14 Dec 2019 21:41:53 GMT',
-            'id': 102,
-            'origin': 'ANALYZER',
-            'simulationId': 35,
-            'startedUtc': 'Sat, 14 Dec 2019 21:36:13 GMT'
+            "cliRuntimeInfo": null,
+            "finishedUtc": "Sun, 05 Jan 2020 19:41:41 GMT",
+            "id": 17,
+            "origin": "ANALYZER",
+            "simulationId": 7,
+            "startedUtc": "Sun, 05 Jan 2020 19:33:48 GMT",
+            "status": "SUCCESS"
         },
         {
-            'analyzerRuntimeInfo': null,
-            'artifacts': [
+            "analyzerRuntimeInfo": null,
+            "artifacts": [
                 {
-                    'createdUtc': null,
-                    'id': 1563,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-successResistance.png',
-                    'sizeKb': 170715
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:21 GMT",
+                    "fileType": "PNG",
+                    "id": 325,
+                    "name": "major-histogram-successResistance.png",
+                    "sizeKb": 291614
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1564,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-lifespanResistance.png',
-                    'sizeKb': 709666
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:55 GMT",
+                    "fileType": "PNG",
+                    "id": 326,
+                    "name": "histogram-lifespanResistance.png",
+                    "sizeKb": 1028125
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1565,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.lifespanEfficiency.png',
-                    'sizeKb': 189055
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:27 GMT",
+                    "fileType": "PNG",
+                    "id": 327,
+                    "name": "muller_plot_cellParams.lifespanEfficiency.png",
+                    "sizeKb": 379970
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1566,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-lifespanResistance.png',
-                    'sizeKb': 163533
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:15 GMT",
+                    "fileType": "PNG",
+                    "id": 328,
+                    "name": "major-histogram-lifespanResistance.png",
+                    "sizeKb": 333496
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1567,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-cloneCount.png',
-                    'sizeKb': 23940
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:09 GMT",
+                    "fileType": "PNG",
+                    "id": 329,
+                    "name": "major-cloneCount.png",
+                    "sizeKb": 24813
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1568,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//normalized_entropy.png',
-                    'sizeKb': 38593
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:41 GMT",
+                    "fileType": "PNG",
+                    "id": 330,
+                    "name": "normalized_entropy.png",
+                    "sizeKb": 38086
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1569,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-birthEfficiency.png',
-                    'sizeKb': 154737
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:16 GMT",
+                    "fileType": "PNG",
+                    "id": 331,
+                    "name": "major-histogram-birthEfficiency.png",
+                    "sizeKb": 334756
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1570,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_birth_efficiency-stddev_birth_efficiency.png',
-                    'sizeKb': 40100
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:06 GMT",
+                    "fileType": "PNG",
+                    "id": 332,
+                    "name": "major-mean_birth_efficiency-stddev_birth_efficiency.png",
+                    "sizeKb": 41755
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1571,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_lifespan_efficiency-stddev_lifespan_efficiency.png',
-                    'sizeKb': 42853
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:44 GMT",
+                    "fileType": "PNG",
+                    "id": 333,
+                    "name": "mean_lifespan_efficiency-stddev_lifespan_efficiency.png",
+                    "sizeKb": 42292
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1572,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.lifespanResistance.png',
-                    'sizeKb': 192656
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:29 GMT",
+                    "fileType": "PNG",
+                    "id": 334,
+                    "name": "muller_plot_cellParams.lifespanResistance.png",
+                    "sizeKb": 387269
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1573,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_birth_efficiency-stddev_birth_efficiency.png',
-                    'sizeKb': 42771
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:43 GMT",
+                    "fileType": "PNG",
+                    "id": 335,
+                    "name": "mean_birth_efficiency-stddev_birth_efficiency.png",
+                    "sizeKb": 43385
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1574,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_lifespan_resistance-stddev_lifespan_resistance.png',
-                    'sizeKb': 52330
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "fileType": "PNG",
+                    "id": 336,
+                    "name": "noise-mean_lifespan_resistance-stddev_lifespan_resistance.png",
+                    "sizeKb": 47149
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1575,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//systemSize.png',
-                    'sizeKb': 31698
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:48 GMT",
+                    "fileType": "PNG",
+                    "id": 337,
+                    "name": "systemSize.png",
+                    "sizeKb": 30042
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1576,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mutation_histogram.png',
-                    'sizeKb': 52900
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:35 GMT",
+                    "fileType": "PNG",
+                    "id": 338,
+                    "name": "mutation_histogram.png",
+                    "sizeKb": 66517
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1577,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_birth_resistance-stddev_birth_resistance.png',
-                    'sizeKb': 39971
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:43 GMT",
+                    "fileType": "PNG",
+                    "id": 339,
+                    "name": "mean_birth_resistance-stddev_birth_resistance.png",
+                    "sizeKb": 37300
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1578,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_success_efficiency-stddev_success_efficiency.png',
-                    'sizeKb': 34800
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:08 GMT",
+                    "fileType": "PNG",
+                    "id": 340,
+                    "name": "major-mean_success_efficiency-stddev_success_efficiency.png",
+                    "sizeKb": 34768
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1579,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//cloneCount.png',
-                    'sizeKb': 32309
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:47 GMT",
+                    "fileType": "PNG",
+                    "id": 341,
+                    "name": "cloneCount.png",
+                    "sizeKb": 30551
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1580,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_birth_efficiency-stddev_birth_efficiency.png',
-                    'sizeKb': 54180
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:58 GMT",
+                    "fileType": "PNG",
+                    "id": 342,
+                    "name": "noise-mean_birth_efficiency-stddev_birth_efficiency.png",
+                    "sizeKb": 50352
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1581,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-lifespanEfficiency.png',
-                    'sizeKb': 384657
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:54 GMT",
+                    "fileType": "PNG",
+                    "id": 343,
+                    "name": "histogram-lifespanEfficiency.png",
+                    "sizeKb": 500402
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1582,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_success_resistance-stddev_success_resistance.png',
-                    'sizeKb': 54322
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:02 GMT",
+                    "fileType": "PNG",
+                    "id": 344,
+                    "name": "noise-mean_success_resistance-stddev_success_resistance.png",
+                    "sizeKb": 54649
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1583,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-lifespanEfficiency.png',
-                    'sizeKb': 165769
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:16 GMT",
+                    "fileType": "PNG",
+                    "id": 345,
+                    "name": "major-histogram-lifespanEfficiency.png",
+                    "sizeKb": 259548
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1584,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.birthResistance.png',
-                    'sizeKb': 189030
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:25 GMT",
+                    "fileType": "PNG",
+                    "id": 346,
+                    "name": "muller_plot_cellParams.birthResistance.png",
+                    "sizeKb": 381026
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1585,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_success_efficiency-stddev_success_efficiency.png',
-                    'sizeKb': 51193
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:01 GMT",
+                    "fileType": "PNG",
+                    "id": 347,
+                    "name": "noise-mean_success_efficiency-stddev_success_efficiency.png",
+                    "sizeKb": 48971
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1586,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.successResistance.png',
-                    'sizeKb': 192293
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:34 GMT",
+                    "fileType": "PNG",
+                    "id": 348,
+                    "name": "muller_plot_cellParams.successResistance.png",
+                    "sizeKb": 382416
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1587,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-birthResistance.png',
-                    'sizeKb': 761845
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:54 GMT",
+                    "fileType": "PNG",
+                    "id": 349,
+                    "name": "histogram-birthResistance.png",
+                    "sizeKb": 1011670
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1588,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-birthEfficiency.png',
-                    'sizeKb': 407832
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:53 GMT",
+                    "fileType": "PNG",
+                    "id": 350,
+                    "name": "histogram-birthEfficiency.png",
+                    "sizeKb": 658011
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1589,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-systemSize.png',
-                    'sizeKb': 33264
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:04 GMT",
+                    "fileType": "PNG",
+                    "id": 351,
+                    "name": "noise-systemSize.png",
+                    "sizeKb": 32717
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1590,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.successEfficiency.png',
-                    'sizeKb': 183106
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:32 GMT",
+                    "fileType": "PNG",
+                    "id": 352,
+                    "name": "muller_plot_cellParams.successEfficiency.png",
+                    "sizeKb": 370186
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1591,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_success_resistance-stddev_success_resistance.png',
-                    'sizeKb': 38441
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:08 GMT",
+                    "fileType": "PNG",
+                    "id": 353,
+                    "name": "major-mean_success_resistance-stddev_success_resistance.png",
+                    "sizeKb": 35860
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1592,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-birthResistance.png',
-                    'sizeKb': 176578
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:15 GMT",
+                    "fileType": "PNG",
+                    "id": 354,
+                    "name": "major-histogram-birthResistance.png",
+                    "sizeKb": 269448
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1593,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_lifespan_resistance-stddev_lifespan_resistance.png',
-                    'sizeKb': 41721
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:44 GMT",
+                    "fileType": "PNG",
+                    "id": 355,
+                    "name": "mean_lifespan_resistance-stddev_lifespan_resistance.png",
+                    "sizeKb": 39971
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1594,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_lifespan_resistance-stddev_lifespan_resistance.png',
-                    'sizeKb': 37925
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:08 GMT",
+                    "fileType": "PNG",
+                    "id": 356,
+                    "name": "major-mean_lifespan_resistance-stddev_lifespan_resistance.png",
+                    "sizeKb": 37272
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1595,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mutation-tree.png',
-                    'sizeKb': 14773
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:56 GMT",
+                    "fileType": "PNG",
+                    "id": 357,
+                    "name": "noise-normalized_entropy.png",
+                    "sizeKb": 44409
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1596,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-normalized_entropy.png',
-                    'sizeKb': 47827
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:58 GMT",
+                    "fileType": "PNG",
+                    "id": 358,
+                    "name": "noise-entropy.png",
+                    "sizeKb": 30852
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1597,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-entropy.png',
-                    'sizeKb': 30407
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "fileType": "PNG",
+                    "id": 359,
+                    "name": "noise-mean_lifespan_efficiency-stddev_lifespan_efficiency.png",
+                    "sizeKb": 54591
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1598,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_lifespan_efficiency-stddev_lifespan_efficiency.png',
-                    'sizeKb': 53186
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:10 GMT",
+                    "fileType": "PNG",
+                    "id": 360,
+                    "name": "major-systemSize.png",
+                    "sizeKb": 30183
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1599,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-systemSize.png',
-                    'sizeKb': 31491
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "fileType": "PNG",
+                    "id": 361,
+                    "name": "histogram-successEfficiency.png",
+                    "sizeKb": 1189259
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1600,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-successEfficiency.png',
-                    'sizeKb': 725863
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:07 GMT",
+                    "fileType": "PNG",
+                    "id": 362,
+                    "name": "major-mean_birth_resistance-stddev_birth_resistance.png",
+                    "sizeKb": 33189
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1601,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_birth_resistance-stddev_birth_resistance.png',
-                    'sizeKb': 36552
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:06 GMT",
+                    "fileType": "PNG",
+                    "id": 363,
+                    "name": "major-entropy.png",
+                    "sizeKb": 30345
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1602,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-entropy.png',
-                    'sizeKb': 35593
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:59 GMT",
+                    "fileType": "PNG",
+                    "id": 364,
+                    "name": "noise-mean_birth_resistance-stddev_birth_resistance.png",
+                    "sizeKb": 51674
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1603,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-mean_birth_resistance-stddev_birth_resistance.png',
-                    'sizeKb': 47004
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:45 GMT",
+                    "fileType": "PNG",
+                    "id": 365,
+                    "name": "mean_success_efficiency-stddev_success_efficiency.png",
+                    "sizeKb": 37814
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1604,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_success_efficiency-stddev_success_efficiency.png',
-                    'sizeKb': 39821
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:20 GMT",
+                    "fileType": "PNG",
+                    "id": 366,
+                    "name": "major-histogram-successEfficiency.png",
+                    "sizeKb": 277310
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1605,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-histogram-successEfficiency.png',
-                    'sizeKb': 178192
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:05 GMT",
+                    "fileType": "PNG",
+                    "id": 367,
+                    "name": "major-normalized_entropy.png",
+                    "sizeKb": 33361
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1606,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-normalized_entropy.png',
-                    'sizeKb': 34695
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:03 GMT",
+                    "fileType": "PNG",
+                    "id": 368,
+                    "name": "noise-cloneCount.png",
+                    "sizeKb": 32140
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1607,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//noise-cloneCount.png',
-                    'sizeKb': 31805
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:22 GMT",
+                    "fileType": "PNG",
+                    "id": 369,
+                    "name": "muller_plot_cellParams.birthEfficiency.png",
+                    "sizeKb": 376092
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1608,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//muller_plot_cellParams.birthEfficiency.png',
-                    'sizeKb': 184426
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:07 GMT",
+                    "fileType": "PNG",
+                    "id": 370,
+                    "name": "major-mean_lifespan_efficiency-stddev_lifespan_efficiency.png",
+                    "sizeKb": 39069
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1609,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//major-mean_lifespan_efficiency-stddev_lifespan_efficiency.png',
-                    'sizeKb': 39957
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:45 GMT",
+                    "fileType": "PNG",
+                    "id": 371,
+                    "name": "mean_success_resistance-stddev_success_resistance.png",
+                    "sizeKb": 39683
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1610,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//mean_success_resistance-stddev_success_resistance.png',
-                    'sizeKb': 42360
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "fileType": "PNG",
+                    "id": 372,
+                    "name": "histogram-successResistance.png",
+                    "sizeKb": 1015761
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1611,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//histogram-successResistance.png',
-                    'sizeKb': 716658
+                    "createdUtc": "Sun, 05 Jan 2020 19:41:42 GMT",
+                    "fileType": "PNG",
+                    "id": 373,
+                    "name": "entropy.png",
+                    "sizeKb": 28624
                 },
                 {
-                    'createdUtc': null,
-                    'id': 1612,
-                    'path': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json/plots//entropy.png',
-                    'sizeKb': 30575
+                    "createdUtc": "Sun, 05 Jan 2020 19:42:46 GMT",
+                    "fileType": "PDF",
+                    "id": 374,
+                    "name": "simulation_report.pdf",
+                    "sizeKb": 11795565
                 }
             ],
-            'cliRuntimeInfo': null,
-            'finishedUtc': 'Sat, 14 Dec 2019 21:42:46 GMT',
-            'id': 103,
-            'origin': 'REPORT',
-            'simulationId': 35,
-            'startedUtc': 'Sat, 14 Dec 2019 21:41:53 GMT'
+            "cliRuntimeInfo": null,
+            "finishedUtc": "Sun, 05 Jan 2020 19:43:21 GMT",
+            "id": 18,
+            "origin": "REPORT",
+            "simulationId": 7,
+            "startedUtc": "Sun, 05 Jan 2020 19:41:41 GMT",
+            "status": "SUCCESS"
         }
-    ],
-    'workdir': '/usr/data/SIM_35_CONF_parameteric_evolution_3D_stream.json'
+    ]
 };
