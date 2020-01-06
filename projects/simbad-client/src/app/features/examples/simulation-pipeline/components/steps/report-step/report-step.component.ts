@@ -5,14 +5,12 @@ import {
     reportStepStartTimestamp,
     reportStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
 import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
-import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
-import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
 import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 import { downloadArtifact } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/artifacts/artifacts.actions';
 
@@ -23,7 +21,7 @@ import { downloadArtifact } from '@simbad-client/app/features/examples/simulatio
 })
 export class ReportStepComponent implements OnInit, OnDestroy {
     runtimeInfo$: Observable<AnalyzerRuntimeInfo>;
-    artifactList$: Observable<ListElement[]>;
+    artifacts$: Observable<ArtifactInfo[]>;
     simulationReport$: Observable<ArtifactInfo>;
     elapsedTime$: Observable<string>;
     taskContext$: Observable<ListElement[]>;
@@ -36,8 +34,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
 
     constructor(
-        private store: Store<{}>,
-        private artifactsService: ArtifactsActionsService
+        private store: Store<{}>
     ) {
     }
 
@@ -90,16 +87,11 @@ export class ReportStepComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.artifactList$ = this.store.pipe(
+        this.artifacts$ = this.store.pipe(
             select(reportStepState),
             filter((state) => !!state),
             map((state) => state.artifacts),
-            map((artifacts) => {
-                return this.artifactsService.artifactsToElementList(
-                    artifacts,
-                    [ArtifactActionType.Download, ArtifactActionType.Preview]
-                );
-            })
+            tap((value) => console.log('Artifacts: ', value))
         );
 
         this.simulationReport$ = this.store.pipe(
@@ -124,8 +116,8 @@ export class ReportStepComponent implements OnInit, OnDestroy {
     }
 
     downloadReport(report: ArtifactInfo): void {
-        const {name, id} = report;
-        this.store.dispatch(downloadArtifact({name, id}));
+        const { name, id } = report;
+        this.store.dispatch(downloadArtifact({ name, id }));
     }
 
     ngOnDestroy() {

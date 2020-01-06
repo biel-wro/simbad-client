@@ -13,6 +13,8 @@ import { MockComponent, MockPipe } from 'ng-mocks';
 import { SmallInputActionComponent } from '@simbad-client/app/shared/small-input-action/small-input-action.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { IsPreviewEnabledPipe } from '@simbad-client/app/features/examples/simulation-pipeline/core/pipes/is-preview-enabled.pipe';
+import { FormatBytesPipe } from '@simbad-client/app/features/examples/simulation-pipeline/core/pipes/format-bytes.pipe';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ArtifactListComponent', () => {
     let component: ArtifactListComponent;
@@ -23,7 +25,8 @@ describe('ArtifactListComponent', () => {
             declarations: [
                 ArtifactListComponent,
                 MockComponent(SmallInputActionComponent),
-                MockPipe(IsPreviewEnabledPipe)
+                MockPipe(IsPreviewEnabledPipe),
+                MockPipe(FormatBytesPipe)
             ],
             imports: [
                 MatDividerModule,
@@ -33,7 +36,8 @@ describe('ArtifactListComponent', () => {
                 MatPaginatorModule,
                 MatTooltipModule,
                 TranslateModule.forRoot()
-            ]
+            ],
+            providers: [provideMockStore({ initialState: {} })]
         }).compileComponents();
     }));
 

@@ -2,7 +2,7 @@
     elapsedTime: elapsedTime$ | async,
     runtimeInfo: runtimeInfo$ | async,
     taskContext: taskContext$ | async,
-    artifactList: artifactList$ | async
+    artifacts: artifacts$ | async
 } as data">
     <div class="step-container">
         <simbad-performance-monitor
@@ -17,7 +17,7 @@
         >
         </simbad-client-task-context>
         <simbad-client-artifact-list
-                [artifacts]="data.artifactList"
+                [data]="data.artifacts"
                 class="artifact-list"
         ></simbad-client-artifact-list>
     </div>

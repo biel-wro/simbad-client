@@ -10,7 +10,7 @@ describe('ImagePreviewDialogComponent', () => {
     let fixture: ComponentFixture<CreateConfigurationDialogComponent>;
 
     beforeEach(async(() => {
-        TestBed.configureTestingModule({
+        return TestBed.configureTestingModule({
             imports: [SharedModule, MatDialogModule],
             declarations: [CreateConfigurationDialogComponent],
             providers: [{ provide: MatDialogRef, useValue: {} }, provideMockStore({ initialState: {} })]

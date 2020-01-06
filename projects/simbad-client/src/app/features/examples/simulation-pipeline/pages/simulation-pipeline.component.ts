@@ -142,31 +142,4 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
             ['PENDING']: { icon: 'ellipsis-h' },
         } [status] || { icon: 'ellipsis-h' };
     }
-
-    buildIconForCliStep(status: ProgressStatus): IconModel {
-        return status.isCliStepCompleted
-            ? { icon: 'check' }
-            : { icon: 'spinner', spin: true, pulse: true };
-    }
-
-    buildIconForAnalyzerStep(status: ProgressStatus): IconModel {
-        const isInProgress = status.isCliStepCompleted && !status.isAnalyzerStepCompleted;
-        const isCompleted = status.isCliStepCompleted && status.isAnalyzerStepCompleted;
-        if (isCompleted) return { icon: 'check' };
-        if (isInProgress) return { icon: 'spinner', spin: true, pulse: true };
-        return { icon: 'ellipsis-h' };
-    }
-
-    buildIconForReportsStep(status: ProgressStatus): IconModel {
-        const isInProgress =
-            status.isCliStepCompleted &&
-            status.isAnalyzerStepCompleted &&
-            !status.isReportStepCompleted;
-        const isCompleted = status.isCliStepCompleted &&
-            status.isAnalyzerStepCompleted &&
-            status.isReportStepCompleted;
-        if (isCompleted) return { icon: 'check' };
-        if (isInProgress) return { icon: 'spinner', spin: true, pulse: true };
-        return { icon: 'ellipsis-h' };
-    }
 }

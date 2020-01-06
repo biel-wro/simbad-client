@@ -3,9 +3,9 @@ import { select, Store } from '@ngrx/store';
 import {
     cliStepEndTimestamp,
     cliStepStartTimestamp,
-    cliStepState
+    cliStepState, reportStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
@@ -15,6 +15,7 @@ import { timeToTimeString } from '@simbad-client/app/features/examples/simulatio
 import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
 import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
 import { extractFilename } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/path-utils';
+import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 
 @Component({
     selector: 'simbad-client-cli-step',
@@ -23,7 +24,7 @@ import { extractFilename } from '@simbad-client/app/features/examples/simulation
 })
 export class CliStepComponent implements OnInit, OnDestroy {
     runtimeInfo$: Observable<CliRuntimeInfo>;
-    artifactList$: Observable<ListElement[]>;
+    artifacts$: Observable<ArtifactInfo[]>;
     elapsedTime$: Observable<string>;
     taskContext$: Observable<ListElement[]>;
 
@@ -32,8 +33,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
     ngUnsubscribe$: Subject<void> = new Subject();
 
     constructor(
-        private readonly store: Store<{}>,
-        private readonly artifactsService: ArtifactsActionsService) {
+        private readonly store: Store<{}>) {
     }
 
     ngOnInit() {
@@ -72,13 +72,11 @@ export class CliStepComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.artifactList$ = this.store.pipe(
+        this.artifacts$ = this.store.pipe(
             select(cliStepState),
             filter((state) => !!state),
-            map((state) => state.artifacts.filter((artifact) => artifact.fileType !== 'JSON')),
-            map((artifacts) => {
-                return this.artifactsService.artifactsToElementList(artifacts, [ArtifactActionType.Download]);
-            })
+            map((state) => state.artifacts),
+            tap((value) => console.log('Artifacts: ', value))
         );
 
     }
