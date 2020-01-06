@@ -16,7 +16,7 @@ export class ArtifactListComponent implements OnChanges, OnInit {
     @Input() data: ArtifactInfo[];
 
     displayedColumns: string[] = ['name', 'fileType', 'sizeKb', 'actions'];
-    public dataSource = new MatTableDataSource<ArtifactInfo>();
+    dataSource = new MatTableDataSource<ArtifactInfo>();
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -25,7 +25,7 @@ export class ArtifactListComponent implements OnChanges, OnInit {
     constructor(private store: Store<{}>) {
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
     }
@@ -42,12 +42,12 @@ export class ArtifactListComponent implements OnChanges, OnInit {
         this.dataSource.filter = filterValue;
     }
 
-    download(artifact: ArtifactInfo) {
+    download(artifact: ArtifactInfo): void {
         const { id, name } = artifact;
         this.store.dispatch(downloadArtifact({ id, name }));
     }
 
-    preview(artifact: ArtifactInfo) {
+    preview(artifact: ArtifactInfo): void {
         const { id, name } = artifact;
         this.store.dispatch(previewArtifact({ id, name }));
     }

@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StatusTileComponent implements OnInit {
     @Input() value: string;
     @Input() title: string;
-    @Input() faIcon = '-';
+    @Input() faIcon = '';
     @Input() rotate = false;
 
     constructor() {

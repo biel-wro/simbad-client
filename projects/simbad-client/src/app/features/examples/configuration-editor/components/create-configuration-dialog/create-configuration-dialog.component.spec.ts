@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateConfigurationDialogComponent } from './create-configuration-dialog.component';
-import { SharedModule } from '../../../../../shared/shared.module';
+import { SharedModule } from '@simbad-client/app/shared/shared.module';
 import { MatDialogModule, MatDialogRef } from '@angular/material';
 import { provideMockStore } from '@ngrx/store/testing';
 
