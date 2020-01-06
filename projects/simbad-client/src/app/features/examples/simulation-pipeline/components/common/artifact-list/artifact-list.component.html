@@ -1,11 +1,72 @@
 <div class="wrapper">
-    <h4>Artifacts</h4>
-    <mat-divider></mat-divider>
-    <div class="artifacts-list-section">
-        <simbad-client-info-list
-            [data]="artifacts">
-        </simbad-client-info-list>
+    <div class="table-menu">
+        <mat-form-field>
+            <input
+                (keyup)="applyFilter($event.target.value)"
+                [disabled]="!data"
+                matInput
+                autocomplete="off"
+                placeholder="Artifacts">
+        </mat-form-field>
     </div>
-    <mat-divider></mat-divider>
+    <ng-container>
+        <div class="table-container">
+            <table [dataSource]="dataSource" mat-table matSort>
+                <!-- Score Column -->
+                <ng-container matColumnDef="name">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
+                    <td *matCellDef="let artifact" mat-cell> {{artifact.name}} </td>
+                </ng-container>
+
+                <!-- Title Column -->
+                <ng-container cdkColumnDef="fileType" matColumnDef="fileType">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header>File type</th>
+                    <td *matCellDef="let artifact" mat-cell>
+                        {{artifact.fileType}}
+                    </td>
+                </ng-container>
+
+                <!-- Size Column -->
+                <ng-container matColumnDef="sizeKb">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header>Size</th>
+                    <td *matCellDef="let artifact" mat-cell> {{artifact.sizeKb | formatBytes}} </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <th *matHeaderCellDef mat-header-cell>Actions</th>
+                    <td *matCellDef="let artifact" mat-cell>
+                        <simbad-small-input-action
+                            (action)="download(artifact)"
+                            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+                            class="btn btn-clear list-action-btn"
+                            color="warn"
+                            faIcon="download"
+                            fontIcon="fa-download"
+                            fontSet="fas"
+                            matTooltipPosition="after"
+                            style="font-size: 11px;">
+                        </simbad-small-input-action>
+                        <simbad-small-input-action
+                            (action)="preview(artifact)"
+                            [disabled]="!(artifact | isPreviewEnabled)"
+                            [matTooltip]="'simbad.configuration.forms.tooltip.preview' | translate"
+                            class="btn btn-clear list-action-btn"
+                            color="warn"
+                            faIcon="eye"
+                            fontIcon="fa-eye"
+                            fontSet="fas"
+                            matTooltipPosition="after">
+                        </simbad-small-input-action>
+                    </td>
+                </ng-container>
+
+                <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
+                <tr *matRowDef="let row; columns: displayedColumns;" class="dense-mat-row"
+                    mat-row></tr>
+            </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[10, 20, 40]" [pageSize]='10' showFirstLastButtons></mat-paginator>
+    </ng-container>
 </div>
 
