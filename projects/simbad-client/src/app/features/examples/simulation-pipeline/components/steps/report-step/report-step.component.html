@@ -1,7 +1,7 @@
 <div *ngIf="{
     elapsedTime: elapsedTime$ | async,
     taskContext: taskContext$ | async,
-    artifactList: artifactList$ | async,
+    artifacts: artifacts$ | async,
     simulationReport: simulationReport$ | async,
     runtimeInfo: runtimeInfo$ | async,
     simulationId: simulationId$ | async,
@@ -20,27 +20,25 @@
         </simbad-client-task-context>
         <div>
             <simbad-client-artifact-list
-                [artifacts]="data.artifactList"
+                [data]="data.artifacts"
                 class="artifact-list"
             ></simbad-client-artifact-list>
-            <a>
-                <button
-                        class="action-button"
-                        mat-raised-button
-                        (click)="downloadReport(data.simulationReport)"
-                        [disabled]="!data.isFinished"
-                >
-                    Download Report
-                </button>
-                <button
-                        class="action-button"
-                        mat-raised-button
-                        (click)="goToModelViewer(data.simulationId)"
-                        [disabled]="!data.isFinished"
-                >
-                    View Cell Model
-                </button>
-            </a>
+            <button
+                    class="action-button"
+                    mat-raised-button
+                    (click)="downloadReport(data.simulationReport)"
+                    [disabled]="!data.isFinished"
+            >
+                Download Report
+            </button>
+            <button
+                    class="action-button"
+                    mat-raised-button
+                    (click)="goToModelViewer(data.simulationId)"
+                    [disabled]="!data.isFinished"
+            >
+                View Cell Model
+            </button>
         </div>
     </div>
     <span>Report job progress: {{data.runtimeInfo?.progress}}%</span>

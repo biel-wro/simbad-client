@@ -3,16 +3,16 @@ import { select, Store } from '@ngrx/store';
 import {
     analyzerStepEndTimestamp,
     analyzerStepStartTimestamp,
-    analyzerStepState
+    analyzerStepState, reportStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
 import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
 import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
-import { ArtifactActionType } from '@simbad-client/app/features/examples/simulation-pipeline/core/models';
+import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 
 @Component({
     selector: 'simbad-client-analyzer-step',
@@ -21,13 +21,12 @@ import { ArtifactActionType } from '@simbad-client/app/features/examples/simulat
 })
 export class AnalyzerStepComponent implements OnInit, OnDestroy {
     runtimeInfo$: Observable<AnalyzerRuntimeInfo>;
-    artifactList$: Observable<ListElement[]>;
+    artifacts$: Observable<ArtifactInfo[]>;
     elapsedTime$: Observable<string>;
     taskContext$: Observable<ListElement[]>;
 
     timer$: Observable<number>;
     stopTimer$: Subject<void> = new Subject<void>();
-    isCliStepFinished$: Observable<boolean>;
     ngUnsubscribe$: Subject<void> = new Subject();
 
 
@@ -70,12 +69,11 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.artifactList$ = this.store.pipe(
+        this.artifacts$ = this.store.pipe(
             select(analyzerStepState),
             filter((state) => !!state),
-            map((state) => state.artifacts.filter((artifact) => artifact.fileType !== 'JSON')),
-            map((artifacts) => this.as.artifactsToElementList(
-                artifacts, [ArtifactActionType.Download]))
+            map((state) => state.artifacts),
+            tap((value) => console.log('Artifacts: ', value))
         );
 
     }

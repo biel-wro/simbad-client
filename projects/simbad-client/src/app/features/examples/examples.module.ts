@@ -22,7 +22,13 @@ import { SimpleParameterComponent } from './configuration-editor/components/simp
 import { FormsService } from './configuration-editor/services/forms.service';
 import { CreateConfigurationDialogComponent } from './configuration-editor/components/create-configuration-dialog/create-configuration-dialog.component';
 import { FormToolbarComponent } from './configuration-editor/components/form-toolbar/form-toolbar.component';
-import { MatDialogModule, MatProgressBarModule, MatStepperModule } from '@angular/material';
+import {
+    MatDialogModule,
+    MatPaginatorModule,
+    MatProgressBarModule, MatSortModule,
+    MatStepperModule,
+    MatTableModule
+} from '@angular/material';
 import { SimulationPipelineComponent } from '@simbad-client/app/features/examples/simulation-pipeline/pages/simulation-pipeline.component';
 import { TaskContextComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/task-context/task-context.component';
 import { StatusTileComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/status-tile/status-tile.component';
@@ -38,6 +44,8 @@ import { SimulationPipelineEffects } from '@simbad-client/app/features/examples/
 import { ReportStepComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/steps/report-step/report-step.component';
 import { ImagePreviewDialogComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
 import { ArtifactsEffects } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/artifacts/artifacts.effects';
+import { IsPreviewEnabledPipe } from './simulation-pipeline/core/pipes/is-preview-enabled.pipe';
+import { FormatBytesPipe } from './simulation-pipeline/core/pipes/format-bytes.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
@@ -66,7 +74,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         ),
         MatDialogModule,
         MatStepperModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule
     ],
     declarations: [
         ExamplesComponent,
@@ -90,7 +101,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         ArtifactComponent,
         AnalyzerStepComponent,
         ReportStepComponent,
-        ImagePreviewDialogComponent
+        ImagePreviewDialogComponent,
+        IsPreviewEnabledPipe,
+        FormatBytesPipe
     ],
     providers: [FormsService],
     entryComponents: [CreateConfigurationDialogComponent, ImagePreviewDialogComponent]
