@@ -30,64 +30,116 @@
 	<script src="./build/potree/potree.js"></script>
 	<script src="./libs/plasio/js/laslaz.js"></script>
 
-	<!-- INCLUDE ADDITIONAL DEPENDENCIES HERE -->
-	<!-- INCLUDE SETTINGS HERE -->
-
 	<div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
 		<div id="potree_render_area"></div>
-		<div id="potree_sidebar_container"> </div>
+		<div id="potree_sidebar_container"></div>
 	</div>
 
+	<style>
+		#menu_filters {
+			display: none;
+		}
+	</style>
+
 	<script>
-		window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
-		viewer.setEDLEnabled(true);
-		viewer.setFOV(60);
-		viewer.setPointBudget(2*1000*1000);
-		viewer.loadSettingsFromURL();
+	const SimulationParameters = {
+		birthEfficiency: 0,
+		birthResistance: 1,
+		successEfficiency: 2,
+		successResistance: 3,
+		lifespanEfficiency: 4,
+		lifespanResistance: 5,
+		mutationId: 6,
+	};
 
-		viewer.setDescription("Loading Entwine-generated EPT format");
+	window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
 
-		viewer.loadGUI(() => {
-			viewer.setLanguage('en');
-			$("#menu_appearance").next().show();
-		});
+	viewer.setEDLEnabled(true);
+	viewer.setDescription("Final snapshot model");
 
-        var path = "../pointclouds/spectral/ept.json";
-		var name = "spectral";
+	viewer.loadGUI(() => {
+		$("#menu_appearance").next().show();
+		viewer.toggleSidebar();
 
-		var getQueryParam = function(name) {
-			name = name.replace(/[\[\]]/g, "\\$&");
-			var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-				results = regex.exec(window.location.href);
-			console.log('Results', results)
-			if (!results || !results[2]) return null;
-			return decodeURIComponent(results[2].replace(/\+/g, " "));
+		let section = $(`
+                    <h3 id="menu_meta" class="accordion-header ui-widget"><span>Simulation Parameters</span></h3>
+                    <div class="accordion-content ui-widget pv-menu-list"></div>
+                `);
+		let content = section.last();
+		content.html(`
+                <div class="scene_content selectable">
+                    <li>
+                        <label for="optSimulationParameter" class="pv-select-label" >Parameters</label>
+                        <select id="optSimulationParameter" name="optSimulationParameter">
+                            <option>birthEfficiency</option>
+                            <option>birthResistance</option>
+                            <option>successEfficiency</option>
+                            <option>successResistance</option>
+                            <option>lifespanEfficiency</option>
+                            <option>lifespanResistance</option>
+                            <option>mutationId</option>
+                        </select>
+                    </li>
+                </div>
+                `);
+		section.first().click(() => content.slideToggle());
+		section.insertBefore($('#menu_about'));
+
+		{ // AvailableParameters
+			let strSizeType = Object.keys(SimulationParameters)['birthEfficiency'];
+			let opt = section.find(`#optSimulationParameter`);
+
+			opt.selectmenu();
+			opt.val(strSizeType).selectmenu('refresh');
+
+			opt.selectmenu({
+				change: (event, ui) => {
+					viewer.scene.pointclouds.forEach((cloud) => {
+						cloud.visible = false;
+					});
+					const cloud = viewer.scene.pointclouds.find((cloud) => cloud.name === ui.item.value);
+					cloud.visible = true;
+					viewer.setDescription(`Final snapshot model: ${cloud.name}`);
+				}
+			});
 		}
 
-        var r = getQueryParam('r');
-        if (r) {
-			name = r;
-			var http = 'http';
-            if (r.substr(0, http.length) == http) {
-				console.log('starts with http')
-				path = name;
-				console.log('path')
-			}
-            else path = "./data/" + `SIM_` + name + "/model/ept.json";
-        }
+	});
 
-		Potree.loadPointCloud(path, name, function(e){
+	let model_path = "../pointclouds/spectral/ept.json";
+
+	const getQueryParam = function(name) {
+		name = name.replace(/[\[\]]/g, '\\$&');
+		const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+				results = regex.exec(window.location.href);
+		console.log('Results', results);
+		if (!results || !results[2]) return null;
+		return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	};
+
+	let r = getQueryParam('r');
+	if (r) {
+		const name = r;
+		const http = 'http';
+		if (r.substr(0, http.length) === http) {
+			path = name;
+		}
+		model_path = "./data/" + `SIM_` + name + "/models";
+	}
+
+	Object.keys(SimulationParameters).forEach((key, index) => {
+		Potree.loadPointCloud(`${model_path}/${key}/ept.json`, key, e => {
 			viewer.scene.addPointCloud(e.pointcloud);
+			viewer.scene.pointclouds[index].visible = !index;
+			viewer.fitToScreen();
 
 			let material = e.pointcloud.material;
 			material.size = 3;
-			console.log(Potree.PointSizeType)
 			material.pointSizeType = Potree.PointSizeType.FIXED;
-
-			viewer.fitToScreen(0.5);
 		});
-	</script>
-  </body>
-</html>
+	});
 
+</script>
+</body>
+</html>
