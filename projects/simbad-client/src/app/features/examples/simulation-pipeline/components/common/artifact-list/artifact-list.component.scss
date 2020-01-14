@@ -42,6 +42,8 @@ table {
     .table-container {
         flex-direction: column;
         min-width: unset;
+        height: unset;
+        max-height: 300px;
     }
 }
 

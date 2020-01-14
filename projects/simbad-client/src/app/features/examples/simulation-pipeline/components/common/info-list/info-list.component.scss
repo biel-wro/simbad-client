@@ -4,7 +4,17 @@
         height: 200px;
         overflow-y: scroll;
     }
+
+    @media screen and (max-width: 1000px) {
+        .section-data {
+            height: unset;
+            padding-bottom: 20px;
+        }
+    }
 }
+
+
+
 
 
 

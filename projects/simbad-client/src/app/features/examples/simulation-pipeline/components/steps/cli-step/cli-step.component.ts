@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
+    cliStepArtifacts,
     cliStepEndTimestamp,
     cliStepStartTimestamp,
-    cliStepState, reportStepState
+    cliStepState, reportStepArtifacts, reportStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
@@ -72,12 +73,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.artifacts$ = this.store.pipe(
-            select(cliStepState),
-            filter((state) => !!state),
-            map((state) => state.artifacts),
-            tap((value) => console.log('Artifacts: ', value))
-        );
+        this.artifacts$ = this.store.select(cliStepArtifacts);
 
     }
 

@@ -28,6 +28,14 @@ export const cliStepState = createSelector(
     (state) => state.cliStep
 );
 
+export const cliStepArtifacts = createSelector(
+    cliStepState,
+    (state) => {
+        if (state) return state.artifacts || [];
+        return [];
+    }
+);
+
 export const cliStepStatus = createSelector(
     cliStepState,
     (state) => state ? state.status : 'PENDING'
@@ -38,6 +46,14 @@ export const analyzerStepState = createSelector(
     (state) => state.analyzerStep
 );
 
+export const analyzerStepArtifacts = createSelector(
+    analyzerStepState,
+    (state) => {
+        if (state) return state.artifacts || [];
+        return [];
+    }
+);
+
 export const analyzerStepStatus = createSelector(
     analyzerStepState,
     (state) => state ? state.status : 'PENDING'
@@ -46,6 +62,14 @@ export const analyzerStepStatus = createSelector(
 export const reportStepState = createSelector(
     selectSimulationPipelineState,
     (state) => state.reportsStep
+);
+
+export const reportStepArtifacts = createSelector(
+    reportStepState,
+    (state) => {
+        if (state) return state.artifacts || [];
+        return [];
+    }
 );
 
 export const reportStepStatus = createSelector(

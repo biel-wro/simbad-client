@@ -18,8 +18,8 @@ import {
     simulationError,
     startSimulation, updateStepInfo
 } from './simulation-pipeline.actions';
-import { SimulationService, StatusService } from '../../../../../../../../../../libs/simbad-cli-api/src/gen';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
+import { SimulationService, StatusService } from '@simbad-cli-api/gen';
 
 const POLLING_PERIOD_MS = 3000;
 
@@ -65,6 +65,7 @@ export class SimulationPipelineEffects {
     getSimulationStepInfo$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(getSimulationStepInfo),
+            tap((value) => console.log('getSimulationStepInfo$: ', value)),
             switchMap(({ stepId }) => this.statusService.getSimulationStepInfo({ id: stepId }).pipe(
                 concatMap((stepInfo) => {
                     if (stepInfo.finishedUtc) {
@@ -113,6 +114,7 @@ export class SimulationPipelineEffects {
     pollForStepInfoChange$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(pollForSimulationStepInfo),
+            tap((value) => console.log('pollForStepInfoChange$: ', value)),
             switchMap((action) => {
                 return this.pollingService.getTimer(0, POLLING_PERIOD_MS).pipe(
                     takeUntil(this.stopPolling$),
@@ -129,10 +131,12 @@ export class SimulationPipelineEffects {
     startAnalyzerStep$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(cliStepFinished),
+            tap((value) => console.log('startAnalyzerStep$: ', value)),
             switchMap((action) => this.statusService.getSimulationInfo({ id: action.step.simulationId.toString(10) }).pipe(
                 tap(() => this.notificationService.info(`Started analyzer step`)),
                 concatMap((response: SimulationInfo) => {
                     const analyzerStep: SimulationStepInfo = response.steps.find((step) => step.origin === 'ANALYZER');
+                    console.log('foundAnalyzerStep', analyzerStep);
                     return [
                         updateStepInfo({ step: analyzerStep }),
                         pollForSimulationStepInfo({ stepId: analyzerStep.id })

@@ -25,7 +25,8 @@ import { FormToolbarComponent } from './configuration-editor/components/form-too
 import {
     MatDialogModule,
     MatPaginatorModule,
-    MatProgressBarModule, MatSortModule,
+    MatProgressBarModule,
+    MatSortModule,
     MatStepperModule,
     MatTableModule
 } from '@angular/material';
@@ -39,7 +40,6 @@ import { AnalyzerStepComponent } from '@simbad-client/app/features/examples/simu
 import { UploadConfigurationButtonComponent } from './common/upload-configuration-button/upload-configuration-button.component';
 import { InfoListComponent } from './simulation-pipeline/components/common/info-list/info-list.component';
 import { InfoListElementComponent } from './simulation-pipeline/components/common/info-list-element/info-list-element.component';
-import { ArtifactComponent } from './simulation-pipeline/components/common/artifact/artifact.component';
 import { SimulationPipelineEffects } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.effects';
 import { ReportStepComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/steps/report-step/report-step.component';
 import { ImagePreviewDialogComponent } from '@simbad-client/app/features/examples/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
@@ -98,7 +98,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         UploadConfigurationButtonComponent,
         InfoListComponent,
         InfoListElementComponent,
-        ArtifactComponent,
         AnalyzerStepComponent,
         ReportStepComponent,
         ImagePreviewDialogComponent,

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
+    analyzerStepArtifacts,
     analyzerStepEndTimestamp,
     analyzerStepStartTimestamp,
-    analyzerStepState, reportStepState
+    analyzerStepState, cliStepArtifacts, reportStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
@@ -69,12 +70,7 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.artifacts$ = this.store.pipe(
-            select(analyzerStepState),
-            filter((state) => !!state),
-            map((state) => state.artifacts),
-            tap((value) => console.log('Artifacts: ', value))
-        );
+        this.artifacts$ = this.store.select(analyzerStepArtifacts);
 
     }
 

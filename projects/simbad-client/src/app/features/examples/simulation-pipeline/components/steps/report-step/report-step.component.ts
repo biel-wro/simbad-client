@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
+    reportStepArtifacts,
     reportStepEndTimestamp,
     reportStepStartTimestamp,
     reportStepState
@@ -87,12 +88,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
             })
         );
 
-        this.artifacts$ = this.store.pipe(
-            select(reportStepState),
-            filter((state) => !!state),
-            map((state) => state.artifacts),
-            tap((value) => console.log('Artifacts: ', value))
-        );
+        this.artifacts$ = this.store.select(reportStepArtifacts);
 
         this.simulationReport$ = this.store.pipe(
             select(reportStepState),
