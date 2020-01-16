@@ -7,7 +7,7 @@
                     placeholder="{{ getDisplayName(node.definition.className) }}"
                     [formControlName]="node.path"
                 />
-                <div class="errors-wrapper" *ngIf="control.errors">
+                <div class="errors-wrapper" *ngIf="control?.errors">
                     <mat-error *ngIf="control.errors.required">
                         Parameter is required
                     </mat-error>

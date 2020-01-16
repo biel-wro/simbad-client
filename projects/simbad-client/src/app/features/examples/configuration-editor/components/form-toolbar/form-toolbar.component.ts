@@ -6,8 +6,13 @@ import { CreateConfigurationDialogComponent } from '../create-configuration-dial
 import { FormsService } from '../../services/forms.service';
 import { select, Store } from '@ngrx/store';
 import { State } from '../../../simulationState';
-import { selectConfigurationName, selectFormValues } from '../../store/form.selectors';
-import { debounceTime, filter, map } from 'rxjs/operators';
+import {
+    selectConfiguration,
+    selectConfigurationName,
+    selectFormValues,
+    selectRootObjectClassNames
+} from '../../store/form.selectors';
+import { debounceTime, filter, map, tap } from 'rxjs/operators';
 import {
     resetFormValue,
     updateFormValue,
@@ -15,6 +20,15 @@ import {
     updateFormRootObjects
 } from '../../store/form.actions';
 import { FormControl } from '@angular/forms';
+import {
+    redirectAndStart,
+    startSimulation
+} from '@simbad-client/app/features/examples/simulation-pipeline/core/store/simulation/simulation-pipeline.actions';
+
+interface ButtonModel {
+    disabled: boolean;
+    tooltip: string;
+}
 
 @Component({
     selector: 'simbad-form-toolbar',
@@ -27,6 +41,8 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
     configurationNameControl: FormControl;
     storeChanges: Subscription;
     nameChanges: Subscription;
+    configuration$: Observable<any>;
+    buttonModel$: Observable<ButtonModel>;
 
     constructor(
         private sanitizer: DomSanitizer,
@@ -51,6 +67,28 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
         this.configurationNameControl = new FormControl();
         this.subscribeOnStoreChanges();
         this.subscribeOnNameChanges();
+
+        this.configuration$ = this.store.pipe(
+            select(selectConfiguration),
+            filter(configuration => !!configuration.formValue),
+            map(({ formValue, name }) => {
+                return {
+                    value: this.fs.formValueToConfiguration(formValue),
+                    name
+                };
+            })
+        );
+
+        this.buttonModel$ = this.store.pipe(
+            select(selectRootObjectClassNames),
+            map((names) => {
+                const disabled = !names || !names.length;
+                const tooltip = disabled
+                    ? 'simbad.configuration.forms.tooltip.redirectAndStartDisabled'
+                    : 'simbad.configuration.forms.tooltip.redirectAndStart';
+                return { disabled, tooltip };
+            }),
+        );
     }
 
 
@@ -61,6 +99,10 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
 
     openCreateConfigurationDialog() {
         this.dialog.open(CreateConfigurationDialogComponent);
+    }
+
+    redirectAndStart() {
+        this.store.dispatch(redirectAndStart());
     }
 
     onFileSelected() {

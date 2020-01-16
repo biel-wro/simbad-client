@@ -31,7 +31,20 @@
                     >`
                     </simbad-big-input-action>
                 </a>
+                <simbad-big-input-action *ngIf="buttonModel$ | async as model"
+                        class="start-simulation-button"
+                        fontSet="fas"
+                        fontIcon="fa-chevron-circle-right"
+                        faIcon="chevron-circle-right"
+                        color="accent"
+                        (action)="redirectAndStart()"
+                        label="Start Simulation"
+                        [disabled]="model.disabled"
+                        [matTooltip]="model.tooltip | translate"
+                        matTooltipPosition="after"
+                ></simbad-big-input-action>
             </div>
+
         </mat-toolbar-row>
     </mat-toolbar>
 </div>

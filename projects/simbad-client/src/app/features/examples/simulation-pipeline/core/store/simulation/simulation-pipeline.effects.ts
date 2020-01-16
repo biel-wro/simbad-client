@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { catchError, concatMap, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { catchError, concatMap, filter, map, switchMap, takeUntil, tap, withLatestFrom } from 'rxjs/operators';
 import { of, Subject } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
 
@@ -12,7 +12,7 @@ import {
     analyzerStepFinished,
     cliStepFinished,
     getSimulationStepInfo, loadLatestSimulation,
-    pollForSimulationStepInfo,
+    pollForSimulationStepInfo, redirectAndStart,
     reportStepFinished,
     setLatestSimulation,
     simulationError,
@@ -20,6 +20,11 @@ import {
 } from './simulation-pipeline.actions';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 import { SimulationService, StatusService } from '@simbad-cli-api/gen';
+import { select, Store } from '@ngrx/store';
+import { selectConfiguration } from '@simbad-client/app/features/examples/configuration-editor/store/form.selectors';
+import { FormsService } from '@simbad-client/app/features/examples/configuration-editor/services/forms.service';
+import { routerReducer } from '@ngrx/router-store';
+import { Router } from '@angular/router';
 
 const POLLING_PERIOD_MS = 3000;
 
@@ -59,6 +64,31 @@ export class SimulationPipelineEffects {
                     return of(simulationError({ error: err }));
                 })
             ))
+        );
+    });
+
+    redirectAndStart$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(redirectAndStart),
+            withLatestFrom(
+                this.store.pipe(
+                    select(selectConfiguration),
+                    filter(configuration => !!configuration.formValue),
+                    map(({ formValue, name }) => {
+                        return {
+                            value: this.fs.formValueToConfiguration(formValue),
+                            name
+                        };
+                    })
+                )
+            ),
+            map(([, conf]) => startSimulation({
+                request: {
+                    configuration: conf.value as any,
+                    configurationName: conf.name
+                }
+            })),
+            tap(() => this.router.navigate(['/examples/simulation-pipeline']))
         );
     });
 
@@ -164,6 +194,9 @@ export class SimulationPipelineEffects {
 
     constructor(
         private actions$: Actions,
+        private store: Store<{}>,
+        private router: Router,
+        private fs: FormsService,
         private statusService: StatusService,
         private simulationService: SimulationService,
         private hostService: HostService,

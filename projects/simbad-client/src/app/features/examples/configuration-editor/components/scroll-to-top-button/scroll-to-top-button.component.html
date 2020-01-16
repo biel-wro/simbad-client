@@ -1,0 +1,13 @@
+<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+  <simbad-big-input-action
+          class="form-action-button"
+          fontSet="fas"
+          fontIcon="fa-plus"
+          faIcon="plus"
+          color="accent"
+          (action)="scrollToTop()"
+          [matTooltip]="'simbad.configuration.forms.tooltip.scrollTop' | translate"
+          matTooltipPosition="after"
+  >
+  </simbad-big-input-action>
+</div>

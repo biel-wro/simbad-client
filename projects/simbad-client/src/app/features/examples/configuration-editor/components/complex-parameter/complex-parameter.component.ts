@@ -5,7 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { FormsService } from '../../services/forms.service';
 import { select, Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, take, takeUntil } from 'rxjs/operators';
 import { selectNodeValue } from '@simbad-client/app/features/examples/configuration-editor/store/form.selectors';
 
 @Component({
@@ -19,6 +19,7 @@ export class ComplexParameterComponent implements OnInit {
     @Input() level: number;
     @Input() form: FormGroup;
     @Input() parentPath: string;
+    @Input() buildingFromEnum: string;
 
     formControlValueInStore: Observable<any>;
     formControlValueUpdate: Subject<any> = new Subject();
@@ -33,22 +34,37 @@ export class ComplexParameterComponent implements OnInit {
         private store: Store<{}>
     )  { }
 
+
     ngOnInit() {
-        if (this.node.definition.possibleClasses) {
-            this.chosenOption = this.node.value || this.node.definition.defaultValue;
-            this.chosenEnumParameter = this.ods.toParameterTreeNode(
-                this.ods.getByClassName(this.chosenOption),
-                this.node.path
-            );
+        // if (this.node.definition.possibleClasses) {
+        //     this.chosenOption = this.node.value || this.node.definition.defaultValue;
+        //     this.chosenEnumParameter = this.ods.toParameterTreeNode(
+        //         this.ods.getByClassName(this.chosenOption),
+        //         this.node.path
+        //     );
+        // }
+
+        if (this.node.definition.className === 'default_attributes' || this.node.definition.className === 'initial_configuration') {
+            console.log(`FaultyNode: ${this.node.definition.className}`, this.node, this.parentPath);
+
         }
 
         this.formControlValueInStore = this.store.pipe(
             takeUntil(this.ngUnsubscribe),
-            select(selectNodeValue(this.node.path)),
+            select(selectNodeValue(this.node.path + '/class')),
             distinctUntilChanged(),
         );
 
-        this.formControlValueInStore.subscribe((value) => console.log(`${this.node.path} value:`, value));
+        this.formControlValueInStore.pipe(
+            takeUntil(this.ngUnsubscribe),
+            take(1)
+        ).subscribe((value) => {
+            if (value) {
+                this.buildExistingEnumOption(value);
+            } else {
+                this.buildDefaultEnumOption();
+            }
+        });
 
         this.formControlValueUpdate.pipe(
             takeUntil(this.ngUnsubscribe)
@@ -68,5 +84,34 @@ export class ComplexParameterComponent implements OnInit {
         );
         this.chosenEnumParameter = this.ods.toParameterTreeNode(this.ods.getByClassName($event.value), this.node.path);
         this.fs.removeNodeControlsFromForm(this.form, oldParameter);
+    }
+
+    buildDefaultEnumOption(): void {
+        if (this.node.definition.possibleClasses) {
+            this.chosenOption = this.node.value || this.node.definition.defaultValue;
+            this.chosenEnumParameter = this.ods.toParameterTreeNode(
+                this.ods.getByClassName(this.chosenOption),
+                this.node.path
+            );
+        }
+    }
+
+    isInitialConfiguration(): boolean {
+        return this.node.definition.className === 'initial_configuration';
+    }
+
+
+    buildExistingEnumOption(value: any): void {
+        if (this.node.definition.possibleClasses) {
+            this.chosenOption = value;
+            this.chosenEnumParameter = this.ods.toParameterTreeNode(
+                this.ods.getByClassName(value),
+                this.node.path
+            );
+            this.fs.addNodeControlsToFormRecursive(
+                this.form,
+                this.chosenEnumParameter
+            );
+        }
     }
 }

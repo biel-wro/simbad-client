@@ -103,7 +103,10 @@ export class FormsService {
         const value = node.value || node.definition.defaultValue;
         form.addControl(
             node.definition.possibleClasses ? node.path + '/class' : node.path,
-            new FormControl(value, this.vs.generateValidators(node.definition))
+            new FormControl(value, {
+                validators: this.vs.generateValidators(node.definition),
+                updateOn: 'blur'
+            })
         );
     }
 

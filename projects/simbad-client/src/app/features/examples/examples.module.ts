@@ -46,6 +46,7 @@ import { ImagePreviewDialogComponent } from '@simbad-client/app/features/example
 import { ArtifactsEffects } from '@simbad-client/app/features/examples/simulation-pipeline/core/store/artifacts/artifacts.effects';
 import { IsPreviewEnabledPipe } from './simulation-pipeline/core/pipes/is-preview-enabled.pipe';
 import { FormatBytesPipe } from './simulation-pipeline/core/pipes/format-bytes.pipe';
+import { ScrollToTopButtonComponent } from './configuration-editor/components/scroll-to-top-button/scroll-to-top-button.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
@@ -102,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         ReportStepComponent,
         ImagePreviewDialogComponent,
         IsPreviewEnabledPipe,
-        FormatBytesPipe
+        FormatBytesPipe,
+        ScrollToTopButtonComponent
     ],
     providers: [FormsService],
     entryComponents: [CreateConfigurationDialogComponent, ImagePreviewDialogComponent]

@@ -14,7 +14,6 @@
                         (selectionChange)="onSelect($event)"
                         [formControlName]="node.path + '/class'"
                         [ngModel]="chosenOption"
-                        [placeholder]="node.definition.possibleClasses[0]"
                     >
                         <mat-option *ngFor="let className of node.definition.possibleClasses" [value]="className">
                             {{ className }}
@@ -30,18 +29,21 @@
         [node]="childNode"
         [parentPath]="node.path"
     ></simbad-simple-parameter>
-    <simbad-complex-parameter
-        *ngFor="let childNode of node.complexChildren"
-        [form]="form"
-        [level]="level + 1"
-        [node]="childNode"
-        [parentPath]="node.path"
-    ></simbad-complex-parameter>
+    <ng-container *ngIf="!isInitialConfiguration()">
+        <simbad-complex-parameter
+                *ngFor="let childNode of node.complexChildren"
+                [form]="form"
+                [level]="level + 1"
+                [node]="childNode"
+                [parentPath]="node.path"
+        ></simbad-complex-parameter>
+    </ng-container>
     <simbad-complex-parameter
         *ngIf="chosenEnumParameter"
         [form]="form"
         [level]="level + 1"
         [node]="chosenEnumParameter"
         [parentPath]="node.path"
+        [buildingFromEnum]="chosenOption"
     ></simbad-complex-parameter>
 </div>

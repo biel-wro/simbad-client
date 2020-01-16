@@ -13,3 +13,12 @@ button {
         font-size: 18px;
     }
 }
+
+.with-label {
+    padding: 10px;
+    > svg {
+        vertical-align: middle;
+    }
+
+}
+

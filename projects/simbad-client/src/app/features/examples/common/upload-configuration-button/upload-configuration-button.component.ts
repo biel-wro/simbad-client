@@ -36,7 +36,7 @@ export class UploadConfigurationButtonComponent implements OnInit {
                 this.store.dispatch(resetFormValue());
                 this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
                 this.store.dispatch(updateFormValue({ formValue }));
-                this.ns.info(`Uploaded configuration ${inputNode.files[0].name}. The original file was not changed`);
+                this.ns.info(`Uploaded configuration ${inputNode.files[0].name}. The original file was not changed`, 3000);
             };
 
             if (inputNode.files[0]) {

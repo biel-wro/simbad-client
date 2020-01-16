@@ -1,28 +1,28 @@
 /* tslint:disable */
 
 export const simulation = {
-    "currentStep": null,
-    "currentStepId": null,
-    "finishedUtc": "Sun, 05 Jan 2020 19:43:21 GMT",
-    "id": 7,
-    "startedUtc": "Sun, 05 Jan 2020 19:25:06 GMT",
+    "currentStep": "REPORT",
+    "currentStepId": 5,
+    "finishedUtc": "Tue, 14 Jan 2020 16:30:04 GMT",
+    "id": 2,
+    "startedUtc": "Tue, 14 Jan 2020 16:22:20 GMT",
     "steps": [
         {
             "analyzerRuntimeInfo": null,
             "artifacts": [
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:25:06 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:22:20 GMT",
                     "fileType": "JSON",
-                    "id": 283,
-                    "name": "xd.json",
+                    "id": 3,
+                    "name": "parameteric_evolution_3D_stream.json",
                     "sizeKb": 3202
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:33:47 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:24:49 GMT",
                     "fileType": "CSV",
-                    "id": 284,
+                    "id": 4,
                     "name": "cli_out",
-                    "sizeKb": 600534445
+                    "sizeKb": 154329736
                 }
             ],
             "cliRuntimeInfo": {
@@ -30,11 +30,11 @@ export const simulation = {
                 "memory": 0,
                 "progress": 100.0
             },
-            "finishedUtc": "Sun, 05 Jan 2020 19:33:47 GMT",
-            "id": 16,
+            "finishedUtc": "Tue, 14 Jan 2020 16:24:50 GMT",
+            "id": 3,
             "origin": "CLI",
-            "simulationId": 7,
-            "startedUtc": "Sun, 05 Jan 2020 19:25:06 GMT",
+            "simulationId": 2,
+            "startedUtc": "Tue, 14 Jan 2020 16:22:20 GMT",
             "status": "SUCCESS"
         },
         {
@@ -43,654 +43,654 @@ export const simulation = {
             },
             "artifacts": [
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:37:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:26:41 GMT",
                     "fileType": ".PARQUET",
-                    "id": 285,
+                    "id": 5,
                     "name": "time_points.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:39:46 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:09 GMT",
                     "fileType": ".PARQUET",
-                    "id": 286,
+                    "id": 6,
                     "name": "large_clones.parquet",
-                    "sizeKb": 12288
+                    "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:37:46 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:02 GMT",
                     "fileType": ".PARQUET",
-                    "id": 287,
+                    "id": 7,
                     "name": "clone_snapshots.parquet",
-                    "sizeKb": 49152
+                    "sizeKb": 53248
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:57 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:48 GMT",
                     "fileType": ".CSV",
-                    "id": 288,
+                    "id": 8,
                     "name": "final_snapshot.csv",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:20 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:20 GMT",
                     "fileType": ".PARQUET",
-                    "id": 289,
+                    "id": 9,
                     "name": "clone_stats.parquet",
                     "sizeKb": 20480
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".PARQUET",
-                    "id": 290,
+                    "id": 10,
                     "name": "clone_stats_scalars.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:39:47 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:10 GMT",
                     "fileType": ".PARQUET",
-                    "id": 291,
+                    "id": 11,
                     "name": "large_muller_order.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:48 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:44 GMT",
                     "fileType": ".PARQUET",
-                    "id": 292,
+                    "id": 12,
                     "name": "muller_data.parquet",
-                    "sizeKb": 24576
+                    "sizeKb": 20480
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:15 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:58 GMT",
                     "fileType": ".PARQUET",
-                    "id": 293,
+                    "id": 13,
                     "name": "final_mutation_freq.parquet",
+                    "sizeKb": 49152
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:06 GMT",
+                    "fileType": ".PARQUET",
+                    "id": 14,
+                    "name": "clone_counts.parquet",
                     "sizeKb": 45056
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:34 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:07 GMT",
                     "fileType": ".PARQUET",
-                    "id": 294,
-                    "name": "clone_counts.parquet",
-                    "sizeKb": 53248
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:36 GMT",
-                    "fileType": ".PARQUET",
-                    "id": 295,
+                    "id": 15,
                     "name": "large_final_mutations.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:36:58 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:26:39 GMT",
                     "fileType": ".PARQUET",
-                    "id": 296,
+                    "id": 16,
                     "name": "chronicles.parquet",
-                    "sizeKb": 106496
+                    "sizeKb": 110592
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:39:35 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:02 GMT",
                     "fileType": ".PARQUET",
-                    "id": 297,
+                    "id": 17,
                     "name": "lineages.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:19 GMT",
                     "fileType": ".PARQUET",
-                    "id": 298,
+                    "id": 18,
                     "name": "major_stats.parquet",
                     "sizeKb": 20480
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".PARQUET",
-                    "id": 299,
+                    "id": 19,
                     "name": "major_stats_scalars.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:48 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:44 GMT",
                     "fileType": ".PARQUET",
-                    "id": 300,
+                    "id": 20,
                     "name": "muller_data.parquet",
-                    "sizeKb": 24576
+                    "sizeKb": 20480
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:33 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:35 GMT",
                     "fileType": ".PARQUET",
-                    "id": 301,
+                    "id": 21,
                     "name": "noise_stats.parquet",
                     "sizeKb": 20480
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".PARQUET",
-                    "id": 302,
+                    "id": 22,
                     "name": "noise_stats_scalars.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:37:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:26:41 GMT",
                     "fileType": ".PARQUET",
-                    "id": 303,
+                    "id": 23,
                     "name": "time_points.parquet",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:57 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:48 GMT",
                     "fileType": ".CSV",
-                    "id": 304,
+                    "id": 24,
                     "name": "final_snapshot.csv",
                     "sizeKb": 4096
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 305,
+                    "id": 25,
                     "name": "histogram_birthEfficiency.csv",
-                    "sizeKb": 20800
+                    "sizeKb": 17814
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 306,
+                    "id": 26,
                     "name": "histogram_birthResistance.csv",
-                    "sizeKb": 23426
+                    "sizeKb": 19567
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 307,
+                    "id": 27,
                     "name": "histogram_lifespanEfficiency.csv",
-                    "sizeKb": 20367
+                    "sizeKb": 17772
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 308,
+                    "id": 28,
                     "name": "histogram_lifespanEfficiency.csv",
-                    "sizeKb": 20367
+                    "sizeKb": 17772
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 309,
+                    "id": 29,
                     "name": "histogram_lifespanEfficiency.csv",
-                    "sizeKb": 20367
+                    "sizeKb": 17772
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 310,
+                    "id": 30,
                     "name": "histogram_lifespanResistance.csv",
-                    "sizeKb": 22913
+                    "sizeKb": 19385
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 311,
+                    "id": 31,
                     "name": "histogram_successEfficiency.csv",
-                    "sizeKb": 25279
+                    "sizeKb": 20817
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:38:24 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:27:23 GMT",
                     "fileType": ".CSV",
-                    "id": 312,
+                    "id": 32,
                     "name": "histogram_successResistance.csv",
-                    "sizeKb": 23564
+                    "sizeKb": 19654
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".CSV",
-                    "id": 313,
+                    "id": 33,
                     "name": "major_histogram_birthEfficiency.csv",
-                    "sizeKb": 18726
+                    "sizeKb": 16284
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".CSV",
-                    "id": 314,
+                    "id": 34,
                     "name": "major_histogram_birthResistance.csv",
-                    "sizeKb": 19088
+                    "sizeKb": 16577
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".CSV",
-                    "id": 315,
+                    "id": 35,
                     "name": "major_histogram_lifespanEfficiency.csv",
-                    "sizeKb": 18577
+                    "sizeKb": 16560
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".CSV",
-                    "id": 316,
+                    "id": 36,
                     "name": "major_histogram_lifespanResistance.csv",
-                    "sizeKb": 19377
+                    "sizeKb": 16549
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".CSV",
-                    "id": 317,
+                    "id": 37,
                     "name": "major_histogram_successEfficiency.csv",
-                    "sizeKb": 18599
+                    "sizeKb": 16572
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:22 GMT",
                     "fileType": ".CSV",
-                    "id": 318,
+                    "id": 38,
                     "name": "major_histogram_successResistance.csv",
-                    "sizeKb": 19087
+                    "sizeKb": 16603
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".CSV",
-                    "id": 319,
+                    "id": 39,
                     "name": "noise_histogram_birthEfficiency.csv",
-                    "sizeKb": 19560
+                    "sizeKb": 16918
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".CSV",
-                    "id": 320,
+                    "id": 40,
                     "name": "noise_histogram_birthResistance.csv",
-                    "sizeKb": 21917
+                    "sizeKb": 18575
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".CSV",
-                    "id": 321,
+                    "id": 41,
                     "name": "noise_histogram_lifespanEfficiency.csv",
-                    "sizeKb": 19245
+                    "sizeKb": 16852
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".CSV",
-                    "id": 322,
+                    "id": 42,
                     "name": "noise_histogram_lifespanResistance.csv",
-                    "sizeKb": 21517
+                    "sizeKb": 18406
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".CSV",
-                    "id": 323,
+                    "id": 43,
                     "name": "noise_histogram_successEfficiency.csv",
-                    "sizeKb": 23960
+                    "sizeKb": 19816
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:40:36 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:28:37 GMT",
                     "fileType": ".CSV",
-                    "id": 324,
+                    "id": 44,
                     "name": "noise_histogram_successResistance.csv",
-                    "sizeKb": 22152
+                    "sizeKb": 18674
                 }
             ],
             "cliRuntimeInfo": null,
-            "finishedUtc": "Sun, 05 Jan 2020 19:41:41 GMT",
-            "id": 17,
+            "finishedUtc": "Tue, 14 Jan 2020 16:29:09 GMT",
+            "id": 4,
             "origin": "ANALYZER",
-            "simulationId": 7,
-            "startedUtc": "Sun, 05 Jan 2020 19:33:48 GMT",
+            "simulationId": 2,
+            "startedUtc": "Tue, 14 Jan 2020 16:24:50 GMT",
             "status": "SUCCESS"
         },
         {
             "analyzerRuntimeInfo": null,
             "artifacts": [
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:21 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:36 GMT",
                     "fileType": "PNG",
-                    "id": 325,
+                    "id": 45,
                     "name": "major-histogram-successResistance.png",
-                    "sizeKb": 291614
+                    "sizeKb": 170715
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:55 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:18 GMT",
                     "fileType": "PNG",
-                    "id": 326,
+                    "id": 46,
                     "name": "histogram-lifespanResistance.png",
-                    "sizeKb": 1028125
+                    "sizeKb": 709666
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:27 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:39 GMT",
                     "fileType": "PNG",
-                    "id": 327,
+                    "id": 47,
                     "name": "muller_plot_cellParams.lifespanEfficiency.png",
-                    "sizeKb": 379970
+                    "sizeKb": 189055
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:15 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:32 GMT",
                     "fileType": "PNG",
-                    "id": 328,
+                    "id": 48,
                     "name": "major-histogram-lifespanResistance.png",
-                    "sizeKb": 333496
+                    "sizeKb": 163533
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:09 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:28 GMT",
                     "fileType": "PNG",
-                    "id": 329,
+                    "id": 49,
                     "name": "major-cloneCount.png",
-                    "sizeKb": 24813
+                    "sizeKb": 23940
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:41 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:10 GMT",
                     "fileType": "PNG",
-                    "id": 330,
+                    "id": 50,
                     "name": "normalized_entropy.png",
-                    "sizeKb": 38086
+                    "sizeKb": 38593
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:16 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:32 GMT",
                     "fileType": "PNG",
-                    "id": 331,
+                    "id": 51,
                     "name": "major-histogram-birthEfficiency.png",
-                    "sizeKb": 334756
+                    "sizeKb": 154737
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:06 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:26 GMT",
                     "fileType": "PNG",
-                    "id": 332,
+                    "id": 52,
                     "name": "major-mean_birth_efficiency-stddev_birth_efficiency.png",
-                    "sizeKb": 41755
+                    "sizeKb": 40100
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:44 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:12 GMT",
                     "fileType": "PNG",
-                    "id": 333,
+                    "id": 53,
                     "name": "mean_lifespan_efficiency-stddev_lifespan_efficiency.png",
-                    "sizeKb": 42292
+                    "sizeKb": 42853
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:29 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:41 GMT",
                     "fileType": "PNG",
-                    "id": 334,
+                    "id": 54,
                     "name": "muller_plot_cellParams.lifespanResistance.png",
-                    "sizeKb": 387269
+                    "sizeKb": 192656
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:43 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:11 GMT",
                     "fileType": "PNG",
-                    "id": 335,
+                    "id": 55,
                     "name": "mean_birth_efficiency-stddev_birth_efficiency.png",
-                    "sizeKb": 43385
+                    "sizeKb": 42771
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:22 GMT",
                     "fileType": "PNG",
-                    "id": 336,
+                    "id": 56,
                     "name": "noise-mean_lifespan_resistance-stddev_lifespan_resistance.png",
-                    "sizeKb": 47149
+                    "sizeKb": 52330
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:48 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:14 GMT",
                     "fileType": "PNG",
-                    "id": 337,
+                    "id": 57,
                     "name": "systemSize.png",
-                    "sizeKb": 30042
+                    "sizeKb": 31698
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:35 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:45 GMT",
                     "fileType": "PNG",
-                    "id": 338,
+                    "id": 58,
                     "name": "mutation_histogram.png",
-                    "sizeKb": 66517
+                    "sizeKb": 52900
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:43 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:11 GMT",
                     "fileType": "PNG",
-                    "id": 339,
+                    "id": 59,
                     "name": "mean_birth_resistance-stddev_birth_resistance.png",
-                    "sizeKb": 37300
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:08 GMT",
-                    "fileType": "PNG",
-                    "id": 340,
-                    "name": "major-mean_success_efficiency-stddev_success_efficiency.png",
-                    "sizeKb": 34768
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:47 GMT",
-                    "fileType": "PNG",
-                    "id": 341,
-                    "name": "cloneCount.png",
-                    "sizeKb": 30551
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:58 GMT",
-                    "fileType": "PNG",
-                    "id": 342,
-                    "name": "noise-mean_birth_efficiency-stddev_birth_efficiency.png",
-                    "sizeKb": 50352
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:54 GMT",
-                    "fileType": "PNG",
-                    "id": 343,
-                    "name": "histogram-lifespanEfficiency.png",
-                    "sizeKb": 500402
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:02 GMT",
-                    "fileType": "PNG",
-                    "id": 344,
-                    "name": "noise-mean_success_resistance-stddev_success_resistance.png",
-                    "sizeKb": 54649
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:16 GMT",
-                    "fileType": "PNG",
-                    "id": 345,
-                    "name": "major-histogram-lifespanEfficiency.png",
-                    "sizeKb": 259548
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:25 GMT",
-                    "fileType": "PNG",
-                    "id": 346,
-                    "name": "muller_plot_cellParams.birthResistance.png",
-                    "sizeKb": 381026
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:01 GMT",
-                    "fileType": "PNG",
-                    "id": 347,
-                    "name": "noise-mean_success_efficiency-stddev_success_efficiency.png",
-                    "sizeKb": 48971
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:34 GMT",
-                    "fileType": "PNG",
-                    "id": 348,
-                    "name": "muller_plot_cellParams.successResistance.png",
-                    "sizeKb": 382416
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:54 GMT",
-                    "fileType": "PNG",
-                    "id": 349,
-                    "name": "histogram-birthResistance.png",
-                    "sizeKb": 1011670
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:53 GMT",
-                    "fileType": "PNG",
-                    "id": 350,
-                    "name": "histogram-birthEfficiency.png",
-                    "sizeKb": 658011
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:04 GMT",
-                    "fileType": "PNG",
-                    "id": 351,
-                    "name": "noise-systemSize.png",
-                    "sizeKb": 32717
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:32 GMT",
-                    "fileType": "PNG",
-                    "id": 352,
-                    "name": "muller_plot_cellParams.successEfficiency.png",
-                    "sizeKb": 370186
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:08 GMT",
-                    "fileType": "PNG",
-                    "id": 353,
-                    "name": "major-mean_success_resistance-stddev_success_resistance.png",
-                    "sizeKb": 35860
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:15 GMT",
-                    "fileType": "PNG",
-                    "id": 354,
-                    "name": "major-histogram-birthResistance.png",
-                    "sizeKb": 269448
-                },
-                {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:44 GMT",
-                    "fileType": "PNG",
-                    "id": 355,
-                    "name": "mean_lifespan_resistance-stddev_lifespan_resistance.png",
                     "sizeKb": 39971
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:08 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:27 GMT",
                     "fileType": "PNG",
-                    "id": 356,
+                    "id": 60,
+                    "name": "major-mean_success_efficiency-stddev_success_efficiency.png",
+                    "sizeKb": 34800
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:13 GMT",
+                    "fileType": "PNG",
+                    "id": 61,
+                    "name": "cloneCount.png",
+                    "sizeKb": 32309
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:21 GMT",
+                    "fileType": "PNG",
+                    "id": 62,
+                    "name": "noise-mean_birth_efficiency-stddev_birth_efficiency.png",
+                    "sizeKb": 54180
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:18 GMT",
+                    "fileType": "PNG",
+                    "id": 63,
+                    "name": "histogram-lifespanEfficiency.png",
+                    "sizeKb": 384657
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:23 GMT",
+                    "fileType": "PNG",
+                    "id": 64,
+                    "name": "noise-mean_success_resistance-stddev_success_resistance.png",
+                    "sizeKb": 54322
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:32 GMT",
+                    "fileType": "PNG",
+                    "id": 65,
+                    "name": "major-histogram-lifespanEfficiency.png",
+                    "sizeKb": 165769
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:38 GMT",
+                    "fileType": "PNG",
+                    "id": 66,
+                    "name": "muller_plot_cellParams.birthResistance.png",
+                    "sizeKb": 189030
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:23 GMT",
+                    "fileType": "PNG",
+                    "id": 67,
+                    "name": "noise-mean_success_efficiency-stddev_success_efficiency.png",
+                    "sizeKb": 51193
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:44 GMT",
+                    "fileType": "PNG",
+                    "id": 68,
+                    "name": "muller_plot_cellParams.successResistance.png",
+                    "sizeKb": 192293
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:18 GMT",
+                    "fileType": "PNG",
+                    "id": 69,
+                    "name": "histogram-birthResistance.png",
+                    "sizeKb": 761845
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:18 GMT",
+                    "fileType": "PNG",
+                    "id": 70,
+                    "name": "histogram-birthEfficiency.png",
+                    "sizeKb": 407832
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:24 GMT",
+                    "fileType": "PNG",
+                    "id": 71,
+                    "name": "noise-systemSize.png",
+                    "sizeKb": 33264
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:43 GMT",
+                    "fileType": "PNG",
+                    "id": 72,
+                    "name": "muller_plot_cellParams.successEfficiency.png",
+                    "sizeKb": 183106
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:27 GMT",
+                    "fileType": "PNG",
+                    "id": 73,
+                    "name": "major-mean_success_resistance-stddev_success_resistance.png",
+                    "sizeKb": 38441
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:32 GMT",
+                    "fileType": "PNG",
+                    "id": 74,
+                    "name": "major-histogram-birthResistance.png",
+                    "sizeKb": 176578
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:12 GMT",
+                    "fileType": "PNG",
+                    "id": 75,
+                    "name": "mean_lifespan_resistance-stddev_lifespan_resistance.png",
+                    "sizeKb": 41721
+                },
+                {
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:27 GMT",
+                    "fileType": "PNG",
+                    "id": 76,
                     "name": "major-mean_lifespan_resistance-stddev_lifespan_resistance.png",
-                    "sizeKb": 37272
+                    "sizeKb": 37925
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:56 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:19 GMT",
                     "fileType": "PNG",
-                    "id": 357,
+                    "id": 77,
                     "name": "noise-normalized_entropy.png",
-                    "sizeKb": 44409
+                    "sizeKb": 47827
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:58 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:20 GMT",
                     "fileType": "PNG",
-                    "id": 358,
+                    "id": 78,
                     "name": "noise-entropy.png",
-                    "sizeKb": 30852
+                    "sizeKb": 30407
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:22 GMT",
                     "fileType": "PNG",
-                    "id": 359,
+                    "id": 79,
                     "name": "noise-mean_lifespan_efficiency-stddev_lifespan_efficiency.png",
-                    "sizeKb": 54591
+                    "sizeKb": 53186
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:10 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:28 GMT",
                     "fileType": "PNG",
-                    "id": 360,
+                    "id": 80,
                     "name": "major-systemSize.png",
-                    "sizeKb": 30183
+                    "sizeKb": 31491
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:22 GMT",
                     "fileType": "PNG",
-                    "id": 361,
+                    "id": 81,
                     "name": "histogram-successEfficiency.png",
-                    "sizeKb": 1189259
+                    "sizeKb": 725863
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:07 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:26 GMT",
                     "fileType": "PNG",
-                    "id": 362,
+                    "id": 82,
                     "name": "major-mean_birth_resistance-stddev_birth_resistance.png",
-                    "sizeKb": 33189
+                    "sizeKb": 36552
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:06 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:26 GMT",
                     "fileType": "PNG",
-                    "id": 363,
+                    "id": 83,
                     "name": "major-entropy.png",
-                    "sizeKb": 30345
+                    "sizeKb": 35593
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:59 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:21 GMT",
                     "fileType": "PNG",
-                    "id": 364,
+                    "id": 84,
                     "name": "noise-mean_birth_resistance-stddev_birth_resistance.png",
-                    "sizeKb": 51674
+                    "sizeKb": 47004
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:45 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:12 GMT",
                     "fileType": "PNG",
-                    "id": 365,
+                    "id": 85,
                     "name": "mean_success_efficiency-stddev_success_efficiency.png",
-                    "sizeKb": 37814
+                    "sizeKb": 39821
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:20 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:35 GMT",
                     "fileType": "PNG",
-                    "id": 366,
+                    "id": 86,
                     "name": "major-histogram-successEfficiency.png",
-                    "sizeKb": 277310
+                    "sizeKb": 178192
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:05 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:25 GMT",
                     "fileType": "PNG",
-                    "id": 367,
+                    "id": 87,
                     "name": "major-normalized_entropy.png",
-                    "sizeKb": 33361
+                    "sizeKb": 34695
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:03 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:24 GMT",
                     "fileType": "PNG",
-                    "id": 368,
+                    "id": 88,
                     "name": "noise-cloneCount.png",
-                    "sizeKb": 32140
+                    "sizeKb": 31805
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:22 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:36 GMT",
                     "fileType": "PNG",
-                    "id": 369,
+                    "id": 89,
                     "name": "muller_plot_cellParams.birthEfficiency.png",
-                    "sizeKb": 376092
+                    "sizeKb": 184426
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:07 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:26 GMT",
                     "fileType": "PNG",
-                    "id": 370,
+                    "id": 90,
                     "name": "major-mean_lifespan_efficiency-stddev_lifespan_efficiency.png",
-                    "sizeKb": 39069
+                    "sizeKb": 39957
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:45 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:13 GMT",
                     "fileType": "PNG",
-                    "id": 371,
+                    "id": 91,
                     "name": "mean_success_resistance-stddev_success_resistance.png",
-                    "sizeKb": 39683
+                    "sizeKb": 42360
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:00 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:22 GMT",
                     "fileType": "PNG",
-                    "id": 372,
+                    "id": 92,
                     "name": "histogram-successResistance.png",
-                    "sizeKb": 1015761
+                    "sizeKb": 716658
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:41:42 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:11 GMT",
                     "fileType": "PNG",
-                    "id": 373,
+                    "id": 93,
                     "name": "entropy.png",
-                    "sizeKb": 28624
+                    "sizeKb": 30575
                 },
                 {
-                    "createdUtc": "Sun, 05 Jan 2020 19:42:46 GMT",
+                    "createdUtc": "Tue, 14 Jan 2020 16:29:54 GMT",
                     "fileType": "PDF",
-                    "id": 374,
+                    "id": 94,
                     "name": "simulation_report.pdf",
-                    "sizeKb": 11795565
+                    "sizeKb": 8379622
                 }
             ],
             "cliRuntimeInfo": null,
-            "finishedUtc": "Sun, 05 Jan 2020 19:43:21 GMT",
-            "id": 18,
+            "finishedUtc": "Tue, 14 Jan 2020 16:30:04 GMT",
+            "id": 5,
             "origin": "REPORT",
-            "simulationId": 7,
-            "startedUtc": "Sun, 05 Jan 2020 19:41:41 GMT",
+            "simulationId": 2,
+            "startedUtc": "Tue, 14 Jan 2020 16:29:09 GMT",
             "status": "SUCCESS"
         }
     ]
