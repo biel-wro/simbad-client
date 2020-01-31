@@ -16,7 +16,7 @@ import {
     reportStepFinished,
     setLatestSimulation,
     simulationError,
-    startSimulation, updateStepInfo
+    startSimulation, simulationStepFailed, updateStepInfo
 } from './simulation-pipeline.actions';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 import { SimulationService, StatusService } from '@simbad-cli-api/gen';
@@ -98,6 +98,10 @@ export class SimulationPipelineEffects {
             tap((value) => console.log('getSimulationStepInfo$: ', value)),
             switchMap(({ stepId }) => this.statusService.getSimulationStepInfo({ id: stepId }).pipe(
                 concatMap((stepInfo) => {
+                    if (stepInfo.status === 'FAILURE') {
+                        return of(simulationStepFailed({step: stepInfo}));
+                    }
+
                     if (stepInfo.finishedUtc) {
                         switch (stepInfo.origin) {
                             case 'ANALYZER':
@@ -134,6 +138,26 @@ export class SimulationPipelineEffects {
                         break;
                     case 'REPORT':
                         this.notificationService.success('Report step finished!');
+                        break;
+                }
+                this.stopPolling$.next();
+            })
+        );
+    }, { dispatch: false });
+
+    simulationStepFailed$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(simulationStepFailed),
+            tap((action) => {
+                switch (action.step.origin) {
+                    case 'ANALYZER':
+                        this.notificationService.error('Analyzer step failed!');
+                        break;
+                    case 'CLI':
+                        this.notificationService.error('CLI step failed!');
+                        break;
+                    case 'REPORT':
+                        this.notificationService.error('Report step failed!');
                         break;
                 }
                 this.stopPolling$.next();

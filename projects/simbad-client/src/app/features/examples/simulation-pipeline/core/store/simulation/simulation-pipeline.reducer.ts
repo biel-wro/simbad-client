@@ -4,7 +4,7 @@ import {
     analyzerStepFinished,
     cliStepFinished,
     reportStepFinished,
-    setLatestSimulation,
+    setLatestSimulation, simulationStepFailed,
     startSimulation,
     updateCliStepInfo,
     updateSimulationInfo,
@@ -40,6 +40,18 @@ const reducer = createReducer(
     on(analyzerStepFinished, (state, { step }) => ({ ...state, analyzerStep: step })),
     on(reportStepFinished, (state, { step }) => ({ ...state, reportsStep: step, isSimulationRunning: false })),
     on(updateStepInfo, (state, { step }) => {
+        switch (step.origin) {
+            case 'ANALYZER':
+                return ({ ...state, analyzerStep: step });
+            case 'CLI':
+                return ({ ...state, cliStep: step });
+            case 'REPORT':
+                return ({ ...state, reportsStep: step });
+            default:
+                return state;
+        }
+    }),
+    on(simulationStepFailed, (state, { step }) => {
         switch (step.origin) {
             case 'ANALYZER':
                 return ({ ...state, analyzerStep: step });

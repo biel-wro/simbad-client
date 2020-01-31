@@ -2,6 +2,11 @@
 export interface AnalyzerRuntimeInfo  {
 
   /**
+   * Error message
+   */
+  error?: string;
+
+  /**
    * The progress of job
    */
   progress: number;
@@ -9,5 +14,5 @@ export interface AnalyzerRuntimeInfo  {
   /**
    * Id of spark job
    */
-  sparkJobId: number;
+  sparkJobId?: number;
 }

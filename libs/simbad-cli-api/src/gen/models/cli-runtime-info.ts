@@ -7,6 +7,11 @@ export interface CliRuntimeInfo  {
   cpu: number;
 
   /**
+   * Error message
+   */
+  error?: string;
+
+  /**
    * Cli memory usage in megabytes
    */
   memory: number;

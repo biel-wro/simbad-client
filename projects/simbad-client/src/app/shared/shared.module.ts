@@ -100,6 +100,7 @@ library.add(
     faLightbulb,
     faWindowMaximize,
     faStream,
+    faTimes,
     faBook,
     faFile,
     faDownload,

@@ -140,6 +140,7 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
             ['SUCCESS']: { icon: 'check' },
             ['ONGOING']: { icon: 'spinner', spin: true, pulse: true },
             ['PENDING']: { icon: 'ellipsis-h' },
+            ['FAILURE']: { icon: 'times' },
         } [status] || { icon: 'ellipsis-h' };
     }
 }

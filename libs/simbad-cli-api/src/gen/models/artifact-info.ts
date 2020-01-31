@@ -9,7 +9,7 @@ export interface ArtifactInfo  {
   /**
    * The file type of artifact
    */
-  fileType: 'CSV' | 'JSON' | 'PDF' | 'PNG' | 'LAS' | 'ENTWINE' | 'ZIP';
+  fileType: 'CSV' | 'JSON' | 'PDF' | 'PNG' | 'LAS' | 'ENTWINE' | 'ZIP' | 'LOG';
 
   /**
    * The id of artifact

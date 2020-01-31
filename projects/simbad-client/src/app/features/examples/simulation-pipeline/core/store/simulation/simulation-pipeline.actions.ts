@@ -23,6 +23,7 @@ export enum SimulationPipelineActions {
     StartSimulation = '[SimulationPipeline] Start simulation',
     RedirectAndStart = '[SimulationPipeline] Redirect and start simulation',
     SimulationError = '[SimulationPipeline] Simulation http error',
+    SimulationStepFailure = '[SimulationPipeline] Simulation step failure'
 }
 
 
@@ -110,5 +111,10 @@ export const analyzerStepFinished = createAction(
 
 export const reportStepFinished = createAction(
     SimulationPipelineActions.ReportStepFinished,
+    props<{step: SimulationStepInfo}>()
+);
+
+export const simulationStepFailed = createAction(
+    SimulationPipelineActions.SimulationStepFailure,
     props<{step: SimulationStepInfo}>()
 );

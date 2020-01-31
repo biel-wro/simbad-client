@@ -266,6 +266,7 @@ components:
             - LAS
             - ENTWINE
             - ZIP
+            - LOG
           description: The file type of artifact
       example:
         id: 123
@@ -385,11 +386,13 @@ components:
         progress:
           type: number
           description: Cli command progress
+        error:
+          type: string
+          description: Error message
     AnalyzerRuntimeInfo:
       type: object
       required:
         - progress
-        - sparkJobId
       properties:
         sparkJobId:
           type: number
@@ -397,5 +400,8 @@ components:
         progress:
           type: number
           description: The progress of job
+        error:
+          type: string
+          description: Error message
 
 
