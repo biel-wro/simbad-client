@@ -91,7 +91,7 @@ export class CliStepComponent implements OnInit, OnDestroy {
             },
             { key: 'Start Timestamp', value: state.startedUtc },
             { key: 'Stop Criterion', value: 'Population size' },
-            { key: 'Status', value: state.finishedUtc ? 'FINISHED' : 'RUNNING' }
+            { key: 'Status', value: state.status }
         ];
     }
 

@@ -4,15 +4,14 @@ import {
     analyzerStepArtifacts,
     analyzerStepEndTimestamp,
     analyzerStepStartTimestamp,
-    analyzerStepState, cliStepArtifacts, reportStepState
+    analyzerStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
-import { filter, map, takeUntil, tap } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import { ListElement } from '../../common/info-list/info-list.component';
 import { AnalyzerRuntimeInfo } from '@simbad-cli-api/gen/models/analyzer-runtime-info';
 import { timeToTimeString } from '@simbad-client/app/features/examples/simulation-pipeline/core/functions/time-utils';
-import { ArtifactsActionsService } from '@simbad-client/app/features/examples/simulation-pipeline/core/services/artifacts-actions.service';
 import { ArtifactInfo } from '@simbad-cli-api/gen/models/artifact-info';
 
 @Component({
@@ -31,7 +30,7 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
     ngUnsubscribe$: Subject<void> = new Subject();
 
 
-    constructor(private store: Store<{}>, private as: ArtifactsActionsService) {
+    constructor(private store: Store<{}>) {
     }
 
     ngOnInit() {
@@ -85,11 +84,12 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
                     window.open(url, '_blank');
                 }
             },
-            { key: 'Status', value: state.finishedUtc ? 'FINISHED' : 'RUNNING' }
+            { key: 'Status', value: state.status }
         ];
     }
 
     ngOnDestroy() {
+        this.ngUnsubscribe$.next();
     }
 
 }

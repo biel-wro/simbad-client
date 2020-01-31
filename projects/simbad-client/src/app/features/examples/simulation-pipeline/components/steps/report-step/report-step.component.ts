@@ -101,7 +101,7 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
     buildTaskContextFromAnalyzerState(state: SimulationStepInfo): ListElement[] {
         return [
-            { key: 'Status', value: state.finishedUtc ? 'FINISHED' : 'RUNNING' }
+            { key: 'Status', value: state.status }
         ];
     }
 
