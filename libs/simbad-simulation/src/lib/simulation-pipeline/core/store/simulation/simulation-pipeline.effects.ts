@@ -88,7 +88,7 @@ export class SimulationPipelineEffects {
                     configurationName: conf.name
                 }
             })),
-            tap(() => this.router.navigate(['/examples/simulation-pipeline']))
+            tap(() => this.router.navigate(['/simulation/simulation-pipeline']))
         );
     });
 

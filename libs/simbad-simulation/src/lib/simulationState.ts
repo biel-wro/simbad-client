@@ -8,7 +8,7 @@ import {
     SimulationPipelineState
 } from '@simbad-simulation/lib/simulation-pipeline/core/store/simulation/simulation-pipeline.reducer';
 
-export const FEATURE_NAME = 'examples';
+export const FEATURE_NAME = 'simulation';
 export const selectSimulationState = createFeatureSelector<State, SimulationState>(FEATURE_NAME);
 
 
@@ -27,5 +27,5 @@ export interface SimulationState {
 }
 
 export interface State extends AppState {
-    examples: SimulationState;
+    simulation: SimulationState;
 }

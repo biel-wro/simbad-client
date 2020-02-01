@@ -2,25 +2,24 @@ import { Store, select } from '@ngrx/store';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { routeAnimations, selectIsAuthenticated } from '@simbad-client/app/core/core.module';
+import { selectIsAuthenticated } from '@simbad-client/app/core/core.module';
 
 import { State } from '../simulationState';
 
 @Component({
-    selector: 'simbad-examples',
-    templateUrl: './examples.component.html',
-    styleUrls: ['./examples.component.scss'],
-    animations: [routeAnimations],
+    selector: 'simbad-simulation',
+    templateUrl: './simulation.component.html',
+    styleUrls: ['./simulation.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ExamplesComponent implements OnInit {
+export class SimulationComponent implements OnInit {
     isAuthenticated$: Observable<boolean>;
 
-    examples = [
-        { link: 'form', label: 'simbad.examples.menu.form' },
+    simulation = [
+        { link: 'form', label: 'simbad.simulation.menu.form' },
         {
             link: 'simulation-pipeline',
-            label: 'simbad.examples.menu.simulation-pipeline'
+            label: 'simbad.simulation.menu.simulation-pipeline'
         }
     ];
 

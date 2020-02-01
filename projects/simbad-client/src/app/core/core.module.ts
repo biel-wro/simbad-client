@@ -17,8 +17,6 @@ import { selectAuth, selectIsAuthenticated } from './auth/auth.selectors';
 import { authLogin, authLogout } from './auth/auth.actions';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { TitleService } from './title/title.service';
-import { ROUTE_ANIMATIONS_ELEMENTS, routeAnimations } from './animations/route.animations';
-import { AnimationsService } from './animations/animations.service';
 import { AppErrorHandler } from './error-handler/app-error-handler.service';
 import { CustomSerializer } from './router/custom-serializer';
 import { LocalStorageService } from './local-storage/local-storage.service';
@@ -31,7 +29,6 @@ import {
     selectSettingsStickyHeader
 } from './settings/settings.selectors';
 import {
-    ActionSettingsChangeAnimationsPageDisabled,
     ActionSettingsChangeLanguage,
     SettingsActions,
     SettingsActionTypes
@@ -42,19 +39,15 @@ export {
     selectAuth,
     authLogin,
     authLogout,
-    routeAnimations,
     AppState,
     LocalStorageService,
     selectIsAuthenticated,
-    ROUTE_ANIMATIONS_ELEMENTS,
-    AnimationsService,
     AuthGuardService,
     selectRouterState,
     NotificationService,
     SettingsActions,
     SettingsActionTypes,
     ActionSettingsChangeLanguage,
-    ActionSettingsChangeAnimationsPageDisabled,
     selectEffectiveTheme,
     selectSettingsLanguage,
     selectSettingsStickyHeader,

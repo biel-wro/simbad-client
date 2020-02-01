@@ -1,18 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuardService } from '@simbad-client/app/core/core.module';
-
-import { ExamplesComponent } from './examples/examples.component';
-import { AuthenticatedComponent } from './authenticated/authenticated.component';
+import { SimulationComponent } from './simulation/simulation.component';
 import { FormComponent } from './configuration-editor/components/configuration-form/form.component';
-import { NotificationsComponent } from './notifications/components/notifications.component';
 import { SimulationPipelineComponent } from '@simbad-simulation/lib/simulation-pipeline/pages/simulation-pipeline.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ExamplesComponent,
+        component: SimulationComponent,
         children: [
             {
                 path: '',
@@ -22,23 +18,12 @@ const routes: Routes = [
             {
                 path: 'form',
                 component: FormComponent,
-                data: { title: 'simbad.examples.menu.form' }
-            },
-            {
-                path: 'notifications',
-                component: NotificationsComponent,
-                data: { title: 'simbad.examples.menu.notifications' }
-            },
-            {
-                path: 'authenticated',
-                component: AuthenticatedComponent,
-                canActivate: [AuthGuardService],
-                data: { title: 'simbad.examples.menu.auth' }
+                data: { title: 'simbad.simulation.menu.form' }
             },
             {
                 path: 'simulation-pipeline',
                 component: SimulationPipelineComponent,
-                data: { title: 'simbad.examples.menu.simulation-pipeline' }
+                data: { title: 'simbad.simulation.menu.simulation-pipeline' }
             }
         ]
     }

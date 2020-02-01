@@ -15,7 +15,7 @@ import {
 } from '@simbad-client/app/core/core.module';
 
 @Injectable()
-export class ExamplesEffects {
+export class SimulationEffects {
     constructor(
         private actions$: Actions<SettingsActions>,
         private store: Store<AppState>,

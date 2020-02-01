@@ -10,12 +10,9 @@ import { environment } from '@simbad-client/environments/environment';
 
 import { FEATURE_NAME, reducers } from './simulationState';
 import { SimbadSimulationRoutingModule } from './simbad-simulation-routing.module';
-import { ExamplesComponent } from './examples/examples.component';
+import { SimulationComponent } from './simulation/simulation.component';
 import { FormComponent } from './configuration-editor/components/configuration-form/form.component';
 import { FormEffects } from './configuration-editor/store/form.effects';
-import { AuthenticatedComponent } from './authenticated/authenticated.component';
-import { NotificationsComponent } from './notifications/components/notifications.component';
-import { ExamplesEffects } from './examples.effects';
 import { ConfigurationStepComponent } from './configuration-editor/components/configuration-step/configuration-step.component';
 import { ComplexParameterComponent } from './configuration-editor/components/complex-parameter/complex-parameter.component';
 import { SimpleParameterComponent } from './configuration-editor/components/simple-parameter/simple-parameter.component';
@@ -47,9 +44,10 @@ import { ArtifactsEffects } from '@simbad-simulation/lib/simulation-pipeline/cor
 import { IsPreviewEnabledPipe } from './simulation-pipeline/core/pipes/is-preview-enabled.pipe';
 import { FormatBytesPipe } from './simulation-pipeline/core/pipes/format-bytes.pipe';
 import { ScrollToTopButtonComponent } from './configuration-editor/components/scroll-to-top-button/scroll-to-top-button.component';
+import { SimulationEffects } from '@simbad-simulation/lib/simulation.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/examples/`, '.json');
+    return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/simulation/`, '.json');
 }
 
 @NgModule({
@@ -67,7 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         }),
         EffectsModule.forFeature(
             [
-                ExamplesEffects,
+                SimulationEffects,
                 FormEffects,
                 SimulationPipelineEffects,
                 ArtifactsEffects
@@ -81,10 +79,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatSortModule
     ],
     declarations: [
-        ExamplesComponent,
-        AuthenticatedComponent,
+        SimulationComponent,
         FormComponent,
-        NotificationsComponent,
         ConfigurationStepComponent,
         ComplexParameterComponent,
         SimpleParameterComponent,
@@ -111,5 +107,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 })
 export class SimbadSimulationModule {
     constructor() {
+
     }
 }

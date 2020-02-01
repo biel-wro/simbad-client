@@ -5,13 +5,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { SharedModule } from '@simbad-client/app/shared/shared.module';
 
-import { ExamplesComponent } from './examples.component';
+import { simulationComponent } from './simulation.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { TranslateModule } from '@ngx-translate/core';
 
-describe('ExamplesComponent', () => {
-    let component: ExamplesComponent;
-    let fixture: ComponentFixture<ExamplesComponent>;
+describe('simulationComponent', () => {
+    let component: simulationComponent;
+    let fixture: ComponentFixture<simulationComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -31,12 +31,12 @@ describe('ExamplesComponent', () => {
                     }
                 })
             ],
-            declarations: [ExamplesComponent]
+            declarations: [simulationComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ExamplesComponent);
+        fixture = TestBed.createComponent(simulationComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

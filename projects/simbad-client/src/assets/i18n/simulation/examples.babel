@@ -1,7 +1,7 @@
 <babeledit_project version="1.0">
     <preset_collections/>
     <framework>ngx-translate</framework>
-    <filename>examples.babel</filename>
+    <filename>simulation.babel</filename>
     <folder_node>
         <name></name>
         <children>
@@ -9,7 +9,7 @@
                 <name>simbad</name>
                 <children>
                     <folder_node>
-                        <name>examples</name>
+                        <name>simulation</name>
                         <children>
                             <folder_node>
                                 <name>auth</name>

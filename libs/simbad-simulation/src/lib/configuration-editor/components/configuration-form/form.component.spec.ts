@@ -6,7 +6,7 @@ describe('FormComponent', () => {
 
 // function createState(formState: ConfigurationFormState): CliStepState {
 //     return {
-//         examples: {
+//         simulation: {
 //             configuration-editor: formState
 //         }
 //     } as CliStepState;

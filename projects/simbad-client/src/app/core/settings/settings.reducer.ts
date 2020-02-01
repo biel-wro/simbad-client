@@ -4,12 +4,8 @@ import { SettingsActions, SettingsActionTypes } from './settings.actions';
 export const initialState: SettingsState = {
     language: 'en',
     theme: 'BLACK-THEME',
-    autoNightMode: false,
     nightTheme: NIGHT_MODE_THEME,
     stickyHeader: true,
-    pageAnimations: false,
-    pageAnimationsDisabled: false,
-    elementsAnimations: false,
     hour: 0
 };
 
@@ -17,20 +13,9 @@ export function settingsReducer(state: SettingsState = initialState, action: Set
     switch (action.type) {
         case SettingsActionTypes.CHANGE_LANGUAGE:
         case SettingsActionTypes.CHANGE_THEME:
-        case SettingsActionTypes.CHANGE_AUTO_NIGHT_AUTO_MODE:
         case SettingsActionTypes.CHANGE_STICKY_HEADER:
-        case SettingsActionTypes.CHANGE_ANIMATIONS_PAGE:
-        case SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS:
         case SettingsActionTypes.CHANGE_HOUR:
             return { ...state, ...action.payload };
-
-        case SettingsActionTypes.CHANGE_ANIMATIONS_PAGE_DISABLED:
-            return {
-                ...state,
-                pageAnimations: false,
-                pageAnimationsDisabled: action.payload.pageAnimationsDisabled
-            };
-
         default:
             return state;
     }
