@@ -4,21 +4,15 @@ import { OverlayContainer } from '@angular/cdk/overlay';
 import { select, Store } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TranslateService } from '@ngx-translate/core';
-import { combineLatest, interval, merge, of } from 'rxjs';
-import { tap, withLatestFrom, map, distinctUntilChanged, mapTo, filter } from 'rxjs/operators';
+import { interval, merge, of } from 'rxjs';
+import { distinctUntilChanged, filter, map, mapTo, tap, withLatestFrom } from 'rxjs/operators';
 
 import { selectSettingsState } from '../core.state';
 import { LocalStorageService } from '../local-storage/local-storage.service';
-import { AnimationsService } from '../animations/animations.service';
 import { TitleService } from '../title/title.service';
 
-import { SettingsActionTypes, SettingsActions, ActionSettingsChangeHour } from './settings.actions';
-import {
-    selectEffectiveTheme,
-    selectSettingsLanguage,
-    selectPageAnimations,
-    selectElementsAnimations
-} from './settings.selectors';
+import { ActionSettingsChangeHour, SettingsActions, SettingsActionTypes } from './settings.actions';
+import { selectEffectiveTheme, selectSettingsLanguage } from './settings.selectors';
 import { State } from './settings.model';
 
 export const SETTINGS_KEY = 'SETTINGS';
@@ -34,7 +28,6 @@ export class SettingsEffects {
         private overlayContainer: OverlayContainer,
         private localStorageService: LocalStorageService,
         private titleService: TitleService,
-        private animationsService: AnimationsService,
         private translateService: TranslateService
     ) {}
 
@@ -48,38 +41,12 @@ export class SettingsEffects {
     @Effect({ dispatch: false })
     persistSettings = this.actions$.pipe(
         ofType(
-            SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS,
-            SettingsActionTypes.CHANGE_ANIMATIONS_PAGE,
-            SettingsActionTypes.CHANGE_ANIMATIONS_PAGE_DISABLED,
-            SettingsActionTypes.CHANGE_AUTO_NIGHT_AUTO_MODE,
             SettingsActionTypes.CHANGE_LANGUAGE,
             SettingsActionTypes.CHANGE_STICKY_HEADER,
             SettingsActionTypes.CHANGE_THEME
         ),
         withLatestFrom(this.store.pipe(select(selectSettingsState))),
         tap(([action, settings]) => this.localStorageService.setItem(SETTINGS_KEY, settings))
-    );
-
-    @Effect({ dispatch: false })
-    updateRouteAnimationType = merge(
-        INIT,
-        this.actions$.pipe(
-            ofType(SettingsActionTypes.CHANGE_ANIMATIONS_ELEMENTS, SettingsActionTypes.CHANGE_ANIMATIONS_PAGE)
-        )
-    ).pipe(
-        withLatestFrom(
-            combineLatest([
-                this.store.pipe(select(selectPageAnimations)),
-                this.store.pipe(select(selectElementsAnimations))
-            ])
-        ),
-        tap(([action, [pageAnimations, elementsAnimations]]) =>
-            this.animationsService.updateRouteAnimationType(
-                pageAnimations,
-
-                elementsAnimations
-            )
-        )
     );
 
     @Effect({ dispatch: false })

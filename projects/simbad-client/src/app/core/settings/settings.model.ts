@@ -7,12 +7,8 @@ export type Language = 'en' | 'sk' | 'de' | 'fr' | 'es' | 'pt-br' | 'he';
 export interface SettingsState {
     language: string;
     theme: string;
-    autoNightMode: boolean;
     nightTheme: string;
     stickyHeader: boolean;
-    pageAnimations: boolean;
-    pageAnimationsDisabled: boolean;
-    elementsAnimations: boolean;
     hour: number;
 }
 

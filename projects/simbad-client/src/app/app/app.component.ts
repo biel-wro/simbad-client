@@ -1,32 +1,25 @@
-import browser from 'browser-detect';
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { environment as env } from '../../environments/environment';
 
 import {
+    ActionSettingsChangeLanguage,
+    AppState,
     authLogin,
     authLogout,
-    routeAnimations,
-    AppState,
     LocalStorageService,
-    selectIsAuthenticated,
-    ActionSettingsChangeAnimationsPageDisabled,
-    selectSettingsStickyHeader,
-    selectSettingsLanguage,
     selectEffectiveTheme,
-    ActionSettingsChangeLanguage
+    selectIsAuthenticated,
+    selectSettingsLanguage,
+    selectSettingsStickyHeader
 } from '../core/core.module';
-import { version } from 'punycode';
-
-declare var require: any;
 
 @Component({
     selector: 'simbad-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    animations: [routeAnimations]
 })
 export class AppComponent implements OnInit {
     isProd = env.production;
@@ -36,8 +29,7 @@ export class AppComponent implements OnInit {
     languages = ['en'];
     navigation = [
         { link: 'about', label: 'simbad.menu.about' },
-        { link: 'feature-list', label: 'simbad.menu.features' },
-        { link: 'examples', label: 'simbad.menu.examples' }
+        { link: 'simulation', label: 'simbad.menu.simulation' }
     ];
     navigationSideMenu = [...this.navigation, { link: 'settings', label: 'simbad.menu.settings' }];
 
@@ -48,19 +40,8 @@ export class AppComponent implements OnInit {
 
     constructor(private store: Store<AppState>, private storageService: LocalStorageService) {}
 
-    private static isIEorEdgeOrSafari() {
-        return ['ie', 'edge', 'safari'].includes(browser().name);
-    }
-
     ngOnInit(): void {
         this.storageService.testLocalStorage();
-        if (AppComponent.isIEorEdgeOrSafari()) {
-            this.store.dispatch(
-                new ActionSettingsChangeAnimationsPageDisabled({
-                    pageAnimationsDisabled: true
-                })
-            );
-        }
 
         this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
         this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));

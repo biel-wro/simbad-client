@@ -12,16 +12,12 @@ const routes: Routes = [
         loadChildren: './features/about/about.module#AboutModule'
     },
     {
-        path: 'feature-list',
-        loadChildren: './features/feature-list/feature-list.module#FeatureListModule'
-    },
-    {
         path: 'settings',
         loadChildren: './features/settings/settings.module#SettingsModule'
     },
     {
-        path: 'examples',
-        loadChildren: './features/examples/examples.module#ExamplesModule'
+        path: 'simulation',
+        loadChildren: './modules/simbad-simulation-lazy/simbad-simulation-lazy.module#SimbadSimulationLazyModule'
     },
     {
         path: '**',

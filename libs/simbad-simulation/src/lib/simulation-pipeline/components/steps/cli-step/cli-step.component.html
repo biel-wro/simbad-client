@@ -1,0 +1,22 @@
+<ng-container
+    *ngIf="{
+        elapsedTime: elapsedTime$ | async,
+        runtimeInfo: runtimeInfo$ | async,
+        taskContext: taskContext$ | async,
+        artifacts: artifacts$ | async
+    } as data"
+>
+    <div class="step-container">
+        <simbad-performance-monitor
+            [elapsedTime]="data.elapsedTime"
+            [runtimeInfo]="data.runtimeInfo"
+            class="performance-monitor"
+        >
+        </simbad-performance-monitor>
+        <simbad-client-task-context [data]="data.taskContext" class="task-context"> </simbad-client-task-context>
+        <simbad-client-artifact-list [data]="data.artifacts" class="artifact-list"></simbad-client-artifact-list>
+    </div>
+    <span>Simulation progress: {{ data.runtimeInfo?.progress }}%</span>
+    <mat-progress-bar mode="determinate" class="progress" [value]="data.runtimeInfo?.progress"></mat-progress-bar>
+    <mat-divider></mat-divider>
+</ng-container>

@@ -49,7 +49,6 @@ describe('BigInputActionComponent', () => {
         fixture = createHostComponent(template);
         expect(getButton().nativeElement.disabled).toBeFalsy();
         expect(getIcon()).toBeNull();
-        expect(getLabel()).toBeNull();
     });
 
     it('should disable button if disabled property is set', () => {
@@ -70,7 +69,7 @@ describe('BigInputActionComponent', () => {
         const template = `<simbad-big-input-action label="delete"></simbad-big-input-action>`;
         fixture = createHostComponent(template);
         expect(getLabel()).toBeTruthy();
-        expect(getLabel().nativeElement.textContent).toBe('delete');
+        expect(getLabel().nativeElement.textContent).toBe(' delete ');
     });
 
     it('should emit action event on button click', () => {

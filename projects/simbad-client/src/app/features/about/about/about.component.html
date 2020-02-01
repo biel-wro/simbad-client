@@ -4,35 +4,24 @@
             <h1>{{ 'simbad.title.long' | translate }}</h1>
             <div class="actions">
                 <a
-                    [ngClass]="routeAnimationsElements"
-                    mat-raised-button
-                    class="actions-main"
-                    color="primary"
-                    routerLink="../feature-list"
-                >
-                    {{ 'simbad.menu.features' | translate }}
-                </a>
-                <a
                     mat-raised-button
                     class="actions-main"
                     color="accent"
-                    routerLink="../examples"
-                    [ngClass]="routeAnimationsElements"
+                    routerLink="../simulation"
                 >
-                    {{ 'simbad.menu.examples' | translate }}
+                    {{ 'simbad.menu.simulation' | translate }}
                 </a>
                 <a
                     mat-raised-button
                     class="actions-main"
                     color="warn"
                     routerLink="../settings"
-                    [ngClass]="routeAnimationsElements"
                 >
                     {{ 'simbad.about.change-theme' | translate }}
                 </a>
                 <br />
             </div>
-            <div class="get-started" [ngClass]="routeAnimationsElements">
+            <div class="get-started">
                 <h2>{{ 'simbad.about.get-started' | translate }}</h2>
                 <code>git clone https://github.com/jakubsokolowski/simbad-client.git new-project</code><br />
                 <code>cd new-project</code><br />
@@ -43,7 +32,7 @@
     </div>
 </div>
 <div class="container">
-    <div class="follow-releases" [ngClass]="routeAnimationsElements">
+    <div class="follow-releases">
         <h2 rtl>{{ 'simbad.about.get-notified.title' | translate }}</h2>
         <p rtl>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac nibh dui. Integer rutrum, lacus eget

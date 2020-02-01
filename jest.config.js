@@ -9,11 +9,16 @@ module.exports = {
     moduleNameMapper: {
         '^@simbad-cli-api(.*)$': `${__dirname}/libs/simbad-cli-api/src$1`,
         '^@simbad-client(.*)$': `${__dirname}/projects/simbad-client/src$1`,
+        '^@simbad-simulation(.*)$': `${__dirname}/libs/simbad-simulation/src$1`,
     },
     globals: {
         "ts-jest": {
             enableTsDiagnostics: true
         },
+        "stringifyContentPathRegex": "\\.html$",
+        "astTransformers": [
+            "<rootDir>/node_modules/jest-preset-angular/InlineHtmlStripStylesTransformer"
+        ],
         __TRANSFORM_HTML__: true
     },
     snapshotSerializers: [
