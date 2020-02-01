@@ -117,7 +117,10 @@
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
                     "options": {
-                        "tsConfig": ["projects/simbad-client/tsconfig.app.json", "projects/simbad-client/tsconfig.spec.json"],
+                        "tsConfig": [
+                            "projects/simbad-client/tsconfig.app.json",
+                            "projects/simbad-client/tsconfig.spec.json"
+                        ],
                         "exclude": ["**/node_modules/**"]
                     }
                 },
@@ -132,6 +135,36 @@
                             "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
                         ]
                     }
+                }
+            }
+        },
+        "simbad-simulation": {
+            "root": "libs/simbad-simulation",
+            "sourceRoot": "libs/simbad-simulation/src",
+            "projectType": "library",
+            "architect": {
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/simbad-simulation/tsconfig.lib.json",
+                            "libs/simbad-simulation/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!libs/simbad-simulation/**"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/builders:jest",
+                    "options": {
+                        "jestConfig": "libs/simbad-simulation/jest.config.js",
+                        "tsConfig": "libs/simbad-simulation/tsconfig.spec.json",
+                        "setupFile": "libs/simbad-simulation/src/test-setup.ts"
+                    }
+                }
+            },
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "styleext": "scss"
                 }
             }
         },

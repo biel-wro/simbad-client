@@ -19,7 +19,8 @@
         "paths": {
             "@simbad-cli-api/*": ["libs/simbad-cli-api/src/*"],
             "@simbad-host-api/*": ["libs/simbad-host-api/src/*"],
-            "@simbad-client/*": ["projects/simbad-client/src/*"]
+            "@simbad-client/*": ["projects/simbad-client/src/*"],
+            "@simbad-simulation/*": ["libs/simbad-simulation/src/*"]
         }
     },
     "angularCompilerOptions": {

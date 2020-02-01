@@ -19,6 +19,9 @@
         },
         "simbad-dev-server": {
             "tags": ["simbad-dev-server"]
+        },
+        "simbad-simulation": {
+            "tags": ["simbad-simulation"]
         }
     }
 }

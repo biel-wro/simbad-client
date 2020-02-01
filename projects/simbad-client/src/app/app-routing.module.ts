@@ -21,7 +21,7 @@ const routes: Routes = [
     },
     {
         path: 'examples',
-        loadChildren: './features/examples/examples.module#ExamplesModule'
+        loadChildren: './modules/simbad-simulation-lazy/simbad-simulation-lazy.module#SimbadSimulationLazyModule'
     },
     {
         path: '**',
