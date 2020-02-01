@@ -15,8 +15,8 @@ describe('ImagePreviewDialogComponent', () => {
             declarations: [ImagePreviewDialogComponent],
             providers: [
                 { provide: MatDialogRef, useValue: {} },
-                { provide: MAT_DIALOG_DATA, useValue: {}},
-                provideMockStore({ initialState: {} }),
+                { provide: MAT_DIALOG_DATA, useValue: {} },
+                provideMockStore({ initialState: {} })
             ]
         }).compileComponents();
     }));

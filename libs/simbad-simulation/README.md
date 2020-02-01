@@ -1,6 +1,6 @@
 # simbad-simulation
 
-This library was generated with [Nx](https://nx.dev).
+This lib contains code related to generating configuration file and monitoring the simulation process
 
 ## Running unit tests
 

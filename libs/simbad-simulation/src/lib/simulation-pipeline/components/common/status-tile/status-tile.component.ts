@@ -11,10 +11,7 @@ export class StatusTileComponent implements OnInit {
     @Input() faIcon = '';
     @Input() rotate = false;
 
-    constructor() {
-    }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 }

@@ -29,38 +29,36 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
     stopTimer$: Subject<void> = new Subject<void>();
     ngUnsubscribe$: Subject<void> = new Subject();
 
-
-    constructor(private store: Store<{}>) {
-    }
+    constructor(private store: Store<{}>) {}
 
     ngOnInit() {
         this.runtimeInfo$ = this.store.pipe(
             select(analyzerStepState),
             filter((status: SimulationStepInfo) => !!status),
-            map((status) => status.analyzerRuntimeInfo)
+            map(status => status.analyzerRuntimeInfo)
         );
 
-        this.store.pipe(
-            takeUntil(this.ngUnsubscribe$),
-            select(analyzerStepState),
-            filter((status: SimulationStepInfo) => !!status),
-            map((status) => !!status.finishedUtc)
-        ).subscribe((finished: boolean) => {
-            if (finished) this.stopTimer$.next();
-        });
+        this.store
+            .pipe(
+                takeUntil(this.ngUnsubscribe$),
+                select(analyzerStepState),
+                filter((status: SimulationStepInfo) => !!status),
+                map(status => !!status.finishedUtc)
+            )
+            .subscribe((finished: boolean) => {
+                if (finished) this.stopTimer$.next();
+            });
 
         this.taskContext$ = this.store.pipe(
             select(analyzerStepState),
-            filter((state) => !!state),
-            map((state) => this.buildTaskContextFromAnalyzerState(state))
+            filter(state => !!state),
+            map(state => this.buildTaskContextFromAnalyzerState(state))
         );
 
-        this.timer$ = timer(0, 1000).pipe(
-            takeUntil(this.stopTimer$)
-        );
+        this.timer$ = timer(0, 1000).pipe(takeUntil(this.stopTimer$));
 
         this.elapsedTime$ = combineLatest([
-            this.store.select(analyzerStepStartTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(analyzerStepStartTimestamp).pipe(filter(time => !!time)),
             this.store.select(analyzerStepEndTimestamp),
             this.timer$
         ]).pipe(
@@ -70,7 +68,6 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
         );
 
         this.artifacts$ = this.store.select(analyzerStepArtifacts);
-
     }
 
     buildTaskContextFromAnalyzerState(state: SimulationStepInfo): ListElement[] {
@@ -91,5 +88,4 @@ export class AnalyzerStepComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.ngUnsubscribe$.next();
     }
-
 }

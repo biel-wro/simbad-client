@@ -18,7 +18,6 @@ import { MatDialogModule, MatSnackBarModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpErrorResponse } from '@angular/common/http';
 
-
 describe('ArtifactEffects', () => {
     let actions$: Observable<any>;
     let effects: ArtifactsEffects;
@@ -29,12 +28,7 @@ describe('ArtifactEffects', () => {
 
     beforeEach(async () => {
         TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule,
-                MatSnackBarModule,
-                NoopAnimationsModule,
-                MatDialogModule
-            ],
+            imports: [HttpClientTestingModule, MatSnackBarModule, NoopAnimationsModule, MatDialogModule],
             providers: [
                 ArtifactsEffects,
                 StatusService,
@@ -83,10 +77,7 @@ describe('ArtifactEffects', () => {
                 });
 
                 // then
-                expectObservable(effects.downloadArtifact$).toBe(
-                    'a',
-                    { a: undefined }
-                );
+                expectObservable(effects.downloadArtifact$).toBe('a', { a: undefined });
                 flush();
                 expect(notificationService.info).toHaveBeenCalledWith('123 download started');
                 expect(notificationService.success).toHaveBeenCalledWith('123 download finished');
@@ -106,10 +97,7 @@ describe('ArtifactEffects', () => {
                 });
 
                 // then
-                expectObservable(effects.downloadArtifact$).toBe(
-                    'a',
-                    { a: error }
-                );
+                expectObservable(effects.downloadArtifact$).toBe('a', { a: error });
                 flush();
                 expect(notificationService.error).toHaveBeenCalledWith('Failed to download 123');
             });
@@ -146,10 +134,7 @@ describe('ArtifactEffects', () => {
                 });
 
                 // then
-                expectObservable(effects.openArtifact$).toBe(
-                    'a',
-                    { a: error }
-                );
+                expectObservable(effects.openArtifact$).toBe('a', { a: error });
                 flush();
                 expect(notificationService.error).toHaveBeenCalledWith('Failed to open /some/path');
             });

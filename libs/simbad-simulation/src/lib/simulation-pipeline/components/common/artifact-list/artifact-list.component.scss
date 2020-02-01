@@ -1,7 +1,6 @@
 @mixin mat-table-columns($columns) {
-    .mat-column-{
+    .mat-column- {
         @each $colName, $props in $columns {
-
             $width: map-get($props, 'width');
 
             &#{$colName} {
@@ -16,11 +15,19 @@
     }
 }
 
-@include mat-table-columns((
-    name: (width: 14rem),
-    fileType: (width: 4rem),
-    actions: (width: 4rem),
-));
+@include mat-table-columns(
+    (
+        name: (
+            width: 14rem
+        ),
+        fileType: (
+            width: 4rem
+        ),
+        actions: (
+            width: 4rem
+        )
+    )
+);
 
 .wrapper {
     width: 100%;
@@ -38,7 +45,7 @@ table {
     overflow: auto;
 }
 
-@media screen and ( max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .table-container {
         flex-direction: column;
         min-width: unset;
@@ -54,16 +61,19 @@ table {
     }
 }
 
-th, td {
+th,
+td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-th.mat-header-cell:first-of-type, td.mat-cell:first-of-type {
-  padding-left: 0;
+th.mat-header-cell:first-of-type,
+td.mat-cell:first-of-type {
+    padding-left: 0;
 }
 
-th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
-  padding-right: 0;
+th.mat-header-cell:last-of-type,
+td.mat-cell:last-of-type {
+    padding-right: 0;
 }

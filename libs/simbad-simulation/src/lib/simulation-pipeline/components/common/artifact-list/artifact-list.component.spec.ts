@@ -149,5 +149,4 @@ describe('ArtifactListComponent', () => {
             expect(store.dispatch).toBeCalledWith(action);
         });
     });
-
 });

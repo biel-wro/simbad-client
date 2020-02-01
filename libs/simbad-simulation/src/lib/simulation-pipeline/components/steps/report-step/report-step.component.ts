@@ -33,53 +33,48 @@ export class ReportStepComponent implements OnInit, OnDestroy {
     stopTimer$: Subject<void> = new Subject<void>();
     ngUnsubscribe$: Subject<void> = new Subject();
 
-
-    constructor(
-        private store: Store<{}>
-    ) {
-    }
+    constructor(private store: Store<{}>) {}
 
     ngOnInit() {
         this.runtimeInfo$ = this.store.pipe(
             select(reportStepState),
             filter((status: SimulationStepInfo) => !!status),
-            map((status) => status.analyzerRuntimeInfo)
+            map(status => status.analyzerRuntimeInfo)
         );
 
-        this.store.pipe(
-            takeUntil(this.ngUnsubscribe$),
-            select(reportStepState),
-            filter((status: SimulationStepInfo) => !!status),
-            map((status) => !!status.finishedUtc)
-        ).subscribe((finished: boolean) => {
-            if (finished) this.stopTimer$.next();
-        });
+        this.store
+            .pipe(
+                takeUntil(this.ngUnsubscribe$),
+                select(reportStepState),
+                filter((status: SimulationStepInfo) => !!status),
+                map(status => !!status.finishedUtc)
+            )
+            .subscribe((finished: boolean) => {
+                if (finished) this.stopTimer$.next();
+            });
 
         this.taskContext$ = this.store.pipe(
             select(reportStepState),
-            filter((state) => !!state),
-            map((state) => this.buildTaskContextFromAnalyzerState(state))
+            filter(state => !!state),
+            map(state => this.buildTaskContextFromAnalyzerState(state))
         );
 
-        this.timer$ = timer(0, 1000).pipe(
-            takeUntil(this.stopTimer$)
-        );
+        this.timer$ = timer(0, 1000).pipe(takeUntil(this.stopTimer$));
 
         this.simulationId$ = this.store.pipe(
             select(reportStepState),
-            filter((state) => !!state),
-            map((state) => state.simulationId)
+            filter(state => !!state),
+            map(state => state.simulationId)
         );
 
         this.isFinished$ = this.store.pipe(
             select(reportStepState),
             filter((status: SimulationStepInfo) => !!status),
-            map((status) => !!status.finishedUtc)
+            map(status => !!status.finishedUtc)
         );
 
-
         this.elapsedTime$ = combineLatest([
-            this.store.select(reportStepStartTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(reportStepStartTimestamp).pipe(filter(time => !!time)),
             this.store.select(reportStepEndTimestamp),
             this.timer$
         ]).pipe(
@@ -92,17 +87,14 @@ export class ReportStepComponent implements OnInit, OnDestroy {
 
         this.simulationReport$ = this.store.pipe(
             select(reportStepState),
-            filter((state) => !!state),
-            map((state) => state.artifacts),
-            map((artifacts) => artifacts.find((artifact) => artifact.fileType === 'PDF'))
+            filter(state => !!state),
+            map(state => state.artifacts),
+            map(artifacts => artifacts.find(artifact => artifact.fileType === 'PDF'))
         );
-
     }
 
     buildTaskContextFromAnalyzerState(state: SimulationStepInfo): ListElement[] {
-        return [
-            { key: 'Status', value: state.status }
-        ];
+        return [{ key: 'Status', value: state.status }];
     }
 
     goToModelViewer(simulationId: number): void {
@@ -116,7 +108,5 @@ export class ReportStepComponent implements OnInit, OnDestroy {
         this.store.dispatch(downloadArtifact({ name, id }));
     }
 
-    ngOnDestroy() {
-    }
-
+    ngOnDestroy() {}
 }

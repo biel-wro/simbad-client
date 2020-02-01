@@ -36,8 +36,7 @@ export class FormComponent implements OnInit, OnDestroy {
         private notificationService: NotificationService,
         private ods: ObjectsDefinitionsService,
         private fs: FormsService
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.tree$ = this.store.pipe(

@@ -49,8 +49,7 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
         private dialog: MatDialog,
         private fs: FormsService,
         private store: Store<State>
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.configurationJsonHref$ = this.store.pipe(
@@ -81,16 +80,15 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
 
         this.buttonModel$ = this.store.pipe(
             select(selectRootObjectClassNames),
-            map((names) => {
+            map(names => {
                 const disabled = !names || !names.length;
                 const tooltip = disabled
                     ? 'simbad.configuration.forms.tooltip.redirectAndStartDisabled'
                     : 'simbad.configuration.forms.tooltip.redirectAndStart';
                 return { disabled, tooltip };
-            }),
+            })
         );
     }
-
 
     ngOnDestroy() {
         this.nameChanges.unsubscribe();
@@ -121,27 +119,26 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
             };
 
             if (inputNode.files[0]) {
-                this.store.dispatch(updateConfigurationName({configurationName: inputNode.files[0].name}));
+                this.store.dispatch(updateConfigurationName({ configurationName: inputNode.files[0].name }));
                 reader.readAsText(inputNode.files[0]);
             }
         }
     }
 
     private subscribeOnStoreChanges(): void {
-        this.storeChanges = this.store.pipe(
-            select(selectConfigurationName)
-        ).subscribe((name: string) => this.configurationNameControl.setValue(name));
+        this.storeChanges = this.store
+            .pipe(select(selectConfigurationName))
+            .subscribe((name: string) => this.configurationNameControl.setValue(name));
     }
 
     private subscribeOnNameChanges(): void {
-        this.nameChanges = this.configurationNameControl.valueChanges.pipe(
-            debounceTime(500)
-        ).subscribe((configurationName: string) => {
-            this.store.dispatch(updateConfigurationName({ configurationName }));
-        });
+        this.nameChanges = this.configurationNameControl.valueChanges
+            .pipe(debounceTime(500))
+            .subscribe((configurationName: string) => {
+                this.store.dispatch(updateConfigurationName({ configurationName }));
+            });
     }
     public getConfigurationFileName(): string {
         return this.configurationNameControl.value + '.json';
     }
-
 }

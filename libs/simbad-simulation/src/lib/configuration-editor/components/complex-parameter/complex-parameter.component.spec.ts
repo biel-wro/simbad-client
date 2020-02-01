@@ -15,18 +15,14 @@ describe('ComplexParameterComponent', () => {
 
     beforeEach(async(() => {
         return TestBed.configureTestingModule({
-            imports: [
-                NoopAnimationsModule,
-                TranslateModule.forRoot(),
-                SharedModule
-            ],
+            imports: [NoopAnimationsModule, TranslateModule.forRoot(), SharedModule],
             declarations: [ComplexParameterComponent, SimpleParameterComponent],
             providers: [
                 FormBuilder,
                 {
-                    provide: NotificationService, useValue: {
-                        info: () => {
-                        }
+                    provide: NotificationService,
+                    useValue: {
+                        info: () => {}
                     }
                 },
                 provideMockStore({

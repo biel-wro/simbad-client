@@ -11,7 +11,6 @@ import {
 export const FEATURE_NAME = 'simulation';
 export const selectSimulationState = createFeatureSelector<State, SimulationState>(FEATURE_NAME);
 
-
 export const selectSimulationPipelineState = createSelector(
     selectSimulationState,
     (state: SimulationState) => state.simulation
@@ -23,7 +22,7 @@ export const reducers: ActionReducerMap<SimulationState> = {
 
 export interface SimulationState {
     form: ConfigurationFormState;
-    simulation: SimulationPipelineState
+    simulation: SimulationPipelineState;
 }
 
 export interface State extends AppState {

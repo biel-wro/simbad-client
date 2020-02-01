@@ -3,7 +3,6 @@ import { StartSimulationRequest } from '@simbad-cli-api/gen/models/start-simulat
 import { SimulationInfo } from '@simbad-cli-api/gen/models/simulation-info';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 
-
 export enum SimulationPipelineActions {
     CheckSimulationStatus = '[SimulationPipeline] Check simulation status',
     PollForSimulationStatusChange = '[SimulationPipeline] Poll for simulation status change',
@@ -26,95 +25,81 @@ export enum SimulationPipelineActions {
     SimulationStepFailure = '[SimulationPipeline] Simulation step failure'
 }
 
-
 export const checkForRunningSimulation = createAction(SimulationPipelineActions.CheckSimulationStatus);
 export const pollForSimulationStatusChange = createAction(
     SimulationPipelineActions.PollForSimulationStatusChange,
-    props<{simulationId: number}>()
+    props<{ simulationId: number }>()
 );
 
 export const startSimulation = createAction(
     SimulationPipelineActions.StartSimulation,
-    props<{request: StartSimulationRequest}>()
+    props<{ request: StartSimulationRequest }>()
 );
 
-export const redirectAndStart = createAction(
-    SimulationPipelineActions.RedirectAndStart,
-);
-
+export const redirectAndStart = createAction(SimulationPipelineActions.RedirectAndStart);
 
 export const getSimulationInfo = createAction(
     SimulationPipelineActions.GetSimulationInfo,
-    props<{simulationId: number}>()
+    props<{ simulationId: number }>()
 );
 
-export const updateSimulationInfo  = createAction(
+export const updateSimulationInfo = createAction(
     SimulationPipelineActions.UpdateSimulationInfo,
-    props<{simulation: SimulationInfo}>()
+    props<{ simulation: SimulationInfo }>()
 );
 
-export const loadLatestSimulation = createAction(
-    SimulationPipelineActions.LoadLatestSimulation
-);
-
+export const loadLatestSimulation = createAction(SimulationPipelineActions.LoadLatestSimulation);
 
 export const setLatestSimulation = createAction(
     SimulationPipelineActions.SetLatestSimulation,
-    props<{simulation: SimulationInfo}>()
+    props<{ simulation: SimulationInfo }>()
 );
 
-
-export const getArtifactInfo = createAction(
-    SimulationPipelineActions.GetArtifactInfo,
-    props<{artifactId: number}>()
-);
+export const getArtifactInfo = createAction(SimulationPipelineActions.GetArtifactInfo, props<{ artifactId: number }>());
 
 export const getSimulationStepInfo = createAction(
     SimulationPipelineActions.GetSimulationStepInfo,
-    props<{stepId: number}>()
+    props<{ stepId: number }>()
 );
 
 export const pollForSimulationStepInfo = createAction(
     SimulationPipelineActions.PollForSimulationStepInfoChange,
-    props<{stepId: number}>()
+    props<{ stepId: number }>()
 );
 
-export const simulationError = createAction(
-    SimulationPipelineActions.SimulationError,
-    props<{ error?: any }>()
-);
+export const simulationError = createAction(SimulationPipelineActions.SimulationError, props<{ error?: any }>());
 
 export const updateStepInfo = createAction(
     SimulationPipelineActions.UpdateStepInfo,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );
 
 export const updateCliStepInfo = createAction(
     SimulationPipelineActions.UpdateCliStepInfo,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );
 
 export const updateAnalyzerInfo = createAction(
     SimulationPipelineActions.UpdateAnalyzerStepInfo,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );
 
 export const cliStepFinished = createAction(
     SimulationPipelineActions.CliStepFinished,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );
 
 export const analyzerStepFinished = createAction(
     SimulationPipelineActions.AnalyzerStepFinished,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );
 
 export const reportStepFinished = createAction(
     SimulationPipelineActions.ReportStepFinished,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );
 
 export const simulationStepFailed = createAction(
     SimulationPipelineActions.SimulationStepFailure,
-    props<{step: SimulationStepInfo}>()
+    props<{ step: SimulationStepInfo }>()
 );

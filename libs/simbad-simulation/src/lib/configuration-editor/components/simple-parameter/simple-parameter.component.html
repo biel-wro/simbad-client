@@ -2,11 +2,13 @@
     <div class="row">
         <div class="col-5">
             <mat-form-field class="example-full-width" [formGroup]="form">
-                <input
-                    matInput
-                    placeholder="{{ getDisplayName(node.definition.className) }}"
-                    [formControlName]="node.path"
-                />
+                <label>
+                    <input
+                        matInput
+                        placeholder="{{ getDisplayName(node.definition.className) }}"
+                        [formControlName]="node.path"
+                    />
+                </label>
                 <div class="errors-wrapper" *ngIf="control?.errors">
                     <mat-error *ngIf="control.errors.required">
                         Parameter is required

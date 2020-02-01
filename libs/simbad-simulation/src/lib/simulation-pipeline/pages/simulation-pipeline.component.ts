@@ -6,10 +6,13 @@ import { selectConfiguration } from '../../configuration-editor/store/form.selec
 import { distinctUntilChanged, filter, map, startWith, tap } from 'rxjs/operators';
 import { FormsService } from '../../configuration-editor/services/forms.service';
 import {
-    analyzerStepState, analyzerStepStatus,
-    cliStepState, cliStepStatus,
+    analyzerStepState,
+    analyzerStepStatus,
+    cliStepState,
+    cliStepStatus,
     isSimulationOngoing,
-    reportStepState, reportStepStatus
+    reportStepState,
+    reportStepStatus
 } from '@simbad-simulation/lib/simulation-pipeline/core/store/simulation/simulation-pipeline.selectors';
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 import {
@@ -53,8 +56,7 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
     isSimulationOngoing$: Observable<boolean>;
     private ngUnsubscribe: Subject<void> = new Subject<void>();
 
-    constructor(private store: Store<State>, private fs: FormsService) {
-    }
+    constructor(private store: Store<State>, private fs: FormsService) {}
 
     ngOnInit() {
         this.configuration$ = this.store.pipe(
@@ -70,10 +72,7 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
         this.isSimulationOngoing$ = this.store.select(isSimulationOngoing);
 
-        this.shouldDisableStartButton$ = combineLatest([
-            this.configuration$,
-            this.isSimulationOngoing$
-        ]).pipe(
+        this.shouldDisableStartButton$ = combineLatest([this.configuration$, this.isSimulationOngoing$]).pipe(
             map(([conf, ongoing]) => {
                 return isEmpty(conf.value) || ongoing;
             })
@@ -81,24 +80,24 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
         this.cliStepInfo$ = this.store.pipe(
             select(cliStepState),
-            filter((status) => !!status)
+            filter(status => !!status)
         );
 
         this.analyzerStepInfo$ = this.store.pipe(
             select(analyzerStepState),
-            filter((status) => !!status)
+            filter(status => !!status)
         );
 
         this.isAnalyzerStepCompleted$ = this.store.pipe(
             select(analyzerStepState),
-            filter((info) => !!info),
-            map((value) => !!value.finishedUtc)
+            filter(info => !!info),
+            map(value => !!value.finishedUtc)
         );
 
         this.isReportStepCompleted$ = this.store.pipe(
             select(reportStepState),
-            filter((info) => !!info),
-            map((value) => !!value.finishedUtc)
+            filter(info => !!info),
+            map(value => !!value.finishedUtc)
         );
 
         this.cliStepStatus$ = this.store.select(cliStepStatus);
@@ -107,17 +106,13 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
 
         this.isCliStepCompleted$ = this.store.pipe(
             select(cliStepState),
-            filter((info) => !!info),
-            map((value) => !!value.finishedUtc)
+            filter(info => !!info),
+            map(value => !!value.finishedUtc)
         );
 
-        this.iconModels$ = combineLatest([
-            this.cliStepStatus$,
-            this.analyzerStepStatus$,
-            this.reportStepStatus$
-        ]).pipe(
+        this.iconModels$ = combineLatest([this.cliStepStatus$, this.analyzerStepStatus$, this.reportStepStatus$]).pipe(
             startWith(['PENDING', 'PENDING', 'PENDING']),
-            map((statuses) => statuses.map(this.buildIconForStep))
+            map(statuses => statuses.map(this.buildIconForStep))
         );
 
         this.store.dispatch(checkForRunningSimulation());
@@ -136,11 +131,13 @@ export class SimulationPipelineComponent implements OnInit, OnDestroy {
     }
 
     buildIconForStep(status: string): IconModel {
-        return {
-            ['SUCCESS']: { icon: 'check' },
-            ['ONGOING']: { icon: 'spinner', spin: true, pulse: true },
-            ['PENDING']: { icon: 'ellipsis-h' },
-            ['FAILURE']: { icon: 'times' },
-        } [status] || { icon: 'ellipsis-h' };
+        return (
+            {
+                ['SUCCESS']: { icon: 'check' },
+                ['ONGOING']: { icon: 'spinner', spin: true, pulse: true },
+                ['PENDING']: { icon: 'ellipsis-h' },
+                ['FAILURE']: { icon: 'times' }
+            }[status] || { icon: 'ellipsis-h' }
+        );
     }
 }

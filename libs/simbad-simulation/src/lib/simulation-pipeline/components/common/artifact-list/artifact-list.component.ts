@@ -22,8 +22,7 @@ export class ArtifactListComponent implements OnChanges, OnInit {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatTable) table: MatTable<any>;
 
-    constructor(private store: Store<{}>) {
-    }
+    constructor(private store: Store<{}>) {}
 
     ngOnInit(): void {
         this.dataSource.sort = this.sort;

@@ -31,11 +31,11 @@
     ></simbad-simple-parameter>
     <ng-container *ngIf="!isInitialConfiguration()">
         <simbad-complex-parameter
-                *ngFor="let childNode of node.complexChildren"
-                [form]="form"
-                [level]="level + 1"
-                [node]="childNode"
-                [parentPath]="node.path"
+            *ngFor="let childNode of node.complexChildren"
+            [form]="form"
+            [level]="level + 1"
+            [node]="childNode"
+            [parentPath]="node.path"
         ></simbad-complex-parameter>
     </ng-container>
     <simbad-complex-parameter

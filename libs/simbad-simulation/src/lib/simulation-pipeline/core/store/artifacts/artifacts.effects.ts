@@ -13,70 +13,75 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class ArtifactsEffects {
+    openArtifact$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(openArtifact),
+                switchMap(action => {
+                    return this.hostService.openLocation({ body: { path: action.path } }).pipe(
+                        catchError(err => {
+                            this.notificationService.error(`Failed to open ${action.path}`);
+                            return of(err);
+                        })
+                    );
+                })
+            );
+        },
+        { dispatch: false, resubscribeOnError: true }
+    );
 
-    openArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(openArtifact),
-            switchMap((action) => {
-                return this.hostService.openLocation({ body: { path: action.path } }).pipe(
-                    catchError(err => {
-                        this.notificationService.error(`Failed to open ${action.path}`);
-                        return of(err);
-                    })
-                );
-            })
-        );
-    }, { dispatch: false, resubscribeOnError: true });
+    downloadArtifact$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(downloadArtifact),
+                tap(action => {
+                    this.notificationService.info(`${action.name} download started`);
+                }),
+                switchMap(action => {
+                    return this.statusService.downloadArtifact({ id: action.id }).pipe(
+                        map(response => {
+                            const downloadURL = window.URL.createObjectURL(response);
+                            const link = document.createElement('a');
+                            link.href = downloadURL;
+                            link.download = action.name;
+                            link.click();
+                            this.notificationService.success(`${action.name} download finished`);
+                        }),
+                        catchError(err => {
+                            this.notificationService.error(`Failed to download ${action.name}`);
+                            return of(err);
+                        })
+                    );
+                })
+            );
+        },
+        { dispatch: false, resubscribeOnError: true }
+    );
 
-    downloadArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(downloadArtifact),
-            tap((action) => {
-                this.notificationService.info(`${action.name} download started`);
-            }),
-            switchMap((action) => {
-                return this.statusService.downloadArtifact({ id: action.id }).pipe(
-                    map((response) => {
-                        const downloadURL = window.URL.createObjectURL(response);
-                        const link = document.createElement('a');
-                        link.href = downloadURL;
-                        link.download = action.name;
-                        link.click();
-                        this.notificationService.success(`${action.name} download finished`);
-                    }),
-                    catchError(err => {
-                        this.notificationService.error(`Failed to download ${action.name}`);
-                        return of(err);
-                    })
-                );
-            })
-        );
-    }, { dispatch: false, resubscribeOnError: true });
-
-    previewArtifact$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(previewArtifact),
-            switchMap(({ id, name }) => {
-                return this.statusService.downloadArtifact({ id }).pipe(
-                    map((response) => {
-                        const objectURL = URL.createObjectURL(response);
-                        const image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-                        this.dialog.open(
-                            ImagePreviewDialogComponent,
-                            {
+    previewArtifact$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(previewArtifact),
+                switchMap(({ id, name }) => {
+                    return this.statusService.downloadArtifact({ id }).pipe(
+                        map(response => {
+                            const objectURL = URL.createObjectURL(response);
+                            const image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+                            this.dialog.open(ImagePreviewDialogComponent, {
                                 data: { image, name }
-                            }
-                        );
-                    }),
-                    catchError((err) => {
-                        console.log(err);
-                        this.notificationService.error(`Failed to preview ${name}`);
-                        return of(err);
-                    })
-                );
-            })
-        );
-    }, { dispatch: false, resubscribeOnError: true });
+                            });
+                        }),
+                        catchError(err => {
+                            console.log(err);
+                            this.notificationService.error(`Failed to preview ${name}`);
+                            return of(err);
+                        })
+                    );
+                })
+            );
+        },
+        { dispatch: false, resubscribeOnError: true }
+    );
 
     constructor(
         private actions$: Actions,
@@ -86,7 +91,5 @@ export class ArtifactsEffects {
         private notificationService: NotificationService,
         private readonly dialog: MatDialog,
         private readonly sanitizer: DomSanitizer
-    ) {
-    }
-
+    ) {}
 }

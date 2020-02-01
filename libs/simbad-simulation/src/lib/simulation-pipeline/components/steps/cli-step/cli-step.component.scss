@@ -3,7 +3,7 @@
     height: 100%;
 }
 
-@media screen and ( max-width: 1000px) {
+@media screen and (max-width: 1000px) {
     .step-container {
         flex-direction: column;
     }
@@ -22,7 +22,6 @@
 .progress {
     height: 10px;
 }
-
 
 .performance-monitor {
     flex: 1 1 0;

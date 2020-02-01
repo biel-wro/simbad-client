@@ -10,7 +10,7 @@ describe('IsPreviewEnabledPipe', () => {
     it('should return true when artifact file type is PNG', () => {
         // given
         const pipe = new IsPreviewEnabledPipe();
-        const artifact: ArtifactInfo = {fileType: 'PNG'} as ArtifactInfo;
+        const artifact: ArtifactInfo = { fileType: 'PNG' } as ArtifactInfo;
 
         // when
         const actual = pipe.transform(artifact);
@@ -22,7 +22,7 @@ describe('IsPreviewEnabledPipe', () => {
     it('should return true when artifact file type is not PNG', () => {
         // given
         const pipe = new IsPreviewEnabledPipe();
-        const artifact: ArtifactInfo = {fileType: 'PDF'} as ArtifactInfo;
+        const artifact: ArtifactInfo = { fileType: 'PDF' } as ArtifactInfo;
 
         // when
         const actual = pipe.transform(artifact);

@@ -27,16 +27,15 @@ export class SimpleParameterComponent implements OnInit, AfterViewInit, OnDestro
     formControlValueUpdate: Subject<any> = new Subject();
     ngUnsubscribe: Subject<void> = new Subject();
 
-    constructor( private store: Store<{}>, private notificationService: NotificationService) {}
+    constructor(private store: Store<{}>, private notificationService: NotificationService) {}
 
     ngOnInit() {
         this.node.path = this.parentPath + `/${this.node.definition.className}`;
 
-
         this.formControlValueInStore = this.store.pipe(
             takeUntil(this.ngUnsubscribe),
             select(selectNodeValue(this.node.path)),
-            distinctUntilChanged(),
+            distinctUntilChanged()
         );
     }
 
@@ -46,22 +45,28 @@ export class SimpleParameterComponent implements OnInit, AfterViewInit, OnDestro
 
     ngAfterViewInit(): void {
         this.control = this.form.get(this.node.path) as FormControl;
-        this.control.valueChanges.pipe(skip(1), takeUntil(this.ngUnsubscribe)).subscribe(() => {
-            this.notificationService.info(`Updated parameter ${this.node.definition.className}`, 2000);
-        });
-        this.formControlValueInStore.pipe(
-            takeUntil(this.ngUnsubscribe),
-            take(1)
-        ).subscribe((value) => {
-            if (value) {
-               this.control.patchValue(value);
-            }
-        });
+        this.control.valueChanges
+            .pipe(
+                skip(1),
+                takeUntil(this.ngUnsubscribe)
+            )
+            .subscribe(() => {
+                this.notificationService.info(`Updated parameter ${this.node.definition.className}`, 2000);
+            });
+        this.formControlValueInStore
+            .pipe(
+                takeUntil(this.ngUnsubscribe),
+                take(1)
+            )
+            .subscribe(value => {
+                if (value) {
+                    this.control.patchValue(value);
+                }
+            });
     }
 
     ngOnDestroy(): void {
         this.ngUnsubscribe.next();
         this.ngUnsubscribe.complete();
     }
-
 }

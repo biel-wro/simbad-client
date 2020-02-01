@@ -6,6 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { provideMockStore } from '@ngrx/store/testing';
+import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 
 describe('SimpleParameterComponent', () => {
     let component: SimpleParameterComponent;
@@ -19,7 +20,13 @@ describe('SimpleParameterComponent', () => {
                 FormBuilder,
                 provideMockStore({
                     initialState: {}
-                })
+                }),
+                {
+                    provide: NotificationService,
+                    useValue: {
+                        info: () => {}
+                    }
+                }
             ]
         }).compileComponents();
     }));

@@ -6,8 +6,8 @@ import { ValidatorsService } from './validators.service';
 import { ObjectUtilsService } from '@simbad-simulation/lib/configuration-editor/services/object-utils.service';
 import { cloneDeep } from 'lodash';
 
-export type ConfigurationObject = {[key: string]: any};
-export type FormValue = {[key: string]: any};
+export type ConfigurationObject = { [key: string]: any };
+export type FormValue = { [key: string]: any };
 
 @Injectable({
     providedIn: 'root'
@@ -18,8 +18,7 @@ export class FormsService {
         private ods: ObjectsDefinitionsService,
         private vs: ValidatorsService,
         private objectUtils: ObjectUtilsService
-    ) {
-    }
+    ) {}
 
     /**
      * Adds all form controls necessary to edit configuration parameters of node and its child
@@ -54,8 +53,8 @@ export class FormsService {
      */
     public removeNodeControlsFromForm(form: FormGroup, node: ParameterTreeNode): FormGroup {
         Object.keys(form.controls)
-            .filter((controlName) => controlName.startsWith(node.path))
-            .forEach((controlNameToRemove) => form.removeControl(controlNameToRemove));
+            .filter(controlName => controlName.startsWith(node.path))
+            .forEach(controlNameToRemove => form.removeControl(controlNameToRemove));
         return form;
     }
 

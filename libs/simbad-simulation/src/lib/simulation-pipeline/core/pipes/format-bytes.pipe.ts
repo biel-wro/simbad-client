@@ -5,9 +5,7 @@ import { formatBytes } from '../functions/size-format-utils';
     name: 'formatBytes'
 })
 export class FormatBytesPipe implements PipeTransform {
-
     transform(value: any, args?: any): any {
         return formatBytes(value);
     }
-
 }

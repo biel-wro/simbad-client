@@ -6,7 +6,8 @@
                 [disabled]="!data"
                 matInput
                 autocomplete="off"
-                placeholder="Artifacts">
+                placeholder="Artifacts"
+            />
         </mat-form-field>
     </div>
     <ng-container>
@@ -15,21 +16,21 @@
                 <!-- Score Column -->
                 <ng-container matColumnDef="name">
                     <th *matHeaderCellDef mat-header-cell mat-sort-header>Name</th>
-                    <td *matCellDef="let artifact" mat-cell> {{artifact.name}} </td>
+                    <td *matCellDef="let artifact" mat-cell>{{ artifact.name }}</td>
                 </ng-container>
 
                 <!-- Title Column -->
                 <ng-container cdkColumnDef="fileType" matColumnDef="fileType">
                     <th *matHeaderCellDef mat-header-cell mat-sort-header>File type</th>
                     <td *matCellDef="let artifact" mat-cell>
-                        {{artifact.fileType}}
+                        {{ artifact.fileType }}
                     </td>
                 </ng-container>
 
                 <!-- Size Column -->
                 <ng-container matColumnDef="sizeKb">
                     <th *matHeaderCellDef mat-header-cell mat-sort-header>Size</th>
-                    <td *matCellDef="let artifact" mat-cell> {{artifact.sizeKb | formatBytes}} </td>
+                    <td *matCellDef="let artifact" mat-cell>{{ artifact.sizeKb | formatBytes }}</td>
                 </ng-container>
 
                 <!-- Actions Column -->
@@ -45,7 +46,8 @@
                             fontIcon="fa-download"
                             fontSet="fas"
                             matTooltipPosition="after"
-                            style="font-size: 11px;">
+                            style="font-size: 11px;"
+                        >
                         </simbad-small-input-action>
                         <simbad-small-input-action
                             (action)="preview(artifact)"
@@ -56,17 +58,16 @@
                             faIcon="eye"
                             fontIcon="fa-eye"
                             fontSet="fas"
-                            matTooltipPosition="after">
+                            matTooltipPosition="after"
+                        >
                         </simbad-small-input-action>
                     </td>
                 </ng-container>
 
                 <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
-                <tr *matRowDef="let row; columns: displayedColumns;" class="dense-mat-row"
-                    mat-row></tr>
+                <tr *matRowDef="let row; columns: displayedColumns" class="dense-mat-row" mat-row></tr>
             </table>
         </div>
-        <mat-paginator [pageSizeOptions]="[10, 20, 40]" [pageSize]='10' showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[10, 20, 40]" [pageSize]="10" showFirstLastButtons></mat-paginator>
     </ng-container>
 </div>
-

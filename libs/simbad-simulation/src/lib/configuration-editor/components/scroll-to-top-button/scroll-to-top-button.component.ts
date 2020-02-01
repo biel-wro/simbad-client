@@ -9,32 +9,31 @@ import { DOCUMENT } from '@angular/common';
 export class ScrollToTopButtonComponent implements OnInit {
     windowScrolled: boolean;
 
-    constructor(@Inject(DOCUMENT) private document: Document) {
-    }
+    constructor(@Inject(DOCUMENT) private document: Document) {}
 
     @HostListener('window:scroll', [])
     onWindowScroll() {
         if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
             this.windowScrolled = true;
-        } else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+        } else if (
+            (this.windowScrolled && window.pageYOffset) ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop < 10
+        ) {
             this.windowScrolled = false;
         }
     }
 
     scrollToTop() {
         (function smoothScroll() {
-
             const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
             console.log('scrollingToTop...', currentScroll);
             if (currentScroll > 0) {
                 window.requestAnimationFrame(smoothScroll);
-                window.scrollTo(0, currentScroll - (currentScroll / 8));
+                window.scrollTo(0, currentScroll - currentScroll / 8);
             }
-
         })();
     }
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 }

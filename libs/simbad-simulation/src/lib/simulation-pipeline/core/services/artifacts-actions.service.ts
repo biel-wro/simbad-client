@@ -14,14 +14,10 @@ import { Store } from '@ngrx/store';
     providedIn: 'root'
 })
 export class ArtifactsActionsService {
-
-    constructor(
-        private readonly store: Store<{}>,
-    ) {
-    }
+    constructor(private readonly store: Store<{}>) {}
 
     public artifactsToElementList(artifacts: ArtifactInfo[], actions: ArtifactActionType[]): ListElement[] {
-        return artifacts.map((artifact) => this.artifactToListElement(artifact, actions));
+        return artifacts.map(artifact => this.artifactToListElement(artifact, actions));
     }
 
     private artifactToListElement(artifact: ArtifactInfo, actions: ArtifactActionType[]): ListElement {
@@ -29,19 +25,18 @@ export class ArtifactsActionsService {
 
         const element: ListElement = {
             key: name,
-            value: `Size ${formatBytes(artifact.sizeKb)}`,
+            value: `Size ${formatBytes(artifact.sizeKb)}`
         };
 
         const callbacks = {
             download: () => this.store.dispatch(downloadArtifact({ id, name })),
-            preview: () => this.store.dispatch(previewArtifact({ id, name })),
+            preview: () => this.store.dispatch(previewArtifact({ id, name }))
         };
 
-        actions.forEach((action) => {
+        actions.forEach(action => {
             element[action] = callbacks[action];
         });
 
         return element;
     }
 }
-

@@ -63,14 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
             },
             isolate: true
         }),
-        EffectsModule.forFeature(
-            [
-                SimulationEffects,
-                FormEffects,
-                SimulationPipelineEffects,
-                ArtifactsEffects
-            ]
-        ),
+        EffectsModule.forFeature([SimulationEffects, FormEffects, SimulationPipelineEffects, ArtifactsEffects]),
         MatDialogModule,
         MatStepperModule,
         MatProgressBarModule,
@@ -106,7 +99,5 @@ export function HttpLoaderFactory(http: HttpClient) {
     entryComponents: [CreateConfigurationDialogComponent, ImagePreviewDialogComponent]
 })
 export class SimbadSimulationModule {
-    constructor() {
-
-    }
+    constructor() {}
 }

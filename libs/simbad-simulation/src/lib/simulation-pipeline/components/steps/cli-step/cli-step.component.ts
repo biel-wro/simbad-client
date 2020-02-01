@@ -4,7 +4,9 @@ import {
     cliStepArtifacts,
     cliStepEndTimestamp,
     cliStepStartTimestamp,
-    cliStepState, reportStepArtifacts, reportStepState
+    cliStepState,
+    reportStepArtifacts,
+    reportStepState
 } from '../../../core/store/simulation/simulation-pipeline.selectors';
 import { filter, map, takeUntil, tap } from 'rxjs/operators';
 import { CliRuntimeInfo } from '@simbad-cli-api/gen/models/cli-runtime-info';
@@ -33,38 +35,36 @@ export class CliStepComponent implements OnInit, OnDestroy {
     stopTimer$: Subject<void> = new Subject<void>();
     ngUnsubscribe$: Subject<void> = new Subject();
 
-    constructor(
-        private readonly store: Store<{}>) {
-    }
+    constructor(private readonly store: Store<{}>) {}
 
     ngOnInit() {
         this.runtimeInfo$ = this.store.pipe(
             select(cliStepState),
             filter((status: SimulationStepInfo) => !!status),
-            map((status) => status.cliRuntimeInfo)
+            map(status => status.cliRuntimeInfo)
         );
 
-        this.store.pipe(
-            takeUntil(this.ngUnsubscribe$),
-            select(cliStepState),
-            filter((status: SimulationStepInfo) => !!status),
-            map((status) => !!status.finishedUtc)
-        ).subscribe((finished: boolean) => {
-            if (finished) this.stopTimer$.next();
-        });
+        this.store
+            .pipe(
+                takeUntil(this.ngUnsubscribe$),
+                select(cliStepState),
+                filter((status: SimulationStepInfo) => !!status),
+                map(status => !!status.finishedUtc)
+            )
+            .subscribe((finished: boolean) => {
+                if (finished) this.stopTimer$.next();
+            });
 
         this.taskContext$ = this.store.pipe(
             select(cliStepState),
-            filter((state) => !!state),
-            map((state) => this.buildTaskContextFromCliState(state))
+            filter(state => !!state),
+            map(state => this.buildTaskContextFromCliState(state))
         );
 
-        this.timer$ = timer(0, 1000).pipe(
-            takeUntil(this.stopTimer$)
-        );
+        this.timer$ = timer(0, 1000).pipe(takeUntil(this.stopTimer$));
 
         this.elapsedTime$ = combineLatest([
-            this.store.select(cliStepStartTimestamp).pipe(filter((time) => !!time)),
+            this.store.select(cliStepStartTimestamp).pipe(filter(time => !!time)),
             this.store.select(cliStepEndTimestamp),
             this.timer$
         ]).pipe(
@@ -74,11 +74,10 @@ export class CliStepComponent implements OnInit, OnDestroy {
         );
 
         this.artifacts$ = this.store.select(cliStepArtifacts);
-
     }
 
     buildTaskContextFromCliState(state: SimulationStepInfo): ListElement[] {
-        const conf = state.artifacts.find((artifact) => artifact.fileType === 'JSON');
+        const conf = state.artifacts.find(artifact => artifact.fileType === 'JSON');
         const { name } = conf;
         return [
             {
@@ -98,5 +97,4 @@ export class CliStepComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.ngUnsubscribe$.next();
     }
-
 }

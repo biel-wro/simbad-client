@@ -28,12 +28,7 @@ export class ComplexParameterComponent implements OnInit {
     chosenOption: any;
     chosenEnumParameter: ParameterTreeNode;
 
-    constructor(
-        private ods: ObjectsDefinitionsService,
-        private fs: FormsService,
-        private store: Store<{}>
-    )  { }
-
+    constructor(private ods: ObjectsDefinitionsService, private fs: FormsService, private store: Store<{}>) {}
 
     ngOnInit() {
         // if (this.node.definition.possibleClasses) {
@@ -44,32 +39,35 @@ export class ComplexParameterComponent implements OnInit {
         //     );
         // }
 
-        if (this.node.definition.className === 'default_attributes' || this.node.definition.className === 'initial_configuration') {
+        if (
+            this.node.definition.className === 'default_attributes' ||
+            this.node.definition.className === 'initial_configuration'
+        ) {
             console.log(`FaultyNode: ${this.node.definition.className}`, this.node, this.parentPath);
-
         }
 
         this.formControlValueInStore = this.store.pipe(
             takeUntil(this.ngUnsubscribe),
             select(selectNodeValue(this.node.path + '/class')),
-            distinctUntilChanged(),
+            distinctUntilChanged()
         );
 
-        this.formControlValueInStore.pipe(
-            takeUntil(this.ngUnsubscribe),
-            take(1)
-        ).subscribe((value) => {
-            if (value) {
-                this.buildExistingEnumOption(value);
-            } else {
-                this.buildDefaultEnumOption();
-            }
-        });
+        this.formControlValueInStore
+            .pipe(
+                takeUntil(this.ngUnsubscribe),
+                take(1)
+            )
+            .subscribe(value => {
+                if (value) {
+                    this.buildExistingEnumOption(value);
+                } else {
+                    this.buildDefaultEnumOption();
+                }
+            });
 
-        this.formControlValueUpdate.pipe(
-            takeUntil(this.ngUnsubscribe)
-        ).subscribe((value) => console.log('Form control value update emit', value));
-
+        this.formControlValueUpdate
+            .pipe(takeUntil(this.ngUnsubscribe))
+            .subscribe(value => console.log('Form control value update emit', value));
     }
 
     getDisplayName(className: string) {
@@ -100,18 +98,11 @@ export class ComplexParameterComponent implements OnInit {
         return this.node.definition.className === 'initial_configuration';
     }
 
-
     buildExistingEnumOption(value: any): void {
         if (this.node.definition.possibleClasses) {
             this.chosenOption = value;
-            this.chosenEnumParameter = this.ods.toParameterTreeNode(
-                this.ods.getByClassName(value),
-                this.node.path
-            );
-            this.fs.addNodeControlsToFormRecursive(
-                this.form,
-                this.chosenEnumParameter
-            );
+            this.chosenEnumParameter = this.ods.toParameterTreeNode(this.ods.getByClassName(value), this.node.path);
+            this.fs.addNodeControlsToFormRecursive(this.form, this.chosenEnumParameter);
         }
     }
 }

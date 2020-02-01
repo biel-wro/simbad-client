@@ -18,5 +18,4 @@ describe('FormatBytesPipe', () => {
         // then
         expect(actual).toBe(expected);
     });
-
 });

@@ -1,7 +1,7 @@
 <div class="toolbar-wrapper">
     <mat-toolbar class="configuration-toolbar">
         <mat-toolbar-row>
-            <span >Name: </span>
+            <span>Name: </span>
             <mat-form-field class="conf-name">
                 <input matInput [formControl]="configurationNameControl" />
             </mat-form-field>
@@ -19,7 +19,11 @@
                 >
                 </simbad-big-input-action>
                 <simbad-upload-configuration-button></simbad-upload-configuration-button>
-                <a *ngIf="(configurationJsonHref$ | async) as json" [href]="json" [download]="getConfigurationFileName()">
+                <a
+                    *ngIf="(configurationJsonHref$ | async) as json"
+                    [href]="json"
+                    [download]="getConfigurationFileName()"
+                >
                     <simbad-big-input-action
                         class="form-action-button btn btn-clear"
                         fontSet="fas"
@@ -28,23 +32,23 @@
                         color="warn"
                         [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
                         matTooltipPosition="after"
-                    >`
+                        >`
                     </simbad-big-input-action>
                 </a>
-                <simbad-big-input-action *ngIf="buttonModel$ | async as model"
-                        class="start-simulation-button"
-                        fontSet="fas"
-                        fontIcon="fa-chevron-circle-right"
-                        faIcon="chevron-circle-right"
-                        color="accent"
-                        (action)="redirectAndStart()"
-                        label="Start Simulation"
-                        [disabled]="model.disabled"
-                        [matTooltip]="model.tooltip | translate"
-                        matTooltipPosition="after"
+                <simbad-big-input-action
+                    *ngIf="(buttonModel$ | async) as model"
+                    class="start-simulation-button"
+                    fontSet="fas"
+                    fontIcon="fa-chevron-circle-right"
+                    faIcon="chevron-circle-right"
+                    color="accent"
+                    (action)="redirectAndStart()"
+                    label="Start Simulation"
+                    [disabled]="model.disabled"
+                    [matTooltip]="model.tooltip | translate"
+                    matTooltipPosition="after"
                 ></simbad-big-input-action>
             </div>
-
         </mat-toolbar-row>
     </mat-toolbar>
 </div>

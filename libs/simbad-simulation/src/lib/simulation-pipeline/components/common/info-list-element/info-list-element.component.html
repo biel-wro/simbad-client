@@ -1,10 +1,10 @@
 <div class="item">
     <div class="section-row-key">
-        <span>{{data.key}}</span>
+        <span>{{ data.key }}</span>
     </div>
     <div class="section-row-value">
         <span>
-            {{data.value}}
+            {{ data.value }}
         </span>
         <div class="spacer"></div>
         <simbad-small-input-action
@@ -17,7 +17,8 @@
             fontIcon="fa-download"
             fontSet="fas"
             matTooltipPosition="after"
-            style="font-size: 11px;">
+            style="font-size: 11px;"
+        >
         </simbad-small-input-action>
         <simbad-small-input-action
             (action)="data.preview()"
@@ -28,7 +29,8 @@
             faIcon="eye"
             fontIcon="fa-eye"
             fontSet="fas"
-            matTooltipPosition="after">
+            matTooltipPosition="after"
+        >
         </simbad-small-input-action>
         <simbad-small-input-action
             (action)="data.show()"
@@ -39,7 +41,8 @@
             faIcon="folder-open"
             fontIcon="fa-folder-open"
             fontSet="fas"
-            matTooltipPosition="after">
+            matTooltipPosition="after"
+        >
         </simbad-small-input-action>
         <simbad-small-input-action
             *ngIf="data.redirect"
@@ -50,7 +53,8 @@
             faIcon="external-link-alt"
             fontIcon="fa-external-link-alt"
             fontSet="fas"
-            matTooltipPosition="after">
+            matTooltipPosition="after"
+        >
         </simbad-small-input-action>
     </div>
 </div>

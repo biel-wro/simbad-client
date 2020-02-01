@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class ObjectUtilsService {
-
-    constructor() {
-    }
+    constructor() {}
 
     public deepAssign(obj: any, prop: string | string[], value: any): void {
         if (typeof prop === 'string') prop = prop.split('/');

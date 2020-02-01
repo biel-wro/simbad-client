@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ScrollToTopButtonComponent } from './scroll-to-top-button.component';
+import { SharedModule } from '@simbad-client/app/shared/shared.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ScrollToTopButtonComponent', () => {
     let component: ScrollToTopButtonComponent;
@@ -8,9 +10,9 @@ describe('ScrollToTopButtonComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ScrollToTopButtonComponent]
-        })
-            .compileComponents();
+            declarations: [ScrollToTopButtonComponent],
+            imports: [SharedModule, TranslateModule.forRoot()]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

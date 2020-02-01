@@ -1,10 +1,5 @@
 import { ConfigurationFormState } from './form.model';
-import {
-    resetFormValue,
-    updateFormValue,
-    updateConfigurationName,
-    updateFormRootObjects
-} from './form.actions';
+import { resetFormValue, updateFormValue, updateConfigurationName, updateFormRootObjects } from './form.actions';
 import { Action, createReducer, on } from '@ngrx/store';
 
 export const initialState: ConfigurationFormState = {

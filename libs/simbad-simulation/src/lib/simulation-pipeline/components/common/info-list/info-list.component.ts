@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 export interface ListElement {
-    key: string,
-    value: string,
-    preview?: () => any,
-    download?: () => any,
-    show?: () => any,
-    redirect?: () => any
+    key: string;
+    value: string;
+    preview?: () => any;
+    download?: () => any;
+    show?: () => any;
+    redirect?: () => any;
 }
 
 @Component({

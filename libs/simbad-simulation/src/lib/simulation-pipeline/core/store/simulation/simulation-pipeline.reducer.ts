@@ -4,7 +4,8 @@ import {
     analyzerStepFinished,
     cliStepFinished,
     reportStepFinished,
-    setLatestSimulation, simulationStepFailed,
+    setLatestSimulation,
+    simulationStepFailed,
     startSimulation,
     updateCliStepInfo,
     updateSimulationInfo,
@@ -13,13 +14,12 @@ import {
 import { SimulationStepInfo } from '@simbad-cli-api/gen/models/simulation-step-info';
 
 export interface SimulationPipelineState {
-    isSimulationRunning: boolean,
+    isSimulationRunning: boolean;
     simulation?: SimulationInfo;
-    cliStep?: SimulationStepInfo,
-    analyzerStep?: SimulationStepInfo
-    reportsStep?: SimulationStepInfo
+    cliStep?: SimulationStepInfo;
+    analyzerStep?: SimulationStepInfo;
+    reportsStep?: SimulationStepInfo;
 }
-
 
 export const initialState: SimulationPipelineState = {
     isSimulationRunning: false
@@ -27,7 +27,7 @@ export const initialState: SimulationPipelineState = {
 
 const reducer = createReducer(
     initialState,
-    on(startSimulation, (state) => ({
+    on(startSimulation, state => ({
         ...state,
         isSimulationRunning: true,
         cliStep: undefined,
@@ -42,11 +42,11 @@ const reducer = createReducer(
     on(updateStepInfo, (state, { step }) => {
         switch (step.origin) {
             case 'ANALYZER':
-                return ({ ...state, analyzerStep: step });
+                return { ...state, analyzerStep: step };
             case 'CLI':
-                return ({ ...state, cliStep: step });
+                return { ...state, cliStep: step };
             case 'REPORT':
-                return ({ ...state, reportsStep: step });
+                return { ...state, reportsStep: step };
             default:
                 return state;
         }
@@ -54,24 +54,26 @@ const reducer = createReducer(
     on(simulationStepFailed, (state, { step }) => {
         switch (step.origin) {
             case 'ANALYZER':
-                return ({ ...state, analyzerStep: step });
+                return { ...state, analyzerStep: step };
             case 'CLI':
-                return ({ ...state, cliStep: step });
+                return { ...state, cliStep: step };
             case 'REPORT':
-                return ({ ...state, reportsStep: step });
+                return { ...state, reportsStep: step };
             default:
                 return state;
         }
     }),
     on(setLatestSimulation, (state, { simulation }) => {
-        const analyzerStep: SimulationStepInfo = simulation.steps.find((step) => step.origin === 'ANALYZER');
-        const cliStep: SimulationStepInfo = simulation.steps.find((step) => step.origin === 'CLI');
-        const reportsStep: SimulationStepInfo = simulation.steps.find((step) => step.origin === 'REPORT');
+        const analyzerStep: SimulationStepInfo = simulation.steps.find(step => step.origin === 'ANALYZER');
+        const cliStep: SimulationStepInfo = simulation.steps.find(step => step.origin === 'CLI');
+        const reportsStep: SimulationStepInfo = simulation.steps.find(step => step.origin === 'REPORT');
         return { ...state, cliStep, analyzerStep, reportsStep };
     })
 );
 
-
-export function simulationPipelineReducer(state: SimulationPipelineState | undefined, action: Action): SimulationPipelineState {
+export function simulationPipelineReducer(
+    state: SimulationPipelineState | undefined,
+    action: Action
+): SimulationPipelineState {
     return reducer(state, action);
 }

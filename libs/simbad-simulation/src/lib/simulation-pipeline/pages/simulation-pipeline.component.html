@@ -1,54 +1,49 @@
-<div *ngIf="{
-    conf: configuration$ | async,
-    shouldDisable: shouldDisableStartButton$ | async,
-    isCliStepCompleted: isCliStepCompleted$ | async,
-    isAnalyzerStepCompleted: isAnalyzerStepCompleted$ | async,
-    isReportStepCompleted: isReportStepCompleted$ | async,
-    iconModels: iconModels$ | async
-} as data"
-     class="simulation-wrapper">
+<div
+    *ngIf="{
+        conf: configuration$ | async,
+        shouldDisable: shouldDisableStartButton$ | async,
+        isCliStepCompleted: isCliStepCompleted$ | async,
+        isAnalyzerStepCompleted: isAnalyzerStepCompleted$ | async,
+        isReportStepCompleted: isReportStepCompleted$ | async,
+        iconModels: iconModels$ | async
+    } as data"
+    class="simulation-wrapper"
+>
     <div class="simulation-menu">
-        <button (click)="loadLatestSimulation()"
-                id="latest-simulation"
-                mat-raised-button
-        >
+        <button (click)="loadLatestSimulation()" id="latest-simulation" mat-raised-button>
             Load Latest
         </button>
-        <button (click)="sendToCli(data.conf)"
-                [disabled]="data.shouldDisable"
-                id="toggle-linear"
-                mat-raised-button
-        >
+        <button (click)="sendToCli(data.conf)" [disabled]="data.shouldDisable" id="toggle-linear" mat-raised-button>
             Start Pipeline
         </button>
         <simbad-upload-configuration-button></simbad-upload-configuration-button>
         <span *ngIf="!data.shouldDisable" class="conf-name">
-           {{data?.conf?.name}}
+            {{ data?.conf?.name }}
         </span>
     </div>
-    <mat-horizontal-stepper
-        #stepper
-        *ngIf="cliStepInfo$ | async"
-        linear="true">
+    <mat-horizontal-stepper #stepper *ngIf="(cliStepInfo$ | async)" linear="true">
         <ng-template matStepperIcon="edit" let-index="index">
             <fa-icon
-                    [icon]="data.iconModels[index].icon"
-                    [spin]="data.iconModels[index].spin"
-                    [pulse]="data.iconModels[index].pulse">
+                [icon]="data.iconModels[index].icon"
+                [spin]="data.iconModels[index].spin"
+                [pulse]="data.iconModels[index].pulse"
+            >
             </fa-icon>
         </ng-template>
         <ng-template matStepperIcon="done" let-index="index">
             <fa-icon
-                    [icon]="data.iconModels[index].icon"
-                    [spin]="data.iconModels[index].spin"
-                    [pulse]="data.iconModels[index].pulse">
+                [icon]="data.iconModels[index].icon"
+                [spin]="data.iconModels[index].spin"
+                [pulse]="data.iconModels[index].pulse"
+            >
             </fa-icon>
         </ng-template>
-        <ng-template  matStepperIcon="number" let-index="index">
+        <ng-template matStepperIcon="number" let-index="index">
             <fa-icon
-                    [icon]="data.iconModels[index].icon"
-                    [spin]="data.iconModels[index].spin"
-                    [pulse]="data.iconModels[index].pulse">
+                [icon]="data.iconModels[index].icon"
+                [spin]="data.iconModels[index].spin"
+                [pulse]="data.iconModels[index].pulse"
+            >
             </fa-icon>
         </ng-template>
         <mat-step [completed]="data.isCliStepCompleted" class="step">
