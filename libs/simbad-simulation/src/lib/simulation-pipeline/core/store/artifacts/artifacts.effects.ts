@@ -6,8 +6,8 @@ import { of } from 'rxjs';
 import { HostService } from '@simbad-host-api/gen';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 import { downloadArtifact, openArtifact, previewArtifact } from './artifacts.actions';
-import { SimulationService, StatusService } from '@simbad-cli-api/gen';
-import { ImagePreviewDialogComponent } from '@simbad-simulation/lib/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
+import { StatusService } from '@simbad-cli-api/gen';
+import { ArtifactPreviewComponent } from '@simbad-simulation/lib/simulation-pipeline/components/common/image-preview-dialog/artifact-preview.component';
 import { MatDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -67,7 +67,7 @@ export class ArtifactsEffects {
                         map(response => {
                             const objectURL = URL.createObjectURL(response);
                             const image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-                            this.dialog.open(ImagePreviewDialogComponent, {
+                            this.dialog.open(ArtifactPreviewComponent, {
                                 data: { image, name }
                             });
                         }),
@@ -86,7 +86,6 @@ export class ArtifactsEffects {
     constructor(
         private actions$: Actions,
         private statusService: StatusService,
-        private simulationService: SimulationService,
         private hostService: HostService,
         private notificationService: NotificationService,
         private readonly dialog: MatDialog,

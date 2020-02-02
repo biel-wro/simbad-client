@@ -695,3 +695,148 @@ export const simulation = {
         }
     ]
 };
+
+export const simpleSimulations =[
+    {
+        "analyzer": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 251,
+            "name": "parameteric_evolution_3D_stream.json"
+        },
+        "finishedUtc": "Sun, 02 Feb 2020 14:38:17 GMT",
+        "reportId": 344,
+        "reports": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "simulationId": 7,
+        "startedUtc": "Sun, 02 Feb 2020 14:32:47 GMT"
+    },
+    {
+        "analyzer": {
+            "progress": 80,
+            "status": "FAILURE"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 214,
+            "name": "parameteric_evolution_3D_stream.json"
+        },
+        "finishedUtc": null,
+        "reportId": null,
+        "reports": null,
+        "simulationId": 6,
+        "startedUtc": "Sat, 01 Feb 2020 23:57:17 GMT"
+    },
+    {
+        "analyzer": {
+            "progress": 37,
+            "status": "ONGOING"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 211,
+            "name": "parameteric_evolution_3D_stream.json"
+        },
+        "finishedUtc": null,
+        "reportId": null,
+        "reports": null,
+        "simulationId": 5,
+        "startedUtc": "Sat, 01 Feb 2020 23:53:37 GMT"
+    },
+    {
+        "analyzer": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 117,
+            "name": "parameteric_evolution_3D_stream.json"
+        },
+        "finishedUtc": "Sat, 01 Feb 2020 23:52:44 GMT",
+        "reportId": 210,
+        "reports": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "simulationId": 4,
+        "startedUtc": "Sat, 01 Feb 2020 23:46:26 GMT"
+    },
+    {
+        "analyzer": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 23,
+            "name": "parameteric_evolution_3D_stream.json"
+        },
+        "finishedUtc": "Sat, 01 Feb 2020 23:44:06 GMT",
+        "reportId": 116,
+        "reports": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "simulationId": 3,
+        "startedUtc": "Sat, 01 Feb 2020 23:38:09 GMT"
+    },
+    {
+        "analyzer": {
+            "progress": 0,
+            "status": "ONGOING"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 20,
+            "name": "parameteric_evolution_3D_stream_750000.json"
+        },
+        "finishedUtc": null,
+        "reportId": null,
+        "reports": null,
+        "simulationId": 2,
+        "startedUtc": "Sat, 01 Feb 2020 23:05:55 GMT"
+    },
+    {
+        "analyzer": {
+            "progress": 37,
+            "status": "FAILURE"
+        },
+        "cli": {
+            "progress": 100,
+            "status": "SUCCESS"
+        },
+        "configuration": {
+            "id": 1,
+            "name": "parameteric_evolution_3D_stream_750000.json"
+        },
+        "finishedUtc": null,
+        "reportId": null,
+        "reports": null,
+        "simulationId": 1,
+        "startedUtc": "Sat, 01 Feb 2020 22:41:25 GMT"
+    }
+];

@@ -39,7 +39,7 @@ import { InfoListComponent } from './simulation-pipeline/components/common/info-
 import { InfoListElementComponent } from './simulation-pipeline/components/common/info-list-element/info-list-element.component';
 import { SimulationPipelineEffects } from '@simbad-simulation/lib/simulation-pipeline/core/store/simulation/simulation-pipeline.effects';
 import { ReportStepComponent } from '@simbad-simulation/lib/simulation-pipeline/components/steps/report-step/report-step.component';
-import { ImagePreviewDialogComponent } from '@simbad-simulation/lib/simulation-pipeline/components/common/image-preview-dialog/image-preview-dialog.component';
+import { ArtifactPreviewComponent } from '@simbad-simulation/lib/simulation-pipeline/components/common/image-preview-dialog/artifact-preview.component';
 import { ArtifactsEffects } from '@simbad-simulation/lib/simulation-pipeline/core/store/artifacts/artifacts.effects';
 import { IsPreviewEnabledPipe } from './simulation-pipeline/core/pipes/is-preview-enabled.pipe';
 import { FormatBytesPipe } from './simulation-pipeline/core/pipes/format-bytes.pipe';
@@ -90,13 +90,13 @@ export function HttpLoaderFactory(http: HttpClient) {
         InfoListElementComponent,
         AnalyzerStepComponent,
         ReportStepComponent,
-        ImagePreviewDialogComponent,
+        ArtifactPreviewComponent,
         IsPreviewEnabledPipe,
         FormatBytesPipe,
         ScrollToTopButtonComponent
     ],
     providers: [FormsService],
-    entryComponents: [CreateConfigurationDialogComponent, ImagePreviewDialogComponent]
+    entryComponents: [CreateConfigurationDialogComponent, ArtifactPreviewComponent]
 })
 export class SimbadSimulationModule {
     constructor() {}
