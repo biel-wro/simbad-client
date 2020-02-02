@@ -60,7 +60,7 @@ import {
     faWindowMaximize,
     faClock,
     faFolderOpen,
-    faEye, faExternalLinkAlt
+    faEye, faExternalLinkAlt, faRedo
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faInstagram, faMediumM, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { BigInputComponent } from './big-input/big-input/big-input.component';
@@ -102,6 +102,7 @@ library.add(
     faStream,
     faTimes,
     faBook,
+    faRedo,
     faFile,
     faDownload,
     faMemory,

@@ -21,7 +21,7 @@
             "@simbad-host-api/*": ["libs/simbad-host-api/src/*"],
             "@simbad-client/*": ["projects/simbad-client/src/*"],
             "@simbad-simulation/*": ["libs/simbad-simulation/src/*"],
-            "@simbad/simbad-results/*": ["libs/simbad-results/src/*"]
+            "@simbad-results/*": ["libs/simbad-results/src/*"]
         }
     },
     "angularCompilerOptions": {

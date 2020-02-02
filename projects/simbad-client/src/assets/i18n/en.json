@@ -6,6 +6,7 @@
     "simbad.header.github": "Project Github Repository",
     "simbad.menu.about": "About",
     "simbad.menu.simulation": "Simulation",
+    "simbad.menu.browse": "Browse",
     "simbad.menu.features": "Features",
     "simbad.menu.login": "Sign in",
     "simbad.menu.logout": "Logout",

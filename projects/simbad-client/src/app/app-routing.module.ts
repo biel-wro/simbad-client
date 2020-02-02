@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: './modules/simbad-simulation-lazy/simbad-simulation-lazy.module#SimbadSimulationLazyModule'
     },
     {
+        path: 'browse',
+        loadChildren: './modules/simbad-results-lazy/simbad-results-lazy.module#SimbadResultsLazyModule'
+    },
+    {
         path: '**',
         redirectTo: 'about'
     }
