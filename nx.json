@@ -22,6 +22,9 @@
         },
         "simbad-simulation": {
             "tags": ["simbad-simulation"]
+        },
+        "simbad-results": {
+            "tags": ["simbad-results"]
         }
     }
 }

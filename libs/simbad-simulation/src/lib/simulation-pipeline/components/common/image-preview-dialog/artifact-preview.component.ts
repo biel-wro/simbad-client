@@ -3,21 +3,22 @@ import { MatDialogRef } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Inject } from '@angular/core';
 
-export interface ImageViewerData {
-    image: any;
+export interface ArtifactPreviewData {
+    image?: any;
+    text?: string;
     name: string;
 }
 
 @Component({
     selector: 'simbad-image-preview-dialog',
-    templateUrl: './image-preview-dialog.component.html',
-    styleUrls: ['./image-preview-dialog.component.scss'],
+    templateUrl: './artifact-preview.component.html',
+    styleUrls: ['./artifact-preview.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ImagePreviewDialogComponent implements OnInit {
+export class ArtifactPreviewComponent implements OnInit {
     constructor(
-        public dialogRef: MatDialogRef<ImagePreviewDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: ImageViewerData
+        public dialogRef: MatDialogRef<ArtifactPreviewComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: ArtifactPreviewData
     ) {}
 
     submit() {

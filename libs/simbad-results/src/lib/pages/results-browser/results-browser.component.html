@@ -1,0 +1,6 @@
+<div class="results-browser-wrapper" *ngIf="{ results: simulationResults$ | async } as data">
+    <h1>
+        Results Browser
+    </h1>
+    <simbad-results-table [data]="data.results"></simbad-results-table>
+</div>

@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
     languages = ['en'];
     navigation = [
         { link: 'about', label: 'simbad.menu.about' },
-        { link: 'simulation', label: 'simbad.menu.simulation' }
+        { link: 'simulation', label: 'simbad.menu.simulation' },
+        { link: 'browse', label: 'simbad.menu.browse' }
     ];
     navigationSideMenu = [...this.navigation, { link: 'settings', label: 'simbad.menu.settings' }];
 

@@ -10,6 +10,7 @@ module.exports = {
         '^@simbad-cli-api(.*)$': `${__dirname}/libs/simbad-cli-api/src$1`,
         '^@simbad-client(.*)$': `${__dirname}/projects/simbad-client/src$1`,
         '^@simbad-simulation(.*)$': `${__dirname}/libs/simbad-simulation/src$1`,
+        '^@simbad-results(.*)$': `${__dirname}/libs/simbad-results/src$1`,
     },
     globals: {
         "ts-jest": {

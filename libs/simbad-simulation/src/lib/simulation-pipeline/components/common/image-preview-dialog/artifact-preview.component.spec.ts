@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImagePreviewDialogComponent } from './image-preview-dialog.component';
+import { ArtifactPreviewComponent } from './artifact-preview.component';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material';
 import { provideMockStore } from '@ngrx/store/testing';
 import { SharedModule } from '@simbad-client/app/shared/shared.module';
 
 describe('ImagePreviewDialogComponent', () => {
-    let component: ImagePreviewDialogComponent;
-    let fixture: ComponentFixture<ImagePreviewDialogComponent>;
+    let component: ArtifactPreviewComponent;
+    let fixture: ComponentFixture<ArtifactPreviewComponent>;
 
     beforeEach(async(() => {
         return TestBed.configureTestingModule({
             imports: [SharedModule, MatDialogModule],
-            declarations: [ImagePreviewDialogComponent],
+            declarations: [ArtifactPreviewComponent],
             providers: [
                 { provide: MatDialogRef, useValue: {} },
                 { provide: MAT_DIALOG_DATA, useValue: {} },
@@ -22,7 +22,7 @@ describe('ImagePreviewDialogComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ImagePreviewDialogComponent);
+        fixture = TestBed.createComponent(ArtifactPreviewComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

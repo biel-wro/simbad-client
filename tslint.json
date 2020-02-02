@@ -120,7 +120,7 @@
       true,
       2
     ],
-    "max-line-length":  [true, {"limit": 140, "ignore-pattern": "^import |^export {(.*?)}"}],
+    "max-line-length":  [true, {"limit": 160, "ignore-pattern": "^import |^export {(.*?)}"}],
     "semicolon": {
       "options": [
         "always",
