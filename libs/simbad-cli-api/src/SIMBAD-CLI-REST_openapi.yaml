@@ -113,6 +113,49 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SimulationError"
+  /api/simulation/range/latest:
+    get:
+      tags:
+        - STATUS
+      operationId: getLatestSimulations
+      description: Get n latest simulation id
+      requestBody:
+        content:
+          application:/json:
+            schema:
+              $ref: "#/components/schemas/SimulationRangeRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: "#/components/schemas/SimulationSimpleInfo"
+  /api/simulation/range/chunk:
+    get:
+      tags:
+        - STATUS
+      operationId: getSimulationsAfterId
+      description: Get n latest simulation after speific id
+      requestBody:
+        content:
+          application:/json:
+            schema:
+              $ref: "#/components/schemas/SimulationRangeRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  $ref: "#/components/schemas/SimulationSimpleInfo"
+
   /api/artifact/{id}:
     parameters:
       - name: id
@@ -403,5 +446,72 @@ components:
         error:
           type: string
           description: Error message
-
+    SimulationRangeRequest:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The id of simulation
+        num:
+          type: number
+          description: The number of simulations after id to return
+    SimpleRuntimeInfo:
+      type: object
+      required:
+        - status
+        - progress
+      properties:
+        progress:
+          type: number
+          description: Simulation step progress
+        status:
+          type: string
+          description: The status of simulation step
+          enum:
+            - 'ONGOING'
+            - 'SUCCESS'
+            - 'FAILURE'
+    ConfigurationInfo:
+      type: object
+      required:
+        - name
+        - id
+      properties:
+        name:
+          type: string
+          description: The name of the configuration
+        id:
+          type: number
+          description: The id of the configuration
+    SimulationSimpleInfo:
+      type: object
+      required:
+        - simulationId
+        - configuration
+        - startedUtc
+      properties:
+        simulationId:
+          type: number
+          description: The id of the simulation
+        startedUtc:
+          type: string
+          description: UTC timestamp when step was started
+        finishedUtc:
+          type: string
+          description: UTC timestamp when step was finished
+        reportId:
+          type: number
+          description: The id of simulation report
+        configuration:
+          type: object
+          $ref: "#/components/schemas/ConfigurationInfo"
+        cli:
+          type: object
+          $ref: "#/components/schemas/SimpleRuntimeInfo"
+        analyzer:
+          type: object
+          $ref: "#/components/schemas/SimpleRuntimeInfo"
+        reports:
+          type: object
+          $ref: "#/components/schemas/SimpleRuntimeInfo"
 

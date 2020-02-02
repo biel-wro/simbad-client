@@ -10,6 +10,8 @@ import { map, filter } from 'rxjs/operators';
 
 import { ArtifactInfo } from '../models/artifact-info';
 import { SimulationInfo } from '../models/simulation-info';
+import { SimulationRangeRequest } from '../models/simulation-range-request';
+import { SimulationSimpleInfo } from '../models/simulation-simple-info';
 import { SimulationStatus } from '../models/simulation-status';
 import { SimulationStepInfo } from '../models/simulation-step-info';
 
@@ -215,6 +217,110 @@ export class StatusService extends BaseService {
 
     return this.getSimulationStepInfo$Response(params).pipe(
       map((r: StrictHttpResponse<SimulationStepInfo>) => r.body as SimulationStepInfo)
+    );
+  }
+
+  /**
+   * Path part for operation getLatestSimulations
+   */
+  static readonly GetLatestSimulationsPath = '/api/simulation/range/latest';
+
+  /**
+   * Get n latest simulation id
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getLatestSimulations()` instead.
+   *
+   * This method sends `application:/json` and handles response body of type `application:/json`
+   */
+  getLatestSimulations$Response(params?: {
+
+    body?: SimulationRangeRequest
+  }): Observable<StrictHttpResponse<Array<SimulationSimpleInfo>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, '/api/simulation/range/latest', 'get');
+    if (params) {
+
+      rb.body(params.body, 'application:/json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<SimulationSimpleInfo>>;
+      })
+    );
+  }
+
+  /**
+   * Get n latest simulation id
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getLatestSimulations$Response()` instead.
+   *
+   * This method sends `application:/json` and handles response body of type `application:/json`
+   */
+  getLatestSimulations(params?: {
+
+    body?: SimulationRangeRequest
+  }): Observable<Array<SimulationSimpleInfo>> {
+
+    return this.getLatestSimulations$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<SimulationSimpleInfo>>) => r.body as Array<SimulationSimpleInfo>)
+    );
+  }
+
+  /**
+   * Path part for operation getSimulationsAfterId
+   */
+  static readonly GetSimulationsAfterIdPath = '/api/simulation/range/chunk';
+
+  /**
+   * Get n latest simulation after speific id
+   *
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `getSimulationsAfterId()` instead.
+   *
+   * This method sends `application:/json` and handles response body of type `application:/json`
+   */
+  getSimulationsAfterId$Response(params?: {
+
+    body?: SimulationRangeRequest
+  }): Observable<StrictHttpResponse<Array<SimulationSimpleInfo>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, '/api/simulation/range/chunk', 'get');
+    if (params) {
+
+      rb.body(params.body, 'application:/json');
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'application/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<SimulationSimpleInfo>>;
+      })
+    );
+  }
+
+  /**
+   * Get n latest simulation after speific id
+   *
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `getSimulationsAfterId$Response()` instead.
+   *
+   * This method sends `application:/json` and handles response body of type `application:/json`
+   */
+  getSimulationsAfterId(params?: {
+
+    body?: SimulationRangeRequest
+  }): Observable<Array<SimulationSimpleInfo>> {
+
+    return this.getSimulationsAfterId$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<SimulationSimpleInfo>>) => r.body as Array<SimulationSimpleInfo>)
     );
   }
 
