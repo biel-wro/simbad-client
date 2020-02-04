@@ -48,10 +48,7 @@ export class FormEffects {
         return this.actions$.pipe(
             ofType(loadConfiguration),
             tap(({ name }) => {
-                this.ns.info(
-                    `Uploaded configuration ${name}. The original file was not changed`,
-                    3000
-                );
+                this.ns.info(`Uploaded configuration ${name}. The original file was not changed`, 3000);
             }),
             concatMap(({ configuration, name }) => {
                 const rootObjectClassNames = Object.keys(configuration);
@@ -66,7 +63,10 @@ export class FormEffects {
         );
     });
 
-
-    constructor(private actions$: Actions, private localStorageService: LocalStorageService, private fs: FormsService, private ns: NotificationService) {
-    }
+    constructor(
+        private actions$: Actions,
+        private localStorageService: LocalStorageService,
+        private fs: FormsService,
+        private ns: NotificationService
+    ) {}
 }

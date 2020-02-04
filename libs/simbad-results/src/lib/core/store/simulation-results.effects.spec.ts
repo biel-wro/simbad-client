@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { SimulationResultsEffects } from './simulation-results.effects';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -8,7 +8,7 @@ import { SharedModule } from '@simbad-client/app/shared/shared.module';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
 
 describe('SimulationResultsEffects', () => {
-    // let actions$: Observable<any>;
+    const actions$: Observable<any> = of();
     let effects: SimulationResultsEffects;
 
     beforeEach(() => {

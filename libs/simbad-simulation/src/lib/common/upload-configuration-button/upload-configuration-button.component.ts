@@ -8,11 +8,9 @@ import { loadConfiguration } from '@simbad-simulation/lib/configuration-editor/s
     styleUrls: ['./upload-configuration-button.component.scss']
 })
 export class UploadConfigurationButtonComponent implements OnInit {
-    constructor(private store: Store<{}>) {
-    }
+    constructor(private store: Store<{}>) {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     onFileSelected(): void {
         const inputNode: any = document.querySelector('#file');

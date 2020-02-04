@@ -16,9 +16,25 @@ import { SharedModule } from '@simbad-client/app/shared/shared.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { CdkTableModule } from '@angular/cdk/table';
+import { HttpClient } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { environment } from '@simbad-client/environments/environment';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http, `${environment.i18nPrefix}/assets/i18n/results/`, '.json');
+}
 
 @NgModule({
     imports: [
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            },
+            isolate: true
+        }),
         CommonModule,
         SimbadResultsRoutingModule,
         StoreModule.forFeature(simulationResultsFeatureKey, simulationResultsReducer),

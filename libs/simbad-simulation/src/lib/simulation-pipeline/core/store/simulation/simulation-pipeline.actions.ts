@@ -35,9 +35,8 @@ export const pollForSimulationStatusChange = createAction(
 
 export const loadConfigurationInEditor = createAction(
     SimulationPipelineActions.LoadConfigurationInEditor,
-    props<{ id: number, name: string }>()
+    props<{ id: number; name: string }>()
 );
-
 
 export const startSimulation = createAction(
     SimulationPipelineActions.StartSimulation,
@@ -58,10 +57,7 @@ export const updateSimulationInfo = createAction(
 
 export const loadLatestSimulation = createAction(SimulationPipelineActions.LoadLatestSimulation);
 
-export const loadSimulation = createAction(
-    SimulationPipelineActions.LoadSimulation,
-    props<{ simulationId: number }>()
-);
+export const loadSimulation = createAction(SimulationPipelineActions.LoadSimulation, props<{ simulationId: number }>());
 
 export const setLatestSimulation = createAction(
     SimulationPipelineActions.SetLatestSimulation,

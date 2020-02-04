@@ -45,9 +45,9 @@ export class SimulationPipelineEffects {
                         return response.status === 'ONGOING'
                             ? [setLatestSimulation({ simulation: response })]
                             : [
-                                setLatestSimulation({ simulation: response }),
-                                pollForSimulationStepInfo({ stepId: response.currentStepId })
-                            ];
+                                  setLatestSimulation({ simulation: response }),
+                                  pollForSimulationStepInfo({ stepId: response.currentStepId })
+                              ];
                     }),
                     catchError(err => {
                         console.log('loadLatestSimulation$: ', err);
@@ -58,12 +58,15 @@ export class SimulationPipelineEffects {
         );
     });
 
-    redirectToPipeline$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(loadSimulation),
-            tap(() => this.router.navigate(['/simulation/simulation-pipeline']))
-        );
-    }, { dispatch: false });
+    redirectToPipeline$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(loadSimulation),
+                tap(() => this.router.navigate(['/simulation/simulation-pipeline']))
+            );
+        },
+        { dispatch: false }
+    );
 
     loadSimulation$ = createEffect(() => {
         return this.actions$.pipe(
@@ -74,9 +77,9 @@ export class SimulationPipelineEffects {
                         return response.status === 'ONGOING'
                             ? [setLatestSimulation({ simulation: response })]
                             : [
-                                setLatestSimulation({ simulation: response }),
-                                pollForSimulationStepInfo({ stepId: response.currentStepId })
-                            ];
+                                  setLatestSimulation({ simulation: response }),
+                                  pollForSimulationStepInfo({ stepId: response.currentStepId })
+                              ];
                     }),
                     catchError(err => {
                         console.log('loadSimulation$: ', err);
@@ -86,7 +89,6 @@ export class SimulationPipelineEffects {
             )
         );
     });
-
 
     startSimulation$ = createEffect(() => {
         return this.actions$.pipe(
@@ -276,36 +278,39 @@ export class SimulationPipelineEffects {
         );
     });
 
-    loadConfigurationInEditor$ = createEffect(() => {
-        return this.actions$.pipe(
-            ofType(loadConfigurationInEditor),
-            concatMap(({ id, name }) => {
-                return this.statusService.downloadArtifact({ id }).pipe(
-                    map(response => {
-                        if (typeof FileReader !== 'undefined') {
-                            const reader = new FileReader();
+    loadConfigurationInEditor$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(loadConfigurationInEditor),
+                concatMap(({ id, name }) => {
+                    return this.statusService.downloadArtifact({ id }).pipe(
+                        map(response => {
+                            if (typeof FileReader !== 'undefined') {
+                                const reader = new FileReader();
 
-                            // Effect should dispatch action by returning it
-                            // but i'm not sure how to make it work with FileReader onload api
-                            reader.onload = (e: any) => {
-                                const configuration = JSON.parse(e.target.result);
-                                this.store.dispatch(loadConfiguration({ configuration, name }));
-                            };
+                                // Effect should dispatch action by returning it
+                                // but i'm not sure how to make it work with FileReader onload api
+                                reader.onload = (e: any) => {
+                                    const configuration = JSON.parse(e.target.result);
+                                    this.store.dispatch(loadConfiguration({ configuration, name }));
+                                };
 
-                            if (response) {
-                                reader.readAsText(response);
+                                if (response) {
+                                    reader.readAsText(response);
+                                }
                             }
-                        }
-                    }),
-                    tap(() => this.router.navigate(['/simulation/form'])),
-                    catchError(err => {
-                        this.notificationService.error(`Failed to load ${name}`);
-                        return of(err);
-                    })
-                );
-            })
-        );
-    }, {dispatch: false});
+                        }),
+                        tap(() => this.router.navigate(['/simulation/form'])),
+                        catchError(err => {
+                            this.notificationService.error(`Failed to load ${name}`);
+                            return of(err);
+                        })
+                    );
+                })
+            );
+        },
+        { dispatch: false }
+    );
 
     constructor(
         private actions$: Actions,
@@ -317,6 +322,5 @@ export class SimulationPipelineEffects {
         private hostService: HostService,
         private notificationService: NotificationService,
         private pollingService: PollingService
-    ) {
-    }
+    ) {}
 }
