@@ -26,4 +26,9 @@ export interface SimulationSimpleInfo  {
    * UTC timestamp when step was started
    */
   startedUtc: string;
+
+  /**
+   * The status of simulation
+   */
+  status: 'ONGOING' | 'SUCCESS' | 'FAILURE';
 }

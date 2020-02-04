@@ -1,0 +1,11 @@
+{
+  "simbad.results.conf.download.tooltip": "Download configuration",
+  "simbad.results.conf.edit.tooltip": "Edit in Configuration Editor",
+  "simbad.results.report.download.tooltip": "Download simulation report",
+  "simbad.results.report.download.label": " Report",
+  "simbad.results.report.view.tooltip": "View cells model",
+  "simbad.results.report.view.label": " Model",
+  "simbad.results.actions.rerun.tooltip": "Rerun simulation",
+  "simbad.results.actions.rerun.label": " Rerun",
+  "simbad.results.actions.monitor.tooltip": "Monitor simulation in Simulation Pipeline"
+}
