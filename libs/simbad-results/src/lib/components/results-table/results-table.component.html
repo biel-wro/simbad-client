@@ -13,23 +13,40 @@
     <ng-container>
         <div class="table-container">
             <table [dataSource]="dataSource" mat-table matSort>
-                <!-- Configuration Name Column -->
                 <ng-container matColumnDef="simulationId">
                     <th *matHeaderCellDef mat-header-cell mat-sort-header>ID</th>
-                    <td *matCellDef="let result" mat-cell>{{ result.simulationId }}</td>
+                    <td *matCellDef="let result" mat-cell>{{ result?.simulationId }}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="configuration">
                     <th *matHeaderCellDef mat-header-cell>Configuration</th>
                     <td *matCellDef="let result" mat-cell>
                         {{ result.configuration.name }}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="configurationActions">
+                    <th *matHeaderCellDef mat-header-cell mat-sort-header>Actions</th>
+                    <td *matCellDef="let result" mat-cell>
                         <simbad-small-input-action
                             (action)="download(result.configuration.id, result.configuration.name)"
-                            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+                            [matTooltip]="'simbad.results.conf.download.tooltip' | translate"
                             class="btn btn-clear list-action-btn"
                             color="warn"
                             faIcon="download"
                             fontIcon="fa-download"
+                            fontSet="fas"
+                            matTooltipPosition="after"
+                            style="font-size: 11px;"
+                        ></simbad-small-input-action>
+
+                        <simbad-small-input-action
+                            (action)="loadConfigurationInEditor(result.configuration.id, result.configuration.name)"
+                            [matTooltip]="'simbad.results.conf.edit.tooltip' | translate"
+                            class="btn btn-clear list-action-btn"
+                            color="warn"
+                            faIcon="edit"
+                            fontIcon="fa-edit"
                             fontSet="fas"
                             matTooltipPosition="after"
                             style="font-size: 11px;"
@@ -95,8 +112,8 @@
                     <td *matCellDef="let result" mat-cell>
                         <simbad-small-input-action
                             (action)="download(result.reportId, 'simulation_report.pdf')"
-                            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
-                            [disabled]="!result.finishedUtc"
+                            [matTooltip]="'simbad.results.report.download.tooltip' | translate"
+                            [disabled]="result.status !== 'SUCCESS'"
                             label=" Report"
                             class="btn btn-clear list-action-btn"
                             color="warn"
@@ -109,8 +126,8 @@
 
                         <simbad-small-input-action
                             (action)="goToModelViewer(result.simulationId)"
-                            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
-                            [disabled]="!result.finishedUtc"
+                            [matTooltip]="'simbad.results.report.view.tooltip' | translate"
+                            [disabled]="result.status !== 'SUCCESS'"
                             label=" Model"
                             class="btn btn-clear list-action-btn"
                             color="warn"
@@ -128,7 +145,7 @@
                     <td *matCellDef="let result" mat-cell>
                         <simbad-small-input-action
                             (action)="rerun(result.simulationId)"
-                            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+                            [matTooltip]="'simbad.results.actions.rerun.tooltip' | translate"
                             label=" Rerun"
                             class="btn btn-clear list-action-btn"
                             color="warn"
@@ -141,7 +158,7 @@
 
                         <simbad-small-input-action
                             (action)="loadInSimulationPipeline(result.simulationId)"
-                            [matTooltip]="'simbad.configuration.forms.tooltip.download' | translate"
+                            [matTooltip]="'simbad.results.actions.monitor.tooltip' | translate"
                             label=" Monitor"
                             class="btn btn-clear list-action-btn"
                             color="warn"
@@ -153,38 +170,6 @@
                         ></simbad-small-input-action>
                     </td>
                 </ng-container>
-
-                <!--                &lt;!&ndash; Title Column &ndash;&gt;-->
-                <!--                <ng-container cdkColumnDef="startedUtc" matColumnDef="startedUtc">-->
-                <!--                    <th *matHeaderCellDef mat-header-cell mat-sort-header>Status</th>-->
-                <!--                    <td *matCellDef="let result" mat-cell>-->
-                <!--                        {{ result.cli }} {{result.analyzer}} {{result.reports}}-->
-                <!--                    </td>-->
-                <!--                </ng-container>-->
-
-                <!--                &lt;!&ndash; Size Column &ndash;&gt;-->
-                <!--                <ng-container matColumnDef="sizeKb">-->
-                <!--                    <th *matHeaderCellDef mat-header-cell mat-sort-header>Size</th>-->
-                <!--                    <td *matCellDef="let artifact" mat-cell>{{ artifact.sizeKb | formatBytes }}</td>-->
-                <!--                </ng-container>-->
-
-                <!--                &lt;!&ndash; Actions Column &ndash;&gt;-->
-                <!--                <ng-container matColumnDef="actions">-->
-                <!--                    <th *matHeaderCellDef mat-header-cell>Actions</th>-->
-                <!--                    <td *matCellDef="let artifact" mat-cell>-->
-                <!--                        </simbad-small-input-action>-->
-                <!--                        <simbad-small-input-action-->
-                <!--                                [matTooltip]="'simbad.configuration.forms.tooltip.preview' | translate"-->
-                <!--                                class="btn btn-clear list-action-btn"-->
-                <!--                                color="warn"-->
-                <!--                                faIcon="eye"-->
-                <!--                                fontIcon="fa-eye"-->
-                <!--                                fontSet="fas"-->
-                <!--                                matTooltipPosition="after"-->
-                <!--                        >-->
-                <!--                        </simbad-small-input-action>-->
-                <!--                    </td>-->
-                <!--                </ng-container>-->
 
                 <tr *matHeaderRowDef="displayedColumns; sticky: true" mat-header-row></tr>
                 <tr *matRowDef="let row; columns: displayedColumns" class="dense-mat-row" mat-row></tr>

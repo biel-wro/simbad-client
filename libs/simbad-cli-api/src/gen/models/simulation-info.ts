@@ -27,6 +27,11 @@ export interface SimulationInfo  {
    * UTC timestamp when simulation was started
    */
   startedUtc: string;
+
+  /**
+   * The status of simulation step
+   */
+  status: 'ONGOING' | 'SUCCESS' | 'FAILURE';
   steps: Array<SimulationStepInfo>;
 
   /**

@@ -9,6 +9,8 @@ export enum SimulationPipelineActions {
     GetSimulationInfo = '[SimulationPipeline] Get simulation info',
     UpdateSimulationInfo = '[SimulationPipeline] UpdateSimulationInfo',
     LoadLatestSimulation = '[SimulationPipeline] LoadLatestSimulation',
+    LoadConfigurationInEditor = '[SimulationPipeline] Load conf in editor',
+    LoadSimulation = '[SimulationPipeline] Load simulation',
     SetLatestSimulation = '[SimulationPipeline] SetLatestSimulation',
     GetArtifactInfo = '[SimulationPipeline] Get artifact info',
     GetSimulationStepInfo = '[SimulationPipeline] Get simulation step info',
@@ -31,6 +33,11 @@ export const pollForSimulationStatusChange = createAction(
     props<{ simulationId: number }>()
 );
 
+export const loadConfigurationInEditor = createAction(
+    SimulationPipelineActions.LoadConfigurationInEditor,
+    props<{ id: number; name: string }>()
+);
+
 export const startSimulation = createAction(
     SimulationPipelineActions.StartSimulation,
     props<{ request: StartSimulationRequest }>()
@@ -49,6 +56,8 @@ export const updateSimulationInfo = createAction(
 );
 
 export const loadLatestSimulation = createAction(SimulationPipelineActions.LoadLatestSimulation);
+
+export const loadSimulation = createAction(SimulationPipelineActions.LoadSimulation, props<{ simulationId: number }>());
 
 export const setLatestSimulation = createAction(
     SimulationPipelineActions.SetLatestSimulation,

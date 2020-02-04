@@ -103,28 +103,6 @@ export class FormToolbarComponent implements OnInit, OnDestroy {
         this.store.dispatch(redirectAndStart());
     }
 
-    onFileSelected() {
-        const inputNode: any = document.querySelector('#file');
-
-        if (typeof FileReader !== 'undefined') {
-            const reader = new FileReader();
-
-            reader.onload = (e: any) => {
-                const obj = JSON.parse(e.target.result);
-                const rootObjectClassNames = Object.keys(obj);
-                const formValue = this.fs.configurationToFormValue(obj);
-                this.store.dispatch(resetFormValue());
-                this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
-                this.store.dispatch(updateFormValue({ formValue }));
-            };
-
-            if (inputNode.files[0]) {
-                this.store.dispatch(updateConfigurationName({ configurationName: inputNode.files[0].name }));
-                reader.readAsText(inputNode.files[0]);
-            }
-        }
-    }
-
     private subscribeOnStoreChanges(): void {
         this.storeChanges = this.store
             .pipe(select(selectConfigurationName))

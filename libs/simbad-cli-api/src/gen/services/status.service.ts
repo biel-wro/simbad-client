@@ -136,7 +136,7 @@ export class StatusService extends BaseService {
    * This method doesn't expect any response body
    */
   getSimulationInfo$Response(params: {
-    id: string;
+    id: number;
 
   }): Observable<StrictHttpResponse<SimulationInfo>> {
 
@@ -163,7 +163,7 @@ export class StatusService extends BaseService {
    * This method doesn't expect any response body
    */
   getSimulationInfo(params: {
-    id: string;
+    id: number;
 
   }): Observable<SimulationInfo> {
 

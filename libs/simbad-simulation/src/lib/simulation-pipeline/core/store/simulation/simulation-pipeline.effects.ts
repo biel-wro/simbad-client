@@ -12,14 +12,16 @@ import {
     analyzerStepFinished,
     cliStepFinished,
     getSimulationStepInfo,
+    loadConfigurationInEditor,
     loadLatestSimulation,
+    loadSimulation,
     pollForSimulationStepInfo,
     redirectAndStart,
     reportStepFinished,
     setLatestSimulation,
     simulationError,
-    startSimulation,
     simulationStepFailed,
+    startSimulation,
     updateStepInfo
 } from './simulation-pipeline.actions';
 import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
@@ -27,8 +29,8 @@ import { SimulationService, StatusService } from '@simbad-cli-api/gen';
 import { select, Store } from '@ngrx/store';
 import { selectConfiguration } from '@simbad-simulation/lib/configuration-editor/store/form.selectors';
 import { FormsService } from '@simbad-simulation/lib/configuration-editor/services/forms.service';
-import { routerReducer } from '@ngrx/router-store';
 import { Router } from '@angular/router';
+import { loadConfiguration } from '@simbad-simulation/lib/configuration-editor/store/form.actions';
 
 const POLLING_PERIOD_MS = 3000;
 
@@ -40,7 +42,7 @@ export class SimulationPipelineEffects {
             switchMap(() =>
                 this.statusService.getLatestSimulation().pipe(
                     concatMap((response: SimulationInfo) => {
-                        return response.finishedUtc
+                        return response.status === 'ONGOING'
                             ? [setLatestSimulation({ simulation: response })]
                             : [
                                   setLatestSimulation({ simulation: response }),
@@ -49,6 +51,38 @@ export class SimulationPipelineEffects {
                     }),
                     catchError(err => {
                         console.log('loadLatestSimulation$: ', err);
+                        return of(simulationError({ error: err }));
+                    })
+                )
+            )
+        );
+    });
+
+    redirectToPipeline$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(loadSimulation),
+                tap(() => this.router.navigate(['/simulation/simulation-pipeline']))
+            );
+        },
+        { dispatch: false }
+    );
+
+    loadSimulation$ = createEffect(() => {
+        return this.actions$.pipe(
+            ofType(loadSimulation),
+            switchMap(({ simulationId }) =>
+                this.statusService.getSimulationInfo({ id: simulationId }).pipe(
+                    concatMap((response: SimulationInfo) => {
+                        return response.status === 'ONGOING'
+                            ? [setLatestSimulation({ simulation: response })]
+                            : [
+                                  setLatestSimulation({ simulation: response }),
+                                  pollForSimulationStepInfo({ stepId: response.currentStepId })
+                              ];
+                    }),
+                    catchError(err => {
+                        console.log('loadSimulation$: ', err);
                         return of(simulationError({ error: err }));
                     })
                 )
@@ -209,7 +243,7 @@ export class SimulationPipelineEffects {
             ofType(cliStepFinished),
             tap(value => console.log('startAnalyzerStep$: ', value)),
             switchMap(action =>
-                this.statusService.getSimulationInfo({ id: action.step.simulationId.toString(10) }).pipe(
+                this.statusService.getSimulationInfo({ id: action.step.simulationId }).pipe(
                     tap(() => this.notificationService.info(`Started analyzer step`)),
                     concatMap((response: SimulationInfo) => {
                         const analyzerStep: SimulationStepInfo = response.steps.find(
@@ -230,7 +264,7 @@ export class SimulationPipelineEffects {
         return this.actions$.pipe(
             ofType(analyzerStepFinished),
             switchMap(action =>
-                this.statusService.getSimulationInfo({ id: action.step.simulationId.toString(10) }).pipe(
+                this.statusService.getSimulationInfo({ id: action.step.simulationId }).pipe(
                     tap(() => this.notificationService.info(`Started report step`)),
                     concatMap((response: SimulationInfo) => {
                         const analyzerStep: SimulationStepInfo = response.steps.find(step => step.origin === 'REPORT');
@@ -243,6 +277,40 @@ export class SimulationPipelineEffects {
             )
         );
     });
+
+    loadConfigurationInEditor$ = createEffect(
+        () => {
+            return this.actions$.pipe(
+                ofType(loadConfigurationInEditor),
+                concatMap(({ id, name }) => {
+                    return this.statusService.downloadArtifact({ id }).pipe(
+                        map(response => {
+                            if (typeof FileReader !== 'undefined') {
+                                const reader = new FileReader();
+
+                                // Effect should dispatch action by returning it
+                                // but i'm not sure how to make it work with FileReader onload api
+                                reader.onload = (e: any) => {
+                                    const configuration = JSON.parse(e.target.result);
+                                    this.store.dispatch(loadConfiguration({ configuration, name }));
+                                };
+
+                                if (response) {
+                                    reader.readAsText(response);
+                                }
+                            }
+                        }),
+                        tap(() => this.router.navigate(['/simulation/form'])),
+                        catchError(err => {
+                            this.notificationService.error(`Failed to load ${name}`);
+                            return of(err);
+                        })
+                    );
+                })
+            );
+        },
+        { dispatch: false }
+    );
 
     constructor(
         private actions$: Actions,

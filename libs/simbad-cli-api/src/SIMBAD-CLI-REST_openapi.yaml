@@ -69,7 +69,7 @@ paths:
         in: path
         required: true
         schema:
-          type: string
+          type: number
     get:
       tags:
         - STATUS
@@ -378,6 +378,7 @@ components:
       type: object
       required:
         - id
+        - status
         - startedUtc
         - currentStepId
         - workdir
@@ -396,6 +397,13 @@ components:
         currentStepId:
           type: number
           description: Id of currently excuted step
+        status:
+          type: string
+          description: The status of simulation step
+          enum:
+            - 'ONGOING'
+            - 'SUCCESS'
+            - 'FAILURE'
         workdir:
           type: string
           description: The path to working directory for this simulation
@@ -489,10 +497,18 @@ components:
         - simulationId
         - configuration
         - startedUtc
+        - status
       properties:
         simulationId:
           type: number
           description: The id of the simulation
+        status:
+          type: string
+          description: The status of simulation
+          enum:
+            - 'ONGOING'
+            - 'SUCCESS'
+            - 'FAILURE'
         startedUtc:
           type: string
           description: UTC timestamp when step was started

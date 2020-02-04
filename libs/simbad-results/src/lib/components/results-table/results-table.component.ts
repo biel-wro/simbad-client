@@ -9,6 +9,10 @@ import { timeToTimeString } from '@simbad-simulation/lib/simulation-pipeline/cor
 import { combineLatest, Observable, Subject, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { downloadArtifact } from '@simbad-simulation/lib/simulation-pipeline/core/store/artifacts/artifacts.actions';
+import {
+    loadConfigurationInEditor,
+    loadSimulation
+} from '@simbad-simulation/lib/simulation-pipeline/core/store/simulation/simulation-pipeline.actions';
 
 interface RuntimeMap {
     [key: number]: string;
@@ -26,6 +30,7 @@ export class ResultsTableComponent implements OnChanges, OnInit, OnDestroy {
     displayedColumns: string[] = [
         'simulationId',
         'configuration',
+        'configurationActions',
         'started',
         'status',
         'runtime',
@@ -102,7 +107,12 @@ export class ResultsTableComponent implements OnChanges, OnInit, OnDestroy {
     }
 
     loadInSimulationPipeline(simulationId: number) {
+        this.store.dispatch(loadSimulation({ simulationId }));
         console.log('Load in pipeline');
+    }
+
+    loadConfigurationInEditor(id: number, name: string) {
+        this.store.dispatch(loadConfigurationInEditor({ id, name }));
     }
 
     ngOnDestroy(): void {

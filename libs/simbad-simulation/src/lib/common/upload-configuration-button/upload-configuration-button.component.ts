@@ -1,13 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FormsService } from '@simbad-simulation/lib/configuration-editor/services/forms.service';
-import {
-    resetFormValue,
-    updateConfigurationName,
-    updateFormRootObjects,
-    updateFormValue
-} from '@simbad-simulation/lib/configuration-editor/store/form.actions';
-import { NotificationService } from '@simbad-client/app/core/notifications/notification.service';
+import { loadConfiguration } from '@simbad-simulation/lib/configuration-editor/store/form.actions';
 
 @Component({
     selector: 'simbad-upload-configuration-button',
@@ -15,7 +8,7 @@ import { NotificationService } from '@simbad-client/app/core/notifications/notif
     styleUrls: ['./upload-configuration-button.component.scss']
 })
 export class UploadConfigurationButtonComponent implements OnInit {
-    constructor(private store: Store<{}>, private fs: FormsService, private ns: NotificationService) {}
+    constructor(private store: Store<{}>) {}
 
     ngOnInit() {}
 
@@ -26,20 +19,12 @@ export class UploadConfigurationButtonComponent implements OnInit {
             const reader = new FileReader();
 
             reader.onload = (e: any) => {
-                const obj = JSON.parse(e.target.result);
-                const rootObjectClassNames = Object.keys(obj);
-                const formValue = this.fs.configurationToFormValue(obj);
-                this.store.dispatch(resetFormValue());
-                this.store.dispatch(updateFormRootObjects({ rootObjectClassNames }));
-                this.store.dispatch(updateFormValue({ formValue }));
-                this.ns.info(
-                    `Uploaded configuration ${inputNode.files[0].name}. The original file was not changed`,
-                    3000
-                );
+                const configuration = JSON.parse(e.target.result);
+                const name = inputNode.files[0].name;
+                this.store.dispatch(loadConfiguration({ configuration, name }));
             };
 
             if (inputNode.files[0]) {
-                this.store.dispatch(updateConfigurationName({ configurationName: inputNode.files[0].name }));
                 reader.readAsText(inputNode.files[0]);
             }
         }
