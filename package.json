@@ -98,7 +98,7 @@
         "@types/lodash": "^4.14.121",
         "@types/nock": "^9.3.1",
         "@types/node": "^10.14.15",
-        "acorn": "^6.0.0",
+        "acorn": "^6.4.1",
         "babel-loader": "^8.0.5",
         "chromedriver": "^76.0.0",
         "codelyzer": "~4.5.0",
