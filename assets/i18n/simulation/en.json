@@ -1,0 +1,14 @@
+{
+    "simbad.simulation.menu.form": "Configuration Form",
+    "simbad.simulation.menu.simulation-pipeline": "Simulation Pipeline",
+    "simbad.simulation.title": "Simulation",
+    "simbad.configuration.forms.tooltip.create": "Create new configuration file",
+    "simbad.configuration.forms.tooltip.scrollToTop": "Scroll to top",
+    "simbad.configuration.forms.tooltip.redirectAndStart": "Start Simulation",
+    "simbad.configuration.forms.tooltip.redirectAndStartDisabled": "Simulation configuration not created",
+    "simbad.configuration.forms.tooltip.load": "Upload configuration file from computer",
+    "simbad.configuration.forms.tooltip.download": "Download current configuration file",
+    "simbad.configuration.forms.tooltip.show": "Show file in file manager",
+    "simbad.configuration.forms.tooltip.preview": "File preview",
+    "simbad.configuration.forms.tooltip.downloadArtifact": "Download current configuration file"
+}
